@@ -157,7 +157,7 @@
 
     outline(
       title: [Índice General],
-      indent: 1em,
+      indent: 0em,
     )
   }
 
