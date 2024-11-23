@@ -10,7 +10,6 @@
   docente: [],
   abstracto: [],
   resumen-ejecutivo: [],
-
   body,
 ) = {
   set document(
@@ -37,24 +36,27 @@
     region: "bo",
   )
 
-  set par(
-    leading: 1.5em,
-  )
+  set par(leading: 1.5em)
 
-  set math.equation(numbering: "(1)", supplement: [Ecuación])
+  set math.equation(numbering: "(1)", supplement: [Expresión Matemática])
 
-  show figure: set figure.caption(
-    position: top
-  )
+  show figure: set figure.caption(position: top)
 
   show figure: it => {
-    it.caption
-    align(center, it.body)
+    block(
+      breakable: false,
+      sticky: true,
+      width: 100%,
+      inset: 0in,
+    )[
+      #it.caption
+      #align(center, it.body)
+    ]
   }
 
   set figure(
     gap: 1.5em,
-    placement: none
+    placement: none,
   )
 
   show figure.caption: it => {
@@ -71,22 +73,16 @@
     spacing: 2em,
   )
 
-  show figure: set block(
-    breakable: true
-  )
+  show figure: set block(breakable: true)
 
-  set par(
-    spacing: 2em,
-  )
+  set par(spacing: 2em)
 
   show quote: set par(
     leading: 1.5em,
     spacing: 2em,
   )
 
-  show quote: set pad(
-    left: 0.5in,
-  )
+  show quote: set pad(left: 0.5in)
 
   set heading(numbering: "1.")
 
@@ -129,7 +125,7 @@
   portada
 
   pagebreak(to: "odd")
-  
+
   portada
 
   pagebreak(weak: false)
@@ -138,14 +134,16 @@
 
   set page(numbering: "i")
 
-  if ((type(abstracto) == content and abstracto != [])
-    or (type(abstracto) == str and abstracto != "")) {
+  if ((type(abstracto) == content and abstracto != []) or (type(abstracto) == str and abstracto != "")) {
     heading([Abstracto], numbering: none)
     abstracto
   }
 
-  if ((type(resumen-ejecutivo) == content and resumen-ejecutivo != [])
-    or (type(resumen-ejecutivo) == str and resumen-ejecutivo != "")) {
+  if (
+    (type(resumen-ejecutivo) == content and resumen-ejecutivo != []) or (
+      type(resumen-ejecutivo) == str and resumen-ejecutivo != ""
+    )
+  ) {
     heading([Resumen Ejecutivo], numbering: none)
     resumen-ejecutivo
   }
@@ -174,7 +172,7 @@
   set math.equation(numbering: "1.")
 
   outline(
-    title: [Índice de Ecuaciones],
+    title: [Índice de Expresiones Matemáticas],
     target: figure.where(kind: math.equation),
   )
 
@@ -183,78 +181,68 @@
     target: selector(heading.where(supplement: [Anexo])),
   )
 
-  set page(
-    numbering: "1",
-  )
+  set page(numbering: "1")
 
-  show heading.where(level: 1): set heading(
-    supplement: [Capítulo],
-  )
+  show heading.where(level: 1): set heading(supplement: [Capítulo])
 
-  set page(
-    header: context hydra(1, display: (_, it) => upper(it.body)),
-  )
+  set page(header: context hydra(1, display: (_, it) => upper(it.body)))
 
   body
 }
 
 #let contenido-principal(
-  body
-) = context {
-  show heading.where(level: 1): it => {
-    {
-      set page(
-        numbering: none,
-        header: none,
-      )
+  body,
+) = (
+  context {
+    show heading.where(level: 1): it => {
+      {
+        set page(
+          numbering: none,
+          header: none,
+        )
 
-      set par(
-        spacing: 1.5em,
-      )
-      
-      align(center + horizon)[
-        #text(
-          size: 2.25em
-        )[#it.supplement #context counter(heading).display("I").trim(".")]
+        set par(spacing: 1.5em)
 
-        #text(size: 2.75em)[#it.body]
-      ]
+        align(center + horizon)[
+          #text(size: 2.25em)[#it.supplement #context counter(heading).display("I").trim(".")]
+
+          #text(size: 2.75em)[#it.body]
+        ]
+      }
+
+      it
     }
-
-    it
+    body
   }
-  body
-}
+)
 
 #let anexos(
-  body
-) = context {
-  counter(heading).update(0)
-  show heading: set heading(supplement: [Anexo])
-  show heading: set heading(numbering: "A.")
+  body,
+) = (
+  context {
+    counter(heading).update(0)
+    show heading: set heading(supplement: [Anexo])
+    show heading: set heading(numbering: "A.")
 
-  show heading.where(level: 1): it => {
-    {
-      set page(
-        numbering: none,
-        header: none,
-      )
+    show heading.where(level: 1): it => {
+      {
+        set page(
+          numbering: none,
+          header: none,
+        )
 
-      set par(
-        spacing: 1.5em,
-      )
-      
-      align(center + horizon)[
-        #text(
-          size: 2.25em
-        )[#it.supplement #counter(heading).display().trim(".")]
+        set par(spacing: 1.5em)
 
-        #text(size: 2.75em)[#it.body]
-      ]
+        align(center + horizon)[
+          #text(size: 2.25em)[#it.supplement #counter(heading).display().trim(".")]
+
+          #text(size: 2.75em)[#it.body]
+        ]
+      }
+
+      it
     }
 
-    it
+    body
   }
-
-  body
-}
+)
