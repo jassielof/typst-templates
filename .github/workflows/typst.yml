@@ -2,6 +2,8 @@ name: Typst Build
 
 on:
   push:
+    branches:
+      - main
     paths:
       - "versatile-apa/**"
       - "upsa-bo/**"
@@ -29,7 +31,7 @@ jobs:
           typst --version
 
       - name: Set up fonts
-        run: sudo apt-get update && sudo apt-get install -y fonts-cascadia-code
+        run: sudo apt-get update && sudo apt-get install -y fonts-cascadia-code && sudo fc-cache -f -v
 
       - name: Cache fonts
         uses: actions/cache@v3

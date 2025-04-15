@@ -181,7 +181,10 @@
   show heading.where(level: 5): it => emph(strong[#it.body.])
 
   set par(
-    first-line-indent: first-indent-length,
+    first-line-indent: (
+      amount: first-indent-length,
+      all: true,
+    ),
     leading: double-spacing,
   )
 
@@ -202,7 +205,7 @@
     parbreak()
     emph(it.body)
   }
-  
+
   set table(
     stroke: (x, y) => if y == 0 {
       (
@@ -253,35 +256,30 @@
     it.body
   }
 
-  show quote: set pad(left: 0.5in)
-  show quote: set block(spacing: 1.5em)
+  show quote.where(block: true): set block(spacing: double-spacing)
 
   show quote: it => {
-    let quote-text = to-string(it.body)
-    let quote-text-words = to-string(it.body).split(" ").len()
+    let quote-text-words = to-string(it.body).split(regex("\\s+")).filter(word => word != "").len()
 
     if quote-text-words < 40 {
-      set quote(block: false)
+      ["#it.body" ]
 
-      ["#quote-text.trim()"]
-
-      if (type(it.attribution) == label) [
-        #cite(it.attribution)
-      ] else if (
+      if (type(it.attribution) == label) {
+        cite(it.attribution)
+      } else if (
         type(it.attribution) == str or type(it.attribution) == content
-      ) [
-        #it.attribution
-      ]
+      ) {
+        it.attribution
+      }
     } else {
-      set quote(block: true)
-      set par(hanging-indent: 0.5in)
-
-      quote-text.trim()
-
-      if (type(it.attribution) == label) [
-        #cite(it.attribution)
-      ] else if (type(it.attribution) == str or type(it.attribution) == content) [
-        #it.attribution
+      block(inset: (left: 0.5in))[
+        #set par(first-line-indent: 0.5in)
+        #it.body
+        #if (type(it.attribution) == label) {
+          cite(it.attribution)
+        } else if (type(it.attribution) == str or type(it.attribution) == content) {
+          it.attribution
+        }
       ]
     }
   }
