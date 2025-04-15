@@ -181,7 +181,10 @@
   show heading.where(level: 5): it => emph(strong[#it.body.])
 
   set par(
-    first-line-indent: first-indent-length,
+    first-line-indent: (
+      amount: first-indent-length,
+      all: true,
+    ),
     leading: double-spacing,
   )
 
@@ -202,7 +205,7 @@
     parbreak()
     emph(it.body)
   }
-  
+
   set table(
     stroke: (x, y) => if y == 0 {
       (
@@ -253,9 +256,6 @@
     it.body
   }
 
-  show quote: set pad(left: 0.5in)
-  show quote: set block(spacing: 1.5em)
-
   show quote: it => {
     let quote-text = to-string(it.body)
     let quote-text-words = to-string(it.body).split(" ").len()
@@ -273,15 +273,13 @@
         #it.attribution
       ]
     } else {
-      set quote(block: true)
-      set par(hanging-indent: 0.5in)
-
-      quote-text.trim()
-
-      if (type(it.attribution) == label) [
-        #cite(it.attribution)
-      ] else if (type(it.attribution) == str or type(it.attribution) == content) [
-        #it.attribution
+      pad(left: 0.5in)[
+        #quote-text.trim()
+        #if (type(it.attribution) == label) {
+          cite(it.attribution)
+        } else if (type(it.attribution) == str or type(it.attribution) == content) {
+          it.attribution
+        }
       ]
     }
   }
