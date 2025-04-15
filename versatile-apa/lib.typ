@@ -256,6 +256,8 @@
     it.body
   }
 
+  show quote.where(block: true): set block(spacing: double-spacing)
+
   show quote: it => {
     let quote-text-words = to-string(it.body).split(regex("\\s+")).filter(word => word != "").len()
 
