@@ -106,9 +106,6 @@
     },
   )
 
-  show table.cell.where(y: 0): strong
-
-
   show figure: set block(breakable: true)
 
   set par(spacing: 2em)
@@ -236,6 +233,7 @@
     table(
       align: (left + horizon, left),
       columns: 2,
+      stroke: 1pt,
       [*Título*], título,
       [*Autor*], autor,
     )
@@ -257,6 +255,7 @@
 
     table(
       columns: 2,
+      stroke: 1pt,
       align: (left + horizon, left),
       [*Carrera*], carrera,
       [*Guía*], guía,
