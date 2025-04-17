@@ -21,3 +21,9 @@
 *.lot
 *.lof
 *.xdv
+*.ins
+*.bbx
+*.cbx
+*.dbx
+*.dtx
+*.bst

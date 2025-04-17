@@ -1,0 +1,23 @@
+[package]
+name = "versatile-acm"
+version = "2.12.0"
+compiler = "0.13.1"
+entrypoint = "lib.typ"
+repository = "https://github.com/jassielof/typst-templates"
+authors = ["Jassiel Ovando <@jassielof>"]
+license = "MIT-0"
+description = "ACM template port of the LaTeX acm-article template."
+keywords = [
+    "ACM",
+    "Association for Computing Machinery",
+    "Computer Science",
+    "Research",
+    "Academic Writing",
+]
+categories = ["paper", "report"]
+disciplines = ["computer-science", "engineering"]
+
+[template]
+path = "template"
+entrypoint = "manuscript.typ"
+thumbnail = "thumbnail.png"

@@ -9,6 +9,10 @@
 			"name": "Versatile APA"
 		},
 		{
+			"path": "../versatile-acm",
+			"name": "Versatile ACM"
+		},
+		{
 			"path": "../upsa-bo/estudio-de-factibilidad",
 			"name": "UPSA Bolivia: Estudio de Factibilidad"
 		},
@@ -26,9 +30,15 @@
 		}
 	],
 	"settings": {
+		"evenBetterToml.schema.associations": {
+			"typst.toml": "file:///home/jassielof/GitHub/jassielof/schemastore-typst/src/schemas/json/typst.schema.json"
+		},
 		"cSpell.words": [
+			"acmart",
 			"Alderson",
+			"Aparna",
 			"ASMC",
+			"Béranger",
 			"biocularly",
 			"booktitle",
 			"cascadia",
@@ -45,8 +55,11 @@
 			"FODA",
 			"footnotesize",
 			"github",
+			"Haidian",
+			"Hekla",
 			"Hidrosanitarias",
 			"hline",
+			"Huifen",
 			"inbook",
 			"ixpt",
 			"jassielof",
@@ -59,20 +72,24 @@
 			"Noncoplanar",
 			"normalsize",
 			"orcid",
+			"orcids",
 			"Organolépticas",
 			"pagebreak",
 			"parbreak",
 			"PESTAL",
 			"Reinversiones",
 			"repr",
+			"Rocquencourt",
 			"rowspan",
 			"scrartcl",
 			"scrbook",
 			"scriptsize",
 			"scrreprt",
+			"SIGCHI",
 			"smallcaps",
 			"Sociodemographic",
 			"subsubsection",
+			"Thørvald",
 			"Vásquez",
 			"viiipt",
 			"viipt",
