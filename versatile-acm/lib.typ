@@ -1,3 +1,5 @@
+#import "../latex-standard/utils/showframe.typ": background
+
 #let acm-formats = (
   "manuscript",
   "small",
@@ -43,15 +45,18 @@
   Huge: font-sizes.xviipt,
 )
 
+#let teaser-figure(figure, label) = [
+  #figure #label
+]
+
 
 #let versatile-acm(
   // Authoring
   // TODO: Support two types of title: title: [] as full title, and title: (short: none, full: []) as full title with short title
   title: [],
   subtitle: none,
-  authors: (),
+  authoring: (),
   author-notes: (),
-  affiliations: (),
   journal: [],
   conference: (
     short: [],
@@ -74,6 +79,7 @@
   balance: true,
   url-break-on-hyphen: true,
   make-title: false,
+  keywords: (),
   body,
 ) = {
   if format not in acm-formats {
@@ -110,8 +116,10 @@
   set document(title: full-title)
 
   set page(
+    background: background(),
     paper: "us-letter",
     columns: if format in ("sig-conf", "plan", "engage", "tog") { 2 } else { 1 },
+    margin: 1in - 18pt,
   )
 
   set text(
@@ -123,84 +131,19 @@
 
   set par()
 
-  set par.line(numbering: "1") if (review or format == "manuscript")
+  show figure.where(kind: table): set figure.caption(position: top)
+  show figure.caption: strong
 
-  let title-page-formatted-authors = (
-    (
-      name: ("Ben Trovato", "G.K.M. Tobin"),
-      email: ("trovato@corporation.com", "webmaster@marysville-ohio.com"),
-      orcid: "1234-5678-9012",
-      affiliation: (
-        institution: "Institute for Clarity in Documentation",
-        city: "Dublin",
-        state: "Ohio",
-        country: "USA",
-      ),
-    ),
-    (
-      name: "Lars Thørvald",
-      email: "larst@affiliation.org",
-      affiliation: (
-        institution: "The Thørvald Group",
-        city: "Hekla",
-        country: "Iceland",
-      ),
-    ),
-    (
-      name: "Valerie Béranger",
-      affiliation: (
-        institution: "Inria Paris-Rocquencourt",
-        city: "Rocquencourt",
-        country: "France",
-      ),
-    ),
-    (
-      name: "Aparna Patel",
-      affiliation: (
-        institution: "Rajiv Gandhi University",
-        city: "Doimukh",
-        state: "Arunachal Pradesh",
-        country: "India",
-      ),
-    ),
-    (
-      name: "Huifen Chan",
-      affiliation: (
-        institution: "Tsinghua University",
-        city: "Haidian Qu",
-        state: "Beijing Shi",
-        country: "China",
-      ),
-    ),
-    (
-      name: "Charles Palmer",
-      email: "cpalmer@prl.com",
-      affiliation: (
-        institution: "Palmer Research Laboratories",
-        city: "San Antonio",
-        state: "Texas",
-        country: "USA",
-      ),
-    ),
-    (
-      name: "John Smith",
-      email: "jsmith@affiliation.org",
-      affiliation: (
-        institution: "The Thørvald Group",
-        city: "Hekla",
-        country: "Iceland",
-      ),
-    ),
-    (
-      name: "Julius P. Kumquat",
-      email: "jpkumquat@consortium.net",
-      affiliation: (
-        institution: "The Kumquat Consortium",
-        city: "New York",
-        country: "USA",
-      ),
-    ),
+  set table(
+    stroke: (x, y) => if y == 0 {
+      (
+        top: (thickness: 1pt, dash: "solid"),
+        bottom: (thickness: 0.5pt, dash: "solid"),
+      )
+    },
   )
+
+  set par.line(numbering: "1") if (review or format == "manuscript")
 
   if make-title and format == "sig-conf" {
     set page(columns: 1)
@@ -211,10 +154,10 @@
       text(size: font-9pt.LARGE, subtitle) // \LARGE \md series
     }
 
-    for i in range(calc.ceil(title-page-formatted-authors.len() / 3)) {
-      let end = calc.min((i + 1) * 3, title-page-formatted-authors.len())
-      let is-final-author = title-page-formatted-authors.len() == end
-      let sliced-authors = title-page-formatted-authors.slice(i * 3, end)
+    for i in range(calc.ceil(authoring.len() / 3)) {
+      let end = calc.min((i + 1) * 3, authoring.len())
+      let is-final-author = authoring.len() == end
+      let sliced-authors = authoring.slice(i * 3, end)
       // TODO: Support arbitrary position of affiliation/email render. Author should be printed with the other they input.
       // Author-> affiliation -> email or
       // Author -> email -> affiliation
@@ -274,7 +217,9 @@
       }
     }
 
-    
+    if teaser-figure != none {
+      teaser-figure
+    }
   }
 
   body
