@@ -8,28 +8,29 @@
       name: "Ben Trovato",
       email: "trovato@corporation.com",
       orcid: "1234-5678-9012",
-      affiliations: (0,), // References first affiliation
-      notes: (0,), // References first author note
+      affiliations: (0,),
+      notes: (0,),
     ),
     (
       name: "G.K.M. Tobin",
       email: "webmaster@marysville-ohio.com",
-      affiliations: (0,), // Shares the same affiliation as Trovato
-      notes: (0,), // Shares the same note
+      affiliations: (0,),
+      notes: (0,),
     ),
     (
       name: "Lars Thørvald",
       email: "larst@affiliation.org",
-      affiliations: (1,), // References second affiliation
+      affiliations: (1,),
     ),
     (
       name: "Valerie Béranger",
+      affiliations: (2,),
     ),
-    (name: "Aparna Patel"),
-    (name: "Huifen Chan"),
-    (name: "Charles Palmer", email: "cpalmer@prl.com"),
-    (name: "John Smith", email: "jsmith@affiliation.org"),
-    (name: "Julius P. Kumquat", email: "jpkumquat@consortium.net"),
+    (name: "Aparna Patel", affiliations: (3,)),
+    (name: "Huifen Chan", affiliations: (4,)),
+    (name: "Charles Palmer", email: "cpalmer@prl.com", affiliations: (5,)),
+    (name: "John Smith", email: "jsmith@affiliation.org", affiliations: (1,)),
+    (name: "Julius P. Kumquat", email: "jpkumquat@consortium.net", affiliations: (6,)),
   ),
   affiliations: (
     (
@@ -47,6 +48,12 @@
       institution: "Inria Paris-Rocquencourt",
       city: "Rocquencourt",
       country: "France",
+    ),
+    (
+      institution: "Rajiv Gandhi University",
+      city: "Doimukh",
+      state: "Arunachal Pradesh",
+      country: "India",
     ),
     (
       institution: "Tsinghua University",
