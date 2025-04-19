@@ -30,7 +30,7 @@ Referencing @table:sample-demographic-characteristics.
       [n],
       [%],
     ),
-    table.hline(),
+    table.hline(stroke: 0.5pt),
     [Gender],
     table.cell(colspan: 8)[],
     [~Female],
