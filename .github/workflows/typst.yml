@@ -24,7 +24,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Homebrew
+      - name: Set up Homebrew, Typst and fonts
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           echo >> /home/runner/.bashrc
@@ -32,12 +32,7 @@ jobs:
           eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           sudo apt-get install build-essential
           brew install gcc
-
-      - name: Set up Typst
-        run: brew install typst
-
-      - name: Set up fonts
-        run: |
+          brew install typst
           brew install --cask font-cascadia-code
           brew install --cask font-libertinus
           brew install --cask font-computer-modern
