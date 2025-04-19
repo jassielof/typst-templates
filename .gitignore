@@ -27,3 +27,6 @@
 *.dbx
 *.dtx
 *.bst
+
+# ACM
+!acm-suite/assets/**/*
