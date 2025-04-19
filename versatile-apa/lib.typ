@@ -210,7 +210,7 @@
     stroke: (x, y) => if y == 0 {
       (
         top: (thickness: 1pt, dash: "solid"),
-        bottom: (thickness: 1pt, dash: "solid"),
+        bottom: (thickness: 0.5pt, dash: "solid"),
       )
     },
   )
