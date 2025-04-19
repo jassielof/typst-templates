@@ -78,7 +78,7 @@
   author-draft: false,
   balance: true,
   url-break-on-hyphen: true,
-  make-title: false,
+  make-title: true,
   keywords: (),
   body,
 ) = {
@@ -146,80 +146,85 @@
   set par.line(numbering: "1") if (review or format == "manuscript")
 
   if make-title and format == "sig-conf" {
-    set page(columns: 1)
-    set align(center)
-    text(size: font-9pt.Huge, weight: "bold", full-title) // \Huge /sf family \bf family
-    if subtitle != none and subtitle != [] {
-      parbreak()
-      text(size: font-9pt.LARGE, subtitle) // \LARGE \md series
-    }
+    place(
+      top + center,
+      scope: "parent",
+      float: true,
+      {
+        text(size: font-9pt.Huge, weight: "bold", full-title) // \Huge /sf family \bf family
+        if subtitle != none and subtitle != [] {
+          parbreak()
+          text(size: font-9pt.LARGE, subtitle) // \LARGE \md series
+        }
 
-    for i in range(calc.ceil(authoring.len() / 3)) {
-      let end = calc.min((i + 1) * 3, authoring.len())
-      let is-final-author = authoring.len() == end
-      let sliced-authors = authoring.slice(i * 3, end)
-      // TODO: Support arbitrary position of affiliation/email render. Author should be printed with the other they input.
-      // Author-> affiliation -> email or
-      // Author -> email -> affiliation
-      // Currently, it's just author -> affiliation -> email
-      grid(
-        columns: sliced-authors.len() * (1fr,),
-        gutter: 12pt,
-        ..sliced-authors.map(author => align(
-          center,
-          {
-            if type(author.name) == array {
-              text(size: font-9pt.LARGE, author.name.join(parbreak()))
-              if type(author.email) == array {
-                show link: set text(size: font-9pt.large)
-                for i in author.email {
-                  parbreak()
-                  link("mailto:" + i)
+        for i in range(calc.ceil(authoring.len() / 3)) {
+          let end = calc.min((i + 1) * 3, authoring.len())
+          let is-final-author = authoring.len() == end
+          let sliced-authors = authoring.slice(i * 3, end)
+          // TODO: Support arbitrary position of affiliation/email render. Author should be printed with the other they input.
+          // Author-> affiliation -> email or
+          // Author -> email -> affiliation
+          // Currently, it's just author -> affiliation -> email
+          grid(
+            columns: sliced-authors.len() * (1fr,),
+            gutter: 12pt,
+            ..sliced-authors.map(author => align(
+              center,
+              {
+                if type(author.name) == array {
+                  text(size: font-9pt.LARGE, author.name.join(parbreak()))
+                  if type(author.email) == array {
+                    show link: set text(size: font-9pt.large)
+                    for i in author.email {
+                      parbreak()
+                      link("mailto:" + i)
+                    }
+                  }
+                } else if type(author.name) == str or type(author.name) == content {
+                  text(size: font-9pt.LARGE, author.name)
                 }
-              }
-            } else if type(author.name) == str or type(author.name) == content {
-              text(size: font-9pt.LARGE, author.name)
-            }
 
-            if "affiliation" in author {
-              set text(size: font-9pt.large)
-              if "institution" in author.affiliation {
-                parbreak()
-                text(author.affiliation.institution)
-              }
-              if "city" in author.affiliation {
-                parbreak()
-                text(author.affiliation.city)
-              }
-              if "state" in author.affiliation {
-                [, ]
-                text(author.affiliation.state)
-              }
-              if "country" in author.affiliation {
-                [, ]
-                text(author.affiliation.country)
-              }
-            }
+                if "affiliation" in author {
+                  set text(size: font-9pt.large)
+                  if "institution" in author.affiliation {
+                    parbreak()
+                    text(author.affiliation.institution)
+                  }
+                  if "city" in author.affiliation {
+                    parbreak()
+                    text(author.affiliation.city)
+                  }
+                  if "state" in author.affiliation {
+                    [, ]
+                    text(author.affiliation.state)
+                  }
+                  if "country" in author.affiliation {
+                    [, ]
+                    text(author.affiliation.country)
+                  }
+                }
 
-            if "email" in author {
-              show link: set text(size: font-9pt.large)
-              if type(author.email) == str {
-                parbreak()
-                link("mailto:" + author.email)
-              }
-            }
-          },
-        ))
-      )
+                if "email" in author {
+                  show link: set text(size: font-9pt.large)
+                  if type(author.email) == str {
+                    parbreak()
+                    link("mailto:" + author.email)
+                  }
+                }
+              },
+            ))
+          )
 
-      if not is-final-author {
-        v(16pt, weak: true)
-      }
-    }
+          if not is-final-author {
+            v(16pt, weak: true)
+          }
+        }
 
-    if teaser-figure != none {
-      teaser-figure
-    }
+        if teaser-figure != none {
+          teaser-figure
+        }
+      },
+    )
   }
 
   body

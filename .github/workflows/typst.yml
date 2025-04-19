@@ -24,14 +24,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Homebrew
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
       - name: Set up Typst
-        run: |
-          # Use a specific version for consistent builds
-          sudo snap install typst --channel=latest/stable
-          typst --version
+        run: brew install typst
 
       - name: Set up fonts
-        run: sudo apt-get update && sudo apt-get install -y fonts-cascadia-code && sudo fc-cache -f -v
+        run: |
+          brew install --cask font-cascadia-code
+          brew install --cask font-libertinus
+          brew install --cask font-computer-modern
+          brew install --cask font-new-computer-modern
+          sudo fc-cache -f -v
 
       - name: Cache fonts
         uses: actions/cache@v3
@@ -39,35 +44,16 @@ jobs:
           path: ~/.local/share/fonts
           key: ${{ runner.os }}-fonts-${{ hashFiles('**/*.ttf', '**/*.otf') }}
 
-      - name: Compile templates
-        id: compile
+      - name: Versatile APA
+        run: typst compile --root . versatile-apa/template/main.typ
+
+      - name: ACM Suite
         run: |
-          mkdir -p output
-          echo "::group::Versatile APA"
-          typst compile --root . versatile-apa/template/main.typ output/versatile-apa.pdf
-          echo "::endgroup::"
+          typst compile --root . acm-suite/template/sig-con.typ
+          typst compile --root . acm-suite/template/manuscript.typ
 
-          echo "::group::UPSA Bolivia: Estudio de Factibilidad"
-          typst compile --root . upsa-bo/estudio-de-factibilidad/template/estudio-de-factibilidad.typ output/upsa-estudio-factibilidad.pdf
-          echo "::endgroup::"
+      - name: UPSA Bolivia - Estudio de Factibilidad
+        run: typst compile --root . upsa-bo/estudio-de-factibilidad/template/estudio-de-factibilidad.typ
 
-          echo "::group::UPSA Bolivia: Tesis"
-          typst compile --root . upsa-bo/tesis/template/tesis.typ output/upsa-tesis.pdf
-           echo "::endgroup::"
-
-      - name: Upload compiled PDFs
-        uses: actions/upload-artifact@v4
-        with:
-          name: typst-templates
-          path: output/*.pdf
-          retention-days: 7
-
-      - name: Verify PDFs were created
-        run: |
-          for file in output/*.pdf; do
-            if [ ! -s "$file" ]; then
-              echo "Error: $file is empty or not generated"
-              exit 1
-            fi
-          done
-          echo "All PDFs successfully generated"
+      - name: UPSA Bolivia - Tesis
+        run: typst compile --root . upsa-bo/tesis/template/tesis.typ

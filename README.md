@@ -1,41 +1,95 @@
-# Collection of Typst templates
+# Collection of Typst Templates
 
-All templates/works in this repository are made by me under my free time, and licensed under the MIT License.
+All templates/works in this repository are made by me under my free time, and licensed under the MIT License
+
+## The Templates
+
+This repository contains a collection of Typst templates for various purposes, check each template for more details:
+
+- [Versatile APA](./versatile-apa/README.md): Template for APA style documents (student/professional).
+- [ACM Suite](./acm-suite/README.md): Template for ACM (Association for Computing Machinery) documents (based on ACM $\LaTeX$ `acmart`).
+- [UPSA Bolivia](./upsa-bo/README.md): Template for UPSA Bolivia (Universidad Privada de Santa Cruz de la Sierra) documents (thesis/graduation project and feasibility study).
+- [$\LaTeX$ Standard](./latex-standard/README.md): $\LaTeX$ standard class (article/report/book).
+  - [$\LaTeX$ Letter](./latex-letter/README.md): $\LaTeX$ standard letter class.
+- [KOMA-Script](./koma-script/README.md): KOMA-Script class (article/report/book).
+
+---
 
 ## Usage
 
-To use a template from this project, simply copy/clone the contents.
+You can use these templates in your projects in several ways, depending on your experience and needs:
 
-### Cloning or Using Submodules
+### Download or Copy
 
-You can clone the whole repository inside your working directory/project and use the template as:
+If you don't use Git, you can simply:
+
+- Click the green "Code" button on GitHub and select "Download ZIP".
+- Extract the ZIP file and copy the template folder(s) you want into your project.
+
+---
+
+### Using Git
+
+#### Cloning the Repository
+
+If you want all templates, run:
 
 ```sh
 git clone https://github.com/jassielof/typst-templates.git template
 ```
 
-This method won't let you upload your project because it will be a cloned repository, you can either remove the `.git/` directory, but this won't let you update the template for any future changes.
+This creates a folder called `template` with all templates inside.
 
-In that case, you can use a submodule:
+> **Note:** If your project is also a Git repository, avoid copying the `.git/` directory from the template to prevent conflicts.
+
+#### Using Submodules
+
+If your project is already a Git repository and you want to keep the template updated easily, add it as a submodule:
 
 ```sh
 git submodule add https://github.com/jassielof/typst-templates.git template
 ```
 
-This will let you update the template by running `git submodule update --remote --merge` inside the `template/` directory.
-And also upload your project as a git repository without any conflicts.
-The repository will appear as a reference git repository in your project.
+This links the template folder to this repository.
 
-### Typst Universe
+**To update the template later, run:**
 
-Available in Typst Universe or usable.
+```sh
+git submodule update --remote --merge
+```
 
-- [x] `versatile-apa:7.1.1`: [Versatile APA in Typst Universe](https://typst.app/universe/package/versatile-apa/)
-- [ ] `latex-std`
-  - [ ] `article`
-  - [ ] `report`
-  - [ ] `book`
-- [ ] `koma-script`
-- [x] `upsa-bo`
-  - [x] `estudio-de-factibilidad`
-  - [x] `tesis`
+in your project root.
+This fetches the latest changes from the template repository.
+
+**If you clone a project that already uses this submodule, use:**
+
+```sh
+git clone --recurse-submodules <your-repo-url>
+```
+
+or, if you already cloned:
+
+```sh
+git submodule update --init --recursive
+```
+
+> **Tip:** After updating a submodule, always commit the submodule pointer in your main repository:
+>
+> ```sh
+> git add template
+> git commit -m "Update template submodule"
+> ```
+
+---
+
+## Troubleshooting & Tips
+
+- If you see a "detached HEAD" warning in the submodule, you can check out the main branch inside the submodule:
+
+  ```sh
+  cd template
+  git checkout main
+  ```
+
+- For more on submodules, see [Git Tools - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
+- If you have questions or issues, feel free to open an issue on this repository!

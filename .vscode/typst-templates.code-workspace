@@ -1,174 +1,175 @@
 {
-	"folders": [
-		{
-			"path": "..",
-			"name": "Typst Templates"
-		},
-		{
-			"path": "../versatile-apa",
-			"name": "Versatile APA"
-		},
-		{
-			"path": "../versatile-acm",
-			"name": "Versatile ACM"
-		},
-		{
-			"path": "../upsa-bo/estudio-de-factibilidad",
-			"name": "UPSA Bolivia: Estudio de Factibilidad"
-		},
-		{
-			"path": "../upsa-bo/tesis",
-			"name": "USPA Bolivia: Tesis"
-		},
-		{
-			"path": "../latex-standard",
-			"name": "LaTeX Standard"
-		},
-		{
-			"path": "../koma-script",
-			"name": "KOMA-Script"
-		}
-	],
-	"settings": {
-		"evenBetterToml.schema.associations": {
-			"typst.toml": "file:///home/jassielof/GitHub/jassielof/schemastore-typst/src/schemas/json/typst.schema.json"
-		},
-		"cSpell.words": [
-			"acks",
-			"acmart",
-			"acmauthoryear",
-			"acmconf",
-			"acmlarge",
-			"acmsmall",
-			"acmtog",
-			"Alderson",
-			"Aparna",
-			"Arunachal",
-			"ASMC",
-			"authornote",
-			"authornotemark",
-			"authorversion",
-			"Béranger",
-			"biocularly",
-			"booktabs",
-			"booktitle",
-			"cascadia",
-			"Codly",
-			"Cohabitating",
-			"colbreak",
-			"colspan",
-			"CTAN",
-			"datetime",
-			"Desbeneficios",
-			"documentclass",
-			"Doimukh",
-			"emph",
-			"Ervin",
-			"Fernyhough",
-			"FODA",
-			"footnotesize",
-			"github",
-			"Haidian",
-			"Hekla",
-			"Hidrosanitarias",
-			"hline",
-			"Huifen",
-			"inbook",
-			"ixpt",
-			"jassielof",
-			"JOCCH",
-			"koma",
-			"Kosiur",
-			"Libertinus",
-			"linebreak",
-			"linebreaks",
-			"lmodern",
-			"ltimes",
-			"Macrolocalización",
-			"marginfigure",
-			"margintable",
-			"Mehldau",
-			"Microlocalización",
-			"midrule",
-			"muchpdf",
-			"Noncoplanar",
-			"normalsize",
-			"orcid",
-			"orcids",
-			"Organolépticas",
-			"pagebreak",
-			"parbreak",
-			"PESTAL",
-			"Reinversiones",
-			"renewcommand",
-			"repr",
-			"Rocquencourt",
-			"rowspan",
-			"sampleteaser",
-			"scrartcl",
-			"scrbook",
-			"scriptsize",
-			"scrreprt",
-			"shortauthors",
-			"sigchi",
-			"SIGCHI",
-			"sigconf",
-			"sigplan",
-			"smallcaps",
-			"Sociodemographic",
-			"subsubsection",
-			"subsusection",
-			"Thørvald",
-			"translatedabstract",
-			"Vásquez",
-			"viiipt",
-			"viipt",
-			"vipt",
-			"xiipt",
-			"xipt",
-			"xivpt",
-			"xviipt",
-			"xxpt",
-			"xxvpt"
-		],
-		"cSpell.language": "en,es-ES,en-GB,en-US,de,de-DE,lorem,es,pt,nl,it,fr",
-		"cSpell.ignoreWords": [
-			"technologies"
-		]
-	},
-	"extensions": {
-		"recommendations": [
-			"calebfiggers.typst-companion",
-			"myriad-dreamin.tinymist",
-			"surv.typst-math"
-		]
-	},
-	"tasks": {
-		"version": "2.0.0",
-		"tasks": [
-			{
-				"label": "Watch Typst Template",
-				"type": "process",
-				"command": "typst",
-				"args": [
-					"watch",
-					"${workspaceFolder}${/}${input:template}${/}template${/}main.typ",
-					"--root",
-					"${workspaceFolder}"
-				],
-				"detail": "Watch the selected template",
-				"problemMatcher": []
-			}
-		],
-		"inputs": [
-			{
-				"id": "template",
-				"type": "pickString",
-				"options": [
-					"versatile-apa",
-				],
-				"description": "Select a template to watch",
-			}
-		]
-	}
+  "folders": [
+    {
+      "path": "..",
+      "name": "Typst Templates"
+    },
+    {
+      "path": "../versatile-apa",
+      "name": "Versatile APA"
+    },
+    {
+      "path": "../acm-suite",
+      "name": "ACM Suite"
+    },
+    {
+      "path": "../upsa-bo/estudio-de-factibilidad",
+      "name": "UPSA Bolivia: Estudio de Factibilidad"
+    },
+    {
+      "path": "../upsa-bo/tesis",
+      "name": "USPA Bolivia: Tesis"
+    },
+    {
+      "path": "../latex-standard",
+      "name": "LaTeX Standard"
+    },
+    {
+      "path": "../koma-script",
+      "name": "KOMA-Script"
+    }
+  ],
+  "settings": {
+    "evenBetterToml.schema.associations": {
+      "typst.toml": "file:///home/jassielof/GitHub/jassielof/schemastore-typst/src/schemas/json/typst.schema.json"
+    },
+    "cSpell.words": [
+      "acks",
+      "acmart",
+      "acmauthoryear",
+      "acmconf",
+      "acmlarge",
+      "acmsmall",
+      "acmtog",
+      "Alderson",
+      "Aparna",
+      "Arunachal",
+      "ASMC",
+      "authornote",
+      "authornotemark",
+      "authorversion",
+      "Béranger",
+      "biocularly",
+      "booktabs",
+      "booktitle",
+      "cascadia",
+      "Codly",
+      "Cohabitating",
+      "colbreak",
+      "colspan",
+      "CTAN",
+      "datetime",
+      "Desbeneficios",
+      "documentclass",
+      "Doimukh",
+      "emph",
+      "Ervin",
+      "Fernyhough",
+      "FODA",
+      "footnotesize",
+      "github",
+      "Haidian",
+      "Hekla",
+      "Hidrosanitarias",
+      "hline",
+      "Huifen",
+      "inbook",
+      "ixpt",
+      "jassielof",
+      "JOCCH",
+      "koma",
+      "Kosiur",
+      "libertinus",
+      "Libertinus",
+      "linebreak",
+      "linebreaks",
+      "lmodern",
+      "ltimes",
+      "Macrolocalización",
+      "marginfigure",
+      "margintable",
+      "Mehldau",
+      "Microlocalización",
+      "midrule",
+      "muchpdf",
+      "Noncoplanar",
+      "normalsize",
+      "orcid",
+      "orcids",
+      "Organolépticas",
+      "pagebreak",
+      "parbreak",
+      "PESTAL",
+      "Reinversiones",
+      "renewcommand",
+      "repr",
+      "Rocquencourt",
+      "rowspan",
+      "sampleteaser",
+      "scrartcl",
+      "scrbook",
+      "scriptsize",
+      "scrreprt",
+      "shortauthors",
+      "sigchi",
+      "SIGCHI",
+      "sigconf",
+      "sigplan",
+      "smallcaps",
+      "Sociodemographic",
+      "subsubsection",
+      "subsusection",
+      "Thørvald",
+      "translatedabstract",
+      "Vásquez",
+      "viiipt",
+      "viipt",
+      "vipt",
+      "xiipt",
+      "xipt",
+      "xivpt",
+      "xviipt",
+      "xxpt",
+      "xxvpt"
+    ],
+    "cSpell.language": "en,es-ES,en-GB,en-US,de,de-DE,lorem,es,pt,nl,it,fr",
+    "cSpell.ignoreWords": [
+      "technologies"
+    ]
+  },
+  "extensions": {
+    "recommendations": [
+      "calebfiggers.typst-companion",
+      "myriad-dreamin.tinymist",
+      "surv.typst-math"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Watch Typst Template",
+        "type": "process",
+        "command": "typst",
+        "args": [
+          "watch",
+          "${workspaceFolder}${/}${input:template}${/}template${/}main.typ",
+          "--root",
+          "${workspaceFolder}"
+        ],
+        "detail": "Watch the selected template",
+        "problemMatcher": []
+      }
+    ],
+    "inputs": [
+      {
+        "id": "template",
+        "type": "pickString",
+        "options": [
+          "versatile-apa",
+        ],
+        "description": "Select a template to watch",
+      }
+    ]
+  }
 }

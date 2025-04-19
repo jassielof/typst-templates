@@ -21,9 +21,11 @@ body:
       multiple: false
       options:
         - Versatile APA
-        - LaTeX Standard Class
+        - ACM Suite
         - UPSA Bolivia (Estudio de Factibilidad)
         - UPSA Bolivia (Tesis)
+        - LaTeX Standard
+        - KOMA-Script
     validations:
       required: true
 
