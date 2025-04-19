@@ -49,7 +49,7 @@ jobs:
 
       - name: ACM Suite
         run: |
-          typst compile --root . acm-suite/template/sig-con.typ
+          typst compile --root . acm-suite/template/sig-conf.typ
           typst compile --root . acm-suite/template/manuscript.typ
 
       - name: UPSA Bolivia - Estudio de Factibilidad
