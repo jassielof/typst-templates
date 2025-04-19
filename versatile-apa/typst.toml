@@ -1,3 +1,4 @@
+#:schema file:///home/jassielof/GitHub/jassielof/schemastore-typst/src/schemas/json/typst.json
 [package]
 name = "versatile-apa"
 version = "7.1.1"
@@ -8,15 +9,17 @@ authors = ["Jassiel Ovando <@jassielof>"]
 license = "MIT-0"
 description = "Comprehensive APA 7th Edition Style Template for Typst, suitable for both student and professional papers."
 keywords = [
-    "American Psychological Association",
-    "APA",
-    "APA 7th Edition",
-    "Academic Writing",
-    "Psychology",
-    "Research",
+  "American Psychological Association",
+  "APA",
+  "APA 7th Edition",
+  "Academic Writing",
+  "Psychology",
+  "Research",
 ]
-categories = ["paper", "report"]
-disciplines = ["psychology"]
+exclude = ["reference/","*.pdf"]
+categories = ["paper", "report", "thesis"]
+disciplines = ["psychology", "business", "education", "sociology"]
+
 
 [template]
 path = "template"
