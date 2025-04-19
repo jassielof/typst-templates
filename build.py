@@ -79,8 +79,16 @@ def copy_files(toml_dir: Path, output_dir: Path, exclude_patterns: List[str], pa
       # Create destination directory if it doesn't exist
       os.makedirs(os.path.dirname(dst_path), exist_ok=True)
 
+      # Special handling for typst.toml: remove #schema directive
+      if file == "typst.toml":
+        with open(src_path, 'r', encoding='utf-8') as f:
+          lines = f.readlines()
+        # Remove any line that starts with #:
+        filtered = [line for line in lines if not line.lstrip().startswith("#:schema")]
+        with open(dst_path, 'w', encoding='utf-8') as f:
+          f.writelines(filtered)
       # If it's a .typ file, check for imports to update
-      if file.endswith('.typ'):
+      elif file.endswith('.typ'):
         with open(src_path, 'r', encoding='utf-8') as f:
           content = f.read()
 
@@ -101,7 +109,6 @@ def copy_files(toml_dir: Path, output_dir: Path, exclude_patterns: List[str], pa
       else:
         # Just copy the file
         shutil.copy2(src_path, dst_path)
-
 
 def main():
   args = parse_args()
