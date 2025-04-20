@@ -43,19 +43,24 @@ def compile_template(toml_dir: Path, package_name: str, template_path: str, temp
 
 
 def should_exclude(file_path: str, exclude_patterns: List[str], base_dir: Path) -> bool:
-    """Check if the file should be excluded based on the exclude patterns."""
+    """Check if the file should be excluded based on the exclude patterns, supporting negation (!)."""
     rel_path = os.path.relpath(file_path, base_dir)
-
+    excluded = False
     for pattern in exclude_patterns:
-        # Match using glob
-        if glob.fnmatch.fnmatch(rel_path, pattern):
-            return True
-        # If pattern ends with '/' or has no wildcard, treat as directory
-        if (pattern.endswith('/') or (not any(c in pattern for c in '*?[]') and os.path.isdir(os.path.join(base_dir, pattern)))):
-            # Exclude everything under this directory
-            if rel_path == pattern.rstrip('/') or rel_path.startswith(pattern.rstrip('/') + os.sep):
-                return True
-    return False
+        is_negation = pattern.startswith("!")
+        clean_pattern = pattern[1:] if is_negation else pattern
+
+        # Directory pattern handling
+        if (clean_pattern.endswith('/') or
+            (not any(c in clean_pattern for c in '*?[]') and os.path.isdir(os.path.join(base_dir, clean_pattern)))):
+            if rel_path == clean_pattern.rstrip('/') or rel_path.startswith(clean_pattern.rstrip('/') + os.sep):
+                excluded = not is_negation
+                continue
+
+        # Glob pattern matching
+        if glob.fnmatch.fnmatch(rel_path, clean_pattern):
+            excluded = not is_negation
+    return excluded
 
 def generate_thumbnail(toml_dir: Path, package_name: str, template_path: str,
                       template_entrypoint: str, thumbnail_path: str):
