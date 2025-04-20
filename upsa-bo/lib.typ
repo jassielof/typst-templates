@@ -498,7 +498,9 @@
   body,
 ) = (
   context {
-    counter(heading.where(level: 1)).update(0)
+    if query(heading.where(level: 1, numbering: "I.")).len() == 0 {
+      counter(heading).update(0)
+    }
     chapter-counter.update(0)
     set heading(supplement: [Anexo])
     set heading(numbering: (first, ..n) => (numbering("A.1.", ..n)))
@@ -621,8 +623,6 @@
           )
         ]
       }
-
-      // align(center, smallcaps(it))
     }
 
     body
