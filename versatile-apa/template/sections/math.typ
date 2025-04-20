@@ -1,9 +1,7 @@
 = Math Equations
 #lorem(50).
 
-Let $a$, $b$, and $c$ be the side
-lengths of right-angled triangle.
-Then, we know that:
+Let $a$, $b$, and $c$ be the side lengths of right-angled triangle. Then, we know that:
 $ a^2 + b^2 = c^2 $
 
 Prove by induction:
