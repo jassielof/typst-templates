@@ -2,10 +2,12 @@
 [package]
 name = "acm-suite"
 version = "2.12.0"
+compiler = "0.13.1"
+repository = "https://github.com/jassielof/typst-templates"
 entrypoint = "lib.typ"
 authors = ["Jassiel Ovando <@jassielof>"]
 license = "MIT-0"
-description = "ACM template suite port of the LaTeX acm-article template."
+description = "ACM template suite, port of the LaTeX acm-article template."
 keywords = [
   "ACM",
   "Association for Computing Machinery",
@@ -13,37 +15,11 @@ keywords = [
   "Research",
   "Academic Writing",
 ]
-categories = ["paper", "report"]
-disciplines = [
-  "computer-science",
-  "agriculture",
-  "engineering",
-  "physics",
-  "law",
-  "philosophy",
-]
+categories = ["paper", "report", "thesis"]
+disciplines = ["computer-science", "engineering"]
+exclude = ["*.pdf", "!assets/**/*.pdf", "reference"]
 
 [template]
 path = "template"
 entrypoint = "sig-conf.typ"
 thumbnail = "thumbnail.png"
-
-
-# [package]
-# name = "versatile-acm"
-# version = "2.12.0"
-# compiler = "0.13.1"
-# entrypoint = "lib.typ"
-# repository = "https://github.com/jassielof/typst-templates"
-# authors = ["Jassiel Ovando <@jassielof>"]
-# license = "MIT-0"
-# description = "ACM template port of the LaTeX acm-article template."
-# keywords = [
-#     "ACM",
-#     "Association for Computing Machinery",
-#     "Computer Science",
-#     "Research",
-#     "Academic Writing",
-# ]
-# categories = ["paper", "report"]
-# disciplines = ["computer-science", "engineering"]
