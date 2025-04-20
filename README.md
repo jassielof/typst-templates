@@ -6,12 +6,33 @@ All templates/works in this repository are made by me under my free time, and li
 
 This repository contains a collection of Typst templates for various purposes, check each template for more details:
 
-- [Versatile APA](./versatile-apa/README.md): Template for APA style documents (student/professional).
-- [ACM Suite](./acm-suite/README.md): Template for ACM (Association for Computing Machinery) documents (based on ACM $\LaTeX$ `acmart`).
-- [UPSA Bolivia](./upsa-bo/README.md): Template for UPSA Bolivia (Universidad Privada de Santa Cruz de la Sierra) documents (thesis/graduation project and feasibility study).
-- [$\LaTeX$ Standard](./latex-standard/README.md): $\LaTeX$ standard class (article/report/book).
-  - [$\LaTeX$ Letter](./latex-letter/README.md): $\LaTeX$ standard letter class.
-- [KOMA-Script](./koma-script/README.md): KOMA-Script class (article/report/book).
+### [Versatile APA](./versatile-apa/README.md) (Available in Universe)
+
+Template for APA style documents (student/professional).
+
+![Versatile APA Thumbnail](./versatile-apa/thumbnail.png)
+
+### [ACM Suite](./acm-suite/README.md) (WIP)
+
+Template for ACM (Association for Computing Machinery) documents (based on ACM LaTeX `acmart`).
+
+![ACM Suite Thumbnail](./acm-suite/thumbnail.png)
+
+### [UPSA Bolivia](./upsa-bo/README.md)
+
+Template for UPSA Bolivia (Universidad Privada de Santa Cruz de la Sierra) documents (thesis/graduation project and feasibility study).
+
+### [LaTeX Standard](./latex-standard/README.md) (WIP)
+
+LaTeX standard class (article/report/book).
+
+#### [LaTeX Letter](./latex-letter/README.md) (WIP)
+
+LaTeX standard letter class.
+
+### [KOMA-Script](./koma-script/README.md) (WIP)
+
+KOMA-Script class (article/report/book).
 
 ---
 
