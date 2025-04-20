@@ -96,7 +96,7 @@ Referencing @table:sample-results-of-several-t-tests.
       [M],
       [SD],
     ),
-    table.hline(),
+    table.hline(stroke: 0.5pt),
     [Maximum asymptote, proportion],
     [0.85], [0.05], [0.90], [0.04], [2.56], [.014], [.63],
     [Crossover, in ms],
@@ -141,8 +141,12 @@ Referencing @table:sample-correlation.
     [3. Starting salary#super[b]], [3,697], [1.01], [0.27], [.45\*\*], [-.01], [-], [-], [-], [-], [-],
     [4. Subsequent promotion], [3,697], [0.33], [0.47], [.08\*\*], [-.07\*\*], [.04\*], [-], [-], [-], [-],
     [5. Organizational tenure], [3,697], [6.45], [6.62], [-.29\*\*], [.09\*\*], [.01], [.09\*\*], [-], [-], [-],
-    [6. Unit service performance#super[c]], [3,505], [85.00], [6.98], [-.25\*\*], [-.39\*\*], [.24\*\*], [.08\*\*], [.01], [-], [-],
-    [7. Unit financial performance#super[c]], [694], [42.61], [5.86], [.00], [-.03], [.12\*], [-.07], [-.02], [.16\*\*], [-],
+    [
+      6. Unit service performance#super[c]
+    ], [3,505], [85.00], [6.98], [-.25\*\*], [-.39\*\*], [.24\*\*], [.08\*\*], [.01], [-], [-],
+    [
+      7. Unit financial performance#super[c]
+    ], [694], [42.61], [5.86], [.00], [-.03], [.12\*], [-.07], [-.02], [.16\*\*], [-],
     table.hline(),
   ),
   specific-note: [
