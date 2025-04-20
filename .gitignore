@@ -1,6 +1,8 @@
 # Output files
 *.pdf
 !thumbnail.png
+output/
+universe/
 
 # LaTeX
 *.aux
