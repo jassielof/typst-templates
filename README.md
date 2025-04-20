@@ -22,9 +22,11 @@ Template for ACM (Association for Computing Machinery) documents (based on ACM L
 
 Template for UPSA Bolivia (Universidad Privada de Santa Cruz de la Sierra) documents (thesis/graduation project and feasibility study).
 
+![UPSA Bolivia Thumbnail](./upsa-bo/thumbnakil.png)
+
 ### [LaTeX Standard](./latex-standard/README.md) (WIP)
 
-LaTeX standard class (article/report/book).
+LaTeX standard class (article/report/book)
 
 #### [LaTeX Letter](./latex-letter/README.md) (WIP)
 

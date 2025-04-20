@@ -52,8 +52,7 @@ jobs:
           typst compile --root . acm-suite/template/sig-conf.typ
           typst compile --root . acm-suite/template/manuscript.typ
 
-      - name: UPSA Bolivia - Estudio de Factibilidad
-        run: typst compile --root . upsa-bo/estudio-de-factibilidad/template/estudio-de-factibilidad.typ
-
-      - name: UPSA Bolivia - Tesis
-        run: typst compile --root . upsa-bo/tesis/template/tesis.typ
+      - name: UPSA Bolivia
+        run: |
+          typst compile --root . 'upsa-bo/template/Estudio de Factibilidad/main.typ'
+          typst compile --root . upsa-bo/template/TFG/main.typ
