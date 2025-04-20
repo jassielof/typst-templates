@@ -1,9 +1,9 @@
-#import "@preview/hydra:0.6.0": hydra
+#import "@preview/hydra:0.6.1": hydra
 #import "./utils/to-string.typ": *
 
 #let chapter-counter = counter("chapter")
 
-#let tesis(
+#let tfg(
   título: [],
   facultad: [],
   carrera: [],

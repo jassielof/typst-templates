@@ -13,12 +13,8 @@
       "name": "ACM Suite"
     },
     {
-      "path": "../upsa-bo/estudio-de-factibilidad",
-      "name": "UPSA Bolivia: Estudio de Factibilidad"
-    },
-    {
-      "path": "../upsa-bo/tesis",
-      "name": "USPA Bolivia: Tesis"
+      "path": "../upsa-bo/",
+      "name": "UPSA Bolivia"
     },
     {
       "path": "../latex-standard",
