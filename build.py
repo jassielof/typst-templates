@@ -57,6 +57,31 @@ def should_exclude(file_path: str, exclude_patterns: List[str], base_dir: Path) 
                 return True
     return False
 
+def generate_thumbnail(toml_dir: Path, package_name: str, template_path: str,
+                      template_entrypoint: str, thumbnail_path: str):
+  """Generate a thumbnail image by compiling just the first page of the template."""
+  try:
+    # Construct paths relative to the parent directory of toml_dir
+    template_full_path = os.path.join(package_name, template_path, template_entrypoint)
+    thumbnail_full_path = os.path.join(package_name, thumbnail_path)
+
+    cmd = [
+      "typst", "compile",
+      "--root", ".",
+      template_full_path,
+      "--pages", "1",
+      thumbnail_full_path
+    ]
+
+    # Run the command from the parent directory of toml_dir
+    print(f"Generating thumbnail: {thumbnail_full_path}")
+    subprocess.run(cmd, cwd=toml_dir.parent, check=True, capture_output=True)
+  except subprocess.CalledProcessError as e:
+    print(f"Error generating thumbnail: {e}")
+    print(f"Output: {e.stdout.decode() if e.stdout else ''}")
+    print(f"Error: {e.stderr.decode() if e.stderr else ''}")
+    sys.exit(1)
+
 def copy_files(toml_dir: Path, output_dir: Path, exclude_patterns: List[str], package_name: str, package_version: str, package_entrypoint: str):
   """Copy files from toml_dir to output_dir, excluding files that match exclude_patterns and updating import statements."""
   os.makedirs(output_dir, exist_ok=True)
@@ -151,6 +176,7 @@ def main():
 
     template_path = config.get("template", {}).get("path", "")
     template_entrypoint = config.get("template", {}).get("entrypoint", "")
+    thumbnail_path = config.get("template", {}).get("thumbnail", "")
 
     if not package_name or not package_version:
       print("Error: 'package.name' and 'package.version' are required in the TOML file")
@@ -162,6 +188,10 @@ def main():
     # Compile the template if path and entrypoint are provided
     if template_path and template_entrypoint:
       compile_template(toml_dir, package_name, template_path, template_entrypoint)
+
+      # Generate thumbnail if specified in the TOML
+      if thumbnail_path:
+        generate_thumbnail(toml_dir, package_name, template_path, template_entrypoint, thumbnail_path)
 
     # Create output directory
     output_base = Path(args.output_dir)
