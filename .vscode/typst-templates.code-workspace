@@ -30,9 +30,6 @@
     }
   ],
   "settings": {
-    "evenBetterToml.schema.associations": {
-      "typst.toml": "file:///home/jassielof/GitHub/jassielof/schemastore-typst/src/schemas/json/typst.schema.json"
-    },
     "cSpell.words": [
       "acks",
       "acmart",
@@ -135,7 +132,7 @@
     "cSpell.language": "en,es-ES,en-GB,en-US,de,de-DE,lorem,es,pt,nl,it,fr",
     "cSpell.ignoreWords": [
       "technologies"
-    ]
+    ],
   },
   "extensions": {
     "recommendations": [
