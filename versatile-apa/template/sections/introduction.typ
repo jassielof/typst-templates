@@ -1,4 +1,3 @@
-// Implicit introduction heading level 1
 #lorem(100)
 
 #lorem(100)

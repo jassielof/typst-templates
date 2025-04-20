@@ -1,11 +1,12 @@
 #import "../lib.typ": *
 
+// Document titles should be formatted in title case (https://capitalizemytitle.com/)
 #let doc-title = [American Psychological Association (APA) Style Template for Typst]
 
 #show: versatile-apa.with(
   title: doc-title,
 
-  // // authors with different affiliations
+  // authors with different affiliations
   // authors: (
   //   (
   //     name: [Author Name 1],
@@ -105,7 +106,7 @@
 #outline()
 #pagebreak()
 
-= #doc-title
+= #doc-title // Implicit introduction heading level 1, remove if implicit-introduction-heading is true
 #include "sections/introduction.typ"
 
 #pagebreak()
