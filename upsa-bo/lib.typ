@@ -1,5 +1,5 @@
 #import "@preview/hydra:0.6.1": hydra
-#import "./utils/to-string.typ": *
+#import "utils/to-string.typ": to-string
 
 #let chapter-counter = counter("chapter")
 
@@ -9,19 +9,19 @@
   carrera: [],
   autor: [],
   registro-autor: [],
-  adición: [],
+  adición: none,
   modalidad: [],
   materia: [],
-  guía: [],
-  resumen: [],
-  abstracto: [],
-  problemática: [],
-  objetivo-general: [],
-  contenido: [],
+  guía: none,
+  resumen: none,
+  abstracto: none,
+  problemática: none,
+  objetivo-general: none,
+  contenido: none,
   grado: [Licenciatura],
   email: "",
-  agradecimientos: [],
-  resumen-ejecutivo: [],
+  agradecimientos: none,
+  resumen-ejecutivo: none,
   palabras-clave: (),
   plan: [],
   portada-externa: true,
@@ -60,121 +60,94 @@
     region: "bo",
   )
 
-  set par(leading: 1.5em, spacing: 2em)
+  set par(
+    leading: 1.5em,
+    spacing: 2em,
+    first-line-indent: (amount: 0in, all: true),
+  )
 
   set math.equation(numbering: "(1)", supplement: [Expresión Matemática])
 
+  // MARK: Figures
   show figure: set figure.caption(position: top)
 
-  show figure: it => {
-    block(
-      breakable: false,
-      sticky: true,
-      width: 100%,
-      inset: 0in,
-    )[
-      #it.caption
-      #align(center, it.body)
-    ]
-  }
+  show figure: set block(breakable: true)
 
   set figure(
     gap: 1.5em,
-    placement: none,
+    placement: auto,
   )
 
+  set figure.caption(separator: parbreak(), position: top)
+  show figure.caption: set align(left)
+  show figure.caption: set par(first-line-indent: 0em)
   show figure.caption: it => {
-    set par(first-line-indent: 0in)
-    align(left)[
-      *#it.supplement #context it.counter.display(it.numbering)*
-
-      #emph(it.body)
-    ]
+    strong[#it.supplement #context it.counter.display(it.numbering)]
+    parbreak()
+    emph(it.body)
   }
 
-  show table.cell: set par(
-    leading: 1em,
-    spacing: 2em,
-  )
-
+  // MARK: Tables
   set table(
     stroke: (x, y) => if y == 0 {
       (
         top: (thickness: 1pt, dash: "solid"),
-        bottom: (thickness: 1pt, dash: "solid"),
+        bottom: (thickness: 0.5pt, dash: "solid"),
       )
     },
   )
 
-  show figure: set block(breakable: true)
+  show table.cell: set par(leading: 1em, spacing: 2em)
 
-  set par(spacing: 2em)
+  // MARK: Code
+  // MARK: Math
+  set math.equation(numbering: "1.")
 
-  show quote: set pad(left: 0.5in)
-  show quote: set block(spacing: 1.5em)
+  // MARK: Quotes
+  show quote.where(block: true): set block(spacing: 1.5em)
 
   show quote: it => {
-    let quote-text = to-string(it.body)
-    let quote-text-words = to-string(it.body).split(" ").len()
+    let quote-text-words = to-string(it.body).split(regex("\\s+")).filter(word => word != "").len()
 
     if quote-text-words < 40 {
-      set quote(block: false)
+      ["#it.body" ]
 
-      ["#quote-text.trim()"]
-
-      if (type(it.attribution) == label) [
-        #cite(it.attribution)
-      ] else if (
+      if (type(it.attribution) == label) {
+        cite(it.attribution)
+      } else if (
         type(it.attribution) == str or type(it.attribution) == content
-      ) [
-        #it.attribution
-      ]
+      ) {
+        it.attribution
+      }
     } else {
-      set quote(block: true)
-      set par(hanging-indent: 0.5in, first-line-indent: (amount: 0.5in, all: true))
-
-      quote-text.trim()
-
-      if (type(it.attribution) == label) [
-        #cite(it.attribution)
-      ] else if (type(it.attribution) == str or type(it.attribution) == content) [
-        #it.attribution
+      block(inset: (left: 0.5in))[
+        #set par(first-line-indent: 0.5in)
+        #it.body
+        #if (type(it.attribution) == label) {
+          cite(it.attribution)
+        } else if (type(it.attribution) == str or type(it.attribution) == content) {
+          it.attribution
+        }
       ]
     }
   }
 
-  set heading(numbering: "1.")
+  // MARK: External and internal title page
+  let portada = context {
+    set align(center)
+    set text(weight: "bold")
+    image("assets/images/logo-upsa.png")
+    v(1fr)
+    facultad
+    parbreak()
+    carrera
+    v(1fr)
 
-  show heading: set text(size: 1em)
-  show heading: set block(spacing: 2em)
+    if plan != [] {
+      plan
+    }
 
-  show heading.where(level: 3): set align(center)
-  show heading.where(level: 3): smallcaps
-  show heading.where(level: 5): emph
-  show heading.where(level: 6): it => [
-    #it.body.
-  ]
-  show heading.where(level: 7): it => [
-    _#it.body._
-  ]
-
-  let portada = context align(center)[
-    #set text(weight: "bold")
-    #image("./assets/images/logo-upsa.png")
-
-    #v(1fr)
-
-    #facultad
-
-    #carrera
-
-    #v(1fr)
-
-    #if (plan != []) [
-      #plan
-    ]
-
-    #if (modalidad != []) [
+    if modalidad != [] [
       Modalidad de Graduación
 
       #modalidad
@@ -182,32 +155,33 @@
       #v(1fr)
     ]
 
-    #rect(radius: 20%, inset: 10pt)[_«#título»_]
+    rect(radius: 20%, inset: 10pt)[_«#título»_]
 
-    #if (here().page() == 3 and portada-externa) [
-      #v(1fr)
+    if (here().page() == 3 and portada-externa) {
+      v(1fr)
+      [#modalidad para optar por el grado de «#grado en #carrera»]
+    }
 
-      #modalidad para Optar por el Grado de #grado en #carrera
-    ]
+    v(1fr)
 
-    #v(1fr)
+    autor
 
-    #autor
-
-    #if (registro-autor != [] and here().page() == 3) [
+    if registro-autor != [] and here().page() == 3 [
+      #parbreak()
       Reg.: #registro-autor
     ]
 
-    #v(1fr)
+    v(1fr)
 
-    #if (guía != []) [
-      #guía
-    ]
+    if guía != [] {
+      guía
+      parbreak()
+    }
 
-    #ubicación
-
-    #fecha
-  ]
+    ubicación
+    parbreak()
+    repr(fecha)
+  }
 
   if portada-externa {
     portada
@@ -217,8 +191,9 @@
 
   portada
 
-  if (agradecimientos != []) {
-    heading([Agradecimientos], numbering: none, level: 2)
+  // MARK: Acknowledgments
+  if (agradecimientos != none) {
+    heading(numbering: none, level: 2)[Agradecimientos]
     agradecimientos
   } else {
     pagebreak(to: "odd", weak: true)
@@ -228,6 +203,11 @@
 
   set page(numbering: "i")
 
+  // MARK: Preliminary headings
+  show heading: set text(size: 1em)
+  show heading: set block(spacing: 2em)
+
+  // MARK: Abstract
   if (plan == [] or plan == none) {
     heading(numbering: none, level: 2)[Abstracto]
     table(
@@ -238,18 +218,18 @@
       [*Autor*], autor,
     )
 
-    if (problemática != []) {
-      heading([Problemática], numbering: none, level: 2)
+    if (problemática != none) {
+      heading(numbering: none, level: 2)[Problemática]
       problemática
     }
 
-    if (objetivo-general != []) {
-      heading([Objetivo General], numbering: none, level: 2)
+    if objetivo-general != none {
+      heading(numbering: none, level: 2)[Objetivo General]
       objetivo-general
     }
 
-    if (contenido != []) {
-      heading([Contenido], numbering: none, level: 2)
+    if contenido != none {
+      heading(numbering: none, level: 2)[Contenido]
       contenido
     }
 
@@ -263,365 +243,238 @@
       [*Correo Electrónico*], email,
       [*Fecha*], to-string[#fecha],
     )
-  }
 
-  show heading.where(level: 1).or(heading.where(level: 2)): it => {
-    pagebreak(weak: true)
-    it
-  }
+    // MARK: Summary
+    if resumen != none {
+      heading(numbering: none, level: 2)[Resumen]
+      resumen
+    }
 
-  if ((type(resumen) == content and resumen != []) or (type(resumen) == str and resumen != "")) {
-    heading([Resumen], numbering: none, level: 2)
-    resumen
-  }
+    // MARK: Executive Summary
+    if resumen-ejecutivo != none {
+      heading(numbering: none, level: 2)[Resumen Ejecutivo]
+      resumen-ejecutivo
+    }
 
-  if (
-    (type(resumen-ejecutivo) == content and resumen-ejecutivo != [])
-      or (
-        type(resumen-ejecutivo) == str and resumen-ejecutivo != ""
-      )
-  ) {
-    heading([Resumen Ejecutivo], numbering: none, level: 2)
-    resumen-ejecutivo
-  }
-
-  show heading.where(level: 1): set heading(supplement: [Parte])
-
-  {
-    show outline.entry.where(level: 1): it => link(
-      it.element.location(),
-      upper(
-        strong(
-          it.indented(
-            if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
-            [#it.body() #h(1fr) #it.page()],
+    // MARK: Tables of contents
+    {
+      show heading: it => {
+        pagebreak()
+        it
+      }
+      show outline.entry.where(level: 1): it => link(
+        it.element.location(),
+        upper(
+          strong(
+            it.indented(
+              if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
+              [#it.body() #h(1fr) #it.page()],
+            ),
           ),
         ),
-      ),
-    )
-    show outline.entry.where(level: 2): it => link(
-      it.element.location(),
-      smallcaps(
-        strong(
-          it.indented(
-            if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
-            [#it.body() #h(1fr) #it.page()],
+      )
+      show outline.entry.where(level: 2): it => link(
+        it.element.location(),
+        smallcaps(
+          strong(
+            it.indented(
+              if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
+              [#it.body() #h(1fr) #it.page()],
+            ),
           ),
         ),
-      ),
-    )
-    show outline.entry.where(level: 3): it => strong(it)
-    show outline.entry.where(level: 4): it => strong(emph(it))
+      )
+      show outline.entry.where(level: 3): it => strong(it)
+      show outline.entry.where(level: 4): it => strong(emph(it))
 
-    outline(
-      title: [Índice General],
-      depth: 4,
-      indent: 0.75em,
-    )
+      outline(
+        title: [Índice General],
+        depth: 4,
+        indent: 0.75em,
+      )
+    }
+
+    context {
+      show heading: it => {
+        pagebreak()
+        it
+      }
+
+      if (counter(figure.where(kind: table)).final().at(0) != 0) {
+        outline(
+          title: [Índice de Tablas],
+          target: figure.where(kind: table),
+        )
+      }
+
+      if (counter(figure.where(kind: image)).final().at(0) != 0) {
+        outline(
+          title: [Índice de Figuras],
+          target: figure.where(kind: image),
+        )
+      }
+
+      if (counter(figure.where(kind: math.equation)).final().at(0) != 0) {
+        outline(
+          title: [Índice de Expresiones Matemáticas],
+          target: figure.where(kind: math.equation),
+        )
+      }
+
+
+      if (query(heading.where(supplement: [Anexo])).len() != 0) {
+        outline(
+          title: [Índice de Anexos],
+          target: selector(heading.where(supplement: [Anexo])),
+        )
+      }
+    }
   }
 
-  set math.equation(numbering: "1.")
+  set page(numbering: "1", header: context hydra(2, display: (_, it) => upper(it.body)))
 
-  context {
-    if (counter(figure.where(kind: table)).final().at(0) != 0) {
-      outline(
-        title: [Índice de Tablas],
-        target: figure.where(kind: table),
+  // MARK: Headings
+  show heading.where(level: 1): set heading(supplement: [Parte], numbering: "I")
+  show heading.where(level: 2): set heading(
+    supplement: [Capítulo],
+    numbering: (part, chapter-numbering, ..rest) => numbering("I", chapter-numbering),
+  )
+  set heading(numbering: (part, chapter-numbering, ..rest) => numbering("1.1", ..rest))
+
+  show heading.where(level: 1): it => {
+    pagebreak()
+    set page(numbering: none, header: none)
+
+    {
+      set align(horizon + center)
+      line(length: 75%, stroke: 0.5pt)
+      v(1fr)
+      text(
+        font: "Libertinus Sans",
+        size: 1.3em,
+        weight: "regular",
+        tracking: 0.1em,
+        fill: gray.darken(40%),
+      )[#upper(it.supplement)]
+      v(0.8cm)
+      polygon(
+        fill: gray.darken(20%),
+        (0pt, 3pt),
+        (3pt, 0pt),
+        (0pt, -3pt),
+        (-3pt, 0pt),
       )
+
+      if it.numbering != none and it.outlined == true {
+        v(0.8cm)
+        text(
+          font: "Libertinus Serif",
+          size: 4.8em,
+          weight: "bold",
+          fill: black,
+        )[#counter(heading).display("I")]
+      }
+
+      v(2cm)
+
+      block(width: 70%)[
+        #align(center)[
+          #text(
+            font: "Libertinus Serif",
+            size: 2.2em,
+            weight: "regular",
+            style: "italic",
+            fill: black,
+          )[#it.body]
+        ]
+      ]
+
+      v(1fr)
+
+      line(length: 75%, stroke: 0.5pt)
     }
 
-    if (counter(figure.where(kind: image)).final().at(0) != 0) {
-      outline(
-        title: [Índice de Figuras],
-        target: figure.where(kind: image),
-      )
-    }
-
-    if (counter(figure.where(kind: math.equation)).final().at(0) != 0) {
-      outline(
-        title: [Índice de Expresiones Matemáticas],
-        target: figure.where(kind: math.equation),
-      )
-    }
-
-
-    if (query(heading.where(supplement: [Anexo])).len() != 0) {
-      outline(
-        title: [Índice de Anexos],
-        target: selector(heading.where(supplement: [Anexo])),
-      )
+    context if it.numbering != none and it.outlined == true {
+      let chapters = chapter-counter.get()
+      counter(heading).update((one, ..rest) => (one, ..chapters))
     }
   }
 
+  show heading.where(level: 2): it => {
+    if it.numbering != none and it.outlined == true { chapter-counter.step() }
+    pagebreak()
+    set page(numbering: none, header: none)
+    set par(spacing: 1.5em)
 
-  set page(numbering: "1")
+    align(center + horizon)[
+      #line(length: 55%, stroke: 0.4pt)
 
-  set page(header: context hydra(2, display: (_, it) => upper(it.body)))
+      #v(2cm)
 
-  // Part section settings
-  show heading.where(level: 1): set heading(numbering: "I.")
+      #text(
+        font: "Libertinus Sans",
+        size: 1.2em,
+        weight: "regular",
+        tracking: 0.1em,
+        fill: gray.darken(30%),
+      )[#it.supplement]
+      #if it.numbering != none and it.outlined == true [
+        #v(0.5cm)
+
+        #text(
+          font: "Libertinus Serif",
+          size: 3.5em,
+          weight: "bold",
+        )[#context chapter-counter.display("I").trim(".")]
+      ]
+      #v(1.2cm)
+
+      #block(width: 75%)[
+        #align(center)[
+          #text(
+            font: "Libertinus Serif",
+            size: 2.5em,
+            weight: "regular",
+          )[#smallcaps(it.body)]
+        ]
+      ]
+
+      #v(2cm)
+
+      #polygon(
+        fill: gray.darken(15%),
+        (0pt, 3pt),
+        (3pt, 0pt),
+        (0pt, -3pt),
+        (-3pt, 0pt),
+      )
+    ]
+  }
+
+  show heading.where(level: 3): set align(center)
+  show heading.where(level: 3): smallcaps
+  show heading.where(level: 5): emph
+  show heading.where(level: 6): it => [
+    #it.body.
+  ]
+  show heading.where(level: 7): it => [
+    _#it.body._
+  ]
 
   body
 }
 
-#let contenido-principal(
-  body,
-) = (
-  context {
-    show heading.where(level: 2): set heading(supplement: [Capítulo])
-    set heading(numbering: (first, ..n) => (numbering("I.1.", ..n)))
-    show heading.where(level: 1): it => {
-      {
-        set page(
-          numbering: none,
-          header: none,
-        )
+#let anexos(body) = context {
+  show heading.where(level: 2): set heading(
+    supplement: [Anexo],
+    numbering: (part, appendix-numbering, ..rest) => numbering("A", appendix-numbering),
+  )
+  set heading(numbering: (part, appendix-numbering, ..rest) => numbering("A.1.", appendix-numbering, ..rest))
 
-        align(horizon + center)[
-          #line(length: 75%, stroke: 0.5pt)
+  chapter-counter.update(0)
+  let current_part = counter(heading).get().at(0)
+  counter(heading).update((part, ..rest) => (current_part, 0))
 
-          #v(1fr)
 
-          #text(
-            font: "Libertinus Sans",
-            size: 1.3em,
-            weight: "regular",
-            tracking: 0.1em,
-            fill: gray.darken(40%),
-          )[PARTE]
-
-          #v(0.8cm)
-          #align(center)[
-            #polygon(
-              fill: gray.darken(20%),
-              (0pt, 3pt),
-              (3pt, 0pt),
-              (0pt, -3pt),
-              (-3pt, 0pt),
-            )
-          ]
-          #v(0.8cm)
-
-          #text(
-            font: "Libertinus Serif",
-            size: 4.8em,
-            weight: "bold",
-            fill: black,
-          )[#counter(heading).display("I")]
-
-          #v(2cm)
-
-          #block(width: 70%)[
-            #align(center)[
-              #text(
-                font: "Libertinus Serif",
-                size: 2.2em,
-                weight: "regular",
-                style: "italic",
-                fill: black,
-              )[#it.body]
-            ]
-          ]
-
-          #v(1fr)
-
-          #line(length: 75%, stroke: 0.5pt)
-
-        ]
-      }
-
-      let chapters = chapter-counter.get()
-      counter(heading).update((one, ..n) => (one, ..chapters))
-    }
-    show heading.where(level: 2): it => {
-      {
-        chapter-counter.step(level: 1)
-        set page(
-          numbering: none,
-          header: none,
-        )
-
-        set par(spacing: 1.5em)
-
-        align(center + horizon)[
-          #line(length: 55%, stroke: 0.4pt)
-
-          #v(2cm)
-
-          #text(
-            font: "Libertinus Sans",
-            size: 1.2em,
-            weight: "regular",
-            tracking: 0.1em,
-            fill: gray.darken(30%),
-          )[#it.supplement]
-
-          #v(0.5cm)
-
-          #text(
-            font: "Libertinus Serif",
-            size: 3.5em,
-            weight: "bold",
-          )[#context chapter-counter.display("I").trim(".")]
-
-          #v(1.2cm)
-
-          #block(width: 75%)[
-            #align(center)[
-              #text(
-                font: "Libertinus Serif",
-                size: 2.5em,
-                weight: "regular",
-              )[#smallcaps(it.body)]
-            ]
-          ]
-
-          #v(2cm)
-
-          #polygon(
-            fill: gray.darken(15%),
-            (0pt, 3pt),
-            (3pt, 0pt),
-            (0pt, -3pt),
-            (-3pt, 0pt),
-          )
-        ]
-      }
-    }
-
-    body
-  }
-)
-
-#let anexos(
-  body,
-) = (
-  context {
-    chapter-counter.update(0)
-    counter(heading).update(0)
-    set heading(supplement: [Anexo])
-    set heading(numbering: (first, ..n) => (numbering("A.1.", ..n)))
-
-    show heading.where(level: 1): it => {
-      {
-        set page(
-          numbering: none,
-          header: none,
-        )
-
-        align(horizon + center)[
-          #line(length: 75%, stroke: 0.5pt)
-
-          #v(1fr)
-
-          #text(
-            font: "Libertinus Sans",
-            size: 1.3em,
-            weight: "regular",
-            tracking: 0.1em,
-            fill: gray.darken(40%),
-          )[PARTE]
-
-          #v(0.8cm)
-          #align(center)[
-            #polygon(
-              fill: gray.darken(20%),
-              (0pt, 3pt),
-              (3pt, 0pt),
-              (0pt, -3pt),
-              (-3pt, 0pt),
-            )
-          ]
-          #v(0.8cm)
-
-          #text(
-            font: "Libertinus Serif",
-            size: 4.8em,
-            weight: "bold",
-            fill: black,
-          )[#counter(heading).display("I")]
-
-          #v(2cm)
-
-          #block(width: 70%)[
-            #align(center)[
-              #text(
-                font: "Libertinus Serif",
-                size: 2.2em,
-                weight: "regular",
-                style: "italic",
-                fill: black,
-              )[#it.body]
-            ]
-          ]
-
-          #v(1fr)
-
-          #line(length: 75%, stroke: 0.5pt)
-
-        ]
-      }
-
-      let chapters = chapter-counter.get()
-      counter(heading).update((one, ..n) => (one, ..chapters))
-    }
-
-    show heading.where(level: 2): it => {
-      {
-        chapter-counter.step(level: 1)
-        set page(
-          numbering: none,
-          header: none,
-        )
-
-        set par(spacing: 1.5em)
-
-        align(center + horizon)[
-          #line(length: 55%, stroke: 0.4pt)
-
-          #v(2cm)
-
-          #text(
-            font: "Libertinus Sans",
-            size: 1.2em,
-            weight: "regular",
-            tracking: 0.1em,
-            fill: gray.darken(30%),
-          )[#it.supplement]
-
-          #v(0.5cm)
-
-          #text(
-            font: "Libertinus Serif",
-            size: 3.5em,
-            weight: "bold",
-          )[#context chapter-counter.display("A").trim(".")]
-
-          #v(1.2cm)
-
-          #block(width: 75%)[
-            #align(center)[
-              #text(
-                font: "Libertinus Serif",
-                size: 2.5em,
-                weight: "regular",
-              )[#smallcaps(it.body)]
-            ]
-          ]
-
-          #v(2cm)
-
-          #polygon(
-            fill: gray.darken(15%),
-            (0pt, 3pt),
-            (3pt, 0pt),
-            (0pt, -3pt),
-            (-3pt, 0pt),
-          )
-        ]
-      }
-    }
-
-    body
-  }
-)
+  body
+}
