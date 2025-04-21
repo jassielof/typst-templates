@@ -188,7 +188,7 @@
 
   show table.cell: set par(leading: 1em)
 
-  show figure: set block(breakable: true)
+  show figure: set block(breakable: true, sticky: true)
 
   set figure(
     gap: double-spacing,
@@ -200,7 +200,7 @@
   show figure.caption: set par(first-line-indent: 0em)
   show figure.caption: it => {
     strong[#it.supplement #context it.counter.display(it.numbering)]
-    parbreak()
+    it.separator
     emph(it.body)
   }
 
