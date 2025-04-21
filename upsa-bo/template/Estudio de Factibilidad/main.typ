@@ -13,7 +13,7 @@
   resumen-ejecutivo: lorem(50),
 )
 
-#contenido-principal[
+#[
   #set heading(offset: 1)
   #include "capítulos/1.introducción.typ"
   #include "capítulos/2.marco teórico.typ"
@@ -39,13 +39,12 @@
   // full: true,
 )
 
-#anexos[
-  #set heading(offset: 1)
-  = Instrumentos para la Recolección de Información
-  == Guías de Entrevistas
-  == Cuestionarios
-  == Etc.
-  = Propios de la Investigación
-  = Cálculos, Tablas, Cotizaciones, Etc.
-  = Curriculum Vitae
-]
+#show: anexos
+#set heading(offset: 1)
+= Instrumentos para la Recolección de Información
+== Guías de Entrevistas
+== Cuestionarios
+== Etc.
+= Propios de la Investigación
+= Cálculos, Tablas, Cotizaciones, Etc.
+= Curriculum Vitae

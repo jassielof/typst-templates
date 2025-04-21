@@ -15,23 +15,21 @@
 )
 
 
-#contenido-principal[
-  = Introducción
-  == Definiciones
-  == Empresa
-  == The Typst Typesetting System
-  = Requerimientos
-  == Análisis de Requerimientos
-  == Casos de Uso
-  == Análisis y Diseño
-  == Análisis de Robustez
-  = Entrega
-  == Diagramas de Secuencia
-  == Diagrama de Clase
-  == Código Fuente
-  == Pruebas
-  = Conclusiones
-]
+= Introducción
+== Definiciones
+== Empresa
+== The Typst Typesetting System
+= Requerimientos
+== Análisis de Requerimientos
+== Casos de Uso
+== Análisis y Diseño
+== Análisis de Robustez
+= Entrega
+== Diagramas de Secuencia
+== Diagrama de Clase
+== Código Fuente
+== Pruebas
+= Conclusiones
 
 #heading(numbering: none)[Bibliografía]
 #bibliography(
@@ -41,8 +39,8 @@
   full: true,
 )
 
-#anexos[
-  == CV
-  == Carta de Aprobación
-  == Presupuesto
-]
+#show: anexos
+== CV
+== Carta de Aprobación
+== Presupuesto
+
