@@ -1,6 +1,6 @@
-#import "lib.typ": *
+#import "../lib.typ": *
 
-#show: latex-standard.with(
+#show: article.with(
   title: [LaTeX Standard/Base Class/Template for Typst and Authoring],
   paper-size: "a4",
   author: [Author Name],

@@ -83,56 +83,56 @@
   // So the level 1 heading should be a chapter if the class isn't article.
 
   // typst doesn't have ex unit, so ex = ~0.5em
-  show heading.where(level: 1): set heading(supplement: [Chapter]) if class == "report" or class == "book"
+  // show heading.where(level: 1): set heading(supplement: [Chapter]) if class == "report" or class == "book"
 
-  show heading.where(level: 1, outlined: true): it => if class == "report" {
-    pagebreak()
-    set par(first-line-indent: 0in)
-    v(50pt)
-    text(size: font-size.huge)[#it.supplement #context counter(
-        heading.where(level: 1, supplement: [Chapter]),
-      ).display()]
-    v(20pt)
-    block(below: 40pt, text(size: font-size.Huge, it.body))
-  }
+  // show heading.where(level: 1, outlined: true): it => if class == "report" {
+  //   pagebreak()
+  //   set par(first-line-indent: 0in)
+  //   v(50pt)
+  //   text(size: font-size.huge)[#it.supplement #context counter(
+  //       heading.where(level: 1, supplement: [Chapter]),
+  //     ).display()]
+  //   v(20pt)
+  //   block(below: 40pt, text(size: font-size.Huge, it.body))
+  // }
 
   // Lower level headings
   // TODO: Numbering width is too narrow
 
   // Section
-  show heading.where(level: 1): set heading(supplement: [Section]) if class == "article"
-  show heading.where(level: 2): set heading(supplement: [Section]) if class == "report"
-  show heading.where(level: 1): set text(size: font-size.Large, weight: "bold") if class == "article"
-  show heading.where(level: 2): set text(size: font-size.Large, weight: "bold") if class == "report"
-  show heading.where(level: 1): set block(above: 3.5 * 0.5em, below: 2.3 * 0.5em) if class == "article"
-  show heading.where(level: 2): set block(above: 3.5 * 0.5em, below: 2.3 * 0.5em) if class == "report"
+  // show heading.where(level: 1): set heading(supplement: [Section]) if class == "article"
+  // show heading.where(level: 2): set heading(supplement: [Section]) if class == "report"
+  // show heading.where(level: 1): set text(size: font-size.Large, weight: "bold") if class == "article"
+  // show heading.where(level: 2): set text(size: font-size.Large, weight: "bold") if class == "report"
+  // show heading.where(level: 1): set block(above: 3.5 * 0.5em, below: 2.3 * 0.5em) if class == "article"
+  // show heading.where(level: 2): set block(above: 3.5 * 0.5em, below: 2.3 * 0.5em) if class == "report"
 
-  set heading(numbering: "1.1") if class == "article" or class == "report"
+  // set heading(numbering: "1.1") if class == "article" or class == "report"
 
   // Subsection
-  show heading.where(level: 2): set text(size: font-size.large, weight: "bold") if class == "article"
-  show heading.where(level: 2): set block(above: 3.25 * 0.6em, below: 1.5 * 0.6em) if class == "article"
-  show heading.where(level: 2): set heading(numbering: "1.1") if class == "article"
+  // show heading.where(level: 2): set text(size: font-size.large, weight: "bold") if class == "article"
+  // show heading.where(level: 2): set block(above: 3.25 * 0.6em, below: 1.5 * 0.6em) if class == "article"
+  // show heading.where(level: 2): set heading(numbering: "1.1") if class == "article"
 
   // Subsubsection
-  show heading.where(level: 3): set text(size: font-size.normalsize, weight: "bold") if class == "article"
-  show heading.where(level: 3): set block(above: 3.25 * 0.6em, below: 1.5 * 0.6em) if class == "article"
-  show heading.where(level: 3): set heading(numbering: "1.1") if class == "article"
+  // show heading.where(level: 3): set text(size: font-size.normalsize, weight: "bold") if class == "article"
+  // show heading.where(level: 3): set block(above: 3.25 * 0.6em, below: 1.5 * 0.6em) if class == "article"
+  // show heading.where(level: 3): set heading(numbering: "1.1") if class == "article"
 
   // Paragraph
-  show heading.where(level: 4): set text(size: font-size.normalsize, weight: "bold") if class == "article"
-  // show heading.where(level: 4): set block(above: 3.25 * 0.5em, below: 1em) if class == "article"
-  show heading.where(level: 4): set heading(numbering: none) if class == "article"
-  show heading.where(level: 4): set text(top-edge: 3.25 * 0.5em, bottom-edge: 1em) if class == "article"
+  // show heading.where(level: 4): set text(size: font-size.normalsize, weight: "bold") if class == "article"
+  // // show heading.where(level: 4): set block(above: 3.25 * 0.5em, below: 1em) if class == "article"
+  // show heading.where(level: 4): set heading(numbering: none) if class == "article"
+  // show heading.where(level: 4): set text(top-edge: 3.25 * 0.5em, bottom-edge: 1em) if class == "article"
   // show heading.where(level: 4): set box()
 
   // show heading.where(level: 4): it => strong(it.body)
 
   // Subparagraph
-  show heading.where(level: 5): set text(size: font-size.normalsize, weight: "bold") if class == "article"
-  show heading.where(level: 5): set block(above: 3.25 * 0.5em, below: 1em) if class == "article"
-  show heading.where(level: 5): set heading(numbering: none) if class == "article"
-  show heading.where(level: 5): set text(top-edge: 3.25 * 0.5em, bottom-edge: 1em) if class == "article"
+  // show heading.where(level: 5): set text(size: font-size.normalsize, weight: "bold") if class == "article"
+  // show heading.where(level: 5): set block(above: 3.25 * 0.5em, below: 1em) if class == "article"
+  // show heading.where(level: 5): set heading(numbering: none) if class == "article"
+  // show heading.where(level: 5): set text(top-edge: 3.25 * 0.5em, bottom-edge: 1em) if class == "article"
 
   // show heading.where(level: 5): it => strong(it.body)
 
