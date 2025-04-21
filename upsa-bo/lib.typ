@@ -267,7 +267,7 @@
         upper(
           strong(
             it.indented(
-              if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
+              if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix()},
               [#it.body() #h(1fr) #it.page()],
             ),
           ),
@@ -276,21 +276,21 @@
       show outline.entry.where(level: 2): it => link(
         it.element.location(),
         smallcaps(
-          strong(
-            it.indented(
-              if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
-              [#it.body() #h(1fr) #it.page()],
-            ),
+          it.indented(
+            if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
+            [#it.body() #h(1fr) #it.page()],
           ),
         ),
       )
-      show outline.entry.where(level: 3): it => strong(it)
-      show outline.entry.where(level: 4): it => strong(emph(it))
+      show outline.entry.where(level: 3): it => it
+      show outline.entry.where(level: 4): it => emph(it)
 
       outline(
         title: [Índice General],
         depth: 4,
-        indent: 0.75em,
+        indent: n => {
+          if n == 0 or n == 1 { 0em } else { n * 0.75em }
+        },
       )
     }
 
