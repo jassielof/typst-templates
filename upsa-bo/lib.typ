@@ -344,7 +344,8 @@
       )
     }
 
-    if (counter(heading.where(supplement: [Anexo])).final().at(0) != 0) {
+
+    if (query(heading.where(supplement: [Anexo])).len() != 0) {
       outline(
         title: [Índice de Anexos],
         target: selector(heading.where(supplement: [Anexo])),
@@ -486,8 +487,6 @@
           )
         ]
       }
-
-      // align(center, smallcaps(it))
     }
 
     body
@@ -498,10 +497,8 @@
   body,
 ) = (
   context {
-    if query(heading.where(level: 1, numbering: "I.")).len() == 0 {
-      counter(heading).update(0)
-    }
     chapter-counter.update(0)
+    counter(heading).update(0)
     set heading(supplement: [Anexo])
     set heading(numbering: (first, ..n) => (numbering("A.1.", ..n)))
 
