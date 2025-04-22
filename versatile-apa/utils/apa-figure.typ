@@ -4,6 +4,9 @@
 #let apa-figure-numbering(n) = {
   let header-counter = counter(heading).get().first()
   let queried-heading = query(selector(heading).before(here())).last().numbering
+  if queried-heading == none {
+    queried-heading = "A"
+  }
   if header-counter == 0 {
     numbering("1", n)
   } else {
