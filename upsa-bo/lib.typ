@@ -99,10 +99,6 @@
 
   show table.cell: set par(leading: 1em, spacing: 2em)
 
-  // MARK: Code
-  // MARK: Math
-  set math.equation(numbering: "1.")
-
   // MARK: Quotes
   show quote.where(block: true): set block(spacing: 1.5em)
 
