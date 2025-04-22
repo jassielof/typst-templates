@@ -103,9 +103,12 @@
     spacing: double-spacing,
   )
 
-  show link: set text(fill: blue)
-
-  show link: underline
+  show link: it => {
+    if type(it.dest) == str {
+      set text(fill: blue)
+      underline(it)
+    } else { it }
+  }
 
   if running-head != none and running-head != [] and running-head != "" {
     if to-string(running-head).len() > 50 {
