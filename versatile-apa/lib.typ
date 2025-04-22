@@ -285,6 +285,19 @@
     }
   }
 
+  show outline.entry: it => {
+    if it.element.supplement != [Section] and it.element.has("level") and it.element.level == 1 {
+      link(
+        it.element.location(),
+        it.indented([#it.element.supplement #it.prefix().], it.inner()),
+      )
+    } else {
+      it
+    }
+  }
+
+  set outline(depth: 3, indent: 2em)
+
   set bibliography(style: "apa")
   show bibliography: set par(first-line-indent: 0in)
 
