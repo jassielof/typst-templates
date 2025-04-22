@@ -111,7 +111,7 @@
 #pagebreak()
 #outline(target: figure.where(kind: math.equation), title: [Equations])
 #pagebreak()
-#outline(target: figure.where(kind: raw), title: [Raw Figures])
+#outline(target: figure.where(kind: raw), title: [Listings])
 #pagebreak()
 
 = #doc-title // Implicit introduction heading level 1, remove if implicit-introduction-heading is true
