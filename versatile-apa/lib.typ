@@ -110,8 +110,9 @@
     } else { it }
   }
 
-  if running-head != none and running-head != [] and running-head != "" {
-    if to-string(running-head).len() > 50 {
+  if running-head != none {
+    if type(running-head) == content { running-head = to-string(running-head) }
+    if running-head.len() > 50 {
       panic("Running head must be no more than 50 characters, including spaces and punctuation.")
     }
   }
