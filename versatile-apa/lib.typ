@@ -287,7 +287,15 @@
   }
 
   show outline.entry: it => {
-    if it.element.supplement != [Section] and it.element.has("level") and it.element.level == 1 {
+    if (
+      (
+        it.element.supplement == [#get-terms(language).Appendix]
+          or it.element.supplement == [#get-terms(language).Annex]
+          or it.element.supplement == [#get-terms(language).Addendum]
+      )
+        and it.element.has("level")
+        and it.element.level == 1
+    ) {
       link(
         it.element.location(),
         it.indented([#it.element.supplement #it.prefix().], it.inner()),
