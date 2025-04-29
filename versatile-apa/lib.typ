@@ -48,7 +48,7 @@
   instructor: [],
   due-date: [],
   // Professional-specific fields
-  running-head: [],
+  running-head: none,
   author-notes: [],
   keywords: (),
   abstract: [],
