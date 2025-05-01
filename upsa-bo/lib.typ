@@ -151,7 +151,11 @@
       #v(1fr)
     ]
 
-    rect(radius: 20%, inset: 10pt)[_«#título»_]
+    rect(
+      radius: 20%,
+      inset: 10pt,
+      text(font: "Libertinus Sans", weight: "bold")[«#título»],
+    )
 
     if (here().page() == 3 and portada-externa) {
       v(1fr)
@@ -200,7 +204,7 @@
   set page(numbering: "i")
 
   // MARK: Preliminary headings
-  show heading: set text(size: 1em)
+  show heading: set text(size: 1em, font: "Libertinus Sans")
   show heading: set block(spacing: 2em)
 
   // MARK: Abstract
@@ -260,10 +264,12 @@
       }
       show outline.entry.where(level: 1): it => link(
         it.element.location(),
-        upper(
-          strong(
+        text(
+          font: "Libertinus Sans",
+          weight: "bold",
+          upper(
             it.indented(
-              if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix()},
+              if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
               [#it.body() #h(1fr) #it.page()],
             ),
           ),
@@ -271,10 +277,14 @@
       )
       show outline.entry.where(level: 2): it => link(
         it.element.location(),
-        smallcaps(
-          it.indented(
-            if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
-            [#it.body() #h(1fr) #it.page()],
+        text(
+          font: "Libertinus Sans",
+          weight: "bold",
+          smallcaps(
+            it.indented(
+              if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
+              [#it.body() #h(1fr) #it.page()],
+            ),
           ),
         ),
       )
@@ -335,7 +345,7 @@
     supplement: [Capítulo],
     numbering: (part, chapter-numbering, ..rest) => numbering("I", chapter-numbering),
   )
-  set heading(numbering: (part, chapter-numbering, ..rest) => numbering("1.1", ..rest))
+  set heading(numbering: (part, chapter-numbering, ..rest) => numbering("1.", ..rest))
 
   show heading.where(level: 1): it => {
     pagebreak()
@@ -364,7 +374,7 @@
       if it.numbering != none and it.outlined == true {
         v(0.8cm)
         text(
-          font: "Libertinus Serif",
+          font: "Libertinus Sans",
           size: 4.8em,
           weight: "bold",
           fill: black,
@@ -376,10 +386,9 @@
       block(width: 70%)[
         #align(center)[
           #text(
-            font: "Libertinus Serif",
+            font: "Libertinus Sans",
             size: 2.2em,
-            weight: "regular",
-            style: "italic",
+            weight: "bold",
             fill: black,
           )[#it.body]
         ]
@@ -418,7 +427,7 @@
         #v(0.5cm)
 
         #text(
-          font: "Libertinus Serif",
+          font: "Libertinus Sans",
           size: 3.5em,
           weight: "bold",
         )[#context chapter-counter.display("I").trim(".")]
@@ -428,9 +437,9 @@
       #block(width: 75%)[
         #align(center)[
           #text(
-            font: "Libertinus Serif",
+            font: "Libertinus Sans",
             size: 2.5em,
-            weight: "regular",
+            weight: "bold",
           )[#smallcaps(it.body)]
         ]
       ]

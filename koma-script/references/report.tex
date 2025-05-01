@@ -1,0 +1,85 @@
+\documentclass{scrreprt}
+
+% Set up document properties
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{blindtext}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{color}
+
+% KOMAscript specific settings
+\KOMAoptions{
+  fontsize=12pt,
+  parskip=half,
+  headings=normal,
+  captions=tableabove
+}
+
+% Document information
+\title{Sample KOMAscript Report}
+\author{John Doe}
+\date{\today}
+
+\begin{document}
+
+
+% Start of document content
+\maketitle
+
+\tableofcontents
+\clearpage
+
+\chapter{Introduction}
+\blindtext[2]
+
+\section{Background}
+\blindtext
+
+\part{KOMAscript Features}
+\chapter{Literature Review}
+\section{Objectives}
+The main objectives of this report are:
+\begin{itemize}
+  \item Demonstrate KOMAscript features
+  \item Show document structure
+  \item Provide a template for future reports
+\end{itemize}
+
+\chapter{Methodology}
+\blindtext[2]
+
+\section{Research Design}
+\blindtext
+
+\section{Data Collection}
+\begin{table}[h]
+  \centering
+  \caption{Sample Data}
+  \begin{tabular}{lcr}
+    \toprule
+    Category & Value & Percentage \\
+    \midrule
+    Alpha & 145 & 45\% \\
+    Beta & 213 & 35\% \\
+    Gamma & 98 & 20\% \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\chapter{Results}
+\section{Analysis}
+\blindtext
+
+\section{Findings}
+\blindtext[2]
+
+\addchap*{Conclusion}
+\blindtext
+
+\appendix
+\chapter{Additional Information}
+\section{Technical Details}
+\blindtext
+
+\end{document}
