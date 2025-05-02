@@ -337,7 +337,10 @@
     }
   }
 
-  set page(numbering: "1", header: context hydra(2, display: (_, it) => upper(it.body)))
+  set page(
+    numbering: "1",
+    header: context hydra(2, display: (_, it) => upper(it.body)),
+  )
 
   // MARK: Headings
   show heading.where(level: 1): set heading(supplement: [Parte], numbering: "I")
@@ -352,51 +355,37 @@
     set page(numbering: none, header: none)
 
     {
-      set align(horizon + center)
-      line(length: 75%, stroke: 0.5pt)
-      v(1fr)
+      set align(center)
+
+      v(6em)
+
       text(
         font: "Libertinus Sans",
-        size: 1.3em,
+        size: 1.25em,
         weight: "regular",
-        tracking: 0.1em,
+        tracking: 0.05em,
         fill: gray.darken(40%),
       )[#upper(it.supplement)]
-      v(0.8cm)
-      polygon(
-        fill: gray.darken(20%),
-        (0pt, 3pt),
-        (3pt, 0pt),
-        (0pt, -3pt),
-        (-3pt, 0pt),
-      )
+
+      v(1em)
 
       if it.numbering != none and it.outlined == true {
-        v(0.8cm)
         text(
           font: "Libertinus Sans",
-          size: 4.8em,
+          size: 3.5em,
           weight: "bold",
-          fill: black,
         )[#counter(heading).display("I")]
+
+        v(4em)
       }
 
-      v(2cm)
-
-      block(width: 70%)[
-        #align(center)[
-          #text(
-            font: "Libertinus Sans",
-            size: 2.2em,
-            weight: "bold",
-            fill: black,
-          )[#it.body]
-        ]
-      ]
+      text(
+        font: "Libertinus Sans",
+        size: 2.4em,
+        weight: "bold",
+      )[#it.body]
 
       v(1fr)
-
-      line(length: 75%, stroke: 0.5pt)
     }
 
     context if it.numbering != none and it.outlined == true {
@@ -408,51 +397,29 @@
   show heading.where(level: 2): it => {
     if it.numbering != none and it.outlined == true { chapter-counter.step() }
     pagebreak()
-    set page(numbering: none, header: none)
-    set par(spacing: 1.5em)
+    // set page(numbering: none, header: none)
 
-    align(center + horizon)[
-      #line(length: 55%, stroke: 0.4pt)
+    block(width: 100%, inset: (top: 3cm, bottom: 2cm))[
+      #set text(font: "Libertinus Sans")
 
-      #v(2cm)
+      #if it.numbering != none and it.outlined == true [
+        #text(
+          size: 2.5em,
+          weight: "bold",
+          fill: gray.darken(40%),
+        )[#it.supplement #context chapter-counter.display("I").trim(".")]
+
+        #v(0.5cm)
+      ]
 
       #text(
-        font: "Libertinus Sans",
-        size: 1.2em,
-        weight: "regular",
-        tracking: 0.1em,
-        fill: gray.darken(30%),
-      )[#it.supplement]
-      #if it.numbering != none and it.outlined == true [
-        #v(0.5cm)
+        size: 2em,
+        weight: "bold",
+      )[#it.body]
 
-        #text(
-          font: "Libertinus Sans",
-          size: 3.5em,
-          weight: "bold",
-        )[#context chapter-counter.display("I").trim(".")]
-      ]
-      #v(1.2cm)
+      #v(0.3cm)
 
-      #block(width: 75%)[
-        #align(center)[
-          #text(
-            font: "Libertinus Sans",
-            size: 2.5em,
-            weight: "bold",
-          )[#smallcaps(it.body)]
-        ]
-      ]
-
-      #v(2cm)
-
-      #polygon(
-        fill: gray.darken(15%),
-        (0pt, 3pt),
-        (3pt, 0pt),
-        (0pt, -3pt),
-        (-3pt, 0pt),
-      )
+      #line(length: 25%, stroke: (thickness: 0.5pt, dash: "solid"))
     ]
   }
 
