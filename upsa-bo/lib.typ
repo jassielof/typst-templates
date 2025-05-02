@@ -14,7 +14,6 @@
   materia: [],
   guía: none,
   resumen: none,
-  abstracto: none,
   problemática: none,
   objetivo-general: none,
   contenido: none,
@@ -71,7 +70,7 @@
   // MARK: Figures
   show figure: set figure.caption(position: top)
 
-  show figure: set block(breakable: true)
+  show figure: set block(breakable: true, sticky: true)
 
   set figure(
     gap: 1.5em,
@@ -246,6 +245,7 @@
 
     // MARK: Summary
     if resumen != none {
+      pagebreak()
       heading(numbering: none, level: 2)[Resumen]
       resumen
     }
