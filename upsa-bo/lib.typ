@@ -394,7 +394,7 @@
     }
   }
 
-  show heading.where(level: 2): it => {
+  show heading.where(level: 2): it => context {
     if it.numbering != none and it.outlined == true { chapter-counter.step() }
     pagebreak()
     // set page(numbering: none, header: none)
@@ -403,11 +403,13 @@
       #set text(font: "Libertinus Sans")
 
       #if it.numbering != none and it.outlined == true [
-        #text(
-          size: 2.5em,
-          weight: "bold",
-          fill: gray.darken(40%),
-        )[#it.supplement #context chapter-counter.display("I").trim(".")]
+        #set text(size: 2.5em, weight: "bold", fill: gray.darken(40%))
+        #it.supplement
+        #if it.supplement == [Anexo] [
+          #chapter-counter.display("A").trim(".")
+        ] else [
+          #chapter-counter.display("I").trim(".")
+        ]
 
         #v(0.5cm)
       ]
@@ -430,7 +432,7 @@
     #it.body.
   ]
   show heading.where(level: 7): it => [
-    _#it.body._
+    2 _#it.body._
   ]
 
   body
