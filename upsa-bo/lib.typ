@@ -26,8 +26,8 @@
   portada-externa: true,
   ubicación: "Santa Cruz de la Sierra, Bolivia",
   fecha: datetime.today().year(),
-  tamaño-fuente: 11pt,
-  estilo-fuente: "Libertinus Serif",
+  tamaño-fuente: 10pt,
+  estilo-fuente: "New Computer Modern",
   body,
 ) = {
   if (autor == []) {
@@ -153,7 +153,7 @@
     rect(
       radius: 20%,
       inset: 10pt,
-      text(font: "Libertinus Sans", weight: "bold")[«#título»],
+      text(font: "New Computer Modern Sans", weight: "bold")[_«#título»_],
     )
 
     if (here().page() == 3 and portada-externa) {
@@ -203,7 +203,7 @@
   set page(numbering: "i")
 
   // MARK: Preliminary headings
-  show heading: set text(size: 1em, font: "Libertinus Sans")
+  show heading: set text(size: 1em, font: "New Computer Modern Sans")
   show heading: set block(spacing: 2em)
 
   // MARK: Abstract
@@ -265,7 +265,7 @@
       show outline.entry.where(level: 1): it => link(
         it.element.location(),
         text(
-          font: "Libertinus Sans",
+          font: "New Computer Modern Sans",
           weight: "bold",
           upper(
             it.indented(
@@ -278,7 +278,7 @@
       show outline.entry.where(level: 2): it => link(
         it.element.location(),
         text(
-          font: "Libertinus Sans",
+          font: "New Computer Modern Sans",
           weight: "bold",
           smallcaps(
             it.indented(
@@ -360,7 +360,7 @@
       v(6em)
 
       text(
-        font: "Libertinus Sans",
+        font: "New Computer Modern Sans",
         size: 1.25em,
         weight: "regular",
         tracking: 0.05em,
@@ -371,7 +371,7 @@
 
       if it.numbering != none and it.outlined == true {
         text(
-          font: "Libertinus Sans",
+          font: "New Computer Modern Sans",
           size: 3.5em,
           weight: "bold",
         )[#counter(heading).display("I")]
@@ -380,7 +380,7 @@
       }
 
       text(
-        font: "Libertinus Sans",
+        font: "New Computer Modern Sans",
         size: 2.4em,
         weight: "bold",
       )[#it.body]
@@ -400,7 +400,7 @@
     // set page(numbering: none, header: none)
 
     block(width: 100%, inset: (top: 3cm, bottom: 2cm))[
-      #set text(font: "Libertinus Sans")
+      #set text(font: "New Computer Modern Sans")
 
       #if it.numbering != none and it.outlined == true [
         #set text(size: 2.5em, weight: "bold", fill: gray.darken(40%))
@@ -432,7 +432,7 @@
     #it.body.
   ]
   show heading.where(level: 7): it => [
-    2 _#it.body._
+    _#it.body._
   ]
 
   body
