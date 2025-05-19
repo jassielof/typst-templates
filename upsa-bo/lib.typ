@@ -27,7 +27,7 @@
   ubicación: "Santa Cruz de la Sierra, Bolivia",
   fecha: datetime.today().year(),
   tamaño-fuente: 10pt,
-  estilo-fuente: "New Computer Modern",
+  estilo-fuente: "TeX Gyre Pagella",
   body,
 ) = {
   if (autor == []) {
@@ -66,6 +66,7 @@
   )
 
   set math.equation(numbering: "(1)", supplement: [Expresión Matemática])
+  show math.equation: set text(font: "TeX Gyre Pagella Math")
 
   // MARK: Figures
   show figure: set figure.caption(position: top)
@@ -79,6 +80,7 @@
 
   set figure.caption(separator: parbreak(), position: top)
   show figure.caption: set align(left)
+  show figure.caption: set text(font: "TeX Gyre Heros")
   show figure.caption: set par(first-line-indent: 0em)
   show figure.caption: it => {
     strong[#it.supplement #context it.counter.display(it.numbering)]
@@ -100,6 +102,7 @@
 
   // MARK: Quotes
   show quote.where(block: true): set block(spacing: 1.5em)
+  show quote: set text(style: "italic")
 
   show quote: it => {
     let quote-text-words = to-string(it.body).split(regex("\\s+")).filter(word => word != "").len()
@@ -130,7 +133,7 @@
   // MARK: External and internal title page
   let portada = context {
     set align(center)
-    set text(weight: "bold")
+    set text(weight: "bold", font: "TeX Gyre Heros")
     image("assets/images/logo-upsa.png")
     v(1fr)
     facultad
@@ -153,7 +156,7 @@
     rect(
       radius: 20%,
       inset: 10pt,
-      text(font: "New Computer Modern Sans", weight: "bold")[_«#título»_],
+      text(font: "TeX Gyre Pagella", weight: "bold")[_«#título»_],
     )
 
     if (here().page() == 3 and portada-externa) {
@@ -203,7 +206,7 @@
   set page(numbering: "i")
 
   // MARK: Preliminary headings
-  show heading: set text(size: 1em, font: "New Computer Modern Sans")
+  show heading: set text(size: 1em, font: "TeX Gyre Heros")
   show heading: set block(spacing: 2em)
 
   // MARK: Abstract
@@ -265,7 +268,7 @@
       show outline.entry.where(level: 1): it => link(
         it.element.location(),
         text(
-          font: "New Computer Modern Sans",
+          font: "TeX Gyre Heros",
           weight: "bold",
           upper(
             it.indented(
@@ -278,7 +281,7 @@
       show outline.entry.where(level: 2): it => link(
         it.element.location(),
         text(
-          font: "New Computer Modern Sans",
+          font: "TeX Gyre Heros",
           weight: "bold",
           smallcaps(
             it.indented(
@@ -339,7 +342,7 @@
 
   set page(
     numbering: "1",
-    header: context hydra(2, display: (_, it) => upper(it.body)),
+    header: context hydra(2, display: (_, it) => upper(text(font: "TeX Gyre Heros", it.body))),
   )
 
   // MARK: Headings
@@ -360,7 +363,6 @@
       v(6em)
 
       text(
-        font: "New Computer Modern Sans",
         size: 1.25em,
         weight: "regular",
         tracking: 0.05em,
@@ -371,16 +373,14 @@
 
       if it.numbering != none and it.outlined == true {
         text(
-          font: "New Computer Modern Sans",
           size: 3.5em,
           weight: "bold",
-        )[#counter(heading).display("I")]
+        )[#counter(heading).display("I") ]
 
         v(4em)
       }
 
       text(
-        font: "New Computer Modern Sans",
         size: 2.4em,
         weight: "bold",
       )[#it.body]
@@ -394,14 +394,13 @@
     }
   }
 
+  show heading.where(level: 2): set text(font: "TeX Gyre Pagella")
+
   show heading.where(level: 2): it => context {
     if it.numbering != none and it.outlined == true { chapter-counter.step() }
     pagebreak()
-    // set page(numbering: none, header: none)
 
     block(width: 100%, inset: (top: 3cm, bottom: 2cm))[
-      #set text(font: "New Computer Modern Sans")
-
       #if it.numbering != none and it.outlined == true [
         #set text(size: 2.5em, weight: "bold", fill: gray.darken(40%))
         #it.supplement
@@ -434,6 +433,8 @@
   show heading.where(level: 7): it => [
     _#it.body._
   ]
+
+  show raw: set text(font: "TeX Gyre Cursor")
 
   body
 }
