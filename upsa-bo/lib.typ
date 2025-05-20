@@ -1,5 +1,6 @@
 #import "@preview/hydra:0.6.1": hydra
 #import "utils/to-string.typ": to-string
+#import "utils/title-page.typ": portada
 
 #let chapter-counter = counter("chapter")
 
@@ -30,6 +31,90 @@
   estilo-fuente: "TeX Gyre Pagella",
   body,
 ) = {
+  let show-title-page = {
+    if portada-externa {
+      portada(
+        título,
+        facultad,
+        carrera,
+        plan,
+        modalidad,
+        autor,
+        registro-autor,
+        guía,
+        ubicación,
+        fecha,
+        portada-externa,
+        grado,
+      )
+
+      pagebreak(to: "odd")
+    }
+
+    portada(
+      título,
+      facultad,
+      carrera,
+      plan,
+      modalidad,
+      autor,
+      registro-autor,
+      guía,
+      ubicación,
+      fecha,
+      portada-externa,
+      grado,
+    )
+  }
+
+  let show-acknowledgments = {
+    if (agradecimientos != none) {
+      heading(numbering: none, level: 2)[Agradecimientos]
+      agradecimientos
+    } else {
+      pagebreak(to: "odd", weak: true)
+    }
+  }
+
+  let show-abstract = {
+    if (plan == [] or plan == none) {
+      heading(numbering: none, level: 2)[Abstracto]
+      table(
+        align: (left + horizon, left),
+        columns: 2,
+        stroke: 1pt,
+        [*Título*], título,
+        [*Autor*], autor,
+      )
+
+      if (problemática != none) {
+        heading(numbering: none, level: 2)[Problemática]
+        problemática
+      }
+
+      if objetivo-general != none {
+        heading(numbering: none, level: 2)[Objetivo General]
+        objetivo-general
+      }
+
+      if contenido != none {
+        heading(numbering: none, level: 2)[Contenido]
+        contenido
+      }
+
+      table(
+        columns: 2,
+        stroke: 1pt,
+        align: (left + horizon, left),
+        [*Carrera*], carrera,
+        [*Guía*], guía,
+        [*Palabras Clave*], palabras-clave.join(", "),
+        [*Correo Electrónico*], email,
+        [*Fecha*], to-string[#fecha],
+      )
+    }
+  }
+
   if (autor == []) {
     panic("El autor es obligatorio: ", autor)
   } else if (título == []) {
@@ -130,76 +215,8 @@
     }
   }
 
-  // MARK: External and internal title page
-  let portada = context {
-    set align(center)
-    set text(weight: "bold", font: "TeX Gyre Heros")
-    image("assets/images/logo-upsa.png")
-    v(1fr)
-    facultad
-    parbreak()
-    carrera
-    v(1fr)
-
-    if plan != [] {
-      plan
-    }
-
-    if modalidad != [] [
-      Modalidad de Graduación
-
-      #modalidad
-
-      #v(1fr)
-    ]
-
-    rect(
-      radius: 20%,
-      inset: 10pt,
-      text(font: "TeX Gyre Pagella", weight: "bold")[_«#título»_],
-    )
-
-    if (here().page() == 3 and portada-externa) {
-      v(1fr)
-      [#modalidad para optar por el grado de «#grado en #carrera»]
-    }
-
-    v(1fr)
-
-    autor
-
-    if registro-autor != [] and here().page() == 3 [
-      #parbreak()
-      Reg.: #registro-autor
-    ]
-
-    v(1fr)
-
-    if guía != [] {
-      guía
-      parbreak()
-    }
-
-    ubicación
-    parbreak()
-    repr(fecha)
-  }
-
-  if portada-externa {
-    portada
-
-    pagebreak(to: "odd")
-  }
-
-  portada
-
-  // MARK: Acknowledgments
-  if (agradecimientos != none) {
-    heading(numbering: none, level: 2)[Agradecimientos]
-    agradecimientos
-  } else {
-    pagebreak(to: "odd", weak: true)
-  }
+  show-title-page
+  show-acknowledgments
 
   counter(page).update(1)
 
