@@ -1,6 +1,7 @@
 #import "@preview/hydra:0.6.1": hydra
 #import "utils/to-string.typ": to-string
 #import "utils/title-page.typ": portada
+#import "@preview/typearea:0.2.0": typearea
 
 #let chapter-counter = counter("chapter")
 
@@ -19,6 +20,7 @@
   objetivo-general: none,
   contenido: none,
   grado: [Licenciatura],
+  doble-cara: false,
   email: "",
   agradecimientos: none,
   resumen-ejecutivo: none,
@@ -68,8 +70,9 @@
   }
 
   let show-acknowledgments = {
+    pagebreak(to: "odd", weak: true)
     if (agradecimientos != none) {
-      heading(numbering: none, level: 2)[Agradecimientos]
+      set align(right + horizon)
       agradecimientos
     } else {
       pagebreak(to: "odd", weak: true)
@@ -452,6 +455,8 @@
   ]
 
   show raw: set text(font: "TeX Gyre Cursor")
+
+  show: typearea.with()
 
   body
 }
