@@ -32,10 +32,10 @@ jobs:
 
       - name: Set up fonts
         run: |
-          brew install --cask font-cascadia-code
-          brew install --cask font-libertinus
-          brew install --cask font-computer-modern
-          brew install --cask font-new-computer-modern
+          brew install --cask font-cascadia-code \
+            font-libertinus \
+            font-computer-modern \
+            font-new-computer-modern
           sudo fc-cache -f -v
 
       - name: Cache fonts
@@ -52,7 +52,7 @@ jobs:
       #     typst compile --root . acm-suite/template/sig-conf.typ
       #     typst compile --root . acm-suite/template/manuscript.typ
 
-      - name: UPSA Bolivia
-        run: |
-          typst compile --root . 'upsa-bo/template/Estudio de Factibilidad/main.typ'
-          typst compile --root . upsa-bo/template/TFG/main.typ
+      # - name: UPSA Bolivia
+      #   run: |
+      #     typst compile --root . 'upsa-bo/template/Estudio de Factibilidad/main.typ'
+      #     typst compile --root . upsa-bo/template/TFG/main.typ
