@@ -1,7 +1,6 @@
 #import "@preview/hydra:0.6.1": hydra
 #import "utils/to-string.typ": to-string
 #import "utils/title-page.typ": portada
-#import "@preview/typearea:0.2.0": typearea
 
 #let chapter-counter = counter("chapter")
 
@@ -136,6 +135,16 @@
       left: 4cm,
       rest: 2.5cm,
     ),
+  ) if not doble-cara
+
+  set page(
+    margin: (
+      inside: 4cm,
+      rest: 2.5cm,
+    ),
+  ) if doble-cara
+
+  set page(
     paper: "us-letter",
     number-align: bottom + right,
   )
@@ -150,6 +159,7 @@
   set par(
     leading: 1.5em,
     spacing: 2em,
+    justify: true,
     first-line-indent: (amount: 0in, all: true),
   )
 
@@ -226,12 +236,12 @@
   set page(numbering: "i")
 
   // MARK: Preliminary headings
-  show heading: set text(size: 1em, font: "TeX Gyre Heros")
+  show heading: set text(size: tamaño-fuente, font: "TeX Gyre Heros")
   show heading: set block(spacing: 2em)
 
   // MARK: Abstract
   if (plan == [] or plan == none) {
-    heading(numbering: none, level: 2)[Abstracto]
+    heading(numbering: none, level: 3)[Abstracto]
     table(
       align: (left + horizon, left),
       columns: 2,
@@ -241,17 +251,17 @@
     )
 
     if (problemática != none) {
-      heading(numbering: none, level: 2)[Problemática]
+      heading(numbering: none, level: 3)[Problemática]
       problemática
     }
 
     if objetivo-general != none {
-      heading(numbering: none, level: 2)[Objetivo General]
+      heading(numbering: none, level: 3)[Objetivo General]
       objetivo-general
     }
 
     if contenido != none {
-      heading(numbering: none, level: 2)[Contenido]
+      heading(numbering: none, level: 3)[Contenido]
       contenido
     }
 
@@ -265,98 +275,127 @@
       [*Correo Electrónico*], email,
       [*Fecha*], to-string[#fecha],
     )
+  }
 
-    // MARK: Summary
-    if resumen != none {
-      pagebreak()
-      heading(numbering: none, level: 2)[Resumen]
-      resumen
-    }
+  show heading.where(level: 2): set text(font: "TeX Gyre Pagella")
 
-    // MARK: Executive Summary
-    if resumen-ejecutivo != none {
-      heading(numbering: none, level: 2)[Resumen Ejecutivo]
-      resumen-ejecutivo
-    }
+  show heading.where(level: 2): it => context {
+    if it.numbering != none and it.outlined == true { chapter-counter.step() }
+    pagebreak()
+    set par(justify: false)
 
-    // MARK: Tables of contents
-    {
-      show heading: it => {
-        pagebreak()
-        it
-      }
-      show outline.entry.where(level: 1): it => link(
-        it.element.location(),
-        text(
-          font: "TeX Gyre Heros",
-          weight: "bold",
-          upper(
-            it.indented(
-              if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
-              [#it.body() #h(1fr) #it.page()],
-            ),
+    block(width: 100%, inset: (top: 2.5cm, bottom: 1cm), spacing: 0em)[
+      #if it.numbering != none and it.outlined == true [
+        #set text(size: 2.5em, weight: "bold", fill: gray.darken(40%))
+        #it.supplement
+        #if it.supplement == [Anexo] [
+          #chapter-counter.display("A").trim(".")
+        ] else [
+          #chapter-counter.display("I").trim(".")
+        ]
+
+        #v(0.05cm)
+      ]
+
+      #text(
+        size: 2em,
+        weight: "bold",
+      )[#it.body]
+
+      #v(0.3cm)
+
+      #line(length: 25%, stroke: (thickness: 0.5pt, dash: "solid"))
+    ]
+  }
+
+  // MARK: Summary
+  if resumen != none {
+    pagebreak(weak: true)
+    heading(numbering: none, level: 2)[Resumen]
+    resumen
+  }
+
+  // MARK: Executive Summary
+  if resumen-ejecutivo != none {
+    pagebreak(weak: true)
+    heading(numbering: none, level: 2)[Resumen Ejecutivo]
+    resumen-ejecutivo
+  }
+
+  // MARK: Tables of contents
+  show outline: set heading(level: 2)
+  show outline.entry: set block(spacing: 0.75em)
+  {
+    show outline.entry.where(level: 1): set block(spacing: 1.5em)
+    show outline.entry.where(level: 2): set block(spacing: 1.3em)
+    show outline.entry.where(level: 1): it => link(
+      it.element.location(),
+      text(
+        font: "TeX Gyre Heros",
+        size: 1.2em,
+        weight: "bold",
+        upper(
+          it.indented(
+            if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
+            [#it.body() #h(1fr) #it.page()],
           ),
         ),
-      )
-      show outline.entry.where(level: 2): it => link(
-        it.element.location(),
-        text(
-          font: "TeX Gyre Heros",
-          weight: "bold",
-          smallcaps(
-            it.indented(
-              if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
-              [#it.body() #h(1fr) #it.page()],
-            ),
+      ),
+    )
+    show outline.entry.where(level: 2): it => link(
+      it.element.location(),
+      text(
+        font: "TeX Gyre Heros",
+        size: 1.1em,
+        weight: "bold",
+        smallcaps(
+          it.indented(
+            if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
+            [#it.body() #h(1fr) #it.page()],
           ),
         ),
-      )
-      show outline.entry.where(level: 3): it => it
-      show outline.entry.where(level: 4): it => emph(it)
+      ),
+    )
+    show outline.entry.where(level: 3): it => it
+    show outline.entry.where(level: 4): it => emph(it)
 
+    outline(
+      title: [Índice General],
+      depth: 4,
+      indent: n => {
+        if n == 0 or n == 1 { 0em } else { n * 0.75em }
+      },
+    )
+  }
+
+  context {
+    if (counter(figure.where(kind: table)).final().at(0) != 0) {
       outline(
-        title: [Índice General],
-        depth: 4,
-        indent: n => {
-          if n == 0 or n == 1 { 0em } else { n * 0.75em }
-        },
+        title: [Índice de Tablas],
+        target: figure.where(kind: table),
       )
     }
 
-    context {
-      show heading: it => {
-        pagebreak()
-        it
-      }
+    if (counter(figure.where(kind: image)).final().at(0) != 0) {
+      outline(
+        title: [Índice de Figuras],
+        target: figure.where(kind: image),
+      )
+    }
 
-      if (counter(figure.where(kind: table)).final().at(0) != 0) {
-        outline(
-          title: [Índice de Tablas],
-          target: figure.where(kind: table),
-        )
-      }
-
-      if (counter(figure.where(kind: image)).final().at(0) != 0) {
-        outline(
-          title: [Índice de Figuras],
-          target: figure.where(kind: image),
-        )
-      }
-
-      if (counter(figure.where(kind: math.equation)).final().at(0) != 0) {
-        outline(
-          title: [Índice de Expresiones Matemáticas],
-          target: figure.where(kind: math.equation),
-        )
-      }
+    if (counter(figure.where(kind: math.equation)).final().at(0) != 0) {
+      outline(
+        title: [Índice de Expresiones Matemáticas],
+        target: figure.where(kind: math.equation),
+      )
+    }
 
 
-      if (query(heading.where(supplement: [Anexo])).len() != 0) {
-        outline(
-          title: [Índice de Anexos],
-          target: selector(heading.where(supplement: [Anexo])),
-        )
-      }
+    if (query(heading.where(supplement: [Anexo])).len() != 0) {
+      outline(
+        title: [Índice de Anexos],
+        target: selector(heading.where(supplement: [Anexo])),
+      )
     }
   }
 
@@ -375,12 +414,13 @@
 
   show heading.where(level: 1): it => {
     pagebreak()
+    set par(justify: false)
     set page(numbering: none, header: none)
 
     {
       set align(center)
 
-      v(6em)
+      v(0.5fr)
 
       text(
         size: 1.25em,
@@ -397,7 +437,7 @@
           weight: "bold",
         )[#counter(heading).display("I") ]
 
-        v(4em)
+        v(1em)
       }
 
       text(
@@ -414,36 +454,6 @@
     }
   }
 
-  show heading.where(level: 2): set text(font: "TeX Gyre Pagella")
-
-  show heading.where(level: 2): it => context {
-    if it.numbering != none and it.outlined == true { chapter-counter.step() }
-    pagebreak()
-
-    block(width: 100%, inset: (top: 3cm, bottom: 2cm))[
-      #if it.numbering != none and it.outlined == true [
-        #set text(size: 2.5em, weight: "bold", fill: gray.darken(40%))
-        #it.supplement
-        #if it.supplement == [Anexo] [
-          #chapter-counter.display("A").trim(".")
-        ] else [
-          #chapter-counter.display("I").trim(".")
-        ]
-
-        #v(0.5cm)
-      ]
-
-      #text(
-        size: 2em,
-        weight: "bold",
-      )[#it.body]
-
-      #v(0.3cm)
-
-      #line(length: 25%, stroke: (thickness: 0.5pt, dash: "solid"))
-    ]
-  }
-
   show heading.where(level: 3): set align(center)
   show heading.where(level: 3): smallcaps
   show heading.where(level: 5): emph
@@ -454,9 +464,7 @@
     _#it.body._
   ]
 
-  show raw: set text(font: "TeX Gyre Cursor")
-
-  show: typearea.with()
+  show raw: set text(font: "TeX Gyre Cursor", size: 1em)
 
   body
 }
