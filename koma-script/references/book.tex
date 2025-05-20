@@ -1,0 +1,211 @@
+\documentclass[
+    a4paper,
+    11pt,
+    DIV=12,
+    BCOR=10mm,          % Books usually have larger binding correction
+    twoside,
+    headings=normal,
+    open=right,         % Chapters start on right-hand (recto) pages
+    toc=bibliography,
+    toc=listof,
+    listof=totoc,
+    parskip=false,      % Traditional book style: indentation, no parskip
+    captions=tableheading,
+    numbers=autoendperiod,
+    appendixprefix=true,
+    chapterprefix=true
+]{scrbook}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+
+\KOMAoptions{fontsize=10.5pt} % Example of a non-standard size
+\KOMAoptions{DIV=10}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{scrlayer-scrpage}
+\usepackage{listings}
+\usepackage{longtable}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{lipsum}
+\usepackage{makeidx}
+\makeindex
+
+% --- KOMA-Script Font Customizations ---
+\setkomafont{disposition}{\normalfont\bfseries\Large}
+\setkomafont{chapter}{\Huge\scshape\color{darkgray}}
+\addtokomafont{section}{\large\color{blue!80!black}}
+\setkomafont{captionlabel}{\bfseries}
+\setkomafont{caption}{\itshape}
+\setkomafont{pagenumber}{\small\sffamily}
+
+% --- Header and Footer Configuration ---
+\clearpairofpagestyles
+\automark[section]{chapter}
+
+% For scrheadings style (main matter)
+\ihead{\leftmark}  % Inner: Chapter Number and Title
+\ohead{\rightmark} % Outer: Section Number and Title
+\ifoot{}
+\ofoot{\pagemark}  % Outer: Page number
+
+% For plain.scrheadings style (e.g., first page of chapter)
+% Optional arguments apply to plain style
+\ihead[]{\leftmark}
+\ohead[]{\rightmark}
+\ifoot[]{}
+\ofoot[]{\pagemark}
+
+\pagestyle{scrheadings}
+
+% --- Listings Configuration ---
+\lstset{
+    language=Java,
+    basicstyle=\ttfamily\scriptsize,
+    keywordstyle=\color{red!70!black}\bfseries,
+    commentstyle=\color{gray}\itshape,
+    stringstyle=\color{orange!70!black},
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    numbers=left,
+    numberstyle=\tiny\color{black!50},
+    captionpos=b
+}
+
+% --- Title Information ---
+\title{The Art of KOMA-Script Book Design}
+\subtitle{A Deep Dive into \texttt{scrbook}}
+\author{Johannes Gutenberg Jr.}
+\publishers{KOMA Publishing House}
+\date{MMXXIV}
+\titlehead{\centering \textit{A Work in Progress}}
+\subject{Advanced LaTeX Typesetting}
+
+% \dedicationpage is specific to scrbook to create a separate dedication page
+\dedication{To the pursuit of beautiful documents.}
+
+\begin{document}
+
+\frontmatter % Starts roman page numbering, no chapter numbers in ToC/Headings
+
+\maketitle
+% Dedication page is output by \maketitle if \dedication was used
+
+% \begin{abstract} % Abstract is usually part of front matter in books
+%     \lipsum[1]
+%     This book explores the capabilities of the \texttt{scrbook} class, demonstrating its power for professional book production.
+% \end{abstract}
+\clearpage
+
+\tableofcontents
+\listoftables
+\lstlistoflistings%
+\clearpage
+
+\mainmatter % Starts arabic page numbering, resets page counter, enables chapter numbers
+
+\chapter{The Philosophy of KOMA-Script}
+\lipsum[2-4]
+A footnote\footnote{Footnotes in books often have more detailed content.} and a \marginpar{Side note!} reference to the KOMA-Script logo: \KOMAScript.
+
+\section{Principles}
+\lipsum[5-6]
+\begin{enumerate}
+  \item Configurability
+  \item Typographical Excellence
+  \item Adherence to Standards (with flexibility)
+\end{enumerate}
+
+\section{Comparison with Standard Classes}
+\lipsum[7-8]
+This is \textit{emphasized} and this is \textbf{strong}.
+
+\chapter{Advanced Layout Techniques}
+\section{Utilizing Layers and Page Styles}
+\lipsum[9-10]
+KOMA-Script's \verb|scrlayer-scrpage| provides powerful tools.
+
+\section{Working with Tables}
+\begin{table}[hbtp]
+  \caption{Comparative Analysis of Features}
+  \label{tab:comparison}
+  \centering
+  \begin{tabular}{lcc}
+    \hline
+    Feature              & Standard LaTeX & KOMA-Script                   \\
+    \hline
+    Typearea Calculation & Manual/Basic   & Advanced (DIV, BCOR)          \\
+    Heading Styles       & Limited        & Highly Customizable           \\
+    Caption Placement    & Basic          & Flexible (e.g., tableheading) \\
+    Font Elements        & Basic          & Granular Control              \\
+    \hline
+  \end{tabular}
+\end{table}
+\lipsum[11]
+
+And a long table example for the book:
+\begin{longtable}{lp{0.65\textwidth}}
+  \caption{Detailed KOMA-Script Options Overview} \label{tab:komaoptions_long} \\
+  \hline
+  Option     & Description and Notes                                           \\
+  \hline
+  \endfirsthead
+  \multicolumn{2}{l}%
+  {{\bfseries Table \thetable\ continued from previous page}}                  \\
+  \hline
+  Option     & Description and Notes                                           \\
+  \hline
+  \endhead
+  \hline \multicolumn{2}{r}{{Continued on next page}}                          \\
+  \endfoot
+  \hline
+  \endlastfoot
+  `DIV`      & \lipsum[1][1-3]                                                 \\
+  `BCOR`     & \lipsum[2][1-3]                                                 \\
+  `headings` & \lipsum[3][1-3]                                                 \\
+  `parskip`  & \lipsum[4][1-3]                                                 \\
+  `captions` & \lipsum[5][1-3]                                                 \\
+\end{longtable}
+
+\section{Code Examples}
+\begin{lstlisting}[caption={A Java Snippet}, label={lst:java}]
+public class HelloWorld {
+    // Main method
+    public static void main(String[] args) {
+        System.out.println("Hello, KOMA-Script World!");
+    }
+}
+\end{lstlisting}
+\lipsum[12]
+
+\addchap*{An Unnumbered Chapter for Special Content}
+This is an unnumbered chapter created with \verb|\addchap*|. It won't appear in the ToC by default.
+\lipsum[13-14]
+
+\dictum[Albert Einstein]{Imagination is more important than knowledge.}
+
+\appendix
+\chapter{Glossary of Terms}
+\lipsum[15-16]
+\begin{description}
+  \item[Typearea] The main text block of a page.
+  \item[Recto] A right-hand page.
+  \item[Verso] A left-hand page.
+\end{description}
+
+\backmatter % Page numbering continues, chapter headings often styled differently (e.g., no number)
+
+\begin{thebibliography}{9}
+  \bibitem{koma-guide} Kohm, Markus, and Jens-Uwe Morawski. \textit{The KOMA-Script Guide}. Current version.
+  \bibitem{l2h} Lamport, Leslie. \textit{LaTeX: A Document Preparation System}. 2nd ed., Addison-Wesley, 1994.
+\end{thebibliography}
+
+\printindex
+
+\end{document}
