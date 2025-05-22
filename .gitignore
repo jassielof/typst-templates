@@ -29,6 +29,10 @@ universe/
 *.dbx
 *.dtx
 *.bst
+*.lol
+*.idx
+*.ilg
+*.ind
 *.app
 
 # ACM

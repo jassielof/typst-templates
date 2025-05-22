@@ -1,87 +1,233 @@
-\documentclass{scrreprt}
+\documentclass[
+    a4paper,            % Paper size
+    11pt,               % Base font size (can be changed later)
+    DIV=12,             % Type area division factor (adjust for desired margins)
+                        % Use DIV=calc for automatic calculation based on font
+    BCOR=5mm,           % Binding correction
+    twoside,            % Two-sided layout (can be oneside)
+    headings=normal,    % Style for headings (big, normal, small, standardclasses)
+    toc=bibliography,   % Add bibliography to ToC
+    toc=listof,         % Add LoF and LoT to ToC
+    listof=totoc,       % Ensure LoF/LoT themselves appear in ToC
+    parskip=half,       % Use half a line space between paragraphs, no indent
+                        % Other options: full, full+, half*, etc. or false (for indent)
+    captions=tableheading, % Table captions above table, figure captions below figure
+    % captions=heading, % All captions above
+    % captions=signature, % All captions below (default)
+    numbers=autoendperiod, % Automatically add/remove period after section numbers
+    appendixprefix=true,% Prefix "Appendix" to appendix chapters/sections
+    chapterprefix=true, % Prefix "Chapter" to chapter numbers
+    % draft,             % Show overfull hboxes
+]{scrreprt}
 
-% Set up document properties
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{blindtext}
-\usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage{color}
+\usepackage{lmodern} % Or any other font package
+\usepackage[english]{babel} % Or your preferred language
 
-% KOMAscript specific settings
-\KOMAoptions{
-  fontsize=12pt,
-  parskip=half,
-  headings=normal,
-  captions=tableabove
+% KOMA-Script specific late option changes
+\KOMAoptions{fontsize=12pt} % Change font size after class load
+\KOMAoptions{BCOR=7mm}      % Change binding correction
+
+\usepackage{amsmath}        % For advanced math
+\usepackage{amsfonts}
+\usepackage{amssymb}
+% \usepackage{graphicx}     % If you were using images \includegraphics
+\usepackage{scrlayer-scrpage} % For custom headers/footers
+\usepackage{booktabs}          % For improved table rules
+\usepackage{listings}       % For code listings
+\usepackage{longtable}      % For tables spanning multiple pages
+\usepackage{microtype}      % Improves typography
+\usepackage{xcolor}         % For colors
+\usepackage{lipsum}         % For dummy text
+\usepackage{makeidx}        % For index generation
+\makeindex
+
+% --- KOMA-Script Font Customizations ---
+\setkomafont{disposition}{\normalfont\bfseries} % Font for titles, author etc.
+\setkomafont{section}{\Large\scshape\color{blue!70!black}}
+\addtokomafont{subsection}{\mdseries}
+\setkomafont{captionlabel}{\bfseries}
+\setkomafont{caption}{\slshape}
+\setkomafont{pagenumber}{\bfseries}
+
+% --- Header and Footer Configuration with scrlayer-scrpage ---
+\clearpairofpagestyles % Clear default KOMA header/footer (good practice)
+\automark[section]{chapter} % Chapter on even, section on odd pages
+
+\ihead{\headmark} % Inner head: current mark (chapter/section title)
+\ohead{\pagemark} % Outer head: page number
+\ifoot{} % Inner foot: empty
+\ofoot[\pagemark]{\headmark} % Outer foot: page number (plain style) / mark (other styles)
+
+\pagestyle{scrheadings} % Activate the configured headers/footers
+
+% --- Listings Configuration ---
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!50!black}\itshape,
+    stringstyle=\color{purple},
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    captionpos=b % caption below listing
 }
 
-% Document information
-\title{Sample KOMAscript Report}
-\author{John Doe}
+% --- Title Information ---
+\title{A Comprehensive KOMA-Script Report}
+\subtitle{Exploring Features and Customizations}
+\author{Dr.\ K.\ Oma Skript\thanks{Special thanks to the KOMA-Script team.}}
+\publishers{Typesetters United}
 \date{\today}
+\titlehead{Internal Document --- Confidential}
+\subject{KOMA-Script `scrreprt' Demonstration}
+% \dedication{To all LaTeX enthusiasts.} % scrbook has a dedicated dedication page
 
 \begin{document}
 
-% Start of document content
+% --- Manual Front Matter (scrreprt doesn't have \frontmatter) ---
+\pagenumbering{roman} % Roman numerals for front matter pages
 \maketitle
 
+\begin{abstract}
+  \lipsum[1] % Dummy abstract text
+  This document serves as a demonstration of the \texttt{scrreprt} class from the KOMA-Script bundle, showcasing various options, environments, and customization capabilities.
+\end{abstract}
+\clearpage % Or \cleardoublepage if you want next content on a recto page
+
 \tableofcontents
+\listoftables
+\lstlistoflistings%
 \clearpage
 
-\chapter{Introduction}
-\blindtext[2]
+% --- Main Content ---
+\pagenumbering{arabic} % Arabic numerals for main content
+\setcounter{page}{1}  % Reset page number for main content
 
-\section{Background}
-\blindtext
+\chapter{Introduction to KOMA-Script}
+\lipsum[2-3]
+This is a \marginpar{A marginal note!} footnote\footnote{This is an example footnote. KOMA-Script offers enhanced footnote control.}.
+KOMA-Script (\KOMAScript) is a versatile replacement for standard LaTeX classes.
 
-% \part{KOMAscript Features}
-% \chapter{Literature Review}
-\section{Objectives}
-The main objectives of this report are:
+\section{Key Advantages}
+\lipsum[4]
 \begin{itemize}
-  \item Demonstrate KOMAscript features
-  \item Show document structure
-  \item Provide a template for future reports
+  \item Flexibility in page layout.
+  \item Enhanced typographical control.
+  \item European typesetting conventions.
 \end{itemize}
 
-\subsection{Sub-objectives}
-\subsubsection{Detailed Objectives}
+\section{Using \texttt{typearea}}
+The \texttt{typearea} package, automatically loaded by KOMA-Script classes, calculates the text area and margins.
+Key options are \texttt{DIV} (division factor) and \texttt{BCOR} (binding correction).
+For example, \texttt{DIV=12} is a common setting. A higher \texttt{DIV} value means larger text area and smaller margins.
+\texttt{DIV=calc} automatically calculates a typographically sound value.
+\lipsum[5]
 
-\chapter{Methodology}
-\blindtext[2]
+\chapter{Content Elements}
+\section{Text and Typography}
+\lipsum[6-7]
+\begin{description}
+  \item[Font Customization] Use \verb|\setkomafont| and \verb|\addtokomafont|.
+  \item[Paragraph Spacing] Controlled by the \texttt{parskip} class option.
+\end{description}
 
-\section{Research Design}
-\blindtext
+\section{Mathematical Expressions}
+KOMA-Script works seamlessly with standard math packages.
+\begin{align*}
+  E                         & = mc^2                 \\
+  \int_0^\infty e^{-x^2} dx & = \frac{\sqrt{\pi}}{2}
+\end{align*}
+\lipsum[8]
 
-\section{Data Collection}
-\begin{table}[h]
-  \centering
-  \caption{Sample Data}
+\section{Tables}
+KOMA-Script allows captions to be styled as headings for tables.
+\begin{table}[hbtp]
+  \caption{A Simple Demonstration Table}\label{tab:simple}
   \begin{tabular}{lcr}
     \toprule
-    Category & Value & Percentage \\
+    Left-aligned & Centered & Right-aligned \\
     \midrule
-    Alpha    & 145   & 45\%       \\
-    Beta     & 213   & 35\%       \\
-    Gamma    & 98    & 20\%       \\
+    Item 1       & Data A   & 100.00        \\
+    Item 2       & Data B   & 50.50         \\
+    Item 3       & Data C   & 1234.56       \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-\chapter{Results}
-\section{Analysis}
-\blindtext
+\lipsum[9]
+\begin{longtable}{cp{0.6\textwidth}}
+  \caption{A Long Table Spanning Pages}\label{tab:long}                         \\
+  \toprule
+  ID & Description                                                              \\
+  \midrule
+  \endfirsthead%
+  \multicolumn{2}{c}{{\bfseries Table \thetable\ continued from previous page}} \\
+  \toprule
+  ID & Description                                                              \\
+  \midrule
+  \endhead%
+  \midrule
+  \multicolumn{2}{r}{{Continued on next page}}                                  \\
+  \endfoot%
+  \bottomrule
+  \endlastfoot%
+  1  & \lipsum[10]                                                              \\
+  2  & \lipsum[11]                                                              \\
+  3  & \lipsum[12]                                                              \\
+  4  & \lipsum[13]                                                              \\
+  5  & \lipsum[14]                                                              \\
+  6  & \lipsum[15]                                                              \\
+  7  & \lipsum[16]                                                              \\
+  8  & \lipsum[17]                                                              \\
+\end{longtable}
+\section{Code Listings}
+\begin{lstlisting}[caption={Example Python Code}, label={lst:python}]
+def hello_world():
+    # This is a comment
+    message = "Hello, KOMA-Script users!"
+    print(message)
 
-\section{Findings}
-\blindtext[2]
+hello_world() # Function call
+\end{lstlisting}
+\lipsum[15]
 
-\addchap*{Conclusion}
-\blindtext
+\addsec*{Unnumbered Section with \texttt{addsec}}
+This section will not be numbered but will appear in the ToC if desired (depends on \texttt{toc=secnumberless} or similar options for unnumbered sections).
+\lipsum[16]
 
+\dictum[Friedrich Schiller]{Man grows with his higher goals.}
+
+% --- Appendix ---
 \appendix
-\chapter{Additional Information}
-\section{Technical Details}
-\blindtext
+\chapter{Additional Data}
+\section{Supplementary Tables}
+\lipsum[17]
+\begin{table}[hbtp]
+  \centering
+  \begin{tabular}{cc}
+    \toprule
+    X & Y  \\
+    \midrule
+    1 & 10 \\
+    2 & 20 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% --- Bibliography ---
+\clearpage % Good to ensure bibliography starts on a new page
+\begin{thebibliography}{9}
+  \bibitem{koma} Kohm, Markus. \textit{KOMA-Script: A versatile LaTeX2e bundle}. Available from CTAN\@.
+  \bibitem{mittelbach} Mittelbach, Frank, et al. \textit{The LaTeX Companion}. 2nd ed., Addison-Wesley, 2004.
+\end{thebibliography}
+
+% --- Index ---
+\clearpage
+\printindex
 
 \end{document}
