@@ -29,6 +29,7 @@ universe/
 *.dbx
 *.dtx
 *.bst
+*.app
 
 # ACM
 !acm-suite/assets/**/*
