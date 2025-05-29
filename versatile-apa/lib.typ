@@ -248,15 +248,13 @@
     size: 10pt,
   )
 
-  show raw.where(block: true): set par(leading: 1em)
+show raw.where(block: true): it => {
+  set par(leading: 1em)
+  set align(start)
+  box(it, width: 100%)
+}
 
   set math.equation(numbering: "(1)")
-
-  show figure.where(kind: raw): it => {
-    set align(left)
-    it.caption
-    it.body
-  }
 
   show quote.where(block: true): set block(spacing: double-spacing)
 

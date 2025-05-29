@@ -12,6 +12,7 @@ The template has some support for raw/computer code, but if further customizatio
       print("Hello, World!")
   ```,
   caption: [Python code block],
+  placement: none
 )
 
 === Non-figure code block
