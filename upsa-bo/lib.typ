@@ -30,10 +30,12 @@
   fecha: datetime.today().year(),
   tamaño-fuente: 10pt,
   estilo-fuente: "TeX Gyre Pagella",
+  config: (
+    one-half-spacing: 1.5em,
+    double-spacing: 2em,
+  ),
   body,
 ) = {
-  let one-half-spacing = 1.5em
-  let double-spacing = 2em
   let show-title-page = {
     if portada-externa {
       portada(
@@ -159,8 +161,8 @@
   )
 
   set par(
-    leading: one-half-spacing,
-    spacing: double-spacing,
+    leading: config.one-half-spacing,
+    spacing: config.double-spacing,
     justify: true,
     first-line-indent: (amount: 0in, all: true),
   )
@@ -174,7 +176,7 @@
   show figure: set block(breakable: true, sticky: true)
 
   set figure(
-    gap: one-half-spacing,
+    gap: config.one-half-spacing,
     placement: auto,
   )
 
@@ -198,10 +200,10 @@
     },
   )
 
-  show table.cell: set par(leading: one-half-spacing, spacing: double-spacing)
+  show table.cell: set par(leading: config.one-half-spacing, spacing: config.double-spacing)
 
   // MARK: Quotes
-  show quote.where(block: true): set block(spacing: double-spacing)
+  show quote.where(block: true): set block(spacing: config.double-spacing)
   show quote: set text(style: "italic")
 
   show quote: it => {
@@ -239,7 +241,7 @@
 
   // MARK: Preliminary headings
   show heading: set text(size: tamaño-fuente, font: "TeX Gyre Heros")
-  show heading: set block(spacing: double-spacing)
+  show heading: set block(spacing: config.double-spacing)
 
   // MARK: Abstract
   if (plan == [] or plan == none) {
