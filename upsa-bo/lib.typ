@@ -28,11 +28,16 @@
   portada-externa: true,
   ubicación: "Santa Cruz de la Sierra, Bolivia",
   fecha: datetime.today().year(),
-  tamaño-fuente: 10pt,
-  estilo-fuente: "TeX Gyre Pagella",
-  spacing: (
-    one-half: 1.5em,
-    double: 2em,
+  fuentes: (
+    tamaño: 10pt,
+    cuerpo: "TeX Gyre Pagella",
+    títulos: "TeX Gyre Heros",
+    mono: "TeX Gyre Cursor",
+    ecuaciones: "TeX Gyre Pagella Math",
+  ),
+  espaciado: (
+    interlineado: 1.5em,
+    párrafo: 2em,
   ),
   body,
 ) = {
@@ -154,21 +159,21 @@
   )
 
   set text(
-    size: tamaño-fuente,
-    font: estilo-fuente,
+    size: fuentes.tamaño,
+    font: fuentes.cuerpo,
     lang: "es",
     region: "bo",
   )
 
   set par(
-    leading: spacing.one-half,
-    spacing: spacing.double,
+    leading: espaciado.interlineado,
+    spacing: espaciado.párrafo,
     justify: true,
     first-line-indent: (amount: 0in, all: true),
   )
 
   set math.equation(numbering: "(1)", supplement: [Expresión Matemática])
-  show math.equation: set text(font: "TeX Gyre Pagella Math")
+  show math.equation: set text(font: fuentes.ecuaciones)
 
   // MARK: Figures
   show figure: set figure.caption(position: top)
@@ -176,13 +181,13 @@
   show figure: set block(breakable: true, sticky: true)
 
   set figure(
-    gap: spacing.one-half,
+    gap: espaciado.interlineado,
     placement: auto,
   )
 
   set figure.caption(separator: parbreak(), position: top)
   show figure.caption: set align(left)
-  show figure.caption: set text(font: "TeX Gyre Heros")
+  show figure.caption: set text(font: fuentes.títulos)
   show figure.caption: set par(first-line-indent: 0em)
   show figure.caption: it => {
     strong[#it.supplement #context it.counter.display(it.numbering)]
@@ -200,10 +205,10 @@
     },
   )
 
-  show table.cell: set par(leading: spacing.one-half, spacing: spacing.double)
+  show table.cell: set par(leading: espaciado.interlineado, spacing: espaciado.párrafo)
 
   // MARK: Quotes
-  show quote.where(block: true): set block(spacing: spacing.double)
+  show quote.where(block: true): set block(spacing: espaciado.párrafo)
   show quote: set text(style: "italic")
 
   show quote: it => {
@@ -240,8 +245,8 @@
   set page(numbering: "i")
 
   // MARK: Preliminary headings
-  show heading: set text(size: tamaño-fuente, font: "TeX Gyre Heros")
-  show heading: set block(spacing: spacing.double)
+  show heading: set text(size: fuentes.tamaño, font: fuentes.títulos)
+  show heading: set block(spacing: espaciado.párrafo)
 
   // MARK: Abstract
   if (plan == [] or plan == none) {
@@ -281,7 +286,7 @@
     )
   }
 
-  show heading.where(level: 2): set text(font: "TeX Gyre Pagella")
+  show heading.where(level: 2): set text(font: fuentes.cuerpo)
 
   show heading.where(level: 2): it => context {
     if it.numbering != none and it.outlined == true { chapter-counter.step() }
@@ -335,7 +340,7 @@
     show outline.entry.where(level: 1): it => link(
       it.element.location(),
       text(
-        font: "TeX Gyre Heros",
+        font: fuentes.títulos,
         size: 1.2em,
         weight: "bold",
         upper(
@@ -349,7 +354,7 @@
     show outline.entry.where(level: 2): it => link(
       it.element.location(),
       text(
-        font: "TeX Gyre Heros",
+        font: fuentes.títulos,
         size: 1.1em,
         weight: "bold",
         smallcaps(
@@ -405,7 +410,7 @@
 
   set page(
     numbering: "1",
-    header: context hydra(2, display: (_, it) => upper(text(font: "TeX Gyre Heros", it.body))),
+    header: context hydra(2, display: (_, it) => upper(text(font: fuentes.títulos, it.body))),
   )
 
   // MARK: Headings
@@ -468,7 +473,7 @@
     _#it.body._
   ]
 
-  show raw: set text(font: "TeX Gyre Cursor", size: 1em)
+  show raw: set text(font: fuentes.mono, size: 1em)
 
   body
 }
