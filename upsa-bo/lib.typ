@@ -30,9 +30,9 @@
   fecha: datetime.today().year(),
   tamaño-fuente: 10pt,
   estilo-fuente: "TeX Gyre Pagella",
-  config: (
-    one-half-spacing: 1.5em,
-    double-spacing: 2em,
+  spacing: (
+    one-half: 1.5em,
+    double: 2em,
   ),
   body,
 ) = {
@@ -161,8 +161,8 @@
   )
 
   set par(
-    leading: config.one-half-spacing,
-    spacing: config.double-spacing,
+    leading: spacing.one-half,
+    spacing: spacing.double,
     justify: true,
     first-line-indent: (amount: 0in, all: true),
   )
@@ -176,7 +176,7 @@
   show figure: set block(breakable: true, sticky: true)
 
   set figure(
-    gap: config.one-half-spacing,
+    gap: spacing.one-half,
     placement: auto,
   )
 
@@ -200,10 +200,10 @@
     },
   )
 
-  show table.cell: set par(leading: config.one-half-spacing, spacing: config.double-spacing)
+  show table.cell: set par(leading: spacing.one-half, spacing: spacing.double)
 
   // MARK: Quotes
-  show quote.where(block: true): set block(spacing: config.double-spacing)
+  show quote.where(block: true): set block(spacing: spacing.double)
   show quote: set text(style: "italic")
 
   show quote: it => {
@@ -241,7 +241,7 @@
 
   // MARK: Preliminary headings
   show heading: set text(size: tamaño-fuente, font: "TeX Gyre Heros")
-  show heading: set block(spacing: config.double-spacing)
+  show heading: set block(spacing: spacing.double)
 
   // MARK: Abstract
   if (plan == [] or plan == none) {
