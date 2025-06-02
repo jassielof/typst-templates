@@ -474,6 +474,9 @@
   ]
 
   show raw: set text(font: fuentes.mono, size: 1em)
+  show figure.where(kind: raw): set figure(placement: none)
+  show figure.where(kind: raw): set block(breakable: true, sticky: false)
+  show figure.where(kind: raw): set raw(block: true)
 
   body
 }
