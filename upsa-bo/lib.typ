@@ -478,6 +478,8 @@
   show figure.where(kind: raw): set block(breakable: true, sticky: false)
   show figure.where(kind: raw): set raw(block: true)
 
+  show bibliography: set heading(level: 2, numbering: none, outlined: false)
+
   body
 }
 
