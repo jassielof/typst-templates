@@ -11,9 +11,10 @@
   fecha,
   portada-externa,
   grado,
+  fuentes,
 ) = context {
   set align(center)
-  set text(weight: "bold", font: "TeX Gyre Heros")
+  set text(weight: "bold", font: fuentes.títulos)
   image("../assets/images/logo-upsa.png")
   v(1fr)
   facultad
@@ -36,7 +37,7 @@
   rect(
     radius: 20%,
     inset: 10pt,
-    text(font: "TeX Gyre Pagella", weight: "bold")[_«#título»_],
+    text(font: fuentes.cuerpo, weight: "bold")[_«#título»_],
   )
 
   if (here().page() == 3 and portada-externa) {

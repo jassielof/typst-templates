@@ -56,6 +56,7 @@
         fecha,
         portada-externa,
         grado,
+        fuentes
       )
 
       pagebreak(to: "odd")
@@ -74,6 +75,7 @@
       fecha,
       portada-externa,
       grado,
+      fuentes
     )
   }
 
