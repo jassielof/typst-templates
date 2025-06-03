@@ -248,11 +248,8 @@
     size: 10pt,
   )
 
-show raw.where(block: true): it => {
-  set par(leading: 1em)
-  set align(start)
-  box(it, width: 100%)
-}
+  show raw.where(block: true): set par(leading: 1em)
+  show figure.where(kind: raw): set block(breakable: true, sticky: false, width: 100%)
 
   set math.equation(numbering: "(1)")
 
