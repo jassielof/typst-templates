@@ -3,10 +3,51 @@
 #import "utils/font-sizes.typ": *
 #import "utils/to-string.typ": *
 
-// TODO: Move the function parameters out to this var, so that they can be used in other possible functions.
-#let latex-info = (document-class: "article", font-size: 10pt, paper-size: "us-letter")
-
 #let chapter-counter = counter("chapter")
+
+
+#let get-font-size(font-size) = {
+  if (font-size == 10pt) {
+    return font-10pt
+  } else if (font-size == 11pt) {
+    return font-11pt
+  } else if (font-size == 12pt) {
+    return font-12pt
+  } else {
+    panic("Font size must be 10pt, 11pt, or 12pt.")
+  }
+}
+
+// FIXME: Vertical spacing
+#let title-page(
+  title: [Title],
+  author: [Author Name],
+  date: datetime.today().display("[month repr:long] [day], [year]"),
+  font-size: 10pt,
+) = {
+  set document(
+    author: to-string(author),
+    title: title,
+  )
+
+  font-size = get-font-size(font-size)
+
+  set page(footer: none)
+  v(1fr)
+  v(60pt)
+  align(center)[
+    #text(size: font-size.LARGE, title)
+    #v(3em)
+    #[#set text(size: font-size.large)
+      #set par(leading: 0.75em)
+      #author
+    ]
+    #v(1.5em)
+    #text(size: font-size.large, date)
+    #v(1fr)
+  ]
+  pagebreak()
+}
 
 #let report(
   title: [Title],
@@ -24,20 +65,7 @@
   make-title: false,
   body,
 ) = {
-  set document(
-    author: to-string(author),
-    title: title,
-  )
-
-  if (font-size == 10pt) {
-    font-size = font-10pt
-  } else if (font-size == 11pt) {
-    font-size = font-11pt
-  } else if (font-size == 12pt) {
-    font-size = font-12pt
-  } else {
-    panic("Font size must be 10pt, 11pt, or 12pt.")
-  }
+  font-size = get-font-size(font-size)
 
   set page(
     header-ascent: -25pt,
@@ -60,24 +88,6 @@
     size: font-size.normalsize,
     font: "New Computer Modern",
   )
-
-  if (make-title) {
-    set page(footer: none)
-    v(1fr)
-    v(60pt)
-    align(center)[
-      #text(size: font-size.LARGE, title)
-      #v(3em)
-      #[#set text(size: font-size.large)
-        #set par(leading: 0.75em)
-        #author
-      ]
-      #v(1.5em)
-      #text(size: font-size.large, date)
-      #v(1fr)
-    ]
-    pagebreak()
-  }
 
   show heading.where(level: 1): set heading(numbering: "I.I")
   set heading(numbering: (first, ..n) => (numbering("1.1", ..n)))
@@ -194,11 +204,12 @@
   outline(title: none, depth: depth, target: heading.where(outlined: true))
 }
 
-#let abstract(body) = {
+// FIXME: Vertical spacing
+#let abstract(title: [Abstract], body) = {
   pagebreak()
   v(1fr)
   align(center)[
-    #block[*Abstract*]
+    #block[*#title*]
   ]
   body
   v(1fr)

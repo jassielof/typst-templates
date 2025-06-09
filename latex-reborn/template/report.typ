@@ -1,14 +1,20 @@
 #import "../report.typ": *
+#import "@preview/metalogo:1.2.0": TeX, LaTeX
 
-#show: report.with(
-  title: [Report Template for Typst],
+#let latex-info = (
+  title: [Report Template for #LaTeX],
   author: [Author Name],
-  make-title: true,
+  date: datetime.today().display("[month repr:long] [day padding:none], [year]"),
 )
 
+#show: report.with(..latex-info)
+
+#title-page(..latex-info)
 #table-of-contents()
 
 #abstract(lorem(100))
+
+
 
 #for h in range(1, 5) [
   = Part #h
