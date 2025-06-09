@@ -58,10 +58,11 @@
 
   set text(
     size: font-size.normalsize,
-    font: "CMU Serif",
+    font: "New Computer Modern",
   )
 
   if (make-title) {
+    set page(footer: none)
     v(1fr)
     v(60pt)
     align(center)[

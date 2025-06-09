@@ -5,21 +5,21 @@
 %% The original source files were:
 %%
 %% classes.dtx  (with options: `report')
-%%
+%% 
 %% This is a generated file.
-%%
+%% 
 %% The source is maintained by the LaTeX Project team and bug
 %% reports for it can be opened at https://latex-project.org/bugs.html
 %% (but please observe conditions on bug reports sent to that address!)
-%%
-%%
-%% Copyright (C) 1993-2024
+%% 
+%% 
+%% Copyright (C) 1993-2025
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
-%%
+%% 
 %% This file was generated from file(s) of the LaTeX base system.
 %% --------------------------------------------------------------
-%%
+%% 
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
 %% of this license or (at your option) any later version.
@@ -27,23 +27,23 @@
 %%    https://www.latex-project.org/lppl.txt
 %% and version 1.3c or later is part of all distributions of LaTeX
 %% version 2008 or later.
-%%
+%% 
 %% This file has the LPPL maintenance status "maintained".
-%%
+%% 
 %% This file may only be distributed together with a copy of the LaTeX
 %% base system. You may however distribute the LaTeX base system without
 %% such generated files.
-%%
+%% 
 %% The list of all files belonging to the LaTeX base distribution is
 %% given in the file `manifest.txt'. See also `legal.txt' for additional
 %% information.
-%%
+%% 
 %% The list of derived (unpacked) files belonging to the distribution
 %% and covered by LPPL is defined by the unpacking scripts (with
 %% extension .ins) which are part of the distribution.
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{report}
-              [2023/05/17 v1.4n
+              [2025/01/22 v1.4n
  Standard LaTeX document class]
 \newcommand\@ptsize{}
 \newif\if@restonecol

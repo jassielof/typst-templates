@@ -1,0 +1,6 @@
+version: '3'
+
+tasks:
+  dev-report:
+    cmds:
+      - typst watch --root . latex-reborn/template/report.typ
