@@ -61,7 +61,6 @@
   landscape: false,
   open: "any",
   draft: false,
-  make-title: false,
   body,
 ) = {
   font-size = get-font-size(font-size)

@@ -1,4 +1,4 @@
-#import "../report.typ": *
+#import "../lib.typ": *
 #import "@preview/metalogo:1.2.0": TeX, LaTeX
 
 #let latex-info = (
