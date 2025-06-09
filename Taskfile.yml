@@ -1,6 +1,14 @@
-version: '3'
+version: "3"
+
+env:
+  KOMA_CLASSES_DIR: "koma-script/ctan/src/"
+  BASE_CLASSES_DIR: "latex-reborn/ctan/src/"
+  ACM_CLASSES_DIR: "acm-suite/ctan/src"
 
 tasks:
   dev-report:
     cmds:
       - typst watch --root . latex-reborn/template/report.typ
+  get-ctan-classes:
+    cmds:
+      - uv run scripts/latex.py
