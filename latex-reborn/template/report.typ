@@ -35,6 +35,9 @@
 This is the background chapter. Here, we provide some background information on
 the topic of the report.
 
+This is the background chapter. Here, we provide some background information on
+the topic of the report.
+
 === Background Section
 This is the background chapter. Here, we provide some background information on
 the topic of the report.

@@ -6,6 +6,9 @@ env:
   ACM_CLASSES_DIR: "acm-suite/ctan/src"
 
 tasks:
+  versatile-apa:
+    cmds:
+      - typst compile --root versatile-apa versatile-apa/template/main.typ
   dev-report:
     cmds:
       - typst watch --root . latex-reborn/template/report.typ
