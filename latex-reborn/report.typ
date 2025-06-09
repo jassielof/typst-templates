@@ -87,6 +87,7 @@
     size: font-size.normalsize,
     font: "New Computer Modern",
   )
+  show raw: set text(font: "New Computer Modern Mono", size: font-size.normalsize)
 
   show heading.where(level: 1): set heading(numbering: "I.I")
   set heading(numbering: (first, ..n) => (numbering("1.1", ..n)))
@@ -204,12 +205,15 @@
 }
 
 // FIXME: Vertical spacing
+// A revised abstract function for report.typ
+
 #let abstract(title: [Abstract], body) = {
   pagebreak()
-  v(1fr)
-  align(center)[
-    #block[*#title*]
-  ]
+  set page(footer: none, header: none)
+  set par(first-line-indent: 0em)
+  v(0.56fr)
+  align(center, text(weight: "bold", title))
+  v(1em)
   body
   v(1fr)
   pagebreak()

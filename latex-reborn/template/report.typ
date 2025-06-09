@@ -10,51 +10,33 @@
 #show: report.with(..latex-info)
 
 #title-page(..latex-info)
+
+#abstract[
+  This is an example of an extended report using the `report` class in LaTeX. It showcases many built-in features of the class.
+]
+
 #table-of-contents()
 
-#abstract(lorem(100))
-
-
-
-#for h in range(1, 5) [
-  = Part #h
-  #lorem(100)
-
-  #lorem(100)
-]
-#for s in range(1, 5) [
-  == Chapter #s
-  #lorem(100)
-]
-
-
-#for h in range(1, 7) [
-  #heading(level: 2)[Section #h]
-  #lorem(100)
-
-  #lorem(100)
-
-  #heading(level: 3)[Subsection #h]
-  #lorem(100)
-
-  #lorem(100)
-
-  #heading(level: 4)[Subsubsection #h]
-  #lorem(100)
-
-  #lorem(100)
-
-  #heading(level: 5)[Paragraph #h]
-  #lorem(100)
-
-  #lorem(100)
+#abstract[
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim
+  aeque doleamus animo, cum corpore dolemus, fieri tamen permagna accessio
+  potest, si aliquod aeternum et infinitum impendere malum nobis opinemur.
+  Quod idem licet transferre in voluptatem, ut postea variari voluptas distinguique
+  possit, augeri amplificarique non possit. At etiam Athenis, ut e patre audiebam
+  facete et urbane Stoicos irridente, statua est in quo a nobis philosophia defensa
+  et collaudata est, cum id, quod maxime placeat, facere possimus, omnis voluptas
+  assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et.
 
 ]
 
-// === History
-// A brief history of the topic.
+= First Part
+== Introduction
+This is the background chapter. Here, we provide some background information on
+the topic of the report.
 
-// ==== Early Developments
-// Details about early developments.
+=== Background Section
+This is the background chapter. Here, we provide some background information on
+the topic of the report.
 
 
