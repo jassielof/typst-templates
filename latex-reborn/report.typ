@@ -31,10 +31,9 @@
   )
 
   font-size = get-font-size(font-size)
-
   set page(footer: none)
-  v(1fr)
-  v(60pt)
+  // Close-close enough to LaTeX
+  v(0.8fr)
   align(center)[
     #text(size: font-size.LARGE, title)
     #v(3em)
