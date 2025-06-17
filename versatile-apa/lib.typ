@@ -192,7 +192,7 @@
 
   show table.cell: set par(leading: 1em)
 
-  show figure: set block(breakable: true, sticky: true)
+  show figure: set block(breakable: true, sticky: false)
 
   set figure(
     gap: double-spacing,
