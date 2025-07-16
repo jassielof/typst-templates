@@ -11,7 +11,6 @@
   email: "name@example.com",
   contenido: outline(target: heading.where(level: 2, outlined: true, supplement: [Capítulo]), title: none),
   guía: [Docente Guía],
-  tamaño-fuente: 11pt,
 )
 
 
