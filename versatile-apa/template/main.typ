@@ -132,6 +132,7 @@
 #pagebreak()
 #bibliography(
   "bibliography/ref.bib", // or ref.yml
+  style: "csl/apa.csl",
   full: true,
   title: auto,
 )
