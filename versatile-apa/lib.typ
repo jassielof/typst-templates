@@ -86,17 +86,11 @@
     lang: language,
   )
 
-  set page(
-    margin: 1in,
-    paper: paper-size,
-    numbering: "1",
-    number-align: top + right,
-    header: context {
-      upper(running-head)
-      h(1fr)
-      str(here().page())
-    },
-  )
+  set page(margin: 1in, paper: paper-size, numbering: "1", number-align: top + right, header: context {
+    upper(running-head)
+    h(1fr)
+    str(here().page())
+  })
 
   set par(
     leading: double-spacing,
@@ -169,15 +163,9 @@
 
   show heading: it => emph(strong[#it.body.])
   show heading.where(level: 1): it => align(center, strong(it.body))
-  show heading.where(level: 2): it => par(
-    first-line-indent: 0in,
-    strong(it.body),
-  )
+  show heading.where(level: 2): it => par(first-line-indent: 0in, strong(it.body))
 
-  show heading.where(level: 3): it => par(
-    first-line-indent: 0in,
-    emph(strong(it.body)),
-  )
+  show heading.where(level: 3): it => par(first-line-indent: 0in, emph(strong(it.body)))
 
   show heading.where(level: 4): it => strong[#it.body.]
   show heading.where(level: 5): it => emph(strong[#it.body.])
@@ -208,14 +196,12 @@
     emph(it.body)
   }
 
-  set table(
-    stroke: (x, y) => if y == 0 {
-      (
-        top: (thickness: 1pt, dash: "solid"),
-        bottom: (thickness: 0.5pt, dash: "solid"),
-      )
-    },
-  )
+  set table(stroke: (x, y) => if y == 0 {
+    (
+      top: (thickness: 1pt, dash: "solid"),
+      bottom: (thickness: 0.5pt, dash: "solid"),
+    )
+  })
 
   set list(
     marker: ([•], [◦]),
@@ -291,10 +277,7 @@
         and it.element.has("level")
         and it.element.level == 1
     ) {
-      link(
-        it.element.location(),
-        it.indented([#it.element.supplement #it.prefix().], it.inner()),
-      )
+      link(it.element.location(), it.indented([#it.element.supplement #it.prefix().], it.inner()))
     } else {
       it
     }
@@ -303,7 +286,24 @@
   set outline(depth: 3, indent: 2em)
 
   set bibliography(style: "apa")
-  show bibliography: set par(first-line-indent: 0in)
+  show bibliography: set par(
+    first-line-indent: 0in,
+    hanging-indent: 0.5in,
+  )
+
+  show bibliography: bib-it => {
+    set block(inset: 0in)
+    show block: block-it => context {
+      if block-it.body.func() != [].func() {
+        block-it.body
+      } else {
+        par(block-it.body)
+      }
+    }
+
+    bib-it
+  }
+
 
   if (type(abstract) == content or type(abstract) == str) {
     // Only display the abstract if it's not empty

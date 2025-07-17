@@ -9,6 +9,9 @@ tasks:
   versatile-apa:
     cmds:
       - typst compile --root versatile-apa versatile-apa/template/main.typ
+  dev-versatile-apa:
+    cmds:
+      - typst watch --root versatile-apa versatile-apa/template/main.typ
   dev-report:
     cmds:
       - typst watch --root . latex-reborn/template/report.typ
