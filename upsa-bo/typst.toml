@@ -1,4 +1,3 @@
-#:schema file:///home/jassielof/GitHub/jassielof/schemastore-typst/src/schemas/json/typst.json
 [package]
 name = "upsa-bo"
 version = "0.1.0"
