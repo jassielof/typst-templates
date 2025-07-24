@@ -56,7 +56,7 @@
         fecha,
         portada-externa,
         grado,
-        fuentes
+        fuentes,
       )
 
       pagebreak(to: "odd")
@@ -75,7 +75,7 @@
       fecha,
       portada-externa,
       grado,
-      fuentes
+      fuentes,
     )
   }
 
@@ -135,25 +135,27 @@
   }
 
   set document(
-    title: to-string(título),
+    title: if type(título) == content {
+      to-string(título)
+    } else { título },
     description: resumen,
-    author: to-string(autor).trim(),
+    author: if type(título) == content {
+      to-string(autor).trim()
+    } else {
+      autor
+    },
     keywords: ("Tesis", "UPSA", "Proyecto de grado") + palabras-clave,
   )
 
-  set page(
-    margin: (
-      left: 4cm,
-      rest: 2.5cm,
-    ),
-  ) if not doble-cara
+  set page(margin: (
+    left: 4cm,
+    rest: 2.5cm,
+  )) if not doble-cara
 
-  set page(
-    margin: (
-      inside: 4cm,
-      rest: 2.5cm,
-    ),
-  ) if doble-cara
+  set page(margin: (
+    inside: 4cm,
+    rest: 2.5cm,
+  )) if doble-cara
 
   set page(
     paper: "us-letter",
@@ -167,12 +169,10 @@
     region: "bo",
   )
 
-  set par(
-    leading: espaciado.interlineado,
-    spacing: espaciado.párrafo,
-    justify: true,
-    first-line-indent: (amount: 0in, all: true),
-  )
+  set par(leading: espaciado.interlineado, spacing: espaciado.párrafo, justify: true, first-line-indent: (
+    amount: 0in,
+    all: true,
+  ))
 
   set math.equation(numbering: "(1)", supplement: [Expresión Matemática])
   show math.equation: set text(font: fuentes.ecuaciones)
@@ -198,14 +198,12 @@
   }
 
   // MARK: Tables
-  set table(
-    stroke: (x, y) => if y == 0 {
-      (
-        top: (thickness: 1pt, dash: "solid"),
-        bottom: (thickness: 0.5pt, dash: "solid"),
-      )
-    },
-  )
+  set table(stroke: (x, y) => if y == 0 {
+    (
+      top: (thickness: 1pt, dash: "solid"),
+      bottom: (thickness: 0.5pt, dash: "solid"),
+    )
+  })
 
   show table.cell: set par(leading: espaciado.interlineado, spacing: espaciado.párrafo)
 
@@ -339,88 +337,60 @@
   {
     show outline.entry.where(level: 1): set block(spacing: 1.5em)
     show outline.entry.where(level: 2): set block(spacing: 1.3em)
-    show outline.entry.where(level: 1): it => link(
-      it.element.location(),
-      text(
-        font: fuentes.títulos,
-        size: 1.2em,
-        weight: "bold",
-        upper(
-          it.indented(
-            if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
-            [#it.body() #h(1fr) #it.page()],
-          ),
-        ),
-      ),
-    )
-    show outline.entry.where(level: 2): it => link(
-      it.element.location(),
-      text(
-        font: fuentes.títulos,
-        size: 1.1em,
-        weight: "bold",
-        smallcaps(
-          it.indented(
-            if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
-            [#it.body() #h(1fr) #it.page()],
-          ),
-        ),
-      ),
-    )
+    show outline.entry.where(level: 1): it => link(it.element.location(), text(
+      font: fuentes.títulos,
+      size: 1.2em,
+      weight: "bold",
+      upper(it.indented(
+        if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
+        [#it.body() #h(1fr) #it.page()],
+      )),
+    ))
+    show outline.entry.where(level: 2): it => link(it.element.location(), text(
+      font: fuentes.títulos,
+      size: 1.1em,
+      weight: "bold",
+      smallcaps(it.indented(
+        if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
+        [#it.body() #h(1fr) #it.page()],
+      )),
+    ))
     show outline.entry.where(level: 3): it => it
     show outline.entry.where(level: 4): it => emph(it)
 
-    outline(
-      title: [Índice General],
-      depth: 4,
-      indent: n => {
-        if n == 0 or n == 1 { 0em } else { n * 0.75em }
-      },
-    )
+    outline(title: [Índice General], depth: 4, indent: n => {
+      if n == 0 or n == 1 { 0em } else { n * 0.75em }
+    })
   }
 
   context {
     if (counter(figure.where(kind: table)).final().at(0) != 0) {
-      outline(
-        title: [Índice de Tablas],
-        target: figure.where(kind: table),
-      )
+      outline(title: [Índice de Tablas], target: figure.where(kind: table))
     }
 
     if (counter(figure.where(kind: image)).final().at(0) != 0) {
-      outline(
-        title: [Índice de Figuras],
-        target: figure.where(kind: image),
-      )
+      outline(title: [Índice de Figuras], target: figure.where(kind: image))
     }
 
     if (counter(figure.where(kind: math.equation)).final().at(0) != 0) {
-      outline(
-        title: [Índice de Expresiones Matemáticas],
-        target: figure.where(kind: math.equation),
-      )
+      outline(title: [Índice de Expresiones Matemáticas], target: figure.where(kind: math.equation))
     }
 
 
     if (query(heading.where(supplement: [Anexo])).len() != 0) {
-      outline(
-        title: [Índice de Anexos],
-        target: selector(heading.where(supplement: [Anexo])),
-      )
+      outline(title: [Índice de Anexos], target: selector(heading.where(supplement: [Anexo])))
     }
   }
 
-  set page(
-    numbering: "1",
-    header: context hydra(2, display: (_, it) => upper(text(font: fuentes.títulos, it.body))),
-  )
+  set page(numbering: "1", header: context hydra(2, display: (_, it) => upper(text(font: fuentes.títulos, it.body))))
 
   // MARK: Headings
   show heading.where(level: 1): set heading(supplement: [Parte], numbering: "I")
-  show heading.where(level: 2): set heading(
-    supplement: [Capítulo],
-    numbering: (part, chapter-numbering, ..rest) => numbering("I", chapter-numbering),
-  )
+  show heading.where(level: 2): set heading(supplement: [Capítulo], numbering: (
+    part,
+    chapter-numbering,
+    ..rest,
+  ) => numbering("I", chapter-numbering))
   set heading(numbering: (part, chapter-numbering, ..rest) => numbering("1.", ..rest))
 
   show heading.where(level: 1): it => {
@@ -433,12 +403,7 @@
 
       v(0.5fr)
 
-      text(
-        size: 1.25em,
-        weight: "regular",
-        tracking: 0.05em,
-        fill: gray.darken(40%),
-      )[#upper(it.supplement)]
+      text(size: 1.25em, weight: "regular", tracking: 0.05em, fill: gray.darken(40%))[#upper(it.supplement)]
 
       v(1em)
 
@@ -486,10 +451,11 @@
 }
 
 #let anexos(body) = context {
-  show heading.where(level: 2): set heading(
-    supplement: [Anexo],
-    numbering: (part, appendix-numbering, ..rest) => numbering("A", appendix-numbering),
-  )
+  show heading.where(level: 2): set heading(supplement: [Anexo], numbering: (
+    part,
+    appendix-numbering,
+    ..rest,
+  ) => numbering("A", appendix-numbering))
   set heading(numbering: (part, appendix-numbering, ..rest) => numbering("A.1.", appendix-numbering, ..rest))
 
   chapter-counter.update(0)
