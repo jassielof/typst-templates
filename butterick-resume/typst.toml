@@ -1,0 +1,17 @@
+[package]
+name = "butterick-resume"
+version = "0.1.0"
+authors = ["Jassiel Ovando <@jassielof>"]
+compiler = "0.13.1"
+license = "MIT-0"
+entrypoint = "lib.typ"
+repository = "https://github.com/jassielof/typst-templates"
+description = "Résumé template based on Matthew Butterick's design principles."
+categories = [
+  "cv",
+]
+
+[template]
+path = "template"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"

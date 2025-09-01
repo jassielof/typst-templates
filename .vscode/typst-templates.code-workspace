@@ -23,7 +23,8 @@
     {
       "path": "../koma-script",
       "name": "KOMA-Script"
-    }
+    },
+    { "path": "../butterick-resume", "name": "Butterick's Resume" }
   ],
   "settings": {
     "cSpell.words": [
@@ -129,9 +130,7 @@
       "xxvpt"
     ],
     "cSpell.language": "en,es-ES,en-GB,en-US,de,de-DE,lorem,es,pt,nl,it,fr",
-    "cSpell.ignoreWords": [
-      "technologies"
-    ],
+    "cSpell.ignoreWords": ["technologies"]
   },
   "extensions": {
     "recommendations": [
@@ -161,10 +160,8 @@
       {
         "id": "template",
         "type": "pickString",
-        "options": [
-          "versatile-apa",
-        ],
-        "description": "Select a template to watch",
+        "options": ["versatile-apa"],
+        "description": "Select a template to watch"
       }
     ]
   }
