@@ -80,27 +80,27 @@
       "Note": "Notitie",
     )
   } else if language in ("sr_Latn", "sr") {
-      (
-        "and": "i",
-        "Author Note": "Napomena autora",
-        "Abstract": "Apstrakt",
-        "Keywords": "Ključne reči",
-        "Appendix": "Dodatak",
-        "Annex": "Prilog",
-        "Addendum": "Dopuna",
-        "Note": "Napomena",
-      )
+    (
+      "and": "i",
+      "Author Note": "Napomena autora",
+      "Abstract": "Apstrakt",
+      "Keywords": "Ključne reči",
+      "Appendix": "Dodatak",
+      "Annex": "Prilog",
+      "Addendum": "Dopuna",
+      "Note": "Napomena",
+    )
   } else if language == "sr_Cyrl" {
-      (
-        "and": "и",
-        "Author Note": "Напомена аутора",
-        "Abstract": "Апстракт",
-        "Keywords": "Кључне речи",
-        "Appendix": "Додатак",
-        "Annex": "Прилог",
-        "Addendum": "Допуна",
-        "Note": "Напомена",
-      )
+    (
+      "and": "и",
+      "Author Note": "Напомена аутора",
+      "Abstract": "Апстракт",
+      "Keywords": "Кључне речи",
+      "Appendix": "Додатак",
+      "Annex": "Прилог",
+      "Addendum": "Допуна",
+      "Note": "Напомена",
+    )
   } else {
     panic("Unsupported language:", language)
   }
