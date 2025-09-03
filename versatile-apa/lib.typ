@@ -75,7 +75,7 @@
     author: if type(authors) == array {
       authors.map(it => to-string(it.name))
     } else {
-      to-string(authors).trim(" ", at: start).trim(" ", at: end)
+      to-string(authors).trim()
     },
     description: if abstract-as-description { abstract },
     keywords: keywords,
