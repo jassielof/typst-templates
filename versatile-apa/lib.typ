@@ -57,6 +57,7 @@
   font-size: 12pt,
   region: "us",
   language: "en",
+  custom-terms: (:),
   paper-size: "us-letter",
   implicit-introduction-heading: true,
   abstract-as-description: true,
@@ -65,6 +66,7 @@
   let double-spacing = 1.5em
   let first-indent-length = 0.5in
 
+  context language-terms.update(custom-terms)
   authors = validate-inputs(authors, custom-authors, "author")
   affiliations = validate-inputs(affiliations, custom-affiliations, "affiliation")
 
@@ -135,7 +137,7 @@
     #if author-notes != none {
       v(1fr)
 
-      strong(get-terms(language).at("Author Note"))
+      strong(context get-terms(language).at("Author Note"))
 
       align(left)[
         #set par(first-line-indent: first-indent-length)
@@ -258,9 +260,9 @@
   show outline.entry: it => {
     if (
       (
-        it.element.supplement == [#get-terms(language).Appendix]
-          or it.element.supplement == [#get-terms(language).Annex]
-          or it.element.supplement == [#get-terms(language).Addendum]
+        it.element.supplement == [#context get-terms(language).Appendix]
+          or it.element.supplement == [#context get-terms(language).Annex]
+          or it.element.supplement == [#context get-terms(language).Addendum]
       )
         and it.element.has("level")
         and it.element.level == 1
@@ -296,13 +298,13 @@
   if (abstract != none) {
     // Only display the abstract if it's not empty
     if (abstract != [] and abstract != "") {
-      heading(level: 1, get-terms(language).Abstract, outlined: false)
+      heading(level: 1, context get-terms(language).Abstract, outlined: false)
 
       par(first-line-indent: 0in)[
         #abstract
       ]
 
-      emph[#get-terms(language).Keywords: ]
+      emph[#context get-terms(language).Keywords: ]
       keywords.map(it => it).join(", ")
 
       pagebreak()

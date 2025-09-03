@@ -54,9 +54,9 @@
   })
 
   if author-strings.len() == 2 {
-    author-strings.join([ #get-terms(language).and ])
+    author-strings.join([ #context get-terms(language).and ])
   } else {
-    author-strings.join([, ], last: [, #get-terms(language).and ])
+    author-strings.join([, ], last: [, #context get-terms(language).and ])
   }
 }
 
@@ -69,9 +69,9 @@
     } else {
       let author-names = authors.map(it => it.name)
       if author-names.len() == 2 {
-        author-names.join([ #get-terms(language).and ])
+        author-names.join([ #context get-terms(language).and ])
       } else {
-        author-names.join([, ], last: [, #get-terms(language).and ])
+        author-names.join([, ], last: [, #context get-terms(language).and ])
       }
     }
   } else {

@@ -1,6 +1,5 @@
-// TODO: Add support for custom/unsupported languages
-// If language terms aren't supported, the user can provide their own terms
-// Something as get-terms(false, (<list of terms to provide the translation for>))
+#let language-terms = state("language-terms", (:))
+
 #let get-terms(language) = {
   if language == "en" {
     (
@@ -102,6 +101,6 @@
       "Note": "Напомена",
     )
   } else {
-    panic("Unsupported language:", language)
+    language-terms.get()
   }
 }
