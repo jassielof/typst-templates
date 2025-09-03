@@ -44,14 +44,14 @@
   custom-authors: [],
   custom-affiliations: [],
   // Student-specific fields
-  course: [],
-  instructor: [],
-  due-date: [],
+  course: none,
+  instructor: none,
+  due-date: none,
   // Professional-specific fields
   running-head: none,
-  author-notes: [],
+  author-notes: none,
   keywords: (),
-  abstract: [],
+  abstract: none,
   // Common fields
   font-family: "Libertinus Serif",
   font-size: 12pt,
@@ -126,25 +126,13 @@
 
     #print-affiliations(authors, affiliations)
 
-    #if type(course) == content and course != [] {
-      course
-    } else if type(course) != content {
-      panic("Course must be of type content: ", type(course))
-    }
+    #course
 
-    #if type(instructor) == content and instructor != [] {
-      instructor
-    } else if type(instructor) != content {
-      panic("Instructor must be of type content: ", type(instructor))
-    }
+    #instructor
 
-    #if ((type(due-date) == content and due-date != []) or (type(due-date) == str and due-date != "")) {
-      due-date
-    } else if type(due-date) != content {
-      panic("Due date must be of type content or string: ", type(due-date))
-    }
+    #due-date
 
-    #if author-notes != [] and author-notes != none {
+    #if author-notes != none {
       v(1fr)
 
       strong(get-terms(language).at("Author Note"))
@@ -305,7 +293,7 @@
   }
 
 
-  if (type(abstract) == content or type(abstract) == str) {
+  if (abstract != none) {
     // Only display the abstract if it's not empty
     if (abstract != [] and abstract != "") {
       heading(level: 1, get-terms(language).Abstract, outlined: false)
@@ -319,8 +307,6 @@
 
       pagebreak()
     }
-  } else {
-    panic("Invalid abstract type, abstract must be content or string. Type is " + type(abstract))
   }
 
   if implicit-introduction-heading {
