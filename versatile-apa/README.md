@@ -41,6 +41,7 @@ For appendix figures, use the same `apa-figure`.
 - Italian
 - French
 - Dutch
+- Serbian
 
 ##### Unsupported languages
 
