@@ -60,6 +60,10 @@ In the cases where the language is not supported in the template, you can either
 )
 ```
 
+#### Fonts
+
+The template uses [Typst's built-in fonts](https://typst.app/docs/reference/text/text/#parameters-font) by default to not cause `unknown font family` errors, [check APA Style suggested fonts](https://apastyle.apa.org/style-grammar-guidelines/paper-format/font) to download and set them yourself.
+
 #### Appendices
 
 - Figure appendices with independent numbering
