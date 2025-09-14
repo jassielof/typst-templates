@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://www.schemastore.org/hayagriva.json
 knuth1984texbook:
   type: book
   title: The TeXbook
@@ -56,8 +57,9 @@ python3:
   title: Python 3.9.1 Documentation
   author: Foundation, Python Software
   date: 2020
-  url: https://docs.python.org/3/
-  note: "[Online; accessed 1-October-2023]"
+  url:
+    value: https://docs.python.org/3/
+    date: 2023-10-01
 tesla1898method:
   type: patent
   title: Method of and Apparatus for Controlling Mechanism of Moving Vessels or Vehicles
@@ -76,7 +78,7 @@ knuth1986tex:
   author: Knuth, Donald E.
   date: 1986
   publisher:
-    name: null
+    name: Addison-Wesley
     location: Reading, Massachusetts
   note: Computers & Typesetting, Volume A
 shannon1937algebra:
@@ -110,29 +112,33 @@ census2020:
   title: 2020 Census Data
   author: Bureau, United States Census
   date: 2020
-  url: https://www.census.gov/data.html
-  note: "[Online; accessed 1-October-2023]"
+  url:
+    value: https://www.census.gov/data.html
+    date: 2023-10-01
 r2023:
   type: misc
   title: "R: A Language and Environment for Statistical Computing"
   author: Team, R Core
   date: 2023
-  url: https://www.r-project.org/
-  note: "[Online; accessed 1-October-2023]"
+  url:
+    value: https://www.R-project.org/
+    date: 2023-10-01
 wikipedia:
   type: misc
   title: BibTeX — Wikipedia{,} The Free Encyclopedia
   author: contributors, Wikipedia
   date: 2023
-  url: https://en.wikipedia.org/wiki/BibTeX
-  note: "[Online; accessed 1-October-2023]"
+  url:
+    value: https://en.wikipedia.org/wiki/BibTeX
+    date: 2023-10-01
 latex3:
   type: web
   title: The LaTeX3 Project
   author: Project, The LaTeX3
   date: 2023
-  url: https://www.latex-project.org/latex3/
-  note: "[Online; accessed 1-October-2023]"
+  url:
+    value: https://www.latex-project.org/latex3/
+    date: 2023-10-01
 knuth1997art:
   type: chapter
   title: Sorting and Searching
@@ -159,5 +165,5 @@ hopper1952compiler:
     type: proceedings
     title: Proceedings of the ACM National Meeting
     publisher:
-      name: null
+      name: ACM
       location: Pittsburgh, Pennsylvania
