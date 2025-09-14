@@ -447,6 +447,11 @@
 
   show bibliography: set heading(level: 2, numbering: none, outlined: false)
 
+  show bibliography: set par(
+    first-line-indent: 0in,
+    hanging-indent: 0.5in,
+  )
+
   body
 }
 
