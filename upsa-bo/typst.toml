@@ -1,7 +1,7 @@
 [package]
 name = "upsa-bo"
 version = "0.1.0"
-compiler = "0.13.1"
+compiler = "0.14.0"
 repository = "https://github.com/jassielof/typst-templates"
 entrypoint = "lib.typ"
 authors = ["Jassiel Ovando <@jassielof>"]

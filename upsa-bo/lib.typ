@@ -385,13 +385,37 @@
   set page(numbering: "1", header: context hydra(2, display: (_, it) => upper(text(font: fuentes.títulos, it.body))))
 
   // MARK: Headings
-  show heading.where(level: 1): set heading(supplement: [Parte], numbering: "I")
-  show heading.where(level: 2): set heading(supplement: [Capítulo], numbering: (
-    part,
-    chapter-numbering,
-    ..rest,
-  ) => numbering("I", chapter-numbering))
-  set heading(numbering: (part, chapter-numbering, ..rest) => numbering("1.", ..rest))
+  show heading.where(level: 1): set heading(
+    supplement: [Parte],
+    numbering: "I",
+  )
+
+  show heading.where(level: 2): set heading(
+    supplement: [Capítulo],
+    numbering: (..args) => {
+      let chapter-numbers = args.pos()
+
+      // For level 2 headings, we want just the chapter number (index 1) in Roman numerals
+      if chapter-numbers.len() >= 2 {
+        numbering("I", chapter-numbers.at(1)) // Use the chapter number (second argument)
+      } else {
+        none
+      }
+    },
+  )
+
+  set heading(numbering: (..args) => {
+    let heading-numbers = args.pos()
+
+    if heading-numbers.len() > 2 {
+      // Drop the first two (part and chapter) and number the rest
+      let remaining = heading-numbers.slice(2)
+      numbering("1.", ..remaining)
+    } else {
+      // For part and chapter levels, show no numbering
+      none
+    }
+  })
 
   show heading.where(level: 1): it => {
     pagebreak()
@@ -457,11 +481,29 @@
 
 #let anexos(body) = context {
   show heading.where(level: 2): set heading(supplement: [Anexo], numbering: (
-    part,
-    appendix-numbering,
-    ..rest,
-  ) => numbering("A", appendix-numbering))
-  set heading(numbering: (part, appendix-numbering, ..rest) => numbering("A.1.", appendix-numbering, ..rest))
+      ..args,
+  ) => {
+    let annex-numbers = args.pos()
+
+    if annex-numbers.len() >= 2 {
+      numbering("A", annex-numbers.at(1)) // Use the annex number (second argument)
+    } else {
+      none
+    }
+  })
+
+  set heading(numbering: (
+    ..args,
+  ) => {
+    let annex-numbers = args.pos()
+
+    if annex-numbers.len() > 2 {
+      let remaining = annex-numbers.slice(2)
+      numbering("a.1.", ..remaining)
+    } else {
+      none
+    }
+  })
 
   chapter-counter.update(0)
   let current_part = counter(heading).get().at(0)

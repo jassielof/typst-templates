@@ -100,6 +100,17 @@
       "Addendum": "Допуна",
       "Note": "Напомена",
     )
+  } else if language == "id" {
+    (
+      "and": "dan",
+      "Author Note": "Catatan Penulis",
+      "Abstract": "Abstrak",
+      "Keywords": "Kata Kunci",
+      "Appendix": "Lampiran",
+      "Annex": "Lampiran",
+      "Addendum": "Tambahan",
+      "Note": "Catatan",
+    )
   } else {
     language-terms.get()
   }
