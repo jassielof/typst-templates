@@ -14,7 +14,7 @@
   fuentes,
 ) = context {
   set align(center)
-  set text(weight: "bold", font: fuentes.títulos)
+  set text(weight: "black", font: fuentes.títulos)
   image("../assets/images/logo-upsa.png")
   v(1fr)
   facultad
