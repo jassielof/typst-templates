@@ -144,18 +144,13 @@
     } else {
       autor
     },
-    keywords: ("Tesis", "UPSA", "Proyecto de grado") + palabras-clave,
+    keywords: ("UPSA",) + palabras-clave,
   )
 
   set page(margin: (
-    left: 4cm,
+    inside: if doble-cara { 4cm } else { 2.5cm },
     rest: 2.5cm,
-  )) if not doble-cara
-
-  set page(margin: (
-    inside: 4cm,
-    rest: 2.5cm,
-  )) if doble-cara
+  ))
 
   set page(
     paper: "us-letter",
@@ -169,12 +164,17 @@
     region: "bo",
   )
 
-  set par(leading: espaciado.interlineado, spacing: espaciado.párrafo, justify: true, first-line-indent: (
-    amount: 0in,
-    all: true,
-  ))
+  set par(
+    leading: espaciado.interlineado,
+    spacing: espaciado.párrafo,
+    justify: true,
+    first-line-indent: (
+      amount: 0in,
+      all: true,
+    ),
+  )
 
-  set math.equation(numbering: "(1)", supplement: [Expresión Matemática])
+  set math.equation(numbering: "(1)", supplement: [Expresión matemática])
   show math.equation: set text(font: fuentes.ecuaciones)
 
   // MARK: Figures
@@ -481,7 +481,7 @@
 
 #let anexos(body) = context {
   show heading.where(level: 2): set heading(supplement: [Anexo], numbering: (
-      ..args,
+    ..args,
   ) => {
     let annex-numbers = args.pos()
 
