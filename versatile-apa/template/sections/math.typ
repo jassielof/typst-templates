@@ -7,6 +7,7 @@ Let $a$, $b$, and $c$ be the side lengths of right-angled triangle. Then, we kno
   $ a^2 + b^2 = c^2 $,
   placement: none,
   kind: math.equation,
+  label: "fig:right-angled-triangle",
   caption: "Right-angled triangle",
 )
 
@@ -16,6 +17,7 @@ Prove by induction:
   placement: none,
   kind: math.equation,
   caption: "Sum of first n integers",
+  label: "fig:sum-first-n-integers",
 )
 
 We define:
@@ -33,4 +35,4 @@ With @ratio, we get:
   placement: none,
   kind: math.equation,
   caption: [Fibonacci number],
-)
+) <fig:fibonacci-number>.
