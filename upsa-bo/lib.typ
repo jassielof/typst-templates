@@ -365,20 +365,20 @@
 
   context {
     if (counter(figure.where(kind: table)).final().at(0) != 0) {
-      outline(title: [Índice de Tablas], target: figure.where(kind: table))
+      outline(title: [Índice de tablas], target: figure.where(kind: table))
     }
 
     if (counter(figure.where(kind: image)).final().at(0) != 0) {
-      outline(title: [Índice de Figuras], target: figure.where(kind: image))
+      outline(title: [Índice de figuras], target: figure.where(kind: image))
     }
 
     if (counter(figure.where(kind: math.equation)).final().at(0) != 0) {
-      outline(title: [Índice de Expresiones Matemáticas], target: figure.where(kind: math.equation))
+      outline(title: [Índice de expresiones matemáticas], target: figure.where(kind: math.equation))
     }
 
 
     if (query(heading.where(supplement: [Anexo])).len() != 0) {
-      outline(title: [Índice de Anexos], target: selector(heading.where(supplement: [Anexo])))
+      outline(title: [Índice de anexos], target: selector(heading.where(supplement: [Anexo])))
     }
   }
 
