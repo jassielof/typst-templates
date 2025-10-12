@@ -285,6 +285,7 @@
     show block: block-it => context {
       if block-it.body.func() != [].func() {
         block-it.body
+        parbreak()
       } else {
         par(block-it.body)
       }
