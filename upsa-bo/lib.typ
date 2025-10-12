@@ -292,28 +292,58 @@
     pagebreak()
     set par(justify: false)
 
-    block(width: 100%, inset: (top: 2.5cm, bottom: 1cm), spacing: 0em)[
-      #if it.numbering != none and it.outlined == true [
-        #set text(size: 2.5em, weight: "bold", fill: gray.darken(40%))
-        #it.supplement
-        #if it.supplement == [Anexo] [
-          #chapter-counter.display("A").trim(".")
-        ] else [
-          #chapter-counter.display("I").trim(".")
-        ]
+    // block(
+    //   width: 100%,
+    //   inset: (top: 2.5cm, bottom: 1cm),
+    //   spacing: 0em,
+    // )[
+    //   #if it.numbering != none and it.outlined == true [
+    //     #set text(size: 2.5em, weight: "bold", fill: gray.darken(40%))
+    //     #it.supplement
+    //     #if it.supplement == [Anexo] [
+    //       #chapter-counter.display("A").trim(".")
+    //     ] else [
+    //       #chapter-counter.display("I").trim(".")
+    //     ]
 
-        #v(0.05cm)
+    //     #v(0.05cm)
+    //   ]
+
+    //   #text(
+    //     size: 2em,
+    //     weight: "bold",
+    //   )[#it.body]
+
+    //   #v(0.3cm)
+
+    //   #line(length: 25%, stroke: (thickness: 0.5pt, dash: "solid"))
+    // ]
+
+    if it.numbering != none and it.outlined == true [
+      #set text(
+        size: 2.5em,
+        weight: "bold",
+        fill: gray.darken(40%),
+      )
+
+      #it.supplement
+      #if it.supplement == [Anexo] [
+        #chapter-counter.display("A").trim(".")
+      ] else [
+        #chapter-counter.display("I").trim(".")
       ]
 
-      #text(
-        size: 2em,
-        weight: "bold",
-      )[#it.body]
-
-      #v(0.3cm)
-
-      #line(length: 25%, stroke: (thickness: 0.5pt, dash: "solid"))
+      #v(0.05cm)
     ]
+
+    text(
+      size: 2em,
+      weight: "bold",
+    )[#it.body]
+
+    v(0.3cm)
+
+    line(length: 25%, stroke: (thickness: 0.5pt, dash: "solid"))
   }
 
   // MARK: Summary
@@ -468,7 +498,31 @@
   show figure.where(kind: raw): set block(breakable: true, sticky: false)
   show figure.where(kind: raw): set raw(block: true)
 
-  show bibliography: set heading(level: 2, numbering: none, outlined: false)
+  show bibliography: bib-it => {
+    set block(inset: 0in)
+    show block: block-it => context {
+      if block-it.body == auto {
+        block-it
+      } else {
+        if block-it.body.func() != [].func() {
+          block-it.body
+          parbreak()
+        } else {
+          par(block-it.body)
+        }
+      }
+    }
+
+    bib-it
+  }
+
+  show bibliography: set heading(
+    level: 2,
+    numbering: none,
+    outlined: false,
+  )
+
+  set bibliography(style: "apa")
 
   show bibliography: set par(
     first-line-indent: 0in,

@@ -283,17 +283,20 @@
   show bibliography: bib-it => {
     set block(inset: 0in)
     show block: block-it => context {
-      if block-it.body.func() != [].func() {
-        block-it.body
-        parbreak()
+      if block-it.body == auto {
+        block-it
       } else {
-        par(block-it.body)
+        if block-it.body.func() != [].func() {
+          block-it.body
+          parbreak()
+        } else {
+          par(block-it.body)
+        }
       }
     }
 
     bib-it
   }
-
 
   if (abstract != none) {
     // Only display the abstract if it's not empty
