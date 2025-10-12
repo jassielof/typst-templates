@@ -147,12 +147,11 @@
     keywords: ("UPSA",) + palabras-clave,
   )
 
-  set page(margin: (
-    inside: if doble-cara { 4cm } else { 2.5cm },
-    rest: 2.5cm,
-  ))
-
   set page(
+    margin: (
+      inside: if doble-cara { 4cm } else { 2.5cm },
+      rest: 2.5cm,
+    ),
     paper: "us-letter",
     number-align: bottom + right,
   )
