@@ -1,0 +1,233 @@
+\documentclass[titlepage,a4paper,12pt]{article}
+
+% Preamble: simple macros and settings without external packages
+\title{Comprehensive Article Class Sample}
+\author{First Author\thanks{Supported by XYZ Foundation} \and Second Author}
+\date{\today}
+
+\newcommand{\code}[1]{\texttt{#1}} % simple macro for inline code
+
+\begin{document}
+\pagenumbering{roman}
+\maketitle
+
+\begin{abstract}
+  This abstract summarizes the purpose, methods, results, and conclusions in a few sentences.
+\end{abstract}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+\pagenumbering{arabic}
+
+\section{Introduction}
+This sample showcases common \LaTeX{} article features for porting to Typst. It references Figure~\ref{fig:placeholder}, Table~\ref{tab:sample}, and Equation~\eqref{eq:pythagoras}. There is a footnote\footnote{A standard footnote.} and a margin note.\marginpar{Margin note.}
+
+Here is a footnote mark placed now\footnotemark{} with its text defined later in the page.
+\footnotetext{Footnote text paired with the earlier mark.}
+
+\subsection{Text Emphasis and Fonts}
+Normal, \emph{emphasized}, \textbf{bold}, \textit{italic}, \texttt{monospace}, \textsf{sans}, \textsc{small caps}.
+Family switches: {\rmfamily roman}, {\sffamily sans}, {\ttfamily typewriter}.
+Size switches: {\tiny tiny}, {\scriptsize scriptsize}, {\footnotesize footnotesize}, {\small small}, {\normalsize normalsize}, {\large large}, {\Large Large}, {\LARGE LARGE}, {\huge huge}, {\Huge Huge}.
+
+\subsubsection{Paragraphing}
+This is one paragraph. \par
+This is another paragraph started with \verb|\par|. A blank line also starts a new paragraph.
+
+\paragraph{Run-in Paragraph}
+Run-in paragraph text continues inline with its heading to demonstrate styling.
+
+\subparagraph{Subparagraph}
+Subparagraph text demonstrates the smallest heading level.
+
+\section{Alignment and Spacing}
+\begin{center}
+  Centered line using the center environment.
+\end{center}
+
+\begin{flushleft}
+  Left-aligned line using the flushleft environment.
+\end{flushleft}
+
+\begin{flushright}
+  Right-aligned line using the flushright environment.
+\end{flushright}
+
+No indent: \noindent This line is not indented.
+
+Horizontal space: A\hspace{1em}B\hfill C. Nonbreaking space example: Figure~\ref{fig:placeholder}.
+
+Vertical space:
+First line.\vspace{6pt}
+
+Second line.
+
+\section{Lists}
+\subsection{Itemize}
+\begin{itemize}
+  \item First item
+  \item Second item with a nested list
+    \begin{itemize}
+      \item Nested item
+    \end{itemize}
+\end{itemize}
+
+\subsection{Enumerate}
+\begin{enumerate}
+  \item First
+  \item Second
+  \item Third
+\end{enumerate}
+
+\subsection{Description}
+\begin{description}
+  \item[Term] Definition text goes here.
+  \item[Another term] Another definition.
+\end{description}
+
+\section{Math}
+Inline math: $a^2 + b^2 = c^2$.
+
+Displayed equation:
+\begin{equation}
+  \label{eq:pythagoras}
+  a^2 + b^2 = c^2
+\end{equation}
+
+Multi-line with alignment using \texttt{eqnarray}:
+\begin{eqnarray}
+  f(x) & = & x^2 + 2x + 1 \nonumber \\
+  & = & (x+1)^2
+\end{eqnarray}
+
+Matrix with \texttt{array}:
+\[
+  \left(
+    \begin{array}{cc}
+      1 & 2 \\
+      3 & 4
+    \end{array}
+  \right)
+\]
+
+\section{Floats}
+\subsection{Figure}
+\begin{figure}[htbp]
+  \centering
+  % Placeholder box: 3in wide, 2in tall
+  \fbox{\rule{0pt}{2in}\rule{3in}{0pt}}
+  \caption{Placeholder figure}
+  \label{fig:placeholder}
+\end{figure}
+
+\subsection{Table}
+\begin{table}[htbp]
+  \centering
+  \caption{Sample table}
+  \label{tab:sample}
+  \begin{tabular}{lcr}
+    \hline
+    Left & Center & Right \\
+    \hline
+    A & B & C \\
+    1 & 2 & 3 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{Minipages}
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[t]{0.45\linewidth}
+    \centering
+    \fbox{\rule{0pt}{1.5in}\rule{2in}{0pt}}\\
+    Small box A
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.45\linewidth}
+    \centering
+    \fbox{\rule{0pt}{1.5in}\rule{2in}{0pt}}\\
+    Small box B
+  \end{minipage}
+  \caption{Two minipages side by side}
+  \label{fig:minipages}
+\end{figure}
+
+\section{Verbatim and Code}
+Inline \verb|for (i=0; i<10; ++i) {}| and a block:
+  \begin{verbatim}
+  function greet(name) {
+    return "Hello, " + name;
+  }
+  \end{verbatim}
+
+Custom macro for code: \code{printf("hello");}
+
+\section{Quotations and Verse}
+\subsection{Quote}
+\begin{quote}
+  A short quotation with one or more paragraphs.
+\end{quote}
+
+\subsection{Quotation}
+\begin{quotation}
+  A longer quotation where paragraphs are indented to indicate extended quotes.
+\end{quotation}
+
+\subsection{Verse}
+\begin{verse}
+  Roses are red,\\
+  Violets are blue.\\
+  Poetic lines break with \verb|\\|.
+\end{verse}
+
+\section{Cross-references}
+See Section~\ref{sec:methods} on page~\pageref{sec:methods}. Also see Figure~\ref{fig:minipages}.
+
+\section{Methods}
+\label{sec:methods}
+This section is referenced earlier.
+
+\section{Boxes and Rules}
+\fbox{Framed text} \quad \framebox[3cm][c]{3cm wide}
+\par
+\mbox{Unbreakable text segment} \par
+\makebox[5cm][r]{Right-justified in 5cm}
+\par
+Rules: \rule{1cm}{0.4pt} thin line, \rule{2mm}{5mm} rectangle.
+
+\section{Page Style}
+\thispagestyle{plain}
+\pagestyle{plain}
+
+\section{Counters and Numbering}
+This is Section \thesection.
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{3}
+Numbered subparagraphs are enabled below.
+\subsubsection{Numbering Depth Demo}
+\paragraph{A Paragraph}
+\subparagraph{A Subparagraph}
+
+\section*{Unnumbered Section}
+This section is unnumbered but added to the TOC manually.
+\addcontentsline{toc}{section}{Unnumbered Section in TOC}
+
+\appendix
+\section{First Appendix}
+Appendix sections are lettered. See Appendix~\ref{sec:appB}.
+
+\section{Second Appendix}
+\label{sec:appB}
+Second appendix content.
+
+\begin{thebibliography}{9}
+  \bibitem{lamport94}
+  Leslie Lamport,
+  \emph{\LaTeX: A Document Preparation System},
+  Addison--Wesley, 2nd edition, 1994.
+\end{thebibliography}
+
+\end{document}
