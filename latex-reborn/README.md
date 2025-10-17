@@ -1,7 +1,16 @@
-# LaTeX base classes ported to Typst
+# LaTeX Reborn
 
-This repository contains the *Standard Document Classes for LaTeX version 2e\** ported to Typst. Classes ported being:
+LaTeX Reborn is a port and adaptation of the standard LaTeX document classes to Typst.
 
-- `article`
-- `report`
-- `book`
+The following document classes are available:
+
+- Article
+- Report
+- Book
+- Letter
+
+Each class can be imported with its namespace.
+
+## Usage and examples
+
+For usage and examples, please initialize a new Typst document based on this template to get started.

@@ -1,5 +1,3 @@
-// TODO: Analyze whether or not its feasible to expand the base font sizes
-// https://tex.stackexchange.com/questions/310055/is-there-a-way-to-use-13pt-as-the-main-document-font-size-with-the-memoir-docume
 #let font-sizes = (
   vpt: 5pt,
   vipt: 6pt,
