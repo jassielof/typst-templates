@@ -1,34 +1,26 @@
 # Collection of Typst Templates
 
-All templates/works in this repository are made by me under my free time, and licensed under the MIT License
+All templates in this repository are made by me under my free time, and licensed under the MIT License.
 
-## The Templates
+## Templates
 
-This repository contains a collection of Typst templates for various purposes, check each template for more details:
+This repository is a collection of Typst templates for various purposes, check each template for more details:
 
 ### [Versatile APA](./versatile-apa/README.md) (Available in Universe)
 
 Template for APA style documents (student/professional).
 
-![Versatile APA Thumbnail](./versatile-apa/thumbnail.png)
-
 ### [ACM Suite](./acm-suite/README.md) (WIP)
 
 Template for ACM (Association for Computing Machinery) documents (based on ACM LaTeX `acmart`).
-
-![ACM Suite Thumbnail](./acm-suite/thumbnail.png)
 
 ### [UPSA Bolivia](./upsa-bo/README.md)
 
 Template for UPSA Bolivia (Universidad Privada de Santa Cruz de la Sierra) documents (thesis/graduation project and feasibility study).
 
-![UPSA Bolivia Thumbnail](./upsa-bo/thumbnail.png)
+### [LaTeX Standard Classes](./latex-standard/README.md) (WIP)
 
-### [LaTeX Standard](./latex-standard/README.md) (WIP)
-
-LaTeX standard class (article/report/book)
-
-![LaTeX Standard Thumbnail (Report)](./latex-reborn/thumbnail.png)
+LaTeX standard classes: article, report, book, and letter.
 
 #### [LaTeX Letter](./latex-letter/README.md) (WIP)
 
@@ -38,7 +30,9 @@ LaTeX standard letter class.
 
 KOMA-Script class (article/report/book).
 
----
+### [Butterick's Résumé](./butterick-resume/README.md)
+
+Résumé template based on Matthew Butterick's résumé guide in *Practical Typography*.
 
 ## Usage
 
@@ -50,8 +44,6 @@ If you don't use Git, you can simply:
 
 - Click the green "Code" button on GitHub and select "Download ZIP".
 - Extract the ZIP file and copy the template folder(s) you want into your project.
-
----
 
 ### Using Git
 
@@ -105,11 +97,9 @@ git submodule update --init --recursive
 > git commit -m "Update template submodule"
 > ```
 
----
-
 ## Troubleshooting & Tips
 
-- If you see a "detached HEAD" warning in the submodule, you can check out the main branch inside the submodule:
+- If you see a "detached HEAD" warning in the submodule, you can checkout to the main branch inside the submodule:
 
   ```sh
   cd template

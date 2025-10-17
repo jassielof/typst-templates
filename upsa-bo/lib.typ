@@ -319,21 +319,18 @@
     line(length: 25%, stroke: (thickness: 0.5pt, dash: "solid"))
   }
 
-  // MARK: Summary
   if resumen != none {
     pagebreak(weak: true)
     heading(numbering: none, level: 2)[Resumen]
     resumen
   }
 
-  // MARK: Executive Summary
   if resumen-ejecutivo != none {
     pagebreak(weak: true)
     heading(numbering: none, level: 2)[Resumen Ejecutivo]
     resumen-ejecutivo
   }
 
-  // MARK: Tables of contents
   show outline: set heading(level: 2)
   show outline.entry: set block(spacing: 0.75em)
   {
@@ -536,7 +533,6 @@
   chapter-counter.update(0)
   let current_part = counter(heading).get().at(0)
   counter(heading).update((part, ..rest) => (current_part, 0))
-
 
   body
 }
