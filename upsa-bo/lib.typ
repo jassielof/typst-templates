@@ -531,8 +531,8 @@
   })
 
   chapter-counter.update(0)
-  let current_part = counter(heading).get().at(0)
-  counter(heading).update((part, ..rest) => (current_part, 0))
+  let current-part = counter(heading).get().at(0)
+  counter(heading).update((part, ..rest) => (current-part, 0))
 
   body
 }
