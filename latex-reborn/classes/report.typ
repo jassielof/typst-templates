@@ -97,11 +97,12 @@
         numbering("I", ..args)
       } else if args.pos().len() == 2 {
         // Level 2: Use the chapter state counter and increment it.
-        // str(chapter-count.get().first() + 1)
         chapter-counter.get().first() + 1
-      } else {
+      } else if args.pos().len() == 3 or args.pos().len() == 4 {
         // Level 3+: Use the chapter number followed by the position within that chapter.
         numbering("1.1", ..chapter-counter.get(), ..args.pos().slice(2))
+      } else {
+        none
       }
     },
   )
@@ -163,31 +164,36 @@
     )
   }
 
-  // FIXME: Numbering width is too narrow
   show heading.where(level: 3): set text(size: font-size.Large, weight: "bold")
-  show heading.where(level: 3): set block(above: 3.5 * 0.5em, below: 2.3 * 0.5em)
+  show heading.where(level: 3): set block(
+    above: 3.5 * 0.5em,
+    below: 2.3 * 0.5em,
+  )
   show heading.where(level: 3): it => {
-    set par(
-      first-line-indent: (
-        amount: 0em,
-        all: true,
+    block(
+      grid(
+        columns: (auto, 1fr),
+        align: (left, left),
+        grid.cell(
+          inset: (right: 1em),
+          context counter(heading).display(),
+        ),
+        it.body,
       ),
     )
-    context counter(heading).display()
-    h(1em)
-    it.body
-    // it
   }
 
   // Subsection
   show heading.where(level: 4): set text(size: font-size.large, weight: "bold")
-  show heading.where(level: 4): set block(above: 3.25 * 0.6em, below: 1.5 * 0.6em)
-  show heading.where(level: 4): set heading(numbering: "1.1")
+  show heading.where(level: 4): set block(
+    above: 3.25 * 0.6em,
+    below: 1.5 * 0.6em,
+  )
 
   // Subsubsection
   show heading.where(level: 5): set text(size: font-size.normalsize, weight: "bold")
   show heading.where(level: 5): set block(above: 3.25 * 0.6em, below: 1.5 * 0.6em)
-  show heading.where(level: 5): set heading(numbering: "1.1")
+  show heading.where(level: 5): set heading(numbering: none)
 
   // Paragraph
   show heading.where(level: 6): set text(size: font-size.normalsize, weight: "bold")
@@ -206,18 +212,18 @@
 
   // show heading.where(level: 5): it => strong(it.body)
 
-  show heading.where(level: 4).or(heading.where(level: 5)): it => {
-    if it.level == 4 {
-      box(
-        pad(
-          left: -1.5em,
-          it.body,
-        ),
-      )
-    } else if (it.level == 5) {
-      it.body
-    }
-  }
+  // show heading.where(level: 4).or(heading.where(level: 5)): it => {
+  //   if it.level == 4 {
+  //     box(
+  //       pad(
+  //         left: -1.5em,
+  //         it.body,
+  //       ),
+  //     )
+  //   } else if (it.level == 5) {
+  //     it.body
+  //   }
+  // }
 
   set par(
     first-line-indent: 1.5em,
