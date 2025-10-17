@@ -354,12 +354,15 @@
         [#it.body() #h(1fr) #it.page()],
       )),
     ))
-    show outline.entry.where(level: 3): it => it // TODO: redundant?
     show outline.entry.where(level: 4): it => emph(it)
 
-    outline(title: [Índice General], depth: 4, indent: n => {
-      if n == 0 or n == 1 { 0em } else { n * 0.75em }
-    })
+    outline(
+      title: [Índice General],
+      depth: 4,
+      indent: n => {
+        if n == 0 or n == 1 { 0em } else { n * 0.75em }
+      },
+    )
   }
 
   context {
