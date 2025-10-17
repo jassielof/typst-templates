@@ -1,4 +1,4 @@
-#import "article.typ": *
-#import "book.typ": *
-#import "report.typ": *
-#import "letter.typ": *
+#import "classes/article.typ"
+#import "classes/book.typ"
+#import "classes/report.typ"
+#import "classes/letter.typ"

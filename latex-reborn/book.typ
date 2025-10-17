@@ -1,1 +1,0 @@
-#let book(body) = { body }

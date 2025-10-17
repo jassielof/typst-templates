@@ -292,33 +292,6 @@
     pagebreak()
     set par(justify: false)
 
-    // block(
-    //   width: 100%,
-    //   inset: (top: 2.5cm, bottom: 1cm),
-    //   spacing: 0em,
-    // )[
-    //   #if it.numbering != none and it.outlined == true [
-    //     #set text(size: 2.5em, weight: "bold", fill: gray.darken(40%))
-    //     #it.supplement
-    //     #if it.supplement == [Anexo] [
-    //       #chapter-counter.display("A").trim(".")
-    //     ] else [
-    //       #chapter-counter.display("I").trim(".")
-    //     ]
-
-    //     #v(0.05cm)
-    //   ]
-
-    //   #text(
-    //     size: 2em,
-    //     weight: "bold",
-    //   )[#it.body]
-
-    //   #v(0.3cm)
-
-    //   #line(length: 25%, stroke: (thickness: 0.5pt, dash: "solid"))
-    // ]
-
     if it.numbering != none and it.outlined == true [
       #set text(
         size: 2.5em,
@@ -384,7 +357,7 @@
         [#it.body() #h(1fr) #it.page()],
       )),
     ))
-    show outline.entry.where(level: 3): it => it
+    show outline.entry.where(level: 3): it => it // TODO: redundant?
     show outline.entry.where(level: 4): it => emph(it)
 
     outline(title: [Índice General], depth: 4, indent: n => {
@@ -433,18 +406,20 @@
     },
   )
 
-  set heading(numbering: (..args) => {
-    let heading-numbers = args.pos()
+  set heading(
+    numbering: (..args) => {
+      let heading-numbers = args.pos()
 
-    if heading-numbers.len() > 2 {
-      // Drop the first two (part and chapter) and number the rest
-      let remaining = heading-numbers.slice(2)
-      numbering("1.", ..remaining)
-    } else {
-      // For part and chapter levels, show no numbering
-      none
-    }
-  })
+      if heading-numbers.len() > 2 {
+        // Drop the first two (part and chapter) and number the rest
+        let remaining = heading-numbers.slice(2)
+        numbering("1.", ..remaining)
+      } else {
+        // For part and chapter levels, show no numbering
+        none
+      }
+    },
+  )
 
   show heading.where(level: 1): it => {
     pagebreak()

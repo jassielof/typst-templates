@@ -1,20 +1,17 @@
 version: "3"
 
-env:
-  KOMA_CLASSES_DIR: "koma-script/ctan/src/"
-  BASE_CLASSES_DIR: "latex-reborn/ctan/src/"
-  ACM_CLASSES_DIR: "acm-suite/ctan/src"
-
 tasks:
   versatile-apa:
-    cmds:
-      - typst compile --root versatile-apa versatile-apa/template/main.typ
-  dev-versatile-apa:
-    cmds:
-      - typst watch --root versatile-apa versatile-apa/template/main.typ
-  dev-report:
-    cmds:
-      - typst watch --root . latex-reborn/template/report.typ
-  get-ctan-classes:
-    cmds:
-      - uv run scripts/latex.py
+    cmd: typst compile --root versatile-apa versatile-apa/template/main.typ
+  versatile-apa-dev:
+    cmd: typst watch --root versatile-apa versatile-apa/template/main.typ
+  latex-reborn:*:
+    cmd: typst compile --root latex-reborn latex-reborn/template/{{.LATEX_REBORN_TEMPLATE}}.typ
+    vars:
+      LATEX_REBORN_TEMPLATE: "{{index .MATCH 0}}"
+  latex-reborn-dev:*:
+    cmd: typst watch --root latex-reborn latex-reborn/template/{{.LATEX_REBORN_TEMPLATE}}.typ
+    ignore_error: true
+    interactive: true
+    vars:
+      LATEX_REBORN_TEMPLATE: "{{index .MATCH 0}}"
