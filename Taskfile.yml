@@ -15,3 +15,13 @@ tasks:
     interactive: true
     vars:
       LATEX_REBORN_TEMPLATE: "{{index .MATCH 0}}"
+  upsa-bo:*:
+    cmd: typst compile --root upsa-bo upsa-bo/template/{{.UPSA_TEMPLATE}}/{{.UPSA_TEMPLATE}}.typ
+    vars:
+      UPSA_TEMPLATE: "{{index .MATCH 0}}"
+  upsa-bo-dev:*:
+    cmd: typst watch --root upsa-bo upsa-bo/template/{{.UPSA_TEMPLATE}}/{{.UPSA_TEMPLATE}}.typ
+    ignore_error: true
+    interactive: true
+    vars:
+      UPSA_TEMPLATE: "{{index .MATCH 0}}"
