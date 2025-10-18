@@ -176,7 +176,6 @@
   set math.equation(numbering: "(1)", supplement: [Expresión matemática])
   show math.equation: set text(font: fuentes.ecuaciones)
 
-  // MARK: Figures
   show figure: set figure.caption(position: top)
 
   show figure: set block(breakable: true, sticky: true)
@@ -196,7 +195,6 @@
     emph(it.body)
   }
 
-  // MARK: Tables
   set table(stroke: (x, y) => if y == 0 {
     (
       top: (thickness: 1pt, dash: "solid"),
@@ -206,7 +204,6 @@
 
   show table.cell: set par(leading: espaciado.interlineado, spacing: espaciado.párrafo)
 
-  // MARK: Quotes
   show quote.where(block: true): set block(spacing: espaciado.párrafo)
   show quote: set text(style: "italic")
 
@@ -243,11 +240,9 @@
 
   set page(numbering: "i")
 
-  // MARK: Preliminary headings
   show heading: set text(size: fuentes.tamaño, font: fuentes.títulos)
   show heading: set block(spacing: espaciado.párrafo)
 
-  // MARK: Abstract
   if (plan == [] or plan == none) {
     heading(numbering: none, level: 3)[Abstracto]
     table(
@@ -384,9 +379,14 @@
     }
   }
 
-  set page(numbering: "1", header: context hydra(2, display: (_, it) => upper(text(font: fuentes.títulos, it.body))))
+  set page(
+    numbering: "1",
+    header: context hydra(
+      2,
+      display: (_, it) => upper(text(font: fuentes.títulos, it.body)),
+    ),
+  )
 
-  // MARK: Headings
   show heading.where(level: 1): set heading(
     supplement: [Parte],
     numbering: "I",
@@ -394,28 +394,25 @@
 
   show heading.where(level: 2): set heading(
     supplement: [Capítulo],
-    numbering: (..args) => {
-      let chapter-numbers = args.pos()
-
-      // For level 2 headings, we want just the chapter number (index 1) in Roman numerals
-      if chapter-numbers.len() >= 2 {
-        numbering("I", chapter-numbers.at(1)) // Use the chapter number (second argument)
-      } else {
-        none
-      }
-    },
   )
 
   set heading(
     numbering: (..args) => {
-      let heading-numbers = args.pos()
-
-      if heading-numbers.len() > 2 {
-        // Drop the first two (part and chapter) and number the rest
-        let remaining = heading-numbers.slice(2)
-        numbering("1.", ..remaining)
+      if args.pos().len() == 1 {
+        // Level 1: Roman numerals for Parts.
+        numbering("I", ..args)
+      } else if args.pos().len() == 2 {
+        // Level 2: Use the chapter state counter and increment it.
+        chapter-counter.display("I")
+      } else if args.pos().len() == 3 or args.pos().len() == 4 or args.pos().len() == 5 {
+        // Level 3+: Use the chapter number followed by the position within that chapter.
+        numbering(
+          "1.1.",
+          // ..chapter-counter.get(),
+          ..args.pos().slice(2),
+        )
       } else {
-        // For part and chapter levels, show no numbering
+        // For the rest of headings, no
         none
       }
     },
@@ -450,11 +447,6 @@
       )[#it.body]
 
       v(1fr)
-    }
-
-    context if it.numbering != none and it.outlined == true {
-      let chapters = chapter-counter.get()
-      counter(heading).update((one, ..rest) => (one, ..chapters))
     }
   }
 
