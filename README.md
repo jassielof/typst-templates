@@ -6,33 +6,13 @@ All templates in this repository are made by me under my free time, and licensed
 
 This repository is a collection of Typst templates for various purposes, check each template for more details:
 
-### [Versatile APA](versatile-apa) (Available in Universe)
-
-Template for APA style documents (student/professional).
-
-### [ACM Suite](acm-suite) (WIP)
-
-Template for ACM (Association for Computing Machinery) documents (based on ACM LaTeX `acmart`).
-
-### [UPSA Bolivia](upsa-bo)
-
-Template for UPSA Bolivia (Universidad Privada de Santa Cruz de la Sierra) documents (thesis/graduation project and feasibility study).
-
-### [LaTeX Standard Classes](latex-standard) (WIP)
-
-LaTeX standard classes: article, report, book, and letter.
-
-#### [LaTeX Letter](latex-letter) (WIP)
-
-LaTeX standard letter class.
-
-### [KOMA-Script](koma-script) (WIP)
-
-KOMA-Script class (article/report/book).
-
-### [Butterick's Résumé](butterick-resume)
-
-Résumé template based on Matthew Butterick's résumé guide in *Practical Typography*.
+- [Versatile APA](versatile-apa) (Available in [Universe](https://typst.app/universe/package/versatile-apa)): Template for APA style documents (student/professional).
+- [ACM Suite](acm-suite) (WIP): Template suite for ACM (Association for Computing Machinery) documents (port of ACM LaTeX `acmart`).
+- [UPSA Bolivia](upsa-bo): Template for UPSA Bolivia (Universidad Privada de Santa Cruz de la Sierra) documents (thesis/graduation project and feasibility study).
+- [LaTeX Standard Classes](latex-standard) (WIP): LaTeX standard classes port of: article, report, book, and letter.
+  - [LaTeX Letter](latex-letter) (WIP): LaTeX standard letter class.
+- [KOMA-Script](koma-script) (WIP): KOMA-Script classes port to Typst (article/report/book).
+- [Butterick's Résumé](butterick-resume): Résumé template based on Matthew Butterick's résumé guide in *Practical Typography*.
 
 ## Usage
 
