@@ -6,31 +6,31 @@ All templates in this repository are made by me under my free time, and licensed
 
 This repository is a collection of Typst templates for various purposes, check each template for more details:
 
-### [Versatile APA](./versatile-apa/README.md) (Available in Universe)
+### [Versatile APA](versatile-apa) (Available in Universe)
 
 Template for APA style documents (student/professional).
 
-### [ACM Suite](./acm-suite/README.md) (WIP)
+### [ACM Suite](acm-suite) (WIP)
 
 Template for ACM (Association for Computing Machinery) documents (based on ACM LaTeX `acmart`).
 
-### [UPSA Bolivia](./upsa-bo/README.md)
+### [UPSA Bolivia](upsa-bo)
 
 Template for UPSA Bolivia (Universidad Privada de Santa Cruz de la Sierra) documents (thesis/graduation project and feasibility study).
 
-### [LaTeX Standard Classes](./latex-standard/README.md) (WIP)
+### [LaTeX Standard Classes](latex-standard) (WIP)
 
 LaTeX standard classes: article, report, book, and letter.
 
-#### [LaTeX Letter](./latex-letter/README.md) (WIP)
+#### [LaTeX Letter](latex-letter) (WIP)
 
 LaTeX standard letter class.
 
-### [KOMA-Script](./koma-script/README.md) (WIP)
+### [KOMA-Script](koma-script) (WIP)
 
 KOMA-Script class (article/report/book).
 
-### [Butterick's Résumé](./butterick-resume/README.md)
+### [Butterick's Résumé](butterick-resume)
 
 Résumé template based on Matthew Butterick's résumé guide in *Practical Typography*.
 
