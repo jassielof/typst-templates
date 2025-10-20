@@ -24,7 +24,7 @@
   agradecimientos: none,
   resumen-ejecutivo: none,
   palabras-clave: (),
-  plan: [],
+  plan: none,
   portada-externa: true,
   ubicación: "Santa Cruz de la Sierra, Bolivia",
   fecha: datetime.today().year(),
@@ -86,45 +86,6 @@
       agradecimientos
     } else {
       pagebreak(to: "odd", weak: true)
-    }
-  }
-
-  let show-abstract = {
-    if (plan == [] or plan == none) {
-      heading(numbering: none, level: 2)[Abstracto]
-      table(
-        align: (left + horizon, left),
-        columns: 2,
-        stroke: 1pt,
-        [*Título*], título,
-        [*Autor*], autor,
-      )
-
-      if (problemática != none) {
-        heading(numbering: none, level: 2)[Problemática]
-        problemática
-      }
-
-      if objetivo-general != none {
-        heading(numbering: none, level: 2)[Objetivo General]
-        objetivo-general
-      }
-
-      if contenido != none {
-        heading(numbering: none, level: 2)[Contenido]
-        contenido
-      }
-
-      table(
-        columns: 2,
-        stroke: 1pt,
-        align: (left + horizon, left),
-        [*Carrera*], carrera,
-        [*Guía*], guía,
-        [*Palabras Clave*], palabras-clave.join(", "),
-        [*Correo Electrónico*], link("mailto:" + email, email),
-        [*Fecha*], to-string[#fecha],
-      )
     }
   }
 
@@ -252,8 +213,8 @@
   show heading: set text(size: fuentes.tamaño, font: fuentes.títulos)
   show heading: set block(spacing: espaciado.párrafo)
 
-  if (plan == [] or plan == none) {
-    heading(numbering: none, level: 3)[Abstracto]
+  if (plan == none) {
+    heading(numbering: none, outlined: false)[Abstracto]
     table(
       align: (left + horizon, left),
       columns: 2,
@@ -263,17 +224,17 @@
     )
 
     if (problemática != none) {
-      heading(numbering: none, level: 3)[Problemática]
+      heading(numbering: none, outlined: false)[Problemática]
       problemática
     }
 
     if objetivo-general != none {
-      heading(numbering: none, level: 3)[Objetivo General]
+      heading(numbering: none, outlined: false)[Objetivo General]
       objetivo-general
     }
 
     if contenido != none {
-      heading(numbering: none, level: 3)[Contenido]
+      heading(numbering: none, outlined: false)[Contenido]
       contenido
     }
 
@@ -284,7 +245,7 @@
       [*Carrera*], carrera,
       [*Guía*], guía,
       [*Palabras Clave*], palabras-clave.join(", "),
-      [*Correo Electrónico*], email,
+      [*Correo Electrónico*], link("mailto:" + email),
       [*Fecha*], to-string[#fecha],
     )
   }
