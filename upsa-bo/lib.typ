@@ -41,54 +41,6 @@
   ),
   body,
 ) = {
-  let show-title-page = {
-    if portada-externa {
-      portada(
-        título,
-        facultad,
-        carrera,
-        plan,
-        modalidad,
-        autor,
-        registro-autor,
-        guía,
-        ubicación,
-        fecha,
-        portada-externa,
-        grado,
-        fuentes,
-      )
-
-      pagebreak(to: "odd")
-    }
-
-    portada(
-      título,
-      facultad,
-      carrera,
-      plan,
-      modalidad,
-      autor,
-      registro-autor,
-      guía,
-      ubicación,
-      fecha,
-      portada-externa,
-      grado,
-      fuentes,
-    )
-  }
-
-  let show-acknowledgments = {
-    pagebreak(to: "odd", weak: true)
-    if (agradecimientos != none) {
-      set align(right + horizon)
-      agradecimientos
-    } else {
-      pagebreak(to: "odd", weak: true)
-    }
-  }
-
   if (autor == []) {
     panic("El autor es obligatorio: ", autor)
   } else if (título == []) {
@@ -203,9 +155,50 @@
     }
   }
 
-  show-title-page
-  show-acknowledgments
+  if portada-externa {
+    portada(
+      título,
+      facultad,
+      carrera,
+      plan,
+      modalidad,
+      autor,
+      registro-autor,
+      guía,
+      ubicación,
+      fecha,
+      portada-externa,
+      grado,
+      fuentes,
+    )
 
+    pagebreak(to: "odd")
+  }
+
+  portada(
+    título,
+    facultad,
+    carrera,
+    plan,
+    modalidad,
+    autor,
+    registro-autor,
+    guía,
+    ubicación,
+    fecha,
+    portada-externa,
+    grado,
+    fuentes,
+  )
+
+  pagebreak(to: "odd", weak: true)
+
+  if (agradecimientos != none) {
+    set align(right + horizon)
+    agradecimientos
+  } else {
+    pagebreak(to: "odd", weak: true)
+  }
   counter(page).update(1)
 
   set page(numbering: "i")
@@ -319,7 +312,10 @@
         [#it.body() #h(1fr) #it.page()],
       )),
     ))
-    show outline.entry.where(level: 4): it => emph(it)
+    show outline.entry.where(level: 4): it => link(
+      it.element.location(),
+      emph(it),
+    )
 
     outline(
       title: [Índice General],
