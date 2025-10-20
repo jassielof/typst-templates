@@ -1,4 +1,4 @@
-#import "../../new-lib.typ": *
+#import "../../lib.typ": *
 
 #show: tfg.with(
   título: [The Typst Typesetting System],
@@ -49,4 +49,3 @@
 = CV
 = Carta de Aprobación
 = Presupuesto
-

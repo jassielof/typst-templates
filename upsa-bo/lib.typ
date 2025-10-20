@@ -122,7 +122,7 @@
         [*Carrera*], carrera,
         [*Guía*], guía,
         [*Palabras Clave*], palabras-clave.join(", "),
-        [*Correo Electrónico*], email,
+        [*Correo Electrónico*], link("mailto:" + email, email),
         [*Fecha*], to-string[#fecha],
       )
     }
@@ -139,7 +139,7 @@
       to-string(título)
     } else { título },
     description: resumen,
-    author: if type(título) == content {
+    author: if type(autor) == content {
       to-string(autor).trim()
     } else {
       autor
@@ -167,13 +167,20 @@
     leading: espaciado.interlineado,
     spacing: espaciado.párrafo,
     justify: true,
+    justification-limits: (
+      spacing: (min: 75%, max: 130%),
+      tracking: (min: -0.008em, max: 0.015em),
+    ),
     first-line-indent: (
       amount: 0in,
       all: true,
     ),
   )
 
-  set math.equation(numbering: "(1)", supplement: [Expresión matemática])
+  set math.equation(
+    numbering: "(1)",
+    supplement: [Expresión matemática],
+  )
   show math.equation: set text(font: fuentes.ecuaciones)
 
   show figure: set figure.caption(position: top)
@@ -195,12 +202,14 @@
     emph(it.body)
   }
 
-  set table(stroke: (x, y) => if y == 0 {
-    (
-      top: (thickness: 1pt, dash: "solid"),
-      bottom: (thickness: 0.5pt, dash: "solid"),
-    )
-  })
+  set table(
+    stroke: (x, y) => if y == 0 {
+      (
+        top: (thickness: 1pt, dash: "solid"),
+        bottom: (thickness: 0.5pt, dash: "solid"),
+      )
+    },
+  )
 
   show table.cell: set par(leading: espaciado.interlineado, spacing: espaciado.párrafo)
 
@@ -383,13 +392,20 @@
     numbering: "1",
     header: context hydra(
       2,
-      display: (_, it) => upper(text(font: fuentes.títulos, it.body)),
+      display: (
+        _,
+        it,
+      ) => upper(
+        text(
+          font: fuentes.títulos,
+          it.body,
+        ),
+      ),
     ),
   )
 
   show heading.where(level: 1): set heading(
     supplement: [Parte],
-    numbering: "I",
   )
 
   show heading.where(level: 2): set heading(
@@ -428,7 +444,13 @@
 
       v(0.5fr)
 
-      text(size: 1.25em, weight: "regular", tracking: 0.05em, fill: gray.darken(40%))[#upper(it.supplement)]
+      text(
+        size: 1.25em,
+        weight: "regular",
+        tracking: 0.05em,
+        fill: gray.darken(40%),
+        upper(it.supplement),
+      )
 
       v(1em)
 
@@ -436,7 +458,7 @@
         text(
           size: 3.5em,
           weight: "bold",
-        )[#counter(heading).display("I") ]
+        )[#counter(heading).display(it.numbering) ]
 
         v(1em)
       }
@@ -444,21 +466,18 @@
       text(
         size: 2.4em,
         weight: "bold",
-      )[#it.body]
+        upper(it.body),
+      )
 
       v(1fr)
     }
   }
 
+  show heading.where(level: 2): smallcaps
   show heading.where(level: 3): set align(center)
-  show heading.where(level: 3): smallcaps
   show heading.where(level: 5): emph
-  show heading.where(level: 6): it => [
-    #it.body.
-  ]
-  show heading.where(level: 7): it => [
-    _#it.body._
-  ]
+  show heading.where(level: 6): it => [#it.body.]
+  show heading.where(level: 7): it => [_#it.body._]
 
   show raw: set text(font: fuentes.mono, size: 1em)
   show figure.where(kind: raw): set figure(placement: none)
@@ -500,30 +519,37 @@
 }
 
 #let anexos(body) = context {
-  show heading.where(level: 2): set heading(supplement: [Anexo], numbering: (
-    ..args,
-  ) => {
-    let annex-numbers = args.pos()
+  show heading.where(
+    level: 2,
+  ): set heading(
+    supplement: [Anexo],
+    numbering: (
+      ..args,
+    ) => {
+      let annex-numbers = args.pos()
 
-    if annex-numbers.len() >= 2 {
-      numbering("A", annex-numbers.at(1)) // Use the annex number (second argument)
-    } else {
-      none
-    }
-  })
+      if annex-numbers.len() >= 2 {
+        numbering("A", annex-numbers.at(1)) // Use the annex number (second argument)
+      } else {
+        none
+      }
+    },
+  )
 
-  set heading(numbering: (
-    ..args,
-  ) => {
-    let annex-numbers = args.pos()
+  set heading(
+    numbering: (
+      ..args,
+    ) => {
+      let annex-numbers = args.pos()
 
-    if annex-numbers.len() > 2 {
-      let remaining = annex-numbers.slice(2)
-      numbering("a.1.", ..remaining)
-    } else {
-      none
-    }
-  })
+      if annex-numbers.len() > 2 {
+        let remaining = annex-numbers.slice(2)
+        numbering("a.1.", ..remaining)
+      } else {
+        none
+      }
+    },
+  )
 
   chapter-counter.update(0)
   let current-part = counter(heading).get().at(0)
