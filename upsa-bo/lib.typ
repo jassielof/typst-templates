@@ -246,9 +246,13 @@
   show heading.where(level: 2): set text(font: fuentes.cuerpo)
 
   show heading.where(level: 2): it => context {
-    if it.numbering != none and it.outlined == true { chapter-counter.step() }
+    if it.numbering != none and it.outlined == true {
+      chapter-counter.step()
+    }
     pagebreak()
-    set par(justify: false)
+    set par(justify: false, leading: espaciado.interlineado - 0.75em)
+    set align(right)
+    set text(tracking: 0.05em)
 
     if it.numbering != none and it.outlined == true [
       #set text(
@@ -258,23 +262,21 @@
       )
 
       #it.supplement
-      #if it.supplement == [Anexo] [
-        #chapter-counter.display("A").trim(".")
-      ] else [
-        #chapter-counter.display("I").trim(".")
-      ]
-
-      #v(0.05cm)
+      #set text(size: 1.25em)
+      #counter(heading).display(it.numbering)
     ]
 
-    text(
-      size: 2em,
-      weight: "bold",
-    )[#it.body]
-
-    v(0.3cm)
-
-    line(length: 25%, stroke: (thickness: 0.5pt, dash: "solid"))
+    block(
+      width: 100%,
+      stroke: (y: 1pt),
+      inset: 1.5em,
+      spacing: 2em,
+      text(
+        size: 2em,
+        weight: "bold",
+        it.body,
+      ),
+    )
   }
 
   if resumen != none {
@@ -376,7 +378,8 @@
         numbering("I", ..args)
       } else if args.pos().len() == 2 {
         // Level 2: Use the chapter state counter and increment it.
-        chapter-counter.display("I")
+        // chapter-counter.display("I")
+        numbering("I", chapter-counter.get().first())
       } else if args.pos().len() == 3 or args.pos().len() == 4 or args.pos().len() == 5 {
         // Level 3+: Use the chapter number followed by the position within that chapter.
         numbering(
@@ -442,17 +445,15 @@
   show figure.where(kind: raw): set raw(block: true)
 
   show bibliography: bib-it => {
-    set block(inset: 0in)
     show block: block-it => context {
-      if block-it.body == auto {
+      // if it body is auto or styled()
+      if block-it.body == auto or block-it.body.func() == text(fill: red)[].func() {
         block-it
+        // if its body isn't sequence(), for example: pdf-marker-tag
+      } else if block-it.body.func() != [].func() {
+        par(block-it.body)
       } else {
-        if block-it.body.func() != [].func() {
-          block-it.body
-          parbreak()
-        } else {
-          par(block-it.body)
-        }
+        par(block-it.body)
       }
     }
 

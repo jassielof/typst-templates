@@ -1,23 +1,23 @@
 \documentclass[
-    a4paper,            % Paper size
-    11pt,               % Base font size (can be changed later)
-    DIV=12,             % Type area division factor (adjust for desired margins)
-                        % Use DIV=calc for automatic calculation based on font
-    BCOR=5mm,           % Binding correction
-    twoside,            % Two-sided layout (can be oneside)
-    headings=normal,    % Style for headings (big, normal, small, standardclasses)
-    toc=bibliography,   % Add bibliography to ToC
-    toc=listof,         % Add LoF and LoT to ToC
-    listof=totoc,       % Ensure LoF/LoT themselves appear in ToC
-    parskip=half,       % Use half a line space between paragraphs, no indent
-                        % Other options: full, full+, half*, etc. or false (for indent)
-    captions=tableheading, % Table captions above table, figure captions below figure
-    % captions=heading, % All captions above
-    % captions=signature, % All captions below (default)
-    numbers=autoendperiod, % Automatically add/remove period after section numbers
-    appendixprefix=true,% Prefix "Appendix" to appendix chapters/sections
-    chapterprefix=true, % Prefix "Chapter" to chapter numbers
-    % draft,             % Show overfull hboxes
+  a4paper,            % Paper size
+  11pt,               % Base font size (can be changed later)
+  DIV=12,             % Type area division factor (adjust for desired margins)
+  % Use DIV=calc for automatic calculation based on font
+  BCOR=5mm,           % Binding correction
+  twoside,            % Two-sided layout (can be oneside)
+  headings=normal,    % Style for headings (big, normal, small, standardclasses)
+  toc=bibliography,   % Add bibliography to ToC
+  toc=listof,         % Add LoF and LoT to ToC
+  listof=totoc,       % Ensure LoF/LoT themselves appear in ToC
+  parskip=half,       % Use half a line space between paragraphs, no indent
+  % Other options: full, full+, half*, etc. or false (for indent)
+  captions=tableheading, % Table captions above table, figure captions below figure
+  % captions=heading, % All captions above
+  % captions=signature, % All captions below (default)
+  numbers=autoendperiod, % Automatically add/remove period after section numbers
+  appendixprefix=true,% Prefix "Appendix" to appendix chapters/sections
+  chapterprefix=true, % Prefix "Chapter" to chapter numbers
+  % draft,             % Show overfull hboxes
 ]{scrreprt}
 
 \usepackage[utf8]{inputenc}
@@ -64,17 +64,17 @@
 
 % --- Listings Configuration ---
 \lstset{
-    language=Python,
-    basicstyle=\ttfamily\footnotesize,
-    keywordstyle=\color{blue}\bfseries,
-    commentstyle=\color{green!50!black}\itshape,
-    stringstyle=\color{purple},
-    showstringspaces=false,
-    breaklines=true,
-    frame=single,
-    numbers=left,
-    numberstyle=\tiny\color{gray},
-    captionpos=b % caption below listing
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{green!50!black}\itshape,
+  stringstyle=\color{purple},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  captionpos=b % caption below listing
 }
 
 % --- Title Information ---
@@ -132,7 +132,7 @@ For example, \texttt{DIV=12} is a common setting. A higher \texttt{DIV} value me
 \section{Text and Typography}
 \lipsum[6-7]
 \begin{description}
-  \item[Font Customization] Use \verb|\setkomafont| and \verb|\addtokomafont|.
+    \item[Font Customization] Use \verb|\setkomafont| and \verb|\addtokomafont|.
   \item[Paragraph Spacing] Controlled by the \texttt{parskip} class option.
 \end{description}
 
@@ -144,6 +144,7 @@ KOMA-Script works seamlessly with standard math packages.
 \end{align*}
 \lipsum[8]
 
+\part{Advanced Features}
 \section{Tables}
 KOMA-Script allows captions to be styled as headings for tables.
 \begin{table}[hbtp]
