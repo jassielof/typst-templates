@@ -1,1 +1,3 @@
-# KOMA-script classes ported to Typst
+# KOMA Neu
+
+KOMA Neu is a ported version of the suite (or bundle) of *KOMA-Script* main classes: `scrartcl`, `scrreprt`, and `scrbook`.

@@ -1,18 +1,24 @@
 [package]
-name = "koma-scriptist"
+name = "koma-neu"
 version = "0.1.0"
 compiler = "0.14.0"
 repository = "https://github.com/jassielof/typst-templates"
 entrypoint = "lib.typ"
 authors = ["Jassiel Ovando <@jassielof>"]
 license = "MIT-0"
-description = "LaTeX Standard document classes ported to Typst."
-keywords = ["LaTeX", "article", "report", "book", "letter"]
+description = "Port of the KOMA-Script document classes."
+keywords = [
+  "LaTeX",
+  "KOMA-Script",
+  "scrartcl",
+  "scrreprt",
+  "scrbook",
+]
 categories = ["report", "paper", "book"]
 disciplines = []
-exclude = ["*.pdf", "reference"]
+exclude = ["*.pdf", "reference", "ctan"]
 
 [template]
 path = "template"
-entrypoint = "report.typ"
+entrypoint = "scrreprt.typ"
 thumbnail = "thumbnail.png"
