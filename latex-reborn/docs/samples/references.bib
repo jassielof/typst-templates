@@ -1,0 +1,417 @@
+% Sample BibLaTeX bibliography demonstrating many entry types, fields, languages, and relations.
+
+@xdata{org-upsa,
+    institution = {Universidad Privada de Santa Cruz de la Sierra (UPSA)},
+    location    = {Santa Cruz de la Sierra, Bolivia},
+    langid      = {spanish},
+}
+
+@xdata{pub-springer,
+    publisher = {Springer},
+    location  = {Cham},
+}
+
+@xdata{pub-oreilly,
+    publisher = {O’Reilly Media},
+    location  = {Sebastopol, CA},
+}
+
+@xdata{web-access-today,
+    urldate = {2025-10-22},
+}
+
+@mvbook{knuth-acp,
+    author    = {Knuth, Donald E.},
+    title     = {The Art of Computer Programming},
+    maintitle = {The Art of Computer Programming},
+    volumes   = {4},
+    date      = {2011},
+    edition   = {3},
+    publisher = {Addison-Wesley},
+    location  = {Boston, MA},
+    isbn      = {978-0-201-03801-9},
+    langid    = {english},
+}
+
+@book{knuth-acp-v1,
+    crossref  = {knuth-acp},
+    volume    = {1},
+    title     = {Fundamental Algorithms},
+    shorttitle= {TAOCP 1},
+    date      = {2011},
+    isbn      = {978-0-201-89683-1},
+}
+
+@book{knuth-acp-v2,
+    crossref  = {knuth-acp},
+    volume    = {2},
+    title     = {Seminumerical Algorithms},
+    shorttitle= {TAOCP 2},
+    date      = {2011},
+    isbn      = {978-0-201-89684-8},
+}
+
+@book{garcia2019disenio,
+    author     = {García, María and Pérez, Juan},
+    title      = {Diseño de sistemas de información},
+    subtitle   = {Fundamentos y prácticas},
+    edition    = {2},
+    date       = {2019},
+    series     = {Ingeniería de Software},
+    number     = {12},
+    publisher  = {Alfaomega},
+    location   = {Ciudad de México},
+    isbn       = {978-607-538-123-4},
+    langid     = {spanish},
+    keywords   = {analisis,diseno,uml},
+}
+
+@inbook{garcia2019cap3,
+    crossref   = {garcia2019disenio},
+    title      = {Modelado de procesos},
+    titleaddon = {Capítulo 3},
+    pages      = {65-98},
+    langid     = {spanish},
+}
+
+@collection{smith2020ml-collection,
+    editor    = {Smith, Alice and Dubois, Claire},
+    title     = {Modern Topics in Machine Learning},
+    date      = {2020},
+    xdata     = {pub-springer},
+    isbn      = {978-3-030-12345-6},
+    langid    = {english},
+}
+
+@incollection{rojas2020fair,
+    author     = {Rojas, Diego and Chen, Li},
+    title      = {FAIR Principles for Reproducible ML},
+    subtitle   = {Data and Model Management},
+    pages      = {155-178},
+    crossref   = {smith2020ml-collection},
+    doi        = {10.1007/978-3-030-12345-6_7},
+    langid     = {english},
+}
+
+@article{miller2021robust,
+    author       = {Miller, Thomas and Nguyen, Anh},
+    title        = {Robust Evaluation of Distributed Systems},
+    subtitle     = {Metrics, Methodology, and Pitfalls},
+    journaltitle = {Journal of Systems Research},
+    shortjournal = {JSR},
+    date         = {2021-07},
+    volume       = {18},
+    number       = {3},
+    pages        = {201-234},
+    issn         = {1234-5678},
+    doi          = {10.1000/jsr.2021.12345},
+    url          = {https://doi.org/10.1000/jsr.2021.12345},
+    langid       = {english},
+}
+
+@article{garcia2022salud-datos,
+    author       = {García, Valeria and Vargas, Luis and Salinas, Pedro},
+    title        = {Arquitectura de datos para salud pública en Bolivia},
+    journaltitle = {Revista Boliviana de Ingeniería de Sistemas},
+    date         = {2022-11},
+    volume       = {9},
+    number       = {2},
+    pages        = {45-63},
+    issn         = {2079-1234},
+    langid       = {spanish},
+}
+
+@periodical{cacm-2020-vol63-12,
+    title   = {Communications of the ACM},
+    date    = {2020-12},
+    volume  = {63},
+    number  = {12},
+    issn    = {0001-0782},
+    langid  = {english},
+}
+
+@proceedings{icse2023,
+    editor      = {Rossi, Barbara and Keller, Tim},
+    title       = {Proceedings of the 45th International Conference on Software Engineering},
+    shorttitle  = {ICSE 2023},
+    date        = {2023-05},
+    eventtitle  = {45th International Conference on Software Engineering},
+    eventdate   = {2023-05-14/2023-05-20},
+    venue       = {Melbourne Convention and Exhibition Centre},
+    location    = {Melbourne, Australia},
+    organization= {IEEE / ACM},
+    isbn        = {978-1-4503-XXXX-X},
+    langid      = {english},
+}
+
+@inproceedings{fernandez2023devops,
+    author      = {Fernández, Sofía and Lee, Daniel},
+    title       = {Continuous Delivery in Regulated Environments},
+    subtitle    = {A Case Study in FinTech},
+    pages       = {120-131},
+    crossref    = {icse2023},
+    doi         = {10.1145/3597503.3597555},
+    langid      = {english},
+}
+
+@inproceedings{lopez2023iot-bolivia,
+    author      = {López, Marcelo and Aguilar, Paola},
+    title       = {Plataforma IoT para monitoreo ambiental en Santa Cruz},
+    pages       = {88-97},
+    crossref    = {icse2023},
+    langid      = {spanish},
+}
+
+@thesis{rodriguez2023tfg,
+    author     = {Rodríguez, Camila},
+    title      = {Diseño e implementación de una plataforma web para gestión académica},
+    type       = {tfg},
+    note       = {Trabajo Final de Grado},
+    date       = {2023-12},
+    xdata      = {org-upsa},
+    langid     = {spanish},
+    url        = {https://example.edu/repositorio/tfg/rodriguez-2023},
+    urldate    = {2025-10-22},
+}
+
+@phdthesis{khan2020phd,
+    author   = {Khan, Ayesha},
+    title    = {Scalable Stream Processing for Real-Time Analytics},
+    date     = {2020},
+    school   = {University of Edinburgh},
+    location = {Edinburgh, UK},
+    url      = {https://hdl.handle.net/1842/123456},
+    langid   = {english},
+}
+
+@mastersthesis{mendez2024msc,
+    author   = {Méndez, Javier},
+    title    = {Análisis de patrones de movilidad urbana usando datos de telefonía},
+    date     = {2024-07},
+    school   = {Universidad Mayor de San Andrés},
+    location = {La Paz, Bolivia},
+    langid   = {spanish},
+}
+
+@report{who2011-health-data,
+    author      = {{World Health Organization}},
+    title       = {Standards for Health Data Interoperability},
+    type        = {Technical Report},
+    number      = {TR-2011-05},
+    date        = {2011},
+    institution = {WHO},
+    location    = {Geneva},
+    url         = {https://apps.who.int/iris/handle/10665/12345},
+    langid      = {english},
+}
+
+@techreport{rfc9110,
+    author       = {Fielding, Roy and Reschke, Julian},
+    title        = {HTTP Semantics},
+    type         = {RFC},
+    number       = {9110},
+    institution  = {RFC Editor},
+    date         = {2022-06},
+    doi          = {10.17487/RFC9110},
+    url          = {https://www.rfc-editor.org/rfc/rfc9110},
+    urldate      = {2025-10-22},
+    langid       = {english},
+}
+
+@standard{iso-8601-2019,
+    title      = {Date and time—Representations for information interchange},
+    shorttitle = {ISO 8601},
+    organization = {International Organization for Standardization},
+    number     = {ISO 8601-1:2019},
+    date       = {2019},
+    url        = {https://www.iso.org/standard/70907.html},
+    langid     = {english},
+}
+
+@patent{us-9000000,
+    author    = {Sato, Kenji and Müller, Franz},
+    title     = {Distributed ledger synchronization method},
+    type      = {Patent},
+    number    = {US 9,000,000},
+    date      = {2015-04-07},
+    holder    = {Example Corp.},
+    langid    = {english},
+}
+
+@manual{django-manual,
+    title        = {Django 5.0 Documentation},
+    subtitle     = {The Web framework for perfectionists with deadlines},
+    date         = {2024-12},
+    organization = {Django Software Foundation},
+    version      = {5.0},
+    url          = {https://docs.djangoproject.com/en/5.0/},
+    xdata        = {web-access-today},
+    langid       = {english},
+}
+
+@software{python-3-12,
+    author    = {{Python Software Foundation}},
+    title     = {Python},
+    version   = {3.12.5},
+    date      = {2024-08-06},
+    url       = {https://www.python.org/},
+    xdata     = {web-access-today},
+    langid    = {english},
+}
+
+@software{postgresql-16,
+    author    = {{PostgreSQL Global Development Group}},
+    title     = {PostgreSQL},
+    version   = {16.4},
+    date      = {2024-09-12},
+    url       = {https://www.postgresql.org/},
+    xdata     = {web-access-today},
+    langid    = {english},
+}
+
+@online{pypi-fastapi,
+    author   = {Tiangolo, Sebastián},
+    title    = {FastAPI},
+    date     = {2025-01-10},
+    url      = {https://fastapi.tiangolo.com/},
+    xdata    = {web-access-today},
+    langid   = {english},
+}
+
+@online{peps8,
+    author   = {van Rossum, Guido and Warsaw, Barry and Coghlan, Nick},
+    title    = {PEP 8 -- Style Guide for Python Code},
+    date     = {2023-07-15},
+    url      = {https://peps.python.org/pep-0008/},
+    xdata    = {web-access-today},
+    langid   = {english},
+}
+
+@misc{bolivia-ley-164-2011,
+    title      = {Ley N° 164: Ley General de Telecomunicaciones, Tecnologías de Información y Comunicación},
+    date       = {2011-08-08},
+    type       = {Legislación},
+    url        = {https://www.lexivox.org/norms/BO-L-164.html},
+    xdata      = {web-access-today},
+    langid     = {spanish},
+}
+
+@misc{dataset-air-quality-sc,
+    author     = {Torrez, Andrés and Pinto, Carla},
+    title      = {Datos de calidad de aire en Santa Cruz de la Sierra, 2020–2024},
+    type       = {Dataset},
+    date       = {2024-06-01},
+    version    = {1.2.0},
+    doi        = {10.5281/zenodo.1234567},
+    url        = {https://zenodo.org/record/1234567},
+    xdata      = {web-access-today},
+    langid     = {spanish},
+    related    = {lopez2023iot-bolivia},
+    relatedtype= {isReferencedBy},
+    keywords   = {air-quality,iot,bolivia},
+}
+
+@unpublished{martinez2025preprint,
+    author     = {Martínez, Laura and Silva, Bruno},
+    title      = {Evaluación de modelos de aprendizaje federado en redes 5G},
+    note       = {Preprint},
+    date       = {2025-02-18},
+    eprinttype = {arXiv},
+    eprint     = {2502.12345},
+    url        = {https://arxiv.org/abs/2502.12345},
+    xdata      = {web-access-today},
+    langid     = {spanish},
+}
+
+@book{oreilly-kafka-2021,
+    author    = {Palino, Gwen Shapira and Noriega, Todd and Shapira, Rafal},
+    title     = {Kafka: The Definitive Guide},
+    edition   = {2},
+    date      = {2021},
+    xdata     = {pub-oreilly},
+    isbn      = {978-1-098-10891-1},
+    langid    = {english},
+}
+
+@inbook{sommerville2020reqs,
+    author     = {Sommerville, Ian},
+    title      = {Software Engineering},
+    edition    = {10},
+    date       = {2020},
+    publisher  = {Pearson},
+    location   = {Harlow},
+    chapter    = {6},
+    pages      = {115-140},
+    titleaddon = {Requirements Engineering},
+    isbn       = {978-1-292-25916-7},
+    langid     = {english},
+}
+
+@manual{git-scm-book,
+    author    = {Chacon, Scott and Straub, Ben},
+    title     = {Pro Git},
+    edition   = {2},
+    date      = {2014},
+    publisher = {Apress},
+    url       = {https://git-scm.com/book/en/v2},
+    xdata     = {web-access-today},
+    langid    = {english},
+}
+
+@misc{semver-2-0-0,
+    author   = {Preston-Werner, Tom},
+    title    = {Semantic Versioning 2.0.0},
+    date     = {2013-06-05},
+    url      = {https://semver.org/},
+    xdata    = {web-access-today},
+    langid   = {english},
+}
+
+@article{tufte2006data,
+    author       = {Tufte, Edward R.},
+    title        = {The Cognitive Style of PowerPoint},
+    journaltitle = {Technical Communication},
+    date         = {2006},
+    volume       = {53},
+    number       = {4},
+    pages        = {401-405},
+    issn         = {0049-3155},
+    langid       = {english},
+}
+
+@report{worldbank2021-bolivia-ict,
+    author      = {{World Bank}},
+    title       = {Bolivia Digital: Oportunidades y desafíos de las TIC},
+    type        = {Policy Note},
+    date        = {2021-09},
+    institution = {The World Bank},
+    location    = {Washington, DC},
+    url         = {https://documents.worldbank.org/curated/en/},
+    langid      = {spanish},
+}
+
+@online{typst-docs,
+    author  = {{Typst Project}},
+    title   = {Typst Documentation},
+    date    = {2025-03-30},
+    url     = {https://typst.app/docs/},
+    xdata   = {web-access-today},
+    langid  = {english},
+}
+
+@misc{docker-compose-spec,
+    author   = {Docker, Inc.},
+    title    = {Compose Specification},
+    date     = {2024-10-01},
+    url      = {https://github.com/compose-spec/compose-spec},
+    xdata    = {web-access-today},
+    langid   = {english},
+}
+
+@inproceedings{perez2024nlp-es,
+    author      = {Pérez, Lucía and Romero, Andrés},
+    title       = {Corpora y modelos para procesamiento de lenguaje natural en español latinoamericano},
+    pages       = {52-66},
+    crossref    = {icse2023},
+    langid      = {spanish},
+}

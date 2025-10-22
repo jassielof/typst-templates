@@ -1,3 +1,4 @@
+% chktex-file 8
 \documentclass{report}
 
 \usepackage{layout}
@@ -30,33 +31,8 @@
 \part{A really long part for testing purposes that should allow me to notice how the Part title behaves in the terms of vertical and horizontal spacing, even longer, so long that will have to fit the whole dummy page, it takes a while to read this, but it is ok, because it is just for testing purposes}
 \part{A short part}
 
-% \makeatletter
-% base: \f@size
-
-% \verb+\tiny+ \tiny \f@size
-% \verb+\scriptsize+ \scriptsize \f@size
-% \verb+\footnotesize+ \footnotesize \f@size
-% \verb+\small+ \small \f@size
-% \verb+\normalsize+ \normalsize \f@size
-% \verb+\large+ \large \f@size
-% \verb+\Large+ \Large \f@size
-% \verb+\LARGE+ \LARGE \f@size
-% \verb+\huge+ \huge \f@size
-% \verb+\Huge+ \Huge \f@size
-% \makeatother
-
-% \part{First Part}
-% \part{First Part}
-% \part{First Part}
-% \part{First Part}
-% \part{First Part}
-% \part{First Part}
-% \chapter{Introduction}
-% \chapter{Introduction}
-
-\chapter{Another really long chapter title for testing purposes that should allow me to notice how the Chapter title behaves in the terms of vertical and horizontal spacing, even longer, so long that will have to fit the whole dummy page, it takes a while to read this, but it is ok, because it is just for testing purposes}
-This is the background chapter. Here, we provide some background information on
-the topic of the report.
+\chapter{Another really long chapter title for testing purposes that should allow me to notice how the Chapter title behaves in the terms of vertical and horizontal spacing, even longer, so long that will have to fit the whole dummy page, it takes a while to read this}
+This is the background chapter. Here, we provide some background information on the topic of the report.
 \section{Background Section}
 
 This is the background chapter. Here, we provide some background information on
@@ -65,7 +41,7 @@ the topic of the report.
 \chapter{Background}
 \lipsum[1-2]
 
-\section{This is the background chapter. Here, we provide some background information on the topic of the report}
+\section{This is the background section}
 This is the background section. Here, we provide some background information on
 the topic of the report.
 
@@ -76,10 +52,78 @@ the topic of the report.
 This is the background section. Here, we provide some background information on the topic of the report.
 
 \section{Background Section}
-This is the background section. Here, we provide some background information on
-the topic of the report.
+This is the background section. Here, we provide some background information on the topic of the report.
 
-This is the background section. Here, we provide some background information on
-the topic of the report.
+This is the background section. Here, we provide some background information on the topic of the report.
+
+\section{Samples: Figures, Tables, and Listings}
+
+\begin{figure}[htbp]
+  \centering
+  \fbox{%
+    \begin{minipage}[c][5cm][c]{0.8\linewidth}
+      \centering Placeholder image
+    \end{minipage}
+  }
+  \caption{Sample placeholder image}\label{fig:img-placeholder}
+\end{figure}
+\begin{figure}[htbp]
+
+  \centering
+  \begin{minipage}{0.46\linewidth}
+    \centering
+    \fbox{%
+      \begin{minipage}[c][3cm][c]{\linewidth}
+        \centering Image A
+      \end{minipage}
+    }
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.46\linewidth}
+    \centering
+    \fbox{%
+      \begin{minipage}[c][3cm][c]{\linewidth}
+        \centering Image B
+      \end{minipage}
+    }
+  \end{minipage}
+  \caption{Two side-by-side images}\label{fig:two-images}
+\end{figure}
+
+\chapter{Figure numberings are chapter-based?}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Sample table using booktabs}\label{tab:metrics}
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    Metric & Min & Avg & Max \\
+    \midrule
+    Latency (ms) & 12 & 34 & 89 \\
+    Throughput (req/s) & 120 & 245 & 310 \\
+    Error rate (\%) & 0.1 & 0.3 & 0.8 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}{0.9\linewidth}
+\begin{verbatim}
+# app/example.py
+def fib(n: int) -> int:
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+
+if __name__ == "__main__":
+    print([fib(i) for i in range(10)])
+\end{verbatim}
+  \end{minipage}
+  \caption{Sample code listing (Python)}\label{fig:listing-python}
+\end{figure}
+
+
 
 \end{document}

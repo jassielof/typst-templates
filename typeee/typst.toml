@@ -1,0 +1,26 @@
+[package]
+name = "typeee"
+version = "0.1.0"
+compiler = "0.14.0"
+entrypoint = "lib.typ"
+repository = "https://github.com/jassielof/typst-templates"
+authors = ["Jassiel Ovando <@jassielof>"]
+license = "MIT-0"
+description = "IEEE templates"
+keywords = [
+  "Institute of Electrical and Electronics Engineers",
+  "IEEE",
+  "Academic Writing",
+  "Research",
+]
+exclude = ["reference/", "*.pdf"]
+categories = ["paper", "report", "thesis"]
+disciplines = [
+  "engineering",
+  "computer-science",
+]
+
+[template]
+path = "template"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"
