@@ -3,25 +3,29 @@ version: "3"
 tasks:
   versatile-apa:
     cmd: typst compile --root versatile-apa versatile-apa/template/main.typ
-  versatile-apa-dev:
-    cmd: typst watch --root versatile-apa versatile-apa/template/main.typ
+    watch: true
+    sources:
+      - "versatile-apa/**/*"
+      - exclude: versatile-apa/**/*.pdf
+    generates:
+      - "versatile-apa/template/**/*.pdf"
   latex-reborn:*:
+    watch: true
     cmd: typst compile --root latex-reborn latex-reborn/template/{{.LATEX_REBORN_TEMPLATE}}.typ
     vars:
       LATEX_REBORN_TEMPLATE: "{{index .MATCH 0}}"
-  latex-reborn-dev:*:
-    cmd: typst watch --root latex-reborn latex-reborn/template/{{.LATEX_REBORN_TEMPLATE}}.typ
-    ignore_error: true
-    interactive: true
-    vars:
-      LATEX_REBORN_TEMPLATE: "{{index .MATCH 0}}"
+    sources:
+      - latex-reborn/**/*
+      - exclude: latex-reborn/**/*.pdf
+    generates:
+      - "latex-reborn/**/*.pdf"
   upsa-bo:*:
+    watch: true
+    sources:
+      - upsa-bo/**/*
+      - exclude: upsa-bo/**/*.pdf
+    generates:
+      - "upsa-bo/**/*.pdf"
     cmd: typst compile --root upsa-bo upsa-bo/template/{{.UPSA_TEMPLATE}}/{{.UPSA_TEMPLATE}}.typ
-    vars:
-      UPSA_TEMPLATE: "{{index .MATCH 0}}"
-  upsa-bo-dev:*:
-    cmd: typst watch --root upsa-bo upsa-bo/template/{{.UPSA_TEMPLATE}}/{{.UPSA_TEMPLATE}}.typ
-    ignore_error: true
-    interactive: true
     vars:
       UPSA_TEMPLATE: "{{index .MATCH 0}}"

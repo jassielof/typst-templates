@@ -37,3 +37,6 @@ universe/
 
 # ACM
 !acm-suite/assets/**/*
+
+# task
+.task

@@ -54,3 +54,212 @@ This is the background section. Here, we provide some background information on 
 
 This is the background section. Here, we provide some background information on the topic of the report.
 
+== Figures
+=== Tables
+#figure(
+  table(
+    columns: 2,
+    table.header([Header 1], [Header 2]),
+    [Cell 1], [Cell 2],
+  ),
+  caption: [Example table 1],
+)
+
+#figure(
+  table(
+    columns: 3,
+    table.header([Header 1], [Header 2], [Header 3]),
+    [Cell 1], [Cell 2], [Cell 3],
+  ),
+  caption: [Example table 2],
+)
+
+=== Images
+#figure(
+  square(),
+  caption: [Example image 1],
+)
+
+#figure(
+  rect(),
+  caption: [Example image 2],
+)
+
+=== Listings
+#figure(
+  ```python
+  def hello_world():
+      print("Hello, world!")
+  ```,
+  caption: [Example listing 1],
+)
+
+#figure(
+  ```tex
+  \documentclass{article}
+  \begin{document}
+  Hello, World!
+  \end{document}
+  }
+  ```,
+  caption: [Example listing 2],
+)
+== Figures
+=== Tables
+#figure(
+  table(
+    columns: 2,
+    table.header([Header 1], [Header 2]),
+    [Cell 1], [Cell 2],
+  ),
+  caption: [Example table 1],
+)
+
+#figure(
+  table(
+    columns: 3,
+    table.header([Header 1], [Header 2], [Header 3]),
+    [Cell 1], [Cell 2], [Cell 3],
+  ),
+  caption: [Example table 2],
+)
+
+=== Images
+#figure(
+  square(),
+  caption: [Example image 1],
+)
+
+#figure(
+  rect(),
+  caption: [Example image 2],
+)
+
+=== Listings
+#figure(
+  ```python
+  def hello_world():
+      print("Hello, world!")
+  ```,
+  caption: [Example listing 1],
+)
+
+#figure(
+  ```tex
+  \documentclass{article}
+  \begin{document}
+  Hello, World!
+  \end{document}
+  }
+  ```,
+  caption: [Example listing 2],
+)
+
+= Appendices
+
+#show: report.appendix
+= This part shouldn't be reset <appendix-part>
+#counter(figure.where(outlined: true)).update(0)
+
+Ref @appendix-part
+
+== Figures
+=== Tables
+#figure(
+  table(
+    columns: 2,
+    table.header([Header 1], [Header 2]),
+    [Cell 1], [Cell 2],
+  ),
+  caption: [Example table 1],
+)
+
+#figure(
+  table(
+    columns: 3,
+    table.header([Header 1], [Header 2], [Header 3]),
+    [Cell 1], [Cell 2], [Cell 3],
+  ),
+  caption: [Example table 2],
+)
+
+=== Images
+#figure(
+  square(),
+  caption: [Example image 1],
+)
+
+#figure(
+  rect(),
+  caption: [Example image 2],
+)
+
+=== Listings
+#figure(
+  ```python
+  def hello_world():
+      print("Hello, world!")
+  ```,
+  caption: [Example listing 1],
+)
+
+#figure(
+  ```tex
+  \documentclass{article}
+  \begin{document}
+  Hello, World!
+  \end{document}
+  }
+  ```,
+  caption: [Example listing 2],
+)
+== Figures
+
+=== Tables
+#figure(
+  table(
+    columns: 2,
+    table.header([Header 1], [Header 2]),
+    [Cell 1], [Cell 2],
+  ),
+  caption: [Example table 1],
+)
+#figure(
+  table(
+    columns: 3,
+    table.header([Header 1], [Header 2], [Header 3]),
+    [Cell 1], [Cell 2], [Cell 3],
+  ),
+  caption: [Example table 2],
+)
+
+=== Images
+#figure(
+  square(),
+  caption: [Example image 1],
+)
+
+#figure(
+  rect(),
+  caption: [Example image 2],
+)
+
+=== Listings
+#figure(
+  ```python
+  def hello_world():
+      print("Hello, world!")
+  ```,
+  caption: [Example listing 1],
+)
+
+#figure(
+  ```tex
+  \documentclass{article}
+  \begin{document}
+    Hello, World!
+  \end{document}
+  }
+  ```,
+  caption: [Example listing 2],
+)

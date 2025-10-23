@@ -5,6 +5,8 @@
 
 #let chapter-counter = counter("chapter")
 
+#let ex(unit) = unit * 0.6em
+
 
 #let get-font-size(font-size) = {
   if (font-size == 10pt) {
@@ -82,12 +84,12 @@
   )
 
   set text(
-    size: font-size.normalsize,
+    size: font-size.normal,
     font: "New Computer Modern",
   )
   show raw: set text(
     font: "New Computer Modern Mono",
-    size: font-size.normalsize,
+    size: font-size.normal,
   )
 
   set heading(
@@ -97,7 +99,7 @@
         numbering("I", ..args)
       } else if args.pos().len() == 2 {
         // Level 2: Use the chapter state counter and increment it.
-        chapter-counter.get().first() + 1
+        numbering("1", chapter-counter.get().first())
       } else if args.pos().len() == 3 or args.pos().len() == 4 {
         // Level 3+: Use the chapter number followed by the position within that chapter.
         numbering("1.1", ..chapter-counter.get(), ..args.pos().slice(2))
@@ -126,7 +128,7 @@
       #set text(weight: "bold")
       #text(
         size: font-size.huge,
-      )[#it.supplement #context counter(heading).display("I")]
+      )[#it.supplement #counter(heading).display(it.numbering)]
       #v(20pt)
       #text(size: font-size.Huge, it.body)
     ]
@@ -134,11 +136,6 @@
 
     v(0.9fr)
     pagebreak()
-
-    context if it.numbering != none and it.outlined == true {
-      let chapters = chapter-counter.get()
-      counter(heading).update((one, ..n) => (one, ..chapters))
-    }
   } else if it.supplement == [Abstract] {
     it
   }
@@ -151,11 +148,14 @@
 
   // chapter with numbering
   show heading.where(level: 2): it => {
+    if it.numbering != none and it.outlined == true {
+      chapter-counter.step()
+    }
     pagebreak(weak: true)
     v(50pt + 2em) // Without 2em it looks a bit higher, LaTeX only sets 50pt
-    if (it.outlined == true and it.numbering != none) {
-      chapter-counter.step()
-      text(size: font-size.huge)[#it.supplement #context chapter-counter.display()]
+    if it.numbering != none and it.outlined == true {
+      // chapter-counter.step()
+      text(size: font-size.huge)[#it.supplement #counter(heading).display(it.numbering)]
       v(20pt)
     }
     block(
@@ -186,26 +186,26 @@
   // Subsection
   show heading.where(level: 4): set text(size: font-size.large, weight: "bold")
   show heading.where(level: 4): set block(
-    above: 3.25 * 0.6em,
-    below: 1.5 * 0.6em,
+    above: ex(3.25),
+    below: ex(1.5),
   )
 
   // Subsubsection
-  show heading.where(level: 5): set text(size: font-size.normalsize, weight: "bold")
-  show heading.where(level: 5): set block(above: 3.25 * 0.6em, below: 1.5 * 0.6em)
+  show heading.where(level: 5): set text(size: font-size.normal, weight: "bold")
+  show heading.where(level: 5): set block(above: ex(3.25), below: ex(1.5))
   show heading.where(level: 5): set heading(numbering: none)
 
   // Paragraph
-  show heading.where(level: 6): set text(size: font-size.normalsize, weight: "bold")
+  show heading.where(level: 6): set text(size: font-size.normal, weight: "bold")
   // show heading.where(level: 4): set block(above: 3.25 * 0.5em, below: 1em)
   show heading.where(level: 6): set heading(numbering: none)
-  show heading.where(level: 6): set text(top-edge: 3.25 * 0.5em, bottom-edge: 1em)
+  show heading.where(level: 6): set text(top-edge: ex(3.25), bottom-edge: ex(1))
   // show heading.where(level: 4): set box()
 
   // show heading.where(level: 4): it => strong(it.body)
 
   // Subparagraph
-  show heading.where(level: 7): set text(size: font-size.normalsize, weight: "bold")
+  show heading.where(level: 7): set text(size: font-size.normal, weight: "bold")
   show heading.where(level: 7): set block(above: 3.25 * 0.5em, below: 1em)
   show heading.where(level: 7): set heading(numbering: none)
   show heading.where(level: 7): set text(top-edge: 3.25 * 0.5em, bottom-edge: 1em)
@@ -241,7 +241,7 @@
   )
   show outline.entry.where(level: 1).or(outline.entry.where(level: 2)): set outline.entry(fill: none)
   show outline.entry.where(level: 1): set block(above: 2.25em)
-  show outline.entry.where(level: 2): set text(weight: "bold", size: font-size.normalsize)
+  show outline.entry.where(level: 2): set text(weight: "bold", size: font-size.normal)
   show outline.entry.where(level: 2): set par(justify: true)
   show outline.entry.where(level: 2): set outline(indent: 0em)
   show outline.entry.where(level: 2): set block(above: 1em)
@@ -250,6 +250,13 @@
   show outline.entry.where(level: 5): set outline(indent: 7em)
   show outline.entry.where(level: 6): set outline(indent: 10em)
   show outline.entry.where(level: 7): set outline(indent: 12em)
+
+  set figure(
+    numbering: (..args) => {
+      let current-chapter = chapter-counter.get().first()
+      numbering("1.1", current-chapter, ..args.pos())
+    },
+  )
 
   body
 }
@@ -301,7 +308,7 @@
   show heading: set align(center)
   show heading: set text(
     weight: "bold",
-    size: get-font-size(text.size).normalsize,
+    size: get-font-size(text.size).normal,
   )
   // align(center, text(weight: "bold", title))
   heading(
@@ -315,4 +322,46 @@
   body
   v(1fr)
   pagebreak()
+}
+
+#let appendix(body) = context {
+  chapter-counter.update(1)
+
+  set heading(
+    numbering: (..args) => {
+      if args.pos().len() == 1 {
+        // Level 1: Roman numerals for Parts.
+        numbering("I", ..args)
+      } else if args.pos().len() == 2 {
+        // Level 2: Use the chapter state counter and increment it.
+        numbering("A", chapter-counter.get().first())
+      } else if args.pos().len() == 3 or args.pos().len() == 4 {
+        // Level 3+: Use the chapter number followed by the position within that chapter.
+        numbering("1.1", ..chapter-counter.get(), ..args.pos().slice(2))
+      } else {
+        none
+      }
+    },
+  )
+
+  show heading.where(level: 2): set heading(
+    supplement: [Appendix],
+  )
+
+  query(figure)
+    .map(v => v.kind)
+    .dedup()
+    .map(v => {
+      counter(figure.where(kind: v)).update(0)
+    })
+    .join()
+
+  set figure(
+    numbering: (..args) => {
+      let current-chapter = chapter-counter.get().first()
+      numbering("A.1", current-chapter, ..args.pos())
+    },
+  )
+
+  body
 }
