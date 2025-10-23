@@ -94,6 +94,7 @@
     numbering: "(1)",
     supplement: [Expresión matemática],
   )
+  
   show math.equation: set text(font: fuentes.ecuaciones)
 
   show figure: set figure.caption(position: top)

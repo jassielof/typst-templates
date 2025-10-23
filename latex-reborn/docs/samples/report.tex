@@ -3,6 +3,8 @@
 
 \usepackage{layout}
 \usepackage{showframe}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage[base]{babel}
 % \usepackage{lua-visual-debug}
@@ -28,272 +30,64 @@
 
 \layout%
 
-\part{A really long part for testing purposes that should allow me to notice how the Part title behaves in the terms of vertical and horizontal spacing, even longer, so long that will have to fit the whole dummy page, it takes a while to read this, but it is ok, because it is just for testing purposes}
-\part{A short part}
+\include{content/chapters}
+\include{content/figures}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/sections}
+\include{content/parts}
+\include{content/sections}
+\include{content/parts}
+\include{content/sections}
+\include{content/parts}
+\include{content/sections}
+\include{content/parts}
+\include{content/sections}
+\include{content/parts}
+\include{content/sections}
+\include{content/parts}
+\include{content/sections}
+\include{content/parts}
+\include{content/sections}
+\include{content/parts}
+\include{content/sections}
+\include{content/parts}
+\include{content/sections}
+\include{content/parts}
 
-\chapter{Another really long chapter title for testing purposes that should allow me to notice how the Chapter title behaves in the terms of vertical and horizontal spacing, even longer, so long that will have to fit the whole dummy page, it takes a while to read this}
-This is the background chapter. Here, we provide some background information on the topic of the report.
-\section{Background Section}
 
-This is the background chapter. Here, we provide some background information on
-the topic of the report.
-
-\chapter{Background}
-\lipsum[1-2]
-
-\section{This is the background section}
-This is the background section. Here, we provide some background information on
-the topic of the report.
-
-\subsection{Background Subsection}
-This is the background section. Here, we provide some background information on
-the topic of the report.
-\subsubsection{Background Subsubsection}
-This is the background section. Here, we provide some background information on the topic of the report.
-
-\section{Background Section}
-This is the background section. Here, we provide some background information on the topic of the report.
-
-This is the background section. Here, we provide some background information on the topic of the report.
-
-\section{Samples: Figures, Tables, and Listings}
-
-\begin{figure}[htbp]
-  \centering
-  \fbox{%
-    \begin{minipage}[c][5cm][c]{0.8\linewidth}
-      \centering Placeholder image
-    \end{minipage}
-  }
-  \caption{Sample placeholder image}\label{fig:img-placeholder}
-\end{figure}
-\begin{figure}[htbp]
-
-  \centering
-  \begin{minipage}{0.46\linewidth}
-    \centering
-    \fbox{%
-      \begin{minipage}[c][3cm][c]{\linewidth}
-        \centering Image A
-      \end{minipage}
-    }
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.46\linewidth}
-    \centering
-    \fbox{%
-      \begin{minipage}[c][3cm][c]{\linewidth}
-        \centering Image B
-      \end{minipage}
-    }
-  \end{minipage}
-  \caption{Two side-by-side images}\label{fig:two-images}
-\end{figure}
-
-\chapter{Figure numberings are chapter-based?}
-
-\begin{table}[htbp]
-  \centering
-  \caption{Sample table using booktabs}\label{tab:metrics}
-  \begin{tabular}{@{}lccc@{}}
-    \toprule
-    Metric & Min & Avg & Max \\
-    \midrule
-    Latency (ms) & 12 & 34 & 89 \\
-    Throughput (req/s) & 120 & 245 & 310 \\
-    Error rate (\%) & 0.1 & 0.3 & 0.8 \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-\begin{figure}[htbp]
-  \centering
-  \begin{minipage}{0.9\linewidth}
-\begin{verbatim}
-# app/example.py
-def fib(n: int) -> int:
-    a, b = 0, 1
-    for _ in range(n):
-        a, b = b, a + b
-    return a
-
-if __name__ == "__main__":
-    print([fib(i) for i in range(10)])
-\end{verbatim}
-  \end{minipage}
-  \caption{Sample code listing (Python)}\label{fig:listing-python}
-\end{figure}
-
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-
-\begin{table}[htbp]
-  \centering
-  \caption{Métricas adicionales}
-  \begin{tabular}{@{}lrrr@{}}
-    \toprule
-    Métrica & Q1 & Q2 & Q3 \\
-    \midrule
-    Tiempo (ms) & 10 & 15 & 22 \\
-    Uso de CPU (\%) & 35 & 48 & 67 \\
-    Memoria (MiB) & 120 & 150 & 190 \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-\begin{table}[htbp]
-  \centering
-  \caption{Métricas adicionales}
-  \begin{tabular}{@{}lrrr@{}}
-    \toprule
-    Métrica & Q1 & Q2 & Q3 \\
-    \midrule
-    Tiempo (ms) & 10 & 15 & 22 \\
-    Uso de CPU (\%) & 35 & 48 & 67 \\
-    Memoria (MiB) & 120 & 150 & 190 \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-\begin{table}[htbp]
-  \centering
-  \caption{Métricas adicionales}
-  \begin{tabular}{@{}lrrr@{}}
-    \toprule
-    Métrica & Q1 & Q2 & Q3 \\
-    \midrule
-    Tiempo (ms) & 10 & 15 & 22 \\
-    Uso de CPU (\%) & 35 & 48 & 67 \\
-    Memoria (MiB) & 120 & 150 & 190 \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-\part{Anexos}
-\appendix
-% Parts counter after appendix aren't reset
-\part{?}
-
-% Chapters counter are reset and using "A"
-\chapter{Fórmulas y derivaciones}
-% Chapters counter can't go over the English alphabet by default
-
-\section{Ecuación cuadrática}
-A continuación se muestra la forma cerrada para las raíces de un polinomio de grado dos.
-
-\begin{equation}
-  x = \frac{-b \pm \sqrt{b^{2} - 4ac}}{2a}
-\end{equation}
-
-\subsection{Integral simple}
-Resultado de una integral definida elemental.
-
-\begin{equation}
-  \int_{0}^{1} x^{n}\,dx = \frac{1}{n+1}, \quad n > -1
-\end{equation}
-
-\chapter{Datos complementarios}
-\section{Tabla de métricas adicionales}
-\begin{table}[htbp]
-  \centering
-  \caption{Métricas adicionales}
-  \begin{tabular}{@{}lrrr@{}}
-    \toprule
-    Métrica & Q1 & Q2 & Q3 \\
-    \midrule
-    Tiempo (ms) & 10 & 15 & 22 \\
-    Uso de CPU (\%) & 35 & 48 & 67 \\
-    Memoria (MiB) & 120 & 150 & 190 \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-\chapter{Imágenes de referencia}
-\section{Marcador de imagen}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-\subsection{A}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-\section{AAAAAAA}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-\chapter{Listados de código}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-\begin{figure}[htbp]
-  \centering
-  \setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{40mm}\rule{80mm}{0pt}}
-  \caption{Marcador de imagen simple}
-\end{figure}
-
-\section{Ejemplo en Python}
-\begin{figure}[htbp]
-  \centering
-\begin{verbatim}
-def factorial(n: int) -> int:
-    result = 1
-    for i in range(2, n + 1):
-        result *= i
-    return result
-
-if __name__ == "__main__":
-    print([factorial(i) for i in range(6)])
-\end{verbatim}
-  \caption{Listado de código: cálculo de factorial}
-\end{figure}
+% \appendix
+% \include{content/chapters}
+% \include{content/sections}
+% \include{content/figures}
+% \include{content/parts}
 
 \end{document}

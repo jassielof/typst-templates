@@ -1,0 +1,73 @@
+% Sample headings from \section down to \subparagraph.
+% Requires \usepackage{lipsum} in the main document preamble.
+%
+% Optional: uncomment to number paragraph and subparagraph levels
+% \setcounter{secnumdepth}{5}
+% Optional: uncomment to include deeper levels in the ToC
+% \setcounter{tocdepth}{5}
+
+%========================
+% Section: short title
+%========================
+\section{Short Section}
+\lipsum[1-2]
+
+\subsection{Short Subsection}
+\lipsum[3]
+
+\subsubsection{Short Subsubsection}
+\lipsum[4]
+
+\paragraph{Short Paragraph} This is a run-in paragraph heading; the text follows immediately in the same paragraph for the default article class. It demonstrates how paragraph headings behave without a line break.
+
+\subparagraph{Short Subparagraph} This subparagraph heading is also run-in. It continues directly with text to show wrapping behavior across lines.
+
+%========================
+% Section: very long title with optional short title
+%========================
+\section[Long section (short TOC)]{A Very Very Long Section Title Demonstrating Line Wrapping, Spacing, and Hyphenation in LaTeX Headings When the Title Spans Multiple Lines Across the Page Margin and Includes Punctuation and Parentheses (With Optional Short Title)}
+\lipsum[5-6]
+
+\subsection[Long subsection (short TOC)]{An Extremely Long Subsection Title That Should Wrap Nicely Across Multiple Lines to Show How Subsection Headings Are Set and Truncated in Headers and the Table of Contents}
+\lipsum[7]
+
+\subsubsection[Long subsubsection (short TOC)]{A Quite Long Subsubsection Title Showing Deep Heading Levels and How They Render in the Document Body}
+\lipsum[8]
+
+\paragraph[Long paragraph (short TOC)]{A Very Long Paragraph Heading That Demonstrates How Run-In Headings Wrap When the Title Itself Exceeds the Line Width and Continues Onto the Next Line} This text immediately follows the long run-in heading to make the wrapping effect obvious. Subsequent sentences illustrate paragraph flow after a long heading.
+
+\subparagraph[Long subparagraph (short TOC)]{A Very Long Subparagraph Heading to Show Even Deeper Levels With Lots of Words and Punctuation, Causing Line Wraps as Needed} More run-in text after a long subparagraph heading. This helps visualize spacing and punctuation handling.
+
+%========================
+% Another section mixing short and long at lower levels
+%========================
+\section{Mixed Examples}
+\lipsum[9]
+
+\subsection{Short}
+\lipsum[10]
+
+\subsubsection{Very Long Subsubsection Title To Trigger Wrapping And Examine Spacing Between the Heading and Following Text in the Body}
+\lipsum[11]
+
+\paragraph{Short} Short run-in example. The paragraph begins right after the heading without a line break.
+
+\subparagraph{Very Long Subparagraph Title To See How Deep Levels Wrap and Whether Indentation Changes With Class Options} This subparagraph shows continued text right after the heading, demonstrating run-in style at the deepest standard level.
+
+%========================
+% Unnumbered (starred) examples
+%========================
+\section*{Unnumbered Section}
+\addcontentsline{toc}{section}{Unnumbered Section}
+\lipsum[12]
+
+\subsection*{Unnumbered Subsection With a Long Title to Demonstrate Wrapping Without a Section Number}
+\addcontentsline{toc}{subsection}{Unnumbered Subsection (long)}
+\lipsum[13]
+
+\subsubsection*{Unnumbered Subsubsection}
+\addcontentsline{toc}{subsubsection}{Unnumbered Subsubsection}
+\lipsum[14]
+
+\paragraph*{Unnumbered Paragraph} Run-in heading without numbering; text follows immediately to show behavior with starred forms.
+\subparagraph*{Unnumbered Subparagraph} Another run-in example without numbering; useful to compare spacing with numbered counterparts.

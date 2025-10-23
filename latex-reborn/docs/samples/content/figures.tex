@@ -1,0 +1,168 @@
+\chapter{Ejemplos exhaustivos de figuras, tablas, listados y ecuaciones}
+
+Este capítulo muestra ejemplos completos de uso de figuras, tablas, listados de código y ecuaciones, con referencias cruzadas.
+
+\section{Figuras (marcadores de imagen)}
+En la figura \ref{fig:placeholder1} se muestra un marcador simple. En la figura \ref{fig:placeholder2} se usa un recuadro con texto centrado. La figura \ref{fig:placeholder-side-by-side} muestra dos marcadores en paralelo.
+
+\begin{figure}[htbp]
+  \centering
+  % Rectángulo vacío de 0.9\textwidth por 6cm
+  \fbox{\rule{0pt}{6cm}\rule{0.9\textwidth}{0pt}}
+  \caption{Marcador de imagen vacío (proporción libre)}
+  \label{fig:placeholder1}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  % Recuadro con texto centrado, útil como “placeholder” con título
+  \fbox{%
+    \begin{minipage}[c][6cm][c]{0.9\textwidth}
+      \centering
+      Marcador de imagen 16:9 \par
+      (Reemplace por una imagen real cuando esté disponible)
+    \end{minipage}%
+  }
+  \caption{Marcador de imagen con texto centrado}
+  \label{fig:placeholder2}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \fbox{\rule{0pt}{4cm}\rule{0.95\textwidth}{0pt}}
+    \par (a) Ejemplo A
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \fbox{\rule{0pt}{4cm}\rule{0.95\textwidth}{0pt}}
+    \par (b) Ejemplo B
+  \end{minipage}
+  \caption{Dos marcadores de imagen en paralelo}
+  \label{fig:placeholder-side-by-side}
+\end{figure}
+
+\section{Tablas}
+La tabla \ref{tab:basica} muestra una tabla básica. La tabla \ref{tab:agrupada} incluye cabeceras agrupadas.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Tabla básica con tres columnas}
+  \label{tab:basica}
+  \begin{tabular}{lcr}
+    \hline
+    Columna A & Columna B & Columna C \\
+    \hline
+    Alfa  & 10 & Sí \\
+    Beta  & 20 & No \\
+    Gamma & 30 & Sí \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Tabla con cabecera agrupada}
+  \label{tab:agrupada}
+  \begin{tabular}{lcc}
+    \hline
+    & \multicolumn{2}{c}{Medidas} \\
+    \cline{2-3}
+    Ítem   & Ancho & Alto \\
+    \hline
+    A      & 12    & 5 \\
+    B      & 7     & 3 \\
+    C      & 9     & 8 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\section{Listados de código}
+A continuación, se muestran listados de código incluidos en un entorno flotante para permitir pies de figura y etiquetas.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}{0.95\linewidth}
+\begin{verbatim}
+# Python: función Fibonacci con memoización simple
+def fibonacci(n, cache=None):
+    if cache is None:
+        cache = {}
+    if n < 2:
+        return n
+    if n in cache:
+        return cache[n]
+    cache[n] = fibonacci(n-1, cache) + fibonacci(n-2, cache)
+    return cache[n]
+
+print([fibonacci(i) for i in range(10)])
+\end{verbatim}
+  \end{minipage}
+  \caption{Listado: función en Python}
+  \label{lst:python}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}{0.95\linewidth}
+\begin{verbatim}
+{
+  "service": "api",
+  "version": 1,
+  "features": ["auth", "cache", "metrics"],
+  "limits": { "rate_per_minute": 120, "burst": 30 }
+}
+\end{verbatim}
+  \end{minipage}
+  \caption{Listado: configuración JSON de ejemplo}
+  \label{lst:json}
+\end{figure}
+
+\section{Ecuaciones}
+A continuación se muestran ejemplos de ecuaciones en línea y desplegadas. Véase la ecuación \ref{eq:pitagoras} y el sistema en \ref{eq:sistema}.
+
+Texto con matemática en línea: si $x, y \in \mathbb{R}$, entonces $z = x + y$.
+
+Ecuación numerada:
+\begin{equation}
+  a^2 + b^2 = c^2
+  \label{eq:pitagoras}
+\end{equation}
+
+Derivación en varias líneas con alineación:
+\begin{eqnarray}
+  S &=& \sum_{i=1}^{n} i \\
+  &=& 1 + 2 + \cdots + n \\
+  &=& \frac{n(n+1)}{2} \label{eq:suma}
+\end{eqnarray}
+
+Matriz con notación de corchetes:
+\[
+  A = \left[
+    \begin{array}{ccc}
+      1 & 0 & 2 \\
+      -1 & 3 & 1
+    \end{array}
+  \right]
+\]
+
+Función a trozos:
+\[
+  f(x) = \left\{
+    \begin{array}{ll}
+      x^2 & \mbox{si } x \ge 0, \\
+      -x  & \mbox{si } x < 0.
+    \end{array}
+    \right.
+    \label{eq:sistema}
+  \]
+
+  Producto escalar y norma:
+  \[
+    \langle \mathbf{u}, \mathbf{v} \rangle = \sum_{i=1}^{n} u_i v_i,
+    \qquad
+    \|\mathbf{u}\| = \sqrt{\langle \mathbf{u}, \mathbf{u} \rangle }.
+  \]
+
+  Referencias cruzadas de ejemplo: figura \ref{fig:placeholder2}, tabla \ref{tab:agrupada}, listado \ref{lst:python} y ecuación \ref{eq:suma}.
