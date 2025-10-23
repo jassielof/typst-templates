@@ -1,4 +1,4 @@
-#import "../latex-standard/utils/showframe.typ": background
+#import "@preview/scaffolder:0.2.1": scaffolding
 
 #let acm-formats = (
   "manuscript",
@@ -116,7 +116,7 @@
   set document(title: full-title)
 
   set page(
-    background: background(),
+    background: scaffolding(),
     paper: "us-letter",
     columns: if format in ("sig-conf", "plan", "engage", "tog") { 2 } else { 1 },
     margin: 1in - 18pt,
