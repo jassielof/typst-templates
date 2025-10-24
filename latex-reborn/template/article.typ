@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "../lib.typ"
 
 #show: article.with(
   title: [LaTeX Standard/Base Class/Template for Typst and Authoring],

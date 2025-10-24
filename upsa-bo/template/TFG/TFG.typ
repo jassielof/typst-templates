@@ -9,11 +9,19 @@
   modalidad: [Proyecto de Grado],
   palabras-clave: ("typst", "typesetting", "system"),
   email: "name@example.com",
-  contenido: outline(target: heading.where(level: 2, outlined: true, supplement: [Capítulo]), title: none),
+  contenido: outline(
+    target: heading.where(
+      level: 2,
+      outlined: true,
+      supplement: [Capítulo],
+    ),
+    title: none,
+  ),
   guía: [Docente Guía],
 )
 
 
+#set heading(offset: 1)
 = Introducción
 == Definiciones
 == Empresa
@@ -30,16 +38,14 @@
 == Pruebas
 = Conclusiones
 
-#heading(numbering: none)[Bibliografía]
 #bibliography(
   "../referencias.yml",
-  // style: "apa",
-  title: none,
+  style: "../Assets/apa.csl",
+  title: [Bibliografía],
   full: true,
 )
 
 #show: anexos
-== CV
-== Carta de Aprobación
-== Presupuesto
-
+= CV
+= Carta de Aprobación
+= Presupuesto

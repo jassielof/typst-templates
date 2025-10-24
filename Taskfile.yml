@@ -1,20 +1,31 @@
 version: "3"
 
-env:
-  KOMA_CLASSES_DIR: "koma-script/ctan/src/"
-  BASE_CLASSES_DIR: "latex-reborn/ctan/src/"
-  ACM_CLASSES_DIR: "acm-suite/ctan/src"
-
 tasks:
   versatile-apa:
-    cmds:
-      - typst compile --root versatile-apa versatile-apa/template/main.typ
-  dev-versatile-apa:
-    cmds:
-      - typst watch --root versatile-apa versatile-apa/template/main.typ
-  dev-report:
-    cmds:
-      - typst watch --root . latex-reborn/template/report.typ
-  get-ctan-classes:
-    cmds:
-      - uv run scripts/latex.py
+    cmd: typst compile --root versatile-apa versatile-apa/template/main.typ
+    watch: true
+    sources:
+      - "versatile-apa/**/*"
+      - exclude: versatile-apa/**/*.pdf
+    generates:
+      - "versatile-apa/template/**/*.pdf"
+  latex-reborn:*:
+    watch: true
+    cmd: typst compile --root latex-reborn latex-reborn/template/{{.LATEX_REBORN_TEMPLATE}}.typ
+    vars:
+      LATEX_REBORN_TEMPLATE: "{{index .MATCH 0}}"
+    sources:
+      - latex-reborn/**/*
+      - exclude: latex-reborn/**/*.pdf
+    generates:
+      - "latex-reborn/**/*.pdf"
+  upsa-bo:*:
+    watch: true
+    sources:
+      - upsa-bo/**/*
+      - exclude: upsa-bo/**/*.pdf
+    generates:
+      - "upsa-bo/**/*.pdf"
+    cmd: typst compile --root upsa-bo upsa-bo/template/{{.UPSA_TEMPLATE}}/{{.UPSA_TEMPLATE}}.typ
+    vars:
+      UPSA_TEMPLATE: "{{index .MATCH 0}}"

@@ -1,12 +1,4 @@
-#let koma-script(title: [], class: "scrartcl", body) = {
-  if class not in ("scrartcl", "scrreprt", "scrbook") {
-    panic("koma-script: class must be one of 'scrartcl', 'scrreprt', 'scrbook'")
-  }
-
-  body
-}
-
-#show: koma-script.with(title: [KOMA-script])
-
-= Intro
-== Forearm
+#import "classes/scrartcl.typ"
+#import "classes/scrreprt.typ"
+#import "classes/scrbook.typ"
+#import "classes/scrlttr2.typ"

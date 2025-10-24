@@ -1,0 +1,3 @@
+#let template(body) = {
+  body
+}

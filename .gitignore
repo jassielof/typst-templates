@@ -2,6 +2,7 @@
 *.pdf
 !thumbnail.png
 output/
+out/
 universe/
 
 # LaTeX
@@ -37,3 +38,6 @@ universe/
 
 # ACM
 !acm-suite/assets/**/*
+
+# task
+.task

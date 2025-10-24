@@ -1,12 +1,12 @@
 #import "@preview/drafting:0.2.0": *
-#import "utils/showframe.typ": background
-#import "utils/font-sizes.typ": *
-#import "./utils/to-string.typ": *
+#import "@preview/scaffolder:0.2.1": scaffolding
+#import "../utils/font-sizes.typ": *
+#import "../utils/to-string.typ": *
 
 // TODO: Move the function parameters out to this var, so that they can be used in other possible functions.
 #let latex-info = (document-class: "article", font-size: 10pt, paper-size: "us-letter")
 
-#let article(
+#let template(
   title: [Title],
   author: [Author Name],
   date: datetime.today().display("[month repr:long] [day], [year]"),
@@ -44,7 +44,7 @@
     header-ascent: 25pt,
     footer-descent: 30pt - 1em,
     paper: paper-size,
-    background: background(),
+    background: scaffolding(),
     margin: font-size.margin,
     numbering: "1",
   )
@@ -76,7 +76,6 @@
       #text(size: font-size.large, date)
       #v(1fr)
     ]
-
   }
 
   //TODO: Chapters shouldn't be available if the class is article.
@@ -161,12 +160,12 @@
     // TODO: handle two sides
     set page(numbering: "1")
     align(center + horizon)[#block(width: 100%, height: 100%, stroke: 1pt)[
-        #set text(weight: "bold")
-        #text(size: font-size.huge)[#part.supplement #context counter(figure.where(kind: "part")).display("I")]
-        #v(20pt)
-        #text(size: font-size.Huge, part.caption.body)
-        #parbreak()
-      ]]
+      #set text(weight: "bold")
+      #text(size: font-size.huge)[#part.supplement #context counter(figure.where(kind: "part")).display("I")]
+      #v(20pt)
+      #text(size: font-size.Huge, part.caption.body)
+      #parbreak()
+    ]]
   }
 
   body
@@ -184,7 +183,7 @@
 }
 
 // Abstract is from the report class
-#let abstract(body) = { }
+#let abstract(body) = {}
 
 // TODO: None of the sections support short title
 // Part section won't be bookmarked due to it being a figure instead of a heading, unless one could use the heading function and hide its content and move down all the other headings level.
