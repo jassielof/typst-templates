@@ -125,7 +125,7 @@
   set text(
     lang: "en",
     region: "us",
-    font: "Libertinus Serif", // One could use Linux Libertine as specified in the ACM template,  but Libertinus is basically a fork of it with more features and better support.
+    font: "Libertinus Serif", // One could use Linux Libertine as specified in the ACM template, but Libertinus is basically a fork of it with more features and better support.
     size: 9pt,
   )
 

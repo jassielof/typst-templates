@@ -281,17 +281,15 @@
   )
 
   show bibliography: bib-it => {
-    set block(inset: 0in)
     show block: block-it => context {
-      if block-it.body == auto {
+      // if it body is auto or styled()
+      if block-it.body == auto or block-it.body.func() == text(fill: red)[].func() {
         block-it
+        // if its body isn't sequence(), for example: pdf-marker-tag
+      } else if block-it.body.func() != [].func() {
+        par(block-it.body)
       } else {
-        if block-it.body.func() != [].func() {
-          block-it.body
-          parbreak()
-        } else {
-          par(block-it.body)
-        }
+        par(block-it.body)
       }
     }
 
