@@ -1,4 +1,5 @@
 #import "../lib.typ": *
+#import "@preview/orchid:0.1.0"
 
 // Document titles should be formatted in title case (https://capitalizemytitle.com/)
 #let doc-title = [American Psychological Association (APA) Style Template for Typst]
@@ -86,7 +87,7 @@
   // Professional-specific fields
   running-head: [running head],
   author-notes: [
-    #include-orcid([Author Name], "0000-0000-0000-0000")
+    Author Name~#orchid.logo-icon()~#orchid.generate-link("0000-0000-0000-0000", format: "full")
 
     #lorem(50)
   ],

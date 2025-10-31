@@ -1,7 +1,6 @@
 #import "utils/to-string.typ": *
 #import "utils/languages.typ": *
 #import "utils/authoring.typ": *
-#import "utils/orcid.typ": *
 #import "utils/appendix.typ": *
 #import "utils/apa-figure.typ": *
 
