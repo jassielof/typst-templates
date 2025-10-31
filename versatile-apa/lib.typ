@@ -98,12 +98,10 @@
     spacing: double-spacing,
   )
 
-  show link: it => {
-    if type(it.dest) == str {
-      set text(fill: blue)
-      underline(it)
-    } else { it }
-  }
+  // Show-set rules are at least, easier to override compared to show-function
+  // https://github.com/typst/typst/discussions/2883
+  show link: set text(fill: blue)
+  show link: underline // considering one would want to disable underline, current workaround is set its stroke to 0pt
 
   if running-head != none {
     if type(running-head) == content { running-head = to-string(running-head) }
