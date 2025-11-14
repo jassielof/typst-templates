@@ -94,7 +94,7 @@
     numbering: "(1)",
     supplement: [Expresión matemática],
   )
-  
+
   show math.equation: set text(font: fuentes.ecuaciones)
 
   show figure: set figure.caption(position: top)
@@ -341,7 +341,6 @@
     if (counter(figure.where(kind: math.equation)).final().at(0) != 0) {
       outline(title: [Índice de expresiones matemáticas], target: figure.where(kind: math.equation))
     }
-
 
     if (query(heading.where(supplement: [Anexo])).len() != 0) {
       outline(title: [Índice de anexos], target: selector(heading.where(supplement: [Anexo])))
