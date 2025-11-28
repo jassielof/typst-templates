@@ -466,7 +466,7 @@
     outlined: false,
   )
 
-  set bibliography(style: "apa")
+  set bibliography(style: "apa", full: false, title: [Referencias])
 
   show bibliography: set par(
     first-line-indent: 0in,
