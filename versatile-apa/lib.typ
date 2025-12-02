@@ -302,8 +302,11 @@
         #abstract
       ]
 
-      emph[#context get-terms(language).Keywords: ]
-      keywords.map(it => it).join(", ")
+      // Only show keywords if they are provided
+      if keywords != none and keywords != () and keywords != [] {
+        emph[#context get-terms(language).Keywords: ]
+        keywords.map(it => it).join(", ")
+      }
 
       pagebreak()
     }
