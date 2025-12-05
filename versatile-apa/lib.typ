@@ -1,8 +1,22 @@
 #import "utils/to-string.typ": *
 #import "utils/languages.typ": *
 #import "utils/authoring.typ": *
-#import "utils/appendix.typ": *
-#import "utils/apa-figure.typ": *
+#import "utils/appendix.typ": appendix, appendix-outline
+#import "utils/apa-figure.typ": apa-figure
+#import "utils/abstract.typ": abstract-page
+#import "utils/title.typ": title-page
+#import "utils/constants.typ": double-spacing, first-indent-length
+
+
+#let strict = (
+  "quotes": true,
+  "running-head": true,
+  "title-page": true,
+  "font": true,
+  "spacing": true,
+  "headings": true,
+  "indentation": true,
+)
 
 /// The APA 7th edition template for academic and professional documents.
 ///
@@ -58,13 +72,13 @@
   language: "en",
   custom-terms: (:),
   paper-size: "us-letter",
+  // TODO: Add strict mode for APA compliance, defaults to false for more versatility
+  // TODO:Add a possible dictionary-based strict compliance for given parts, such as running head, quotes, fonts.
+  strict: false,
   implicit-introduction-heading: true,
   abstract-as-description: true,
   body,
 ) = {
-  let double-spacing = 1.5em
-  let first-indent-length = 0.5in
-
   context language-terms.update(custom-terms)
   authors = validate-inputs(authors, custom-authors, "author")
   affiliations = validate-inputs(affiliations, custom-affiliations, "affiliation")
@@ -86,6 +100,11 @@
     region: region,
     lang: language,
   )
+
+  show std.title: set text(size: font-size, weight: "bold")
+  show std.title: set block(spacing: double-spacing)
+  show std.title: set align(center)
+  show std.title: set heading(outlined: true, bookmarked: true, level: 1)
 
   set page(margin: 1in, paper: paper-size, numbering: "1", number-align: top + right, header: context {
     upper(running-head)
@@ -110,40 +129,14 @@
     }
   }
 
-  align(center)[
-    #for i in range(4) {
-      [~] + parbreak()
-    }
-
-    #strong(title)
-
-    ~
-
-    #parbreak()
-
-    #print-authors(authors, affiliations, language)
-
-    #print-affiliations(authors, affiliations)
-
-    #course
-
-    #instructor
-
-    #due-date
-
-    #if author-notes != none {
-      v(1fr)
-
-      strong(context get-terms(language).at("Author Note"))
-
-      align(left)[
-        #set par(first-line-indent: first-indent-length)
-        #author-notes
-      ]
-    }
-
-    #pagebreak()
-  ]
+  title-page(
+    authors: authors,
+    affiliations: affiliations,
+    course: course,
+    instructor: instructor,
+    due-date: due-date,
+    author-notes: none,
+  )
 
   show heading: set text(size: font-size)
   show heading: set block(spacing: double-spacing)
@@ -293,28 +286,7 @@
     bib-it
   }
 
-  if (abstract != none) {
-    // Only display the abstract if it's not empty
-    if (abstract != [] and abstract != "") {
-      heading(level: 1, context get-terms(language).Abstract, outlined: false)
-
-      par(first-line-indent: 0in)[
-        #abstract
-      ]
-
-      // Only show keywords if they are provided
-      if keywords != none and keywords != () and keywords != [] {
-        emph[#context get-terms(language).Keywords: ]
-        keywords.map(it => it).join(", ")
-      }
-
-      pagebreak()
-    }
-  }
-
-  if implicit-introduction-heading {
-    heading(level: 1, title)
-  }
+  abstract-page(as-description: abstract-as-description, keywords: keywords, abstract)
 
   body
 }

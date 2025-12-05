@@ -1,11 +1,11 @@
 #import "../lib.typ": *
 #import "@preview/orchid:0.1.0"
 
-// Document titles should be formatted in title case (https://capitalizemytitle.com/)
-#let doc-title = [American Psychological Association (APA) Style Template for Typst]
+#set page(paper: "a4")
 
 #show: versatile-apa.with(
-  title: doc-title,
+  // Document titles should be formatted in title case (https://capitalizemytitle.com/)
+  title: [American Psychological Association (APA) Style Template for Typst],
 
   // authors with different affiliations
   // authors: (
@@ -91,8 +91,6 @@
 
     #lorem(50)
   ],
-  keywords: ("APA", "template", "Typst"),
-  abstract: lorem(100),
 
   // Common fields
   font-family: "Libertinus Serif",
@@ -103,6 +101,8 @@
   implicit-introduction-heading: false,
   abstract-as-description: true,
 )
+
+#abstract-page(lorem(100), keywords: ("APA", "template", "Typst"))
 
 #outline()
 #pagebreak()
@@ -115,7 +115,8 @@
 #outline(target: figure.where(kind: raw), title: [Listings])
 #pagebreak()
 
-= #doc-title // Implicit introduction heading level 1, remove if implicit-introduction-heading is true
+#title() // Implicit introduction heading level 1, remove if implicit-introduction-heading is true
+// = American Psychological Association (APA) Style Template for Typst
 #include "sections/introduction.typ"
 
 #pagebreak()

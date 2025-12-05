@@ -103,7 +103,7 @@
 
   set figure(
     gap: espaciado.interlineado,
-    placement: auto,
+    placement: none,
   )
 
   set figure.caption(separator: parbreak(), position: top)
