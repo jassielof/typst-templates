@@ -1,15 +1,17 @@
-#import "languages.typ": *
+#import "languages.typ": get-terms
 
 #let validate-inputs(data, custom-data, data-type) = {
-  if data != (:) and custom-data != [] {
+  // Check for conflicts, both can't be defined at the same time
+  if data != none and custom-data != none {
     panic(data-type + " and custom-" + data-type + " cannot both be defined.")
   }
 
-  if data == (:) and (custom-data == [] or custom-data == none) {
+  // Check for presence of at least one
+  if (data == (:) or data == none) and (custom-data == [] or custom-data == none or custom-data == "") {
     panic("At least one " + data-type + " must be defined.")
   }
 
-  if data != (:) {
+  if data != (:) and data != none {
     data
   } else {
     custom-data
@@ -86,16 +88,16 @@
     } else if is-multiple-authors-with-different-affiliations(authors, affiliations) {
       enumerate-affiliations(affiliations)
         .map(aff => [
-            #super[#aff.n] #aff.name
-            #parbreak()
-          ])
+          #super[#aff.n] #aff.name
+          #parbreak()
+        ])
         .join()
     } else {
       affiliations
         .map(aff => [
-            #aff.name
-            #parbreak()
-          ])
+          #aff.name
+          #parbreak()
+        ])
         .join()
     }
   } else {

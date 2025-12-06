@@ -8,16 +8,6 @@
 #import "utils/constants.typ": double-spacing, first-indent-length
 
 
-#let strict = (
-  "quotes": true,
-  "running-head": true,
-  "title-page": true,
-  "font": true,
-  "spacing": true,
-  "headings": true,
-  "indentation": true,
-)
-
 /// The APA 7th edition template for academic and professional documents.
 ///
 /// - title (content): The title of your document.
@@ -50,21 +40,6 @@
 /// - body (content): The body of the document.
 /// -> content
 #let versatile-apa(
-  title: [Paper Title],
-  // Authoring fields
-  authors: (:),
-  affiliations: (:),
-  custom-authors: [],
-  custom-affiliations: [],
-  // Student-specific fields
-  course: none,
-  instructor: none,
-  due-date: none,
-  // Professional-specific fields
-  running-head: none,
-  author-notes: none,
-  keywords: (),
-  abstract: none,
   // Common fields
   font-family: "Libertinus Serif",
   font-size: 12pt,
@@ -75,24 +50,10 @@
   // TODO: Add strict mode for APA compliance, defaults to false for more versatility
   // TODO:Add a possible dictionary-based strict compliance for given parts, such as running head, quotes, fonts.
   strict: false,
-  implicit-introduction-heading: true,
-  abstract-as-description: true,
+  running-head: none,
   body,
 ) = {
   context language-terms.update(custom-terms)
-  authors = validate-inputs(authors, custom-authors, "author")
-  affiliations = validate-inputs(affiliations, custom-affiliations, "affiliation")
-
-  set document(
-    title: title,
-    author: if type(authors) == array {
-      authors.map(it => to-string(it.name))
-    } else {
-      to-string(authors).trim()
-    },
-    description: if abstract-as-description { abstract },
-    keywords: keywords,
-  )
 
   set text(
     size: font-size,
@@ -104,13 +65,18 @@
   show std.title: set text(size: font-size, weight: "bold")
   show std.title: set block(spacing: double-spacing)
   show std.title: set align(center)
-  show std.title: set heading(outlined: true, bookmarked: true, level: 1)
 
-  set page(margin: 1in, paper: paper-size, numbering: "1", number-align: top + right, header: context {
-    upper(running-head)
-    h(1fr)
-    str(here().page())
-  })
+  set page(
+    paper: paper-size,
+    numbering: "1",
+    number-align: top + right,
+    margin: 1in,
+    header: if running-head != none {
+      upper(running-head)
+      h(1fr)
+      context str(here().page())
+    } else { auto },
+  )
 
   set par(
     leading: double-spacing,
@@ -122,21 +88,13 @@
   show link: set text(fill: blue)
   show link: underline // considering one would want to disable underline, current workaround is set its stroke to 0pt
 
-  if running-head != none {
-    if type(running-head) == content { running-head = to-string(running-head) }
-    if running-head.len() > 50 {
-      panic("Running head must be no more than 50 characters, including spaces and punctuation.")
-    }
-  }
-
-  title-page(
-    authors: authors,
-    affiliations: affiliations,
-    course: course,
-    instructor: instructor,
-    due-date: due-date,
-    author-notes: none,
-  )
+  // FIXME: This should be on strict mode only
+  // if running-head != none {
+  //   if type(running-head) == content { running-head = to-string(running-head) }
+  //   if running-head.len() > 50 {
+  //     panic("Running head must be no more than 50 characters, including spaces and punctuation.")
+  //   }
+  // }
 
   show heading: set text(size: font-size)
   show heading: set block(spacing: double-spacing)
@@ -285,8 +243,6 @@
 
     bib-it
   }
-
-  abstract-page(as-description: abstract-as-description, keywords: keywords, abstract)
 
   body
 }

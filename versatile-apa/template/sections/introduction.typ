@@ -1,5 +1,6 @@
-#lorem(100)
+#lorem(200)
 
+= Section
 #lorem(100)
 
 == Subsection
