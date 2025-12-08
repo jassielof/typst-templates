@@ -16,15 +16,8 @@
 
 #let apa-figure(
   body,
-  caption: none,
-  gap: 1.5em,
-  kind: auto,
   numbering: n => apa-figure-numbering(n),
-  outlined: true,
-  placement: auto,
-  scope: "column",
-  alt: none,
-  supplement: auto,
+  ..args,
   note: none,
   specific-note: none,
   probability-note: none,
@@ -44,14 +37,5 @@
       #parbreak()
       #probability-note
     ],
-    caption: caption,
-    gap: gap,
-    kind: kind,
-    alt: alt,
-    numbering: numbering,
-    outlined: outlined,
-    placement: placement,
-    scope: scope,
-    supplement: supplement,
   ) #std.label(label)
 ]
