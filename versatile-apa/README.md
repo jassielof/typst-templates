@@ -4,9 +4,12 @@ A comprehensive Typst template following the official APA 7th Edition style guid
 
 ## Usage
 
+> Until Typst officially supports code documentation for templates and functions, as well as manuals, the template itself will serve as an interactive and practical guide to its features, usage and some APA guidelines.
+
 You can use this template through the Typst Universe page via the `typst` command locally or directly through the Typst Web App.
 
 Alternatively, clone this repository as a git submodule. For detailed instructions, refer to this repository's main README.
+
 
 ### Features
 

@@ -98,9 +98,7 @@
   show math.equation: set text(font: fuentes.ecuaciones)
 
   show figure: set figure.caption(position: top)
-
   show figure: set block(breakable: true, sticky: true)
-
   set figure(
     gap: espaciado.interlineado,
     placement: none,
