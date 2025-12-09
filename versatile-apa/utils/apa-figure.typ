@@ -21,15 +21,14 @@
   note: none,
   specific-note: none,
   probability-note: none,
-  label: "",
-) = context [
-  #figure(
+) = {
+  figure(
     [
       #set par(first-line-indent: 0em)
       #body
       #set align(left)
       #if note != none [
-        _#get-terms(text.lang).Note._
+        #context emph[#get-terms(text.lang).Note.]
         #note
       ]
       #parbreak()
@@ -37,5 +36,7 @@
       #parbreak()
       #probability-note
     ],
-  ) #std.label(label)
-]
+    numbering: numbering,
+    ..args,
+  )
+}

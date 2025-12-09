@@ -68,8 +68,7 @@ Referencing @table:sample-demographic-characteristics.
   specific-note: [
     #super[a] Reflects the number and percentage of participants answering “yes” to this question.],
   caption: [Sociodemographic Characteristics of Participants at Baseline],
-  label: "table:sample-demographic-characteristics",
-)
+) <table:sample-demographic-characteristics>
 
 == Sample Results of Several $t$ Tests Table
 Referencing @table:sample-results-of-several-t-tests.
@@ -107,8 +106,7 @@ Referencing @table:sample-results-of-several-t-tests.
   ),
   note: [For each subject, the logistic function was fit to target fixations separately. The maximum asymptote is the asymptotic degree of looking at the end of the time course of fixations. The crossover point is the point in time the function crosses the midway point between peak and baseline. The slope represents the rate of change in the function measured at the crossover. Mean parameter values for each of the analyses are shown for the 9-year-olds (n = 24) and 16-year-olds (n = 18), as well as the results of t tests (assuming unequal variance) comparing the parameter estimates between the two ages.],
   caption: [Results of Curve-Fitting Analysis Examining the Time Course of Fixations to the Target],
-  label: "table:sample-results-of-several-t-tests",
-)
+) <table:sample-results-of-several-t-tests>
 
 == Sample Correlation Table
 Referencing @table:sample-correlation.
@@ -123,19 +121,7 @@ Referencing @table:sample-correlation.
       center
     },
     columns: (auto, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
-    table.header(
-      [Variable],
-      [_n_],
-      [_M_],
-      [_SD_],
-      [1],
-      [2],
-      [3],
-      [4],
-      [5],
-      [6],
-      [7],
-    ),
+    table.header([Variable], [_n_], [_M_], [_SD_], [1], [2], [3], [4], [5], [6], [7]),
     [1. Internal-external status#super[a]], [3,697], [0.43], [0.49], [-], [-], [-], [-], [-], [-], [-],
     [2. Manager job performance], [2,134], [3.14], [0.62], [-.08\*\*], [-], [-], [-], [-], [-], [-],
     [3. Starting salary#super[b]], [3,697], [1.01], [0.27], [.45\*\*], [-.01], [-], [-], [-], [-], [-],
@@ -143,10 +129,30 @@ Referencing @table:sample-correlation.
     [5. Organizational tenure], [3,697], [6.45], [6.62], [-.29\*\*], [.09\*\*], [.01], [.09\*\*], [-], [-], [-],
     [
       6. Unit service performance#super[c]
-    ], [3,505], [85.00], [6.98], [-.25\*\*], [-.39\*\*], [.24\*\*], [.08\*\*], [.01], [-], [-],
+    ],
+    [3,505],
+    [85.00],
+    [6.98],
+    [-.25\*\*],
+    [-.39\*\*],
+    [.24\*\*],
+    [.08\*\*],
+    [.01],
+    [-],
+    [-],
     [
       7. Unit financial performance#super[c]
-    ], [694], [42.61], [5.86], [.00], [-.03], [.12\*], [-.07], [-.02], [.16\*\*], [-],
+    ],
+    [694],
+    [42.61],
+    [5.86],
+    [.00],
+    [-.03],
+    [.12\*],
+    [-.07],
+    [-.02],
+    [.16\*\*],
+    [-],
     table.hline(),
   ),
   specific-note: [
@@ -158,5 +164,4 @@ Referencing @table:sample-correlation.
   ],
   probability-note: [#super[\*]$p < .05$. #super[\*\*]$p < .01$.],
   caption: [Descriptive Statistics and Correlations for Study Variables],
-  label: "table:sample-correlation",
-)
+) <table:sample-correlation>

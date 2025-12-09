@@ -13,8 +13,7 @@ The template has some support for raw/computer code, but if further customizatio
   ```,
   caption: [Python code block],
   placement: none,
-  label: "fig:code-block",
-)
+) <fig:code-block>
 
 === Non-figure code block
 

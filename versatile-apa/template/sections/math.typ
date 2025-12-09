@@ -7,9 +7,8 @@ Let $a$, $b$, and $c$ be the side lengths of right-angled triangle. Then, we kno
   $ a^2 + b^2 = c^2 $,
   placement: none,
   kind: math.equation,
-  label: "fig:right-angled-triangle",
   caption: "Right-angled triangle",
-)
+) <fig:right-angled-triangle>.
 
 Prove by induction:
 #apa-figure(
@@ -17,17 +16,15 @@ Prove by induction:
   placement: none,
   kind: math.equation,
   caption: "Sum of first n integers",
-  label: "fig:sum-first-n-integers",
-)
+) <fig:sum-first-n-integers>.
 
 We define:
 #apa-figure(
   $ phi.alt := (1 + sqrt(5)) / 2 $,
-  label: "ratio",
   placement: none,
   kind: math.equation,
   caption: "Golden ratio",
-)
+) <ratio>
 
 With @ratio, we get:
 #figure(
@@ -35,4 +32,4 @@ With @ratio, we get:
   placement: none,
   kind: math.equation,
   caption: [Fibonacci number],
-) <fig:fibonacci-number>.
+) <fibonacci-number>.
