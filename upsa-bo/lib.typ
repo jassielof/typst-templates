@@ -92,13 +92,14 @@
 
   set math.equation(
     numbering: "(1)",
-    supplement: [Expresión matemática],
+    supplement: [Formula],
   )
 
   show math.equation: set text(font: fuentes.ecuaciones)
 
   show figure: set figure.caption(position: top)
   show figure: set block(breakable: true, sticky: true)
+  show figure.where(kind: math.equation): set figure(supplement: [Formula])
   set figure(
     gap: espaciado.interlineado,
     placement: none,
@@ -337,7 +338,7 @@
     }
 
     if (counter(figure.where(kind: math.equation)).final().at(0) != 0) {
-      outline(title: [Índice de expresiones matemáticas], target: figure.where(kind: math.equation))
+      outline(title: [Índice de fórmulas], target: figure.where(kind: math.equation))
     }
 
     if (query(heading.where(supplement: [Anexo])).len() != 0) {
