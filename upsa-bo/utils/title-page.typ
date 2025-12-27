@@ -5,6 +5,7 @@
   plan,
   modalidad,
   autor,
+  incluir-guía: false,
   registro-autor,
   guía,
   ubicación,
@@ -56,7 +57,7 @@
 
   v(1fr)
 
-  if guía != [] {
+  if guía != [] and incluir-guía {
     guía
     parbreak()
   }

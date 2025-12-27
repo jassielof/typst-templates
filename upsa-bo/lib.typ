@@ -12,6 +12,7 @@
   registro-autor: [],
   adición: none,
   modalidad: [],
+  incluir-guía: false,
   materia: [],
   guía: none,
   resumen: none,
@@ -98,7 +99,8 @@
   show math.equation: set text(font: fuentes.ecuaciones)
 
   show figure: set figure.caption(position: top)
-  show figure: set block(breakable: true, sticky: true)
+  show figure.where(kind: image): set block(breakable: true, sticky: true)
+  show figure.where(kind: table): set block(breakable: true, sticky: false)
   show figure.where(kind: math.equation): set figure(supplement: [Formula])
   set figure(
     gap: espaciado.interlineado,
@@ -163,6 +165,7 @@
       plan,
       modalidad,
       autor,
+      incluir-guía: incluir-guía,
       registro-autor,
       guía,
       ubicación,
@@ -184,6 +187,7 @@
     autor,
     registro-autor,
     guía,
+    incluir-guía: incluir-guía,
     ubicación,
     fecha,
     portada-externa,
