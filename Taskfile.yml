@@ -29,3 +29,11 @@ tasks:
     cmd: typst compile --root upsa-bo upsa-bo/template/{{.UPSA_TEMPLATE}}/{{.UPSA_TEMPLATE}}.typ
     vars:
       UPSA_TEMPLATE: "{{index .MATCH 0}}"
+  butterick:
+    watch: true
+    sources:
+      - "butterick-resume/**/*.typ"
+    generates:
+      - "butterick-resume/**/*.pdf"
+    cmds:
+      - typst compile --root butterick-resume butterick-resume/template/main.typ

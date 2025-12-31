@@ -1,61 +1,65 @@
 #import "../lib.typ": *
 
-#show: butterick.with(
-  title: [John Doe],
-  subtitle: [
-    Address, City, State
+#show: template
 
-    Phone #h(1em) Email
-  ],
-  typography: (
-    headings: (
-      font: "Libertinus Sans",
-    ),
-    body: (
-      font: "Libertinus Serif",
-      size: 10pt,
-    ),
-  ),
+#set page(
+  footer: {
+    set align(center)
+    set text(font: "Source Sans 3", size: 10pt, tracking: 0.1em)
+    context upper[Argon Résumé --- Page #here().page() of #counter(page).final().first()]
+  },
+  footer-descent: 0.75in,
 )
 
-= education
-#education(
-  institution: "University of Somewhere",
-  period: [2020--24],
+#introduction(
+  name: [Trixie B. Argon],
   details: [
-    - Relevant coursework: Advanced Topics in Computer Science
-    - GPA: 3.8/4.0
+    5419 Hollywood Blvd Ste. C731, Los Angeles CA 90027 \
+    #link("tel:+13235551435")[(323) 555 1435] #link("mailto:trixieargon@gmail.com")
   ],
 )
 
-= business experience
-#experience(
-  role: "Software Engineer Intern",
-  business: "Tech Company",
-  period: [2023],
-  details: [
-    - Developed a web application using React and Node.js
-    - Collaborated with cross-functional teams to deliver high-quality software
-  ],
+= Education
+#two-grid(
+  left: [UCLA Anderson School of Management],
+  right: [2011--13],
 )
+- Cumulative GPA: 3.98
+- Academic interests: real-estate financing, criminal procedure, corporations
+- Henry Murtaugh Award
 
-#experience(
-  role: "Junior Developer",
-  business: "Another Tech Company",
-  period: [2022],
-  details: [
-    - Assisted in the development of internal tools using Python and Flask
-    - Participated in code reviews and contributed to team knowledge sharing
-  ],
+#two-grid(
+  left: [Hartford University],
+  right: [2003--07],
 )
+- B.A. _summa cum laude_, Economics
+- Extensive coursework in Astrophysics, Statistics
+- Van Damme Scholarship
 
-= other work experience
-#experience(
-  role: "Freelance Web Developer",
-  business: "Self-Employed",
-  period: [2021--Present],
-  details: [
-    - Designed and developed websites for small businesses using HTML, CSS, and JavaScript
-    - Managed client relationships and ensured project deadlines were met
-  ],
+= Business experience
+#two-grid(
+  left: [Boxer Bedley & Ball Capital Advisors],
+  right: [2008--11],
 )
+_Equity analyst_
+- Performed independent research on numerous American industries, including:
+- Steelmaking, croquet, semiotics, and butterscotch manufacturing
+- Led company in equities analyzed in two quarters
+
+= Other work experience
+#two-grid(
+  left: [Proximate Cause],
+  right: [2007--08],
+)
+_Assistant to the director_
+- Helped devise fundraising campaigns for this innovative nonprofit
+- Handled lunch orders and general errands
+
+#two-grid(
+  left: [Hot Topic],
+  right: [2004--06],
+)
+_ Retail-sales associate _
+- Top in-store sales associate in seven out of eight quarters
+- Inventory management
+- Training and recruiting
