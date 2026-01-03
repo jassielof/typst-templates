@@ -8,7 +8,7 @@ Let $a$, $b$, and $c$ be the side lengths of right-angled triangle. Then, we kno
   placement: none,
   kind: math.equation,
   caption: "Right-angled triangle",
-) <fig:right-angled-triangle>.
+) <fig:right-angled-triangle>
 
 Prove by induction:
 #apa-figure(
@@ -16,7 +16,7 @@ Prove by induction:
   placement: none,
   kind: math.equation,
   caption: "Sum of first n integers",
-) <fig:sum-first-n-integers>.
+) <fig:sum-first-n-integers>
 
 We define:
 #apa-figure(
@@ -32,4 +32,4 @@ With @ratio, we get:
   placement: none,
   kind: math.equation,
   caption: [Fibonacci number],
-) <fibonacci-number>.
+) <fibonacci-number>
