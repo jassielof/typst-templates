@@ -54,39 +54,30 @@
     return none
   }
 
-  // Handle content/string -> single affiliation
+  // Handle content/string -> single affiliation (no ID)
   if type(affiliations) == content or type(affiliations) == str {
     return (affiliations,)
   }
 
-  // Handle array
-  if type(affiliations) == array {
-    if affiliations.len() == 0 {
+  // Handle dictionary -> convert to internal format with IDs
+  if type(affiliations) == dictionary {
+    if affiliations.keys().len() == 0 {
       return ()
     }
 
-    // Single element -> normalize to single affiliation
-    if affiliations.len() == 1 {
-      let aff = affiliations.at(0)
-      if type(aff) == content or type(aff) == str {
-        return (aff,)
-      }
-      return (aff,)
-    }
-
-    return affiliations
-  }
-
-  // Handle dictionary
-  if type(affiliations) == dictionary {
+    // Single key -> normalize to single affiliation
     if affiliations.keys().len() == 1 {
       let key = affiliations.keys().at(0)
-      return (affiliations.at(key),)
+      return ((id: key, name: affiliations.at(key)),)
     }
-    return affiliations
+
+    // Multiple keys -> convert all to internal format
+    return affiliations.keys().map(key => (id: key, name: affiliations.at(key)))
   }
 
-  return affiliations
+  // Arrays are NO LONGER supported for affiliations
+  // Only dictionary format ("ID": [name]) or simple content/string
+  panic("Affiliations must be a dictionary with format (\"ID\": [name], ...) or a single content/string value")
 }
 
 // Check if all items are simple (content or string)
@@ -148,13 +139,25 @@
 
   // Check if it's complex structure with affiliations
   let first = authors.at(0)
-  if type(first) != dictionary or "affiliations" not in first {
+  if type(first) != dictionary {
     return false
   }
 
   let unique-affiliations = ()
   for author in authors {
-    for aff in author.affiliations {
+    // Skip authors without affiliations
+    if "affiliations" not in author {
+      continue
+    }
+
+    // Normalize to array if single value
+    let author-affs = if type(author.affiliations) == array {
+      author.affiliations
+    } else {
+      (author.affiliations,)
+    }
+
+    for aff in author-affs {
       let aff-id = to-key(aff)
 
       if aff-id not in unique-affiliations {
@@ -172,11 +175,18 @@
   let count = 1
 
   for affiliation in affiliations {
-    if type(affiliation) == dictionary {
+    if type(affiliation) == dictionary and "id" in affiliation {
+      // Already has an ID, just add enumeration
+      let aff-copy = affiliation
+      aff-copy.insert("n", count)
+      result.push(aff-copy)
+    } else if type(affiliation) == dictionary and "name" in affiliation {
+      // Has name but no ID (shouldn't happen with new schema, but handle it)
       let aff-copy = affiliation
       aff-copy.insert("n", count)
       result.push(aff-copy)
     } else {
+      // Simple content/string affiliation without ID
       result.push((name: affiliation, n: count))
     }
     count += 1
@@ -197,15 +207,17 @@
 
   let author-strings = authors.map(author => {
     let name = if type(author) == dictionary { author.name } else { author }
-    let affs = if type(author) == dictionary {
-      // Normalize affiliations to array if it's a single value
-      if type(author.affiliations) == array {
-        author.affiliations
-      } else {
-        (author.affiliations,)
-      }
+
+    // Handle authors without affiliations
+    if type(author) != dictionary or "affiliations" not in author {
+      return name
+    }
+
+    // Normalize affiliations to array if it's a single value
+    let affs = if type(author.affiliations) == array {
+      author.affiliations
     } else {
-      ()
+      (author.affiliations,)
     }
 
     let aff-numbers = affs.map(aff => {
