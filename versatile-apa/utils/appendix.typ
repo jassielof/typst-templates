@@ -9,7 +9,7 @@
   numbering-for-all: false,
   body,
 ) = context {
-  show heading: set heading(supplement: get-terms(text.lang).at(supplement))
+  set heading(supplement: get-terms(text.lang).at(supplement))
   let multiple-level-1 = query(heading.where(level: 1, supplement: [#get-terms(text.lang).at(supplement)])).len() > 1
   let multiple-figures-on-level-1 = query(figure).len() > 1
   show heading.where(level: 1): set heading(numbering: heading-numbering) if multiple-level-1
@@ -56,15 +56,15 @@
 }
 
 #let appendix-outline(
-  depth: none,
-  indent: auto,
-  heading-supplement: "Appendix",
-  title: auto,
-) = context [
-  #outline(
-    title: title,
-    depth: depth,
-    indent: indent,
-    target: heading.where(supplement: [#get-terms(text.lang).at(heading-supplement)]),
+  ..args,
+) = context {
+  let appendices = query(heading.where(level: 1))
+  let appendix-supplement = appendices.last().supplement.text
+  outline(
+    ..args,
+    title: appendix-supplement,
+    target: heading.where(
+      supplement: [#get-terms(text.lang).at(appendix-supplement)],
+    ),
   )
-]
+}
