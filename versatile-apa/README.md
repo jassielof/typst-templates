@@ -18,23 +18,29 @@ This template supports, mainly, both student and professional versions of APA 7t
 - Abstract
 - Headings (levels 1-5, further levels will be formatted as level 5)
 - Raw or computer code blocks (See `codly` package for better code formatting)
-- Mathematical equations
-- References (the template comes with an `apa.csl` file given that Typst has some issues with the indent length)
+- Mathematical equations and expressions.
+- References (the template initializes with a custom APA CSL file given that Typst has some issues with the hanging indent in bibliographies)
 - Quotations (short and block formats based on word count)
+  - Quotations are automatically formatted as block if they have 40 or more words
+  - Otherwise, they are inline.
 - Lists (ordered and unordered)
 - Footnotes
 
 #### Figures
 
-The template provides an APA-style figure (`apa-figure`, which accepts the same parameters as `figure` with an extra `label` parameter) with:
+The template provides an APA-style figure (`apa-figure`, which accepts the same parameters as `figure`) with extra parameters for:
 
 - General notes
 - Specific notes
 - Probability notes
 
+> The footnote markers for specific and probability notes aren't automatic, so one must add them manually.
+
 For appendix figures, use the same `apa-figure`.
 
 #### Language support
+
+The template supports terms translation for the following languages:
 
 - English
 - Spanish
@@ -45,7 +51,9 @@ For appendix figures, use the same `apa-figure`.
 - Dutch
 - Serbian
 
-##### Unsupported languages
+If the user wants to contribute support for more languages, they can contribute to the template, or using the custom terms option in the template.
+
+##### Unsupported languages with custom terms
 
 In the cases where the language is not supported in the template, you can either make a PR or file an issue in the repository, so it can be added and updated in the next template version. Otherwise you can use the `custom-terms` parameter, which expects a dictionary mapping English terms to their translations. For example for Japanese, the expected format is:
 
@@ -68,8 +76,12 @@ The template uses [Typst's built-in fonts](https://typst.app/docs/reference/text
 
 #### Appendices
 
+The general outline is modified to support the appendices numbering. As well as automatic formatting depending on the number of appendices. One can also change the appendix supplement to either Appendix, Annex or Addendum.
+
+Figures numbering is also modified for independent numbering in each appendix.
+
 - Figure appendices with independent numbering
-- Appendices outline
+
 - Smart appendix numbering (automatically disabled for single appendices)
 
 #### Authoring

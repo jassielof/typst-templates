@@ -14,7 +14,7 @@
   region: "us",
   language: "en",
   paper-size: "us-letter",
-  running-head: [running head],
+  running-head: [APA Style Template for Typst],
 )
 
 #title-page(
@@ -24,15 +24,17 @@
   authors: (
     (
       name: [Author Name],
-      affiliations: ("ID-1", "ID-2"),
+      affiliations: (
+        "ID-1",
+        "ID-2",
+      ),
     ),
     (
       name: [Author Name 2],
-      affiliations: "ID-3",
     ),
     (
       name: [Author Name 3],
-      affiliations: "ID-2",
+      affiliations: "ID-4",
     ),
     (
       name: [Author Name 4],
@@ -40,22 +42,10 @@
     ),
   ),
   affiliations: (
-    (
-      id: "ID-1",
-      name: [Affiliation Name],
-    ),
-    (
-      id: "ID-2",
-      name: [Affiliation Name 2],
-    ),
-    (
-      id: "ID-3",
-      name: [Affiliation Name 3],
-    ),
-    (
-      id: "ID-4",
-      name: [Affiliation Name 4],
-    ),
+    "ID-1": [Affiliation Name 1],
+    "ID-2": [Affiliation Name 2],
+    "ID-3": [Affiliation Name 3],
+    "ID-4": [Affiliation Name 4],
   ),
 
   // Student-specific fields
@@ -86,6 +76,7 @@
 #pagebreak()
 #outline(target: figure.where(kind: raw), title: [Listings])
 #pagebreak()
+#appendix-outline()
 
 #title() // Implicit introduction heading level 1, remove if implicit-introduction-heading is true
 // = American Psychological Association (APA) Style Template for Typst
@@ -111,6 +102,6 @@
   title: auto,
 )
 
-#show: appendix
+#show: appendix.with(supplement: "Addendum")
 
 #include "sections/appendix.typ"
