@@ -1,13 +1,10 @@
 #import "languages.typ": get-terms
 #import "authoring.typ": print-affiliations, print-authors
 #import "constants.typ": double-spacing, first-indent-length
-#import "authoring.typ": validate-inputs
 #import "to-string.typ": to-string
 
 #let title-page(
   title: none,
-  custom-authors: none,
-  custom-affiliations: none,
   authors: none,
   affiliations: none,
   course: none,
@@ -15,16 +12,15 @@
   due-date: none,
   author-note: none,
 ) = context {
-  let the-authors = validate-inputs(authors, custom-authors, "author")
-  let the-affiliations = validate-inputs(affiliations, custom-affiliations, "affiliation")
-
   set document(
-    author: if type(the-authors) == array {
-      the-authors.map(it => to-string(it.name))
+    author: if type(authors) == array and authors.len() > 0 and type(authors.at(0)) == dictionary {
+      authors.map(it => to-string[#it.name]).join(", ")
+    } else if type(authors) == array {
+      authors.map(it => to-string[#it]).join(", ")
     } else {
-      to-string[#the-authors].trim()
+      to-string[#authors].trim()
     },
-  ) if the-authors != none
+  ) if authors != none
   set document(
     title: title,
   ) if title != none
@@ -40,9 +36,10 @@
   parbreak()
 
   set align(center)
-  print-authors(the-authors, the-affiliations, text.lang)
+  print-authors(authors, affiliations, text.lang)
   parbreak()
-  print-affiliations(the-authors, the-affiliations)
+  print-affiliations(authors, affiliations)
+  parbreak()
   parbreak()
   course
   parbreak()

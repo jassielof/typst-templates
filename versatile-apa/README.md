@@ -10,7 +10,6 @@ You can use this template through the Typst Universe page via the `typst` comman
 
 Alternatively, clone this repository as a git submodule. For detailed instructions, refer to this repository's main README.
 
-
 ### Features
 
 This template supports, mainly, both student and professional versions of APA 7th Edition papers with:

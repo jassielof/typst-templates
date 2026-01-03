@@ -3,12 +3,14 @@ version: "3"
 tasks:
   versatile-apa:
     cmd: typst compile --root versatile-apa versatile-apa/template/main.typ
+    desc: Versatile APA Template
+    aliases:
+      - apa
     watch: true
     sources:
-      - "versatile-apa/**/*"
-      - exclude: versatile-apa/**/*.pdf
+      - "versatile-apa/**/*.typ"
     generates:
-      - "versatile-apa/template/**/*.pdf"
+      - "versatile-apa/template/main.pdf"
   latex-reborn:*:
     watch: true
     cmd: typst compile --root latex-reborn latex-reborn/template/{{.LATEX_REBORN_TEMPLATE}}.typ

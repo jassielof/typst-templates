@@ -21,8 +21,42 @@
   // Document titles should be formatted in title case (https://capitalizemytitle.com/)
   // title: [Another title],
 
-  custom-authors: "Author Name",
-  custom-affiliations: [Affiliation Department, Affiliation Name],
+  authors: (
+    (
+      name: [Author Name],
+      affiliations: ("ID-1", "ID-2"),
+    ),
+    (
+      name: [Author Name 2],
+      affiliations: ("ID-3", "ID-4"),
+    ),
+    (
+      name: [Author Name 3],
+      affiliations: ("ID-2",),
+    ),
+    (
+      name: [Author Name 4],
+      affiliations: ("ID-1", "ID-3", "ID-4"),
+    ),
+  ),
+  affiliations: (
+    (
+      id: "ID-1",
+      name: [Affiliation Name],
+    ),
+    (
+      id: "ID-2",
+      name: [Affiliation Name 2],
+    ),
+    (
+      id: "ID-3",
+      name: [Affiliation Name 3],
+    ),
+    (
+      id: "ID-4",
+      name: [Affiliation Name 4],
+    ),
+  ),
 
   // Student-specific fields
   course: [Course Code: Course Name],
