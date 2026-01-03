@@ -136,33 +136,7 @@
     "recommendations": [
       "calebfiggers.typst-companion",
       "myriad-dreamin.tinymist",
-      "surv.typst-math"
-    ]
-  },
-  "tasks": {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "Watch Typst Template",
-        "type": "process",
-        "command": "typst",
-        "args": [
-          "watch",
-          "${workspaceFolder}${/}${input:template}${/}template${/}main.typ",
-          "--root",
-          "${workspaceFolder}"
-        ],
-        "detail": "Watch the selected template",
-        "problemMatcher": []
-      }
-    ],
-    "inputs": [
-      {
-        "id": "template",
-        "type": "pickString",
-        "options": ["versatile-apa"],
-        "description": "Select a template to watch"
-      }
+      "surv.typst-math",
     ]
   }
 }

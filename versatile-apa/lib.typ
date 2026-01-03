@@ -7,38 +7,35 @@
 #import "utils/title.typ": title-page
 #import "utils/constants.typ": double-spacing, first-indent-length
 
+#let apa-quote(body) = {
+  show quote: it => {
+    let quote-text-words = to-string(it.body).split(regex("\\s+")).filter(word => word != "").len()
+
+    if quote-text-words < 40 {
+      ["#it.body" ]
+
+      if (type(it.attribution) == label) {
+        cite(it.attribution)
+      } else if (
+        type(it.attribution) == str or type(it.attribution) == content
+      ) {
+        it.attribution
+      }
+    } else {
+      block(inset: (left: 0.5in))[
+        #set par(first-line-indent: 0.5in)
+        #it.body
+        #if (type(it.attribution) == label) {
+          cite(it.attribution)
+        } else if (type(it.attribution) == str or type(it.attribution) == content) {
+          it.attribution
+        }
+      ]
+    }
+  }
+}
 
 /// The APA 7th edition template for academic and professional documents.
-///
-/// - title (content): The title of your document.
-/// - authors (dictionary): The authors of the document.
-///   - For each author you must specify their name and their affiliations.
-/// - affiliations (dictionary): The affiliations of the authors.
-///   - For each affiliation you must specify its ID and its name.
-/// - custom-authors (content): The custom authors of the document.
-///   - You can manually specify the authors of the document.
-/// - custom-affiliations (content): The custom affiliations of the document.
-///   - You can manually specify the affiliations of the document.
-/// - course (content): The academic course for the document.
-/// - instructor (content): The instructor for the document.
-/// - due-date (content): The due date for the document.
-/// - running-head (content): The running head for the document.
-/// - author-notes (): The author notes for the document.
-/// - keywords (array | str): The keywords for the document metadata and abstract.
-/// - abstract (content): The abstract of the document.
-/// - journal (bool): Whether to use journal format.
-/// - font-family (): The font family for the document. APA 7th edition recommended fonts are:
-///   - Sans Serif fonts such as 11-point Calibri, 11-point Arial, or 10-point Lucida Sans Unicode
-///   - Serif fonts such as 12-point Times New Roman, 11-point Georgia, or   10-point Computer Modern (LaTeX)
-/// - font-size (length): The font size for the document.
-///   - APA 7th edition recommends a 10-12 point font size.
-/// - region (str): The region for the document (e.g., "us", "uk", "au").
-/// - language (str): The language for the document (e.g., "en", "es", "fr").
-/// - paper-size (str): The paper size for the document (e.g., "us-letter", "a4").
-/// - implicit-introduction-heading (bool): Wether to include the paper title at the top of the first page of the text, which acts as a de facto Level 1 heading.
-/// - abstract-as-description (bool): Whether to use the abstract as the document description.
-/// - body (content): The body of the document.
-/// -> content
 #let versatile-apa(
   // Common fields
   font-family: "Libertinus Serif",
