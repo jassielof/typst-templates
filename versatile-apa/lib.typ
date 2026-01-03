@@ -7,34 +7,6 @@
 #import "utils/title.typ": title-page
 #import "utils/constants.typ": double-spacing, first-indent-length
 
-#let apa-quote(body) = {
-  show quote: it => {
-    let quote-text-words = to-string(it.body).split(regex("\\s+")).filter(word => word != "").len()
-
-    if quote-text-words < 40 {
-      ["#it.body" ]
-
-      if (type(it.attribution) == label) {
-        cite(it.attribution)
-      } else if (
-        type(it.attribution) == str or type(it.attribution) == content
-      ) {
-        it.attribution
-      }
-    } else {
-      block(inset: (left: 0.5in))[
-        #set par(first-line-indent: 0.5in)
-        #it.body
-        #if (type(it.attribution) == label) {
-          cite(it.attribution)
-        } else if (type(it.attribution) == str or type(it.attribution) == content) {
-          it.attribution
-        }
-      ]
-    }
-  }
-}
-
 /// The APA 7th edition template for academic and professional documents.
 #let versatile-apa(
   // Common fields
@@ -86,12 +58,12 @@
   show link: underline // considering one would want to disable underline, current workaround is set its stroke to 0pt
 
   // FIXME: This should be on strict mode only
-  // if running-head != none {
-  //   if type(running-head) == content { running-head = to-string(running-head) }
-  //   if running-head.len() > 50 {
-  //     panic("Running head must be no more than 50 characters, including spaces and punctuation.")
-  //   }
-  // }
+  if running-head != none {
+    if type(running-head) == content { running-head = to-string(running-head) }
+    if running-head.len() > 50 {
+      panic("Running head must be no more than 50 characters, including spaces and punctuation.")
+    }
+  }
 
   show heading: set text(size: font-size)
   show heading: set block(spacing: double-spacing)
@@ -179,6 +151,7 @@
   show quote: it => {
     let quote-text-words = to-string(it.body).split(regex("\\s+")).filter(word => word != "").len()
 
+    // https://apastyle.apa.org/style-grammar-guidelines/citations/quotations
     if quote-text-words < 40 {
       ["#it.body" ]
 
