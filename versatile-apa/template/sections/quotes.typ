@@ -1,8 +1,6 @@
 = Quotation
 == Short Quotation (fewer than 40 words)
-Effective teams can be difficult to describe because #quote(
-  attribution: [(Ervin et al., 2018, p. 470)],
-)[high performance along one domain does not translate to high performance along another]
+Effective teams can be difficult to describe because #quote(attribution: [(Ervin et al., 2018, p. 470)])[high performance along one domain does not translate to high performance along another]
 
 == Long Quotation (40 words or more)
 === Block quotation with parenthetical citation
