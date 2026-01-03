@@ -74,12 +74,17 @@ The template uses [Typst's built-in fonts](https://typst.app/docs/reference/text
 
 #### Authoring
 
-- Automatic footnote numbering for author affiliations
-  - Or you can simply use `custom-authors` or `custom-affiliations` which expects `content` instead of `dict`
+- Automatic footnote numbering for author affiliations (with a schema)
 - Author notes
 - ORCID integration
 
-##### Authors and affiliations dictionary schema
+##### Authoring and affiliations
+
+If your authors and affiliations are simple enough or you want to format it yourself, both authors and affiliations accept content and strings.
+
+Also, they can accept an array of contents or strings to format it.
+
+Depending on the complexity of the authors and affiliations, you can also use the following schema for automatic formatting.
 
 Authors and affiliations dictionaries expect the following schema (both expecting an array of dictionaries).
 
@@ -109,6 +114,14 @@ For affiliations, is an array of dictionaries, where each dictionary has an `id`
   (
     id: "ID-2",
     name: [Affiliation Name 2]
+  ),
+  (
+    id: "ID-3",
+    name: [Affiliation Name 3]
+  ),
+  (
+    id: "ID-4",
+    name: [Affiliation Name 4]
   )
 )
 ```

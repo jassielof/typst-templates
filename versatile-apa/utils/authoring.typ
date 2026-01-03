@@ -197,7 +197,16 @@
 
   let author-strings = authors.map(author => {
     let name = if type(author) == dictionary { author.name } else { author }
-    let affs = if type(author) == dictionary { author.affiliations } else { () }
+    let affs = if type(author) == dictionary {
+      // Normalize affiliations to array if it's a single value
+      if type(author.affiliations) == array {
+        author.affiliations
+      } else {
+        (author.affiliations,)
+      }
+    } else {
+      ()
+    }
 
     let aff-numbers = affs.map(aff => {
       let key = to-key(aff)

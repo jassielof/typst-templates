@@ -28,11 +28,11 @@
     ),
     (
       name: [Author Name 2],
-      affiliations: ("ID-3", "ID-4"),
+      affiliations: "ID-3",
     ),
     (
       name: [Author Name 3],
-      affiliations: ("ID-2",),
+      affiliations: "ID-2",
     ),
     (
       name: [Author Name 4],
