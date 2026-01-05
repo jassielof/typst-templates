@@ -76,8 +76,25 @@
   cc: [Copyright held by the owner/author(s).],
 )
 
-#let permission-keys = permissions.keys()
-#let owner-keys = owner.keys()
+#let owner-keys = {
+  let result = (:)
+
+  for key in owner.keys() {
+    result.insert(key, key)
+  }
+
+  result
+}
+
+#let permission-keys = {
+  let result = (:)
+
+  for key in permissions.keys() {
+    result.insert(key, key)
+  }
+
+  result
+}
 
 #let processed(
   journal: none,

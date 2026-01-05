@@ -1,5 +1,10 @@
 #import "formats/small.typ"
 #import "formats/manuscript.typ"
+#import "formats/cover-page.typ"
+
+#import "formats/utils/journals.typ": journal-keys as journals
+#import "formats/utils/copyright.typ": owner-keys as owners, permission-keys as permissions
+
 #import "@preview/scaffolder:0.2.1": scaffolding
 
 #let acm-formats = (

@@ -469,4 +469,17 @@
   ),
 )
 
-#let journal-keys = journals.keys()
+#let journal-keys = {
+  let result = (:)
+
+  for key in journals.keys() {
+    result.insert(key, key)
+  }
+
+  result
+}
+
+#let get-journal(id) = {
+  let the-journal = journals.at(id)
+  return the-journal
+}

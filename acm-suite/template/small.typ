@@ -4,9 +4,9 @@
 #show: acm-suite.small.template.with(
   title: [The Name of the Title Is Hope],
   keywords: ("Do", "Not", "Use", "This", "Code", "Put", "the", "Correct", "Terms", "for", "Your", "Paper"),
-  journal: "JACM",
+  journal: acm-suite.journals.JACM,
   volume: 37,
-  copyright: "acm-licensed",
+  copyright: acm-suite.permissions.acm-licensed,
   ccs: xml("assets/ccs.xml"),
   short-authors: [Trovato et al.],
   article: 111,
