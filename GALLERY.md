@@ -4,13 +4,21 @@
 
 ![Versatile APA Thumbnail](versatile-apa/thumbnail.png)
 
+### Professional
+
+### Student
+
 ## ACM Suite (sig-conf)
 
 ![ACM Suite Thumbnail](acm-suite/thumbnail.png)
 
-## UPSA Bolivia (Proyecto de Grado)
+## Universidad Privada de Santa Cruz de la Sierra (Bolivia) (Proyecto de Grado)
+
+### Trabajo final de grado: Proyecto de grado, facultad de ingeniería
 
 ![UPSA Bolivia Thumbnail (Proyecto de Grado)](upsa-bo/thumbnail.png)
+
+### Estudio de factibilidad
 
 ## LaTeX Standard Classes (Report)
 

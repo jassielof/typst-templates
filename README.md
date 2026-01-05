@@ -1,6 +1,6 @@
 # Collection of Typst Templates
 
-All templates in this repository are made by me under my free time, and licensed under the MIT License.
+All templates in this repository are made by me under my free time, and licensed under the [MIT License](LICENSE.txt), unless specified otherwise in its respective folder or Typst manifest.
 
 ## Templates
 
@@ -13,6 +13,10 @@ This repository is a collection of Typst templates for various purposes, check e
   - [LaTeX Letter](latex-letter) (WIP): LaTeX standard letter class.
 - [KOMA-Script](koma-script) (WIP): KOMA-Script classes port to Typst (article/report/book).
 - [Butterick's Résumé](butterick-resume): Résumé template based on Matthew Butterick's résumé guide in *Practical Typography*.
+
+### Gallery
+
+To see a thumbnail preview of each template, check the [Template Gallery](GALLERY.md).
 
 ## Usage
 
