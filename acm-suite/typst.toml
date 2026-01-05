@@ -20,5 +20,5 @@ exclude = ["*.pdf", "!assets/**/*.pdf", "reference"]
 
 [template]
 path = "template"
-entrypoint = "sig-conf.typ"
+entrypoint = "manuscript.typ"
 thumbnail = "thumbnail.png"

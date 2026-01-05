@@ -1,4 +1,5 @@
 #import "formats/small.typ"
+#import "formats/manuscript.typ"
 #import "@preview/scaffolder:0.2.1": scaffolding
 
 #let acm-formats = (
