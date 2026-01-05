@@ -1,0 +1,13 @@
+#let acm-copyright = []
+#let acm-licensed = []
+#let rights-retained = []
+#let us-gov = []
+#let us-gov-mixed = []
+#let ca-gov = []
+#let ca-gov-mixed = []
+#let licensed-us-gov-mixed = []
+#let licensed-ca-gov = []
+#let licensed-ca-gov-mixed = []
+#let other-gov = []
+#let licensed-other-gov = []
+#let iw3

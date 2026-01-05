@@ -1,0 +1,32 @@
+<ccs2012>
+    <concept>
+        <concept_id>10010583</concept_id>
+        <concept_desc>Hardware</concept_desc>
+        <concept_significance>500</concept_significance>
+    </concept>
+    <concept>
+        <concept_id>10010583.10010750.10010751.10010754</concept_id>
+        <concept_desc>Hardware~Failure recovery, maintenance and self-repair</concept_desc>
+        <concept_significance>300</concept_significance>
+    </concept>
+    <concept>
+        <concept_id>10010583.10010584.10010587</concept_id>
+        <concept_desc>Hardware~PCB design and layout</concept_desc>
+        <concept_significance>100</concept_significance>
+    </concept>
+    <concept>
+        <concept_id>10003752.10003766</concept_id>
+        <concept_desc>Theory of computation~Formal languages and automata theory</concept_desc>
+        <concept_significance>500</concept_significance>
+    </concept>
+    <concept>
+        <concept_id>10003752.10003790</concept_id>
+        <concept_desc>Theory of computation~Logic</concept_desc>
+        <concept_significance>300</concept_significance>
+    </concept>
+    <concept>
+        <concept_id>10003752.10003790.10003792</concept_id>
+        <concept_desc>Theory of computation~Proof theory</concept_desc>
+        <concept_significance>100</concept_significance>
+    </concept>
+</ccs2012>
