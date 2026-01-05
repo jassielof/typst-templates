@@ -1,9 +1,8 @@
 /// Process ACM CCS XML, the content must be a parsed XML structure
 #let process-ccs(ccs) = {
-  // Extract concepts from parsed XML structure
+  // FIXME: The CCS main concept seems to be missing sometimes or at least omitted if it's repeated.
   let concepts = ()
 
-  // Navigate through the parsed structure
   for root in ccs {
     if type(root) == dictionary and root.at("tag", default: none) == "ccs2012" {
       // Process children of ccs2012

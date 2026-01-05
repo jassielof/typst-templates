@@ -34,17 +34,21 @@
       // the page with the title shouldn't have a header (usually the first one)
       let current-page = here().position().page
       let the-page = [#article:#current-page]
+      set grid(inset: 0in, columns: (1fr, auto))
+      show grid: set block(spacing: 0in, inset: 0in, outset: 0in)
 
       if current-page == 1 {
         return
       } else if calc.even(current-page) {
-        the-page
-        h(1fr)
-        short-authors
+        grid(
+          the-page,
+          short-authors,
+        )
       } else {
-        title
-        h(1fr)
-        the-page
+        grid(
+          title,
+          the-page,
+        )
       }
     },
     footer: context {
@@ -77,9 +81,7 @@
     ]
   }
   thanks(line(length: 100%, stroke: 0.5pt))
-  thanks[
-    Authors' Contact Information: #print-contact-info(authors, affiliations)
-  ]
+  thanks[Authors' Contact Information: #print-contact-info(authors, affiliations)]
   thanks(line(length: 100%, stroke: 0.5pt))
   thanks[Permission to...]
 
