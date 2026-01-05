@@ -2,9 +2,11 @@
 #import "utils/authoring.typ": print-acm-authors, print-contact-info
 #import "utils/ccs.typ": process-ccs
 #import "utils/thanks.typ": thanks
+#import "utils/copyright.typ": processed
 
 #let template(
   title: none,
+  copyright: none,
   volume: none,
   journal: none,
   ccs: none,
@@ -15,7 +17,6 @@
   affiliations: none,
   year: none,
   doi: none,
-  copyright: none,
   copyright-year: none,
   keywords: none,
   abstract: none,
@@ -28,6 +29,16 @@
   show std.title: set text(font: "Libertinus Sans")
   set text(font: "Libertinus Serif")
 
+  let copyright-notice = processed(
+    copyright: copyright,
+    year: copyright-year,
+    journal: journal,
+    volume: volume,
+    number: number,
+    article: article,
+    month: month,
+    doi: doi,
+  )
 
   set page(
     header: context {
@@ -80,10 +91,11 @@
       }
     ]
   }
+
   thanks(line(length: 100%, stroke: 0.5pt))
   thanks[Authors' Contact Information: #print-contact-info(authors, affiliations)]
   thanks(line(length: 100%, stroke: 0.5pt))
-  thanks[Permission to...]
+  thanks(copyright-notice)
 
   abstract
   parbreak()

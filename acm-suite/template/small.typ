@@ -3,11 +3,15 @@
 #show: acm-suite.small.template.with(
   title: [The Name of the Title Is Hope],
   keywords: ("Do", "Not", "Use", "This", "Code", "Put", "the", "Correct", "Terms", "for", "Your", "Paper"),
-  journal: "J. ACM",
+  journal: "JACM",
   volume: 37,
-  copyright: "ACM licensed",
+  copyright: "acm-licensed",
   ccs: xml("assets/ccs.xml"),
   short-authors: [Trovato et al.],
+  article: 111,
+  doi: "XXXXXXX.XXXXXXX",
+  month: 8,
+  year: 2018,
   copyright-year: 2018,
   number: 4,
   authors: (
@@ -98,12 +102,7 @@
       country: [USA],
     ),
   ),
-  article: 111,
-  month: 8,
-  year: 2018,
-  abstract: [  A clear and well-documented LaTeX document is presented as an article formatted for publication by ACM in a conference proceedings or journal publication. Based on the ``acmart'' document class, this article presents and explains many of the common variations, as well as many of the formatting elements an author may use in the preparation of the documentation of their work.
-  ],
-  doi: "XXXXXXX.XXXXXXX",
+  abstract: [A clear and well-documented LaTeX document is presented as an article formatted for publication by ACM in a conference proceedings or journal publication. Based on the ``acmart'' document class, this article presents and explains many of the common variations, as well as many of the formatting elements an author may use in the preparation of the documentation of their work.],
 )
 
 = Introduction
