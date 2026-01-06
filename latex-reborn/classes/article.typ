@@ -58,7 +58,8 @@
   )
 
   set text(
-    size: font-size.normalsize,
+    // FIXME: dict doesnt have normalsize
+    // size: font-size.normalsize,
     font: "CMU Serif",
   )
 

@@ -2,40 +2,63 @@ version: "3"
 
 tasks:
   versatile-apa:
-    cmd: typst compile --root versatile-apa versatile-apa/template/main.typ
+    dir: versatile-apa
+    cmd: typst compile --root . template/main.typ
     desc: Versatile APA Template
     aliases:
       - apa
     watch: true
     sources:
-      - "versatile-apa/**/*.typ"
+      - "**/*.typ"
     generates:
-      - "versatile-apa/template/main.pdf"
-  latex-reborn:*:
-    watch: true
-    cmd: typst compile --root latex-reborn latex-reborn/template/{{.LATEX_REBORN_TEMPLATE}}.typ
-    vars:
-      LATEX_REBORN_TEMPLATE: "{{index .MATCH 0}}"
-    sources:
-      - latex-reborn/**/*
-      - exclude: latex-reborn/**/*.pdf
-    generates:
-      - "latex-reborn/**/*.pdf"
-  upsa-bo:*:
-    watch: true
-    sources:
-      - upsa-bo/**/*
-      - exclude: upsa-bo/**/*.pdf
-    generates:
-      - "upsa-bo/**/*.pdf"
-    cmd: typst compile --root upsa-bo upsa-bo/template/{{.UPSA_TEMPLATE}}/{{.UPSA_TEMPLATE}}.typ
-    vars:
-      UPSA_TEMPLATE: "{{index .MATCH 0}}"
-  butterick:
-    watch: true
-    sources:
-      - "butterick-resume/**/*.typ"
-    generates:
-      - "butterick-resume/**/*.pdf"
+      - "template/*.pdf"
+  latex-reborn:
+    aliases:
+      - latex
+    # watch: true
+    dir: latex-reborn
     cmds:
-      - typst compile --root butterick-resume butterick-resume/template/main.typ
+      - for: ["report", "article", "book", "letter"]
+        cmd: typst compile --root . template/{{.ITEM}}.typ
+    sources:
+      - "**/*.typ"
+    generates:
+      - "template/*.pdf"
+  acm-suite:
+    aliases:
+      - acm
+    dir: acm-suite
+    cmds:
+      - for:
+          [
+            "small",
+            "large",
+            "manuscript",
+            "sigpl",
+            "sig-conf",
+            "tog",
+            "cover-page",
+            "engage-cs-edu",
+          ]
+        cmd: typst compile --root . template/{{.ITEM}}.typ
+  upsa-bo:
+    dir: upsa-bo
+    aliases:
+      - upsa
+    # watch: true
+    sources:
+      - "**/*.typ"
+    generates:
+      - "template/*.pdf"
+    cmds:
+      - for: ["Estudio de Factibilidad", "TFG"]
+        cmd: typst compile --root . "template/{{.ITEM}}/{{.ITEM}}.typ"
+  butterick:
+    dir: butterick-resume
+    watch: true
+    sources:
+      - "**/*.typ"
+    generates:
+      - "template/*.pdf"
+    cmds:
+      - typst compile --root . template/main.typ

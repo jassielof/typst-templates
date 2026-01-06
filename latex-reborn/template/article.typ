@@ -1,13 +1,15 @@
-#import "../lib.typ"
+#import "../lib.typ": article
 
-#show: article.with(
-  title: [LaTeX Standard/Base Class/Template for Typst and Authoring],
-  paper-size: "a4",
-  author: [Author Name],
-  make-title: true,
+#show: (
+  article.template.with(
+    title: [LaTeX Standard/Base Class/Template for Typst and Authoring],
+    paper-size: "a4",
+    author: [Author Name],
+    make-title: true,
+  )
 )
 
-#table-of-contents()
+#article.table-of-contents()
 #pagebreak()
 
 #for s in range(1, 6) [

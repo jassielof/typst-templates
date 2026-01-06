@@ -9,7 +9,7 @@
   autor: [Nombre Apellido],
   facultad: [FAI: Facultad de Ingeniería],
   carrera: [Ingeniería de Sistemas],
-  abstracto: lorem(50),
+  // abstracto: lorem(50),
   resumen-ejecutivo: lorem(50),
 )
 
