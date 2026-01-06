@@ -146,4 +146,8 @@ For affiliations, is an array of dictionaries, where each dictionary has an `id`
 
 ## License
 
-This package is licensed under the MIT License. See the repository for complete license information.
+This template is licensed under the Apache 2.0 license. See the repository for complete license information.
+
+### Previous versions MIT-0 license issue
+
+Previous to version 7.2.0, the manifest stated MIT-0 (no attribution) which wasn't the one intended, as the template README stated MIT, thus, to cause no confusion or problems, all versions below from 7.2.0 are considered to be licensed under either MIT or MIT-0.

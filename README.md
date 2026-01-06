@@ -1,6 +1,6 @@
 # Collection of Typst Templates
 
-All templates in this repository are made by me under my free time, and licensed under the [MIT License](LICENSE.txt), unless specified otherwise in its respective folder or Typst manifest.
+All templates in this repository are made by me under my free time.
 
 ## Templates
 
@@ -92,3 +92,9 @@ git submodule update --init --recursive
 
 - For more on submodules, see [Git Tools - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 - If you have questions or issues, feel free to open an issue on this repository!
+
+## License
+
+The repository is licensed under the [Apache 2.0 License](LICENSE.txt).
+
+Any of the templates found here default to the same license, unless specified otherwise in its respective folder, README, LICENSE or Typst manifest
