@@ -5,7 +5,7 @@ compiler = "0.14.0"
 entrypoint = "lib.typ"
 repository = "https://github.com/jassielof/typst-templates"
 authors = ["Jassiel Ovando <@jassielof>"]
-license = "MIT"
+license = "MPL-2.0"
 description = "IEEE templates"
 keywords = [
   "Institute of Electrical and Electronics Engineers",
