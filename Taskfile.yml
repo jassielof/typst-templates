@@ -19,11 +19,12 @@ tasks:
   latex-reborn:
     aliases:
       - latex
-    # watch: true
     dir: latex-reborn
     cmds:
       - for: ["report", "article", "book", "letter"]
         cmd: typst compile --root . template/{{.ITEM}}.typ
+      - for: ["report", "article", "book", "letter"]
+        cmd: typst compile --root . template/{{.ITEM}}.typ thumbnail-{{.ITEM}}.png --pages 1
     sources:
       - "**/*.typ"
     generates:
@@ -44,7 +45,7 @@ tasks:
             "cover-page",
             "engage-cs-edu",
           ]
-        cmd: typst compile --root . template/{{.ITEM}}.typ
+        cmd: typst compile --root . template/{{.ITEM}}.typ # Manuscript is default for thumbnails
   upsa-bo:
     dir: upsa-bo
     aliases:

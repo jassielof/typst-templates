@@ -26,9 +26,23 @@
 
 ### Estudio de factibilidad
 
-## LaTeX Standard Classes (Report)
+## LaTeX Standard Classes
 
-![LaTeX Standard Thumbnail (Report)](latex-reborn/thumbnail.png)
+### Article (default)
+
+![LaTeX Standard Thumbnail (Article)](latex-reborn/thumbnail-article.png)
+
+### Report
+
+![LaTeX Standard Thumbnail (Report)](latex-reborn/thumbnail-report.png)
+
+### Book
+
+![LaTeX Standard Thumbnail (Book)](latex-reborn/thumbnail-book.png)
+
+### Letter
+
+![LaTeX Standard Thumbnail (Letter)](latex-reborn/thumbnail-letter.png)
 
 ## Butterick's Résumé
 
