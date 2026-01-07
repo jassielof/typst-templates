@@ -239,11 +239,21 @@
       columns: 2,
       stroke: 1pt,
       align: (left + horizon, left),
-      [*Carrera*], carrera,
-      [*Guía*], guía,
-      [*Palabras Clave*], palabras-clave.join(", "),
-      [*Correo Electrónico*], link("mailto:" + email),
-      [*Fecha*], to-string[#fecha],
+      ..if (carrera != none) {
+        ([*Carrera*], carrera)
+      },
+      ..if (guía != none) {
+        ([*Guía*], guía)
+      },
+      ..if (palabras-clave != none) {
+        ([*Palabras Clave*], palabras-clave.join(", "))
+      },
+      ..if (email != none) {
+        ([*Correo Electrónico*], link("mailto:" + email))
+      },
+      ..if (fecha != none) {
+        ([*Fecha*], to-string[#fecha])
+      },
     )
   }
 
