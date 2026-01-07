@@ -19,11 +19,3 @@ La plantilla incluye formato para:
 ## Licencia
 
 Este proyecto está licenciado bajo *Apache License 2.0*, esta solo es aplicada al código de Typst, no al contenido generado por la plantilla ni al logo de la universidad usado.
-
-## Español
-
-La plantilla está principalmente en español, por naturaleza de la universidad.
-
-Por razones de accesibilidad, la plantilla también está disponible en inglés.
-
-The English README is [available here](README.en.md).
