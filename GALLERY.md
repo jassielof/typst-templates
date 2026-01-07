@@ -6,11 +6,17 @@
 
 ### Professional
 
+![Versatile APA Professional Thumbnail](versatile-apa/thumbnail-professional.png)
+
 ### Student
+
+![Versatile APA Student Thumbnail](versatile-apa/thumbnail-student.png)
 
 ## ACM Suite (sig-conf)
 
 ![ACM Suite Thumbnail](acm-suite/thumbnail.png)
+
+### Small
 
 ## Universidad Privada de Santa Cruz de la Sierra (Bolivia) (Proyecto de Grado)
 

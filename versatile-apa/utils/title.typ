@@ -48,7 +48,7 @@
   due-date
 
   if author-note == none {
-    pagebreak()
+    pagebreak(weak: true)
     return
   }
 
@@ -59,5 +59,5 @@
   set par(first-line-indent: first-indent-length)
   author-note
 
-  pagebreak()
+  pagebreak(weak: true)
 }

@@ -3,15 +3,19 @@ version: "3"
 tasks:
   versatile-apa:
     dir: versatile-apa
-    cmd: typst compile --root . template/main.typ
+    cmds:
+      - typst compile --root . template/main.typ
+      - typst compile --root . template/main.typ thumbnail.png --pages 1
+      - typst compile --root . template/student.typ thumbnail-student.png
+      - typst compile --root . template/professional.typ thumbnail-professional.png
     desc: Versatile APA Template
     aliases:
       - apa
-    watch: true
     sources:
       - "**/*.typ"
     generates:
       - "template/*.pdf"
+      - "*.png"
   latex-reborn:
     aliases:
       - latex
