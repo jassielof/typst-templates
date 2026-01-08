@@ -13,7 +13,7 @@
 ) = {
   set page(
     paper: "us-letter",
-    margin: (x: 1.5in, y: 1.5in),
+    margin: 1.5in,
   )
 
   set text(
@@ -54,7 +54,11 @@
 }
 
 #let introduction(name: none, details: none) = context {
-  set document(title: name, author: name.text, description: details)
+  set document(
+    title: name,
+    author: if (type(name) == content) { name.text } else if (type(name) == string) { name } else { () },
+    description: details,
+  )
   set align(center)
   set par(justify: true, spacing: 1em)
   show text: upper

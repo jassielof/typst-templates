@@ -60,10 +60,11 @@ tasks:
         cmd: typst compile --root . "template/{{.ITEM}}/{{.ITEM}}.typ"
   butterick:
     dir: butterick-resume
-    watch: true
     sources:
       - "**/*.typ"
     generates:
       - "template/*.pdf"
+      - "*.png"
     cmds:
       - typst compile --root . template/main.typ
+      - typst compile --root . template/main.typ thumbnail.png --pages 1
