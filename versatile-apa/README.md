@@ -53,7 +53,7 @@ The template supports terms translation for the following languages:
 
 If the user wants to contribute support for more languages, they can contribute to the template, or using the custom terms option in the template.
 
-##### Unsupported languages with custom terms
+##### Unsupported languages and custom terms
 
 In the cases where the language is not supported in the template, you can either make a PR or file an issue in the repository, so it can be added and updated in the next template version. Otherwise you can use the `custom-terms` parameter, which expects a dictionary mapping English terms to their translations. For example for Japanese, the expected format is:
 
@@ -64,15 +64,26 @@ In the cases where the language is not supported in the template, you can either
   "Abstract": "要旨",
   "Keywords": "キーワード",
   "Appendix": "付録",
-  "Annex": "付録",
-  "Addendum": "補遺",
   "Note": "注",
+)
+```
+
+This is also useful for overriding specific terms in supported languages. Such as:
+
+```typ
+#let custom-terms: (
+  "and": "&",
+  "Appendix": "Anexo",
 )
 ```
 
 #### Fonts
 
-The template uses [Typst's built-in fonts](https://typst.app/docs/reference/text/text/#parameters-font) by default to not cause `unknown font family` errors, [check APA Style suggested fonts](https://apastyle.apa.org/style-grammar-guidelines/paper-format/font) to download and set them yourself.
+The template uses [Typst's built-in fonts](https://typst.app/docs/reference/text/text/#parameters-font) by default to not cause any `unknown font family` errors, [check APA Style suggested fonts](https://apastyle.apa.org/style-grammar-guidelines/paper-format/font) to download and set them yourself.
+
+#### Bibliography
+
+The template bundles a custom APA CSL file to avoid issues with the hanging indent in Typst bibliographies (until it's fixed in Typst), and other issues (such as single year with trailing comma).
 
 #### Appendices
 
