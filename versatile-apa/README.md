@@ -115,13 +115,25 @@ For authors, is an array of dictionaries, where each dictionary has a `name` fie
 
 ```typ
 #let authors = (
-  (
-    name: [Author Name],
-    affiliations: ("ID-1", "ID-2")
-  ),
-  (
-    name: [Author Name 2],
-    affiliations: ("ID-3", "ID-4")
+  authors: (
+    (
+      name: [Author Name],
+      affiliations: (
+        "ID-1",
+        "ID-2",
+      ),
+    ),
+    (
+      name: [Author Name 2],
+    ),
+    (
+      name: [Author Name 3],
+      affiliations: "ID-4",
+    ),
+    (
+      name: [Author Name 4],
+      affiliations: ("ID-1", "ID-3", "ID-4"),
+    ),
   ),
 )
 ```
@@ -130,22 +142,12 @@ For affiliations, is an array of dictionaries, where each dictionary has an `id`
 
 ```typ
 #let affiliations = (
-  (
-    id: "ID-1",
-    name: [Affiliation Name]
+  affiliations: (
+    "ID-1": [Affiliation Name 1],
+    "ID-2": [Affiliation Name 2],
+    "ID-3": [Affiliation Name 3],
+    "ID-4": [Affiliation Name 4],
   ),
-  (
-    id: "ID-2",
-    name: [Affiliation Name 2]
-  ),
-  (
-    id: "ID-3",
-    name: [Affiliation Name 3]
-  ),
-  (
-    id: "ID-4",
-    name: [Affiliation Name 4]
-  )
 )
 ```
 
