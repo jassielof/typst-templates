@@ -1,6 +1,6 @@
-#import "utils/to-string.typ": *
-#import "utils/languages.typ": *
-#import "utils/authoring.typ": *
+#import "utils/to-string.typ": to-string
+#import "utils/languages.typ": get-terms, language-terms
+#import "utils/authoring.typ": print-affiliations, print-authors
 #import "utils/appendix.typ": appendix, appendix-outline
 #import "utils/apa-figure.typ": apa-figure
 #import "utils/abstract.typ": abstract-page
@@ -10,16 +10,8 @@
 
 /// The APA 7th edition template for academic and professional documents.
 #let versatile-apa(
-  // Common fields
-  font-family: "Libertinus Serif",
   font-size: 12pt,
-  region: "us",
-  language: "en",
   custom-terms: (:),
-  paper-size: "us-letter",
-  // TODO: Add strict mode for APA compliance, defaults to false for more versatility
-  // TODO:Add a possible dictionary-based strict compliance for given parts, such as running head, quotes, fonts.
-  strict: false,
   running-head: none,
   running-head-limit: 50,
   body,
@@ -28,9 +20,6 @@
 
   set text(
     size: font-size,
-    font: font-family,
-    region: region,
-    lang: language,
   )
 
   show std.title: set text(size: font-size, weight: "bold")

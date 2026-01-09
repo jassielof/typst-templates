@@ -1,5 +1,5 @@
-#import "../lib.typ": *
-#import "@preview/orchid:0.1.0"
+#import "../lib.typ": abstract-page, appendix, appendix-outline, title-page, versatile-apa as apa-style
+#import "@preview/orchid:0.1.0": generate-link as orcid-link, logo-icon as orcid-logo
 
 #set document(
   title: [American Psychological Association (APA) Style Template for Typst],
@@ -7,13 +7,8 @@
   description: lorem(200),
 )
 
-#show: versatile-apa.with(
-  // Common fields
-  font-family: "Libertinus Serif",
+#show: apa-style.with(
   font-size: 12pt,
-  region: "us",
-  language: "en",
-  paper-size: "us-letter",
   running-head: [APA Style Template for Typst],
 )
 
@@ -55,7 +50,7 @@
 
   // Professional-specific fields
   author-note: [
-    Author Name~#orchid.logo-icon()~#orchid.generate-link("0000-0000-0000-0000", format: "full")
+    Author Name~#orcid-logo()~#orcid-link("0000-0000-0000-0000", format: "full")
 
     #lorem(50)
   ],
@@ -76,10 +71,9 @@
 #pagebreak()
 #outline(target: figure.where(kind: raw), title: [Listings])
 #pagebreak()
-#appendix-outline()
+#appendix-outline(title: [Appendices])
+#pagebreak()
 
-#title() // Implicit introduction heading level 1, remove if implicit-introduction-heading is true
-// = American Psychological Association (APA) Style Template for Typst
 #include "sections/introduction.typ"
 
 #pagebreak()
@@ -94,14 +88,14 @@
 #pagebreak()
 #include "sections/math.typ"
 
+// https://apastyle.apa.org/style-grammar-guidelines/paper-format/reference-list
 #pagebreak()
 #bibliography(
   "bibliography/ref.yml",
-  style: "csl/apa.csl",
   full: true,
-  title: auto,
+  title: [References],
 )
 
-#show: appendix.with(supplement: "Addendum")
+#show: appendix
 
 #include "sections/appendix.typ"
