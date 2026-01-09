@@ -200,7 +200,7 @@
 
   set outline(depth: 3, indent: 2em)
 
-  set bibliography(style: "apa")
+  set bibliography(style: "assets/styles/apa.csl")
   show bibliography: set par(
     first-line-indent: 0in,
     hanging-indent: 0.5in,
