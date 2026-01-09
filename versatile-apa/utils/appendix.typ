@@ -1,7 +1,7 @@
 #import "languages.typ": *
 #import "apa-figure.typ": *
 
-// For supplement: either "Appendix", "Annex" or "Addendum"
+// https://apastyle.apa.org/style-grammar-guidelines/paper-format/appendices
 #let appendix(
   heading-numbering: "A",
   supplement: "Appendix",
@@ -13,27 +13,30 @@
   let multiple-level-1 = query(heading.where(level: 1, supplement: [#get-terms(text.lang).at(supplement)])).len() > 1
   let multiple-figures-on-level-1 = query(figure).len() > 1
   show heading.where(level: 1): set heading(numbering: heading-numbering) if multiple-level-1
-  show heading.where(level: 2): set heading(numbering: heading-numbering) if numbering-for-all
-  show heading.where(level: 3): set heading(numbering: heading-numbering) if numbering-for-all
+  show heading.where(level: 2).or(heading.where(level: 3)): set heading(
+    numbering: heading-numbering,
+  ) if numbering-for-all
   set figure(
     placement: none,
     numbering: n => apa-figure-numbering(n),
   )
 
   counter(heading).update(0)
+  show heading.where(level: 1): it => {
+    pagebreak()
+    counter(figure.where(kind: image)).update(0)
+    counter(figure.where(kind: table)).update(0)
+    counter(figure.where(kind: math.equation)).update(0)
+    counter(figure.where(kind: raw)).update(0)
+    block[
+      #it.supplement
+      #if (multiple-level-1) {
+        numbering(it.numbering, ..counter(heading).at(it.location()))
+      }
 
-  show heading.where(level: 1): it => align(center)[
-    #pagebreak()
-    #counter(figure.where(kind: image)).update(0)
-    #counter(figure.where(kind: table)).update(0)
-    #counter(figure.where(kind: math.equation)).update(0)
-    #counter(figure.where(kind: raw)).update(0)
-    #it.supplement
-    #if (multiple-level-1) {
-      numbering(it.numbering, ..counter(heading).at(it.location()))
-    }
-    #it
-  ]
+      #it.body
+    ]
+  }
 
   show heading.where(level: 2): it => par(first-line-indent: 0in)[
     #if (numbering-for-all) [
@@ -59,12 +62,11 @@
   ..args,
 ) = context {
   let appendices = query(heading.where(level: 1))
-  let appendix-supplement = appendices.last().supplement.text
+  let appendix-supplement = appendices.last().supplement
   outline(
     ..args,
-    title: appendix-supplement,
     target: heading.where(
-      supplement: [#get-terms(text.lang).at(appendix-supplement)],
+      supplement: appendix-supplement,
     ),
   )
 }
