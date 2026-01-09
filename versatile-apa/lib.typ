@@ -21,6 +21,7 @@
   // TODO:Add a possible dictionary-based strict compliance for given parts, such as running head, quotes, fonts.
   strict: false,
   running-head: none,
+  running-head-limit: 50,
   body,
 ) = {
   context language-terms.update(custom-terms)
@@ -58,11 +59,16 @@
   show link: set text(fill: blue)
   show link: underline // considering one would want to disable underline, current workaround is set its stroke to 0pt
 
-  // FIXME: This should be on strict mode only
   if running-head != none {
     if type(running-head) == content { running-head = to-string(running-head) }
-    if running-head.len() > 50 {
-      panic("Running head must be no more than 50 characters, including spaces and punctuation.")
+    if running-head.len() > running-head-limit {
+      panic(
+        "Running head must be no more than",
+        running-head-limit,
+        "characters, including spaces and punctuation.",
+        "Current length:",
+        running-head.len(),
+      )
     }
   }
 
