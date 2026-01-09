@@ -5,7 +5,8 @@
 #import "utils/apa-figure.typ": apa-figure
 #import "utils/abstract.typ": abstract-page
 #import "utils/title.typ": title-page
-#import "utils/constants.typ": double-spacing, first-indent-length
+#import "utils/constants.typ": double-spacing, first-indent-length, quote-word-trigger
+
 
 /// The APA 7th edition template for academic and professional documents.
 #let versatile-apa(
@@ -148,11 +149,11 @@
 
   show quote.where(block: true): set block(spacing: double-spacing)
 
-  show quote: it => {
+  show quote: it => context {
     let quote-text-words = to-string(it.body).split(regex("\\s+")).filter(word => word != "").len()
 
     // https://apastyle.apa.org/style-grammar-guidelines/citations/quotations
-    if quote-text-words < 40 {
+    if quote-text-words < quote-word-trigger.get() {
       ["#it.body" ]
 
       if (type(it.attribution) == label) {
