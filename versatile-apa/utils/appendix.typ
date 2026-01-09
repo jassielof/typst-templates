@@ -38,22 +38,19 @@
     ]
   }
 
-  show heading.where(level: 2): it => par(first-line-indent: 0in)[
+  show heading.where(level: 2): it => block[
     #if (numbering-for-all) [
       #numbering(it.numbering, ..counter(heading).at(it.location()))
     ]
     #it.body
   ]
 
-  show heading.where(level: 3): it => par(
-    first-line-indent: 0in,
-    emph[
-      #if numbering-for-all [
-        #numbering(it.numbering, ..counter(heading).at(it.location()))
-      ]
-      #it.body
-    ],
-  )
+  show heading.where(level: 3): it => block[
+    #if numbering-for-all [
+      #numbering(it.numbering, ..counter(heading).at(it.location()))
+    ]
+    #it.body
+  ]
 
   body
 }
