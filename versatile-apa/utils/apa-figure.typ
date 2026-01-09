@@ -16,7 +16,6 @@
 
 #let apa-figure(
   body,
-  numbering: n => apa-figure-numbering(n),
   ..args,
   note: none,
   specific-note: none,
@@ -36,7 +35,6 @@
       #parbreak()
       #probability-note
     ],
-    numbering: numbering,
     ..args,
   )
 }
