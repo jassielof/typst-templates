@@ -14,7 +14,7 @@
   par(first-line-indent: 0in, body)
 
   if keywords == none and document.keywords == () {
-    pagebreak()
+    pagebreak(weak: true)
     return
   }
 
@@ -35,6 +35,6 @@
     panic("Invalid keyword type: ", type(the-keywords))
   }
 
-  pagebreak()
+  pagebreak(weak: true)
 }
 

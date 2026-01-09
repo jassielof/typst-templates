@@ -1,5 +1,8 @@
+// Implicit introduction heading
+#std.title()
 #lorem(200)
 
+#pagebreak()
 = Section
 #lorem(100)
 
