@@ -43,9 +43,10 @@
     number-align: top + right,
     margin: 1in,
     header: if running-head != none {
-      upper(running-head)
-      h(1fr)
-      context str(here().page())
+      grid(
+        columns: (1fr, auto),
+        upper(running-head), context here().page(),
+      )
     } else { auto },
   )
 
