@@ -38,7 +38,7 @@
   show std.title: set align(center)
 
   set page(
-    paper: paper-size,
+    paper: "us-letter",
     numbering: "1",
     number-align: top + right,
     margin: 1in,
