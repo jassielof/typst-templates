@@ -19,7 +19,7 @@ Referencing @fig:sample-line-graph.
 
 #apa-figure(
   caption: [Mean Regression Slopes in Experiment 1],
-  image("../assets/images/sample.line-graph.png"),
+  image("../assets/images/sample-line-graph.png"),
   note: [
     Mean regression slopes in Experiment 1 are shown for the stereo motion, biocularly viewed monocular motion, combined, and monocularly viewed monocular motion conditions, plotted by rotation amount. Error bars represent standard errors. From “Large Continuous Perspective Change With Noncoplanar Points Enables Accurate Slant Perception,” by X. M. Wang, M. Lind, and G. P. Bingham, 2018, Journal of Experimental Psychology: Human Perception and Performance, 44(10), p. 1513 (https://doi.org/10.1037/xhp0000553). Copyright 2018 by the American Psychological Association.
   ],
