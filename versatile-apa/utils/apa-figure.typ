@@ -27,7 +27,7 @@
       #body
       #set align(left)
       #if note != none [
-        #context emph[#get-terms(text.lang).Note.]
+        #context emph[#get-terms(text.lang, text.script).Note.]
         #note
       ]
       #parbreak()

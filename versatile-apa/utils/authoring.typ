@@ -196,7 +196,7 @@
 }
 
 // Print authors with affiliation superscripts
-#let print-authors-with-superscripts(authors, affiliations, language) = {
+#let print-authors-with-superscripts(authors, affiliations, language, script) = {
   let enumerated-affs = enumerate-affiliations(affiliations)
 
   let aff-positions = (:)
@@ -233,14 +233,14 @@
   })
 
   if author-strings.len() == 2 {
-    author-strings.join([ #context get-terms(language).and ])
+    author-strings.join([ #context get-terms(language, script).and ])
   } else {
-    author-strings.join([, ], last: [, #context get-terms(language).and ])
+    author-strings.join([, ], last: [, #context get-terms(language, script).and ])
   }
 }
 
 // Main function to print authors
-#let print-authors(authors, affiliations, language) = {
+#let print-authors(authors, affiliations, language, script) = {
   // Handle none early - just return it as content
   if authors == none {
     return none
@@ -262,23 +262,23 @@
     // All authors share same affiliation(s)
     let author-names = norm-authors
     if author-names.len() == 2 {
-      author-names.join([ #context get-terms(language).and ])
+      author-names.join([ #context get-terms(language, script).and ])
     } else {
-      author-names.join([, ], last: [, #context get-terms(language).and ])
+      author-names.join([, ], last: [, #context get-terms(language, script).and ])
     }
   } else {
     // Complex structure - check if different affiliations
     if has-different-affiliations(norm-authors) {
-      print-authors-with-superscripts(norm-authors, norm-affiliations, language)
+      print-authors-with-superscripts(norm-authors, norm-affiliations, language, script)
     } else {
       // Same affiliation(s) for all
       let author-names = norm-authors.map(it => {
         if type(it) == dictionary { it.name } else { it }
       })
       if author-names.len() == 2 {
-        author-names.join([ #context get-terms(language).and ])
+        author-names.join([ #context get-terms(language, script).and ])
       } else {
-        author-names.join([, ], last: [, #context get-terms(language).and ])
+        author-names.join([, ], last: [, #context get-terms(language, script).and ])
       }
     }
   }

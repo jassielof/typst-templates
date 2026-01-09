@@ -1,6 +1,7 @@
 #let language-terms = state("language-terms", (:))
 
-#let get-terms(language) = {
+#let get-terms(language, script) = {
+  let overrides = language-terms.get()
   if language == "en" {
     (
       "and": "and",
@@ -8,9 +9,8 @@
       "Abstract": "Abstract",
       "Keywords": "Keywords",
       "Appendix": "Appendix",
-      "Annex": "Annex",
-      "Addendum": "Addendum",
       "Note": "Note",
+      ..overrides,
     )
   } else if language == "es" {
     (
@@ -19,9 +19,8 @@
       "Abstract": "Resumen",
       "Keywords": "Palabras clave",
       "Appendix": "Apéndice",
-      "Annex": "Anexo",
-      "Addendum": "Adenda",
       "Note": "Nota",
+      ..overrides,
     )
   } else if language == "de" {
     (
@@ -30,9 +29,8 @@
       "Abstract": "Zusammenfassung",
       "Keywords": "Schlüsselwörter",
       "Appendix": "Anhang",
-      "Annex": "Anhang",
-      "Addendum": "Nachtrag",
       "Note": "Hinweis",
+      ..overrides,
     )
   } else if language == "pt" {
     (
@@ -41,9 +39,8 @@
       "Abstract": "Resumo",
       "Keywords": "Palavras-chave",
       "Appendix": "Apêndice",
-      "Annex": "Anexo",
-      "Addendum": "Adendo",
       "Note": "Nota",
+      ..overrides,
     )
   } else if language == "fr" {
     (
@@ -52,9 +49,8 @@
       "Abstract": "Résumé",
       "Keywords": "Mots-clés",
       "Appendix": "Annexe",
-      "Annex": "Annexe",
-      "Addendum": "Addendum",
       "Note": "Note",
+      ..overrides,
     )
   } else if language == "it" {
     (
@@ -63,9 +59,8 @@
       "Abstract": "Sommario",
       "Keywords": "Parole chiave",
       "Appendix": "Appendice",
-      "Annex": "Allegato",
-      "Addendum": "Addendum",
       "Note": "Nota",
+      ..overrides,
     )
   } else if language == "nl" {
     (
@@ -74,31 +69,28 @@
       "Abstract": "Samenvatting",
       "Keywords": "Trefwoorden",
       "Appendix": "Bijlage",
-      "Annex": "Bijlage",
-      "Addendum": "Addendum",
       "Note": "Notitie",
+      ..overrides,
     )
-  } else if language in ("sr_Latn", "sr") {
+  } else if (language == "sr" and script == auto) or (script == "latn" and language == "sr") {
     (
       "and": "i",
       "Author Note": "Napomena autora",
       "Abstract": "Apstrakt",
       "Keywords": "Ključne reči",
       "Appendix": "Dodatak",
-      "Annex": "Prilog",
-      "Addendum": "Dopuna",
       "Note": "Napomena",
+      ..overrides,
     )
-  } else if language == "sr_Cyrl" {
+  } else if language == "sr" and script == "cyrl" {
     (
       "and": "и",
       "Author Note": "Напомена аутора",
       "Abstract": "Апстракт",
       "Keywords": "Кључне речи",
       "Appendix": "Додатак",
-      "Annex": "Прилог",
-      "Addendum": "Допуна",
       "Note": "Напомена",
+      ..overrides,
     )
   } else if language == "id" {
     (
@@ -107,11 +99,11 @@
       "Abstract": "Abstrak",
       "Keywords": "Kata Kunci",
       "Appendix": "Lampiran",
-      "Annex": "Lampiran",
-      "Addendum": "Tambahan",
       "Note": "Catatan",
+      ..overrides,
     )
   } else {
-    language-terms.get()
+    overrides
+    // language-terms.get()
   }
 }

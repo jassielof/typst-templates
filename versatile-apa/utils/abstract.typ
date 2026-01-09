@@ -9,7 +9,7 @@
   set document(keywords: keywords) if keywords != none
   set document(description: body)
 
-  heading(level: 1, get-terms(text.lang).Abstract, outlined: false)
+  heading(level: 1, get-terms(text.lang, text.script).Abstract, outlined: false)
 
   par(first-line-indent: 0in, body)
 
@@ -26,10 +26,10 @@
 
 
   if type(the-keywords) == array {
-    emph[#get-terms(text.lang).Keywords: ]
+    emph[#get-terms(text.lang, text.script).Keywords: ]
     the-keywords.map(it => it).join(", ")
   } else if type(the-keywords) == str or type(the-keywords) == std.content {
-    emph[#get-terms(text.lang).Keywords:]
+    emph[#get-terms(text.lang, text.script).Keywords:]
     the-keywords
   } else {
     panic("Invalid keyword type: ", type(the-keywords))

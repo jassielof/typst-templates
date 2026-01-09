@@ -167,12 +167,10 @@
     }
   }
 
-  show outline.entry: it => {
+  show outline.entry: it => context {
     if (
       (
-        it.element.supplement == [#context get-terms(language).Appendix]
-          or it.element.supplement == [#context get-terms(language).Annex]
-          or it.element.supplement == [#context get-terms(language).Addendum]
+        it.element.supplement == [#context get-terms(text.lang, text.script).Appendix]
       )
         and it.element.has("level")
         and it.element.level == 1

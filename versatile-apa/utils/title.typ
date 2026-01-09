@@ -36,7 +36,7 @@
   parbreak()
 
   set align(center)
-  print-authors(authors, affiliations, text.lang)
+  print-authors(authors, affiliations, text.lang, text.script)
   parbreak()
   print-affiliations(authors, affiliations)
   parbreak()
@@ -54,7 +54,7 @@
 
   v(1fr)
 
-  strong(context get-terms(text.lang).at("Author Note"))
+  strong(context get-terms(text.lang, text.script).at("Author Note"))
   set align(left)
   set par(first-line-indent: first-indent-length)
   author-note

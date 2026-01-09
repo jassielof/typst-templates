@@ -9,8 +9,10 @@
   numbering-for-all: false,
   body,
 ) = context {
-  set heading(supplement: get-terms(text.lang).at(supplement))
-  let multiple-level-1 = query(heading.where(level: 1, supplement: [#get-terms(text.lang).at(supplement)])).len() > 1
+  set heading(supplement: get-terms(text.lang, text.script).at(supplement))
+  let multiple-level-1 = (
+    query(heading.where(level: 1, supplement: [#get-terms(text.lang, text.script).at(supplement)])).len() > 1
+  )
   let multiple-figures-on-level-1 = query(figure).len() > 1
   show heading.where(level: 1): set heading(numbering: heading-numbering) if multiple-level-1
   show heading.where(level: 2).or(heading.where(level: 3)): set heading(
