@@ -15,7 +15,13 @@ keywords = [
   "Psychology",
   "Research",
 ]
-exclude = ["reference/", "*.pdf"]
+exclude = [
+  "reference/",
+  "*.pdf",
+  "thumbnail-*.png",
+  "template/student.typ",
+  "template/professional.typ"
+]
 categories = ["paper", "report", "thesis"]
 disciplines = ["psychology", "business", "education", "sociology"]
 
