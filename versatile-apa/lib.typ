@@ -75,14 +75,9 @@
   show heading: set text(size: font-size)
   show heading: set block(spacing: double-spacing)
 
-  show heading: it => emph(strong[#it.body.])
-  show heading.where(level: 1): it => align(center, strong(it.body))
-  show heading.where(level: 2): it => par(first-line-indent: 0in, strong(it.body))
-
-  show heading.where(level: 3): it => par(first-line-indent: 0in, emph(strong(it.body)))
-
-  show heading.where(level: 4): it => strong[#it.body.]
-  show heading.where(level: 5): it => emph(strong[#it.body.])
+  show heading.where(level: 1): set align(center)
+  show heading.where(level: 3).or(heading.where(level: 5)): set text(style: "italic")
+  show heading.where(level: 4).or(heading.where(level: 5)): it => [#it.body.]
 
   set par(
     first-line-indent: (
