@@ -12,18 +12,26 @@ jobs:
             - name: Set up Homebrew
               id: set-up-homebrew
               uses: Homebrew/actions/setup-homebrew@main
-            - name: Cache Homebrew
+            - name: Cache Homebrew packages and casks
               uses: actions/cache@v4
               with:
                   path: |
                       /home/linuxbrew/.linuxbrew/Homebrew
                       /home/linuxbrew/.linuxbrew/Cellar
+                      /home/linuxbrew/.linuxbrew/Caskroom
                       /home/linuxbrew/.cache/Homebrew
-                  key: ${{ runner.os }}-brew-${{ hashFiles('.github/workflows/CI.yml') }}
+                      ~/.local/share/fonts
+                  key: ${{ runner.os }}-brew-fonts-${{ hashFiles('.github/workflows/CI.yml') }}
                   restore-keys: |
-                      ${{ runner.os }}-brew-
+                      ${{ runner.os }}-brew-fonts-
             - name: Install fonts
-              run: brew install --cask font-{libertinus{,-{sans,serif,serif-display}},source-{serif-4,sans-3},tex-gyre-{adventor,bonum,chorus,cursor,heros,pagella,schola,termes{,-math}},arial{,-black},new-computer-modern,computer-modern}
+              run: |
+                  # Check if fonts are already installed
+                  if ! brew list --cask font-libertinus &>/dev/null; then
+                      brew install --cask font-{libertinus{,-{sans,serif,serif-display}},source-{serif-4,sans-3},tex-gyre-{adventor,bonum,chorus,cursor,heros,pagella,schola,termes{,-math}},arial{,-black},new-computer-modern,computer-modern}
+                  else
+                      echo "Fonts already installed, skipping..."
+                  fi
             - name: Install Typst
               uses: typst-community/setup-typst@v4
             - name: Install Task
