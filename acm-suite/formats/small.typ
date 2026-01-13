@@ -91,7 +91,7 @@
   if author-result.notes.len() > 0 {
     thanks[
       #for note in author-result.notes {
-        [#super[#note.id] #note.text\ ]
+        [#note.symbol~#note.text\ ]
       }
     ]
   }

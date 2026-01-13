@@ -20,14 +20,14 @@
       name: [Ben Trovato],
       affiliations: ("inst1",),
       email: [trovato\@corporation.com],
-      orcid: [1234-5678-9012],
+      orcid: "0009-0004-4390-7419",
       note: [Both authors contributed equally to this research.],
     ),
     (
       name: [G.K.M. Tobin],
       affiliations: ("inst1",),
       email: [webmaster\@marysville-ohio.com],
-      note-mark: 1, // References Ben's note
+      note-mark: 1,
     ),
     (
       name: [Lars Thørväld],

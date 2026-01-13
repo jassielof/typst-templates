@@ -15,7 +15,7 @@
       name: [Ben Trovato],
       affiliations: ("inst1",),
       email: [trovato\@corporation.com],
-      orcid: [1234-5678-9012],
+      orcid: "1234-5678-9012-1111",
       note: [Both authors contributed equally to this research.],
     ),
     (

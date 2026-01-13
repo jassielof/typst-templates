@@ -1,4 +1,17 @@
 #import "languages.typ": get-terms
+#import "@preview/orchid:0.1.0"
+
+// Format author name with optional ORCID link
+#let format-author-name(name, orcid) = {
+  if orcid != none {
+    // Validate ORCID format (panics if invalid, returns void if valid)
+    orchid.check-format(orcid)
+    // If we reach here, ORCID is valid
+    link("https://orcid.org/" + orcid, name)
+  } else {
+    name
+  }
+}
 
 // Group authors by their primary (first) affiliation
 #let group-authors-by-affiliation(authors, affiliations) = {
@@ -80,8 +93,10 @@
     if "note" in author and author.note != none {
       let note-key = repr(author.note)
       if note-key not in note-map {
-        note-map.insert(note-key, counter)
-        notes.push((id: counter, text: author.note))
+        // Use symbol numbering: *, †, ‡, §, ¶, ‖
+        let symbol = numbering("*", counter)
+        note-map.insert(note-key, symbol)
+        notes.push((id: counter, symbol: symbol, text: author.note))
         counter += 1
       }
     }
@@ -91,8 +106,13 @@
 }
 
 // Get note mark for an author
+// Get note mark for an author
 #let get-note-mark(author, note-info) = {
   if "note-mark" in author and author.note-mark != none {
+    // If note-mark is a number, convert to symbol
+    if type(author.note-mark) == int {
+      return numbering("*", author.note-mark)
+    }
     return author.note-mark
   }
 
@@ -121,10 +141,12 @@
 
     for author in group-authors {
       let name = upper(author.name)
+      let orcid = if "orcid" in author { author.orcid } else { none }
+      let formatted-name = format-author-name(name, orcid)
       let note-mark = get-note-mark(author, note-info)
 
       if note-mark != none {
-        author-names.push([#name#super[#note-mark]])
+        author-names.push([#formatted-name#note-mark])
       } else {
         author-names.push(name)
       }
@@ -194,58 +216,3 @@
 
   return contacts.join([; ])
 }
-
-// Example usage:
-#let example-authors = (
-  (
-    name: [Ben Trovato],
-    affiliations: ("inst1",),
-    email: [trovato@corporation.com],
-    note: [Both authors contributed equally to this research.],
-  ),
-  (
-    name: [G.K.M. Tobin],
-    affiliations: ("inst1",),
-    email: [webmaster@marysville-ohio.com],
-    note-mark: 1, // References Ben's note
-  ),
-  (
-    name: [Lars Thørväld],
-    affiliations: ("inst2",),
-    email: [larst@affiliation.org],
-  ),
-  (
-    name: [John Smith],
-    affiliations: ("inst2",),
-    email: [jsmith@affiliation.org],
-  ),
-)
-
-#let example-affiliations = (
-  "inst1": (
-    institution: [Institute for Clarity in Documentation],
-    country: [USA],
-  ),
-  "inst2": (
-    institution: [The Thørväld Group],
-    city: [Hekla],
-    country: [Iceland],
-  ),
-)
-
-#let result = print-acm-authors(example-authors, example-affiliations, "en")
-
-// Display authors
-#result.authors
-
-// Display author notes
-#if result.notes.len() > 0 {
-  parbreak()
-  for note in result.notes {
-    [#super[#note.id] #note.text\ ]
-  }
-}
-
-// Display contact information
-#parbreak()
-[Authors' Contact Information: #print-contact-info(example-authors, example-affiliations)]
