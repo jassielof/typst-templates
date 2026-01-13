@@ -14,4 +14,4 @@ jobs:
             - name: Install Task
               uses: go-task/setup-task@v1
             - name: Build templates
-              run: task
+              run: task all
