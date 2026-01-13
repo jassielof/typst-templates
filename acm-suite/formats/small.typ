@@ -21,7 +21,7 @@
   keywords: none,
   abstract: none,
   short-authors: none,
-  nonacm: false,
+  no-acm: false,
   body,
 ) = {
   set document(title: title, keywords: keywords)
@@ -46,7 +46,7 @@
     header: context {
       // the page with the title shouldn't have a header (usually the first one)
       let current-page = here().position().page
-      let the-page = if nonacm [#current-page] else [#article:#current-page]
+      let the-page = if no-acm [#current-page] else [#article:#current-page]
       set grid(inset: 0in, columns: (1fr, auto))
       show grid: set block(spacing: 0in, inset: 0in, outset: 0in)
 
@@ -64,7 +64,7 @@
         )
       }
     },
-    footer: if not nonacm {
+    footer: if not no-acm {
       context {
         let current-page = here().position().page
         let the-date = datetime(year: year, month: month, day: 1)
@@ -98,7 +98,7 @@
 
   thanks(line(length: 100%, stroke: 0.5pt))
   thanks[Authors' Contact Information: #print-contact-info(authors, affiliations)]
-  if not nonacm {
+  if not no-acm {
     thanks(line(length: 100%, stroke: 0.5pt))
     thanks(copyright-notice)
   }
