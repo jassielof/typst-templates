@@ -18,6 +18,8 @@
 
 ### Small
 
+![ACM Suite Small Thumbnail](acm-suite/thumbnail-small.png)
+
 ## Universidad Privada de Santa Cruz de la Sierra (Bolivia) (Proyecto de Grado)
 
 ### Trabajo final de grado: Proyecto de grado, facultad de ingeniería
