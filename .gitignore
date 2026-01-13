@@ -1,5 +1,6 @@
 # Output files
 *.pdf
+!acm-suite/template/assets/images/*.pdf
 !thumbnail.png
 output/
 out/

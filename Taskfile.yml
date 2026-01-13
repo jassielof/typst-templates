@@ -1,6 +1,14 @@
 version: "3"
 
 tasks:
+  all:
+    desc: Builds all templates
+    deps:
+      - versatile-apa
+      - latex-reborn
+      - acm-suite
+      - upsa-bo
+      - butterick
   versatile-apa:
     dir: versatile-apa
     cmds:

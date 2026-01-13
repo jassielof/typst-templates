@@ -86,7 +86,7 @@
       caption: [Seattle Mariners at Spring Training, 2010.],
       muchpdf(
         read(
-          "../assets/img/sampleteaser.pdf",
+          "assets/images/sampleteaser.pdf",
           encoding: none,
         ),
         alt: "Enjoying the baseball game from the third-base seats. Ichiro Suzuki preparing to bat.",
@@ -244,9 +244,10 @@ Immediately following this sentence is the point at which Table~@tab:freq is inc
     table.hline(),
     [Ø], [1 in 1,000], [For Swedish names],
     [$pi$], [1 in 5], [Common in math],
-    [\$], [4 in 5], [Used in business], // TODO: Check if same as latex
+    [\$], [4 in 5], [Used in business],
+    // TODO: Check if same as latex
     [$Psi_1^2$], [1 in 40,000], [Unexplained usage],
-    table.hline()
+    table.hline(),
   ),
   caption: [Frequency of Special Characters],
   kind: table,
@@ -299,7 +300,7 @@ third-party material, you must clearly identify it as such, as shown in
 the example below.
 
 #figure(
-  image("../assets/img/sample-franklin.png"),
+  image("assets/images/sample-franklin.png"),
   caption: [
     1907 Franklin Model D roadster. Photograph by Harris & Ewing, Inc.
     \[Public domain\], via Wikimedia Commons.
@@ -319,9 +320,9 @@ images, and when images cannot be loaded.
 
 A figure description must be unformatted plain text less than 2000
 characters long (including spaces). #strong[Figure descriptions should
-not repeat the figure caption -- their purpose is to capture important
-information that is not already provided in the caption or the main text
-of the paper.] For figures that convey important and complex new
+  not repeat the figure caption -- their purpose is to capture important
+  information that is not already provided in the caption or the main text
+  of the paper.] For figures that convey important and complex new
 information, a short text description may not be adequate. More complex
 alternative descriptions can be placed in an appendix and referenced in
 a short figure description. For example, provide a data table capturing
@@ -417,7 +418,7 @@ The "`sigchi-a`" template style (available only in LaTeX~and not in Word) produc
   To Robert, for the bagels and explaining CMYK and color spaces.
 ]
 
-#bibliography("sample-base.bib", style: "association-for-computing-machinery")
+#bibliography("assets/data/sample-base.bib", style: "association-for-computing-machinery")
 
 // TODO: Set appendix here (show appendix)
 = Research Methods
