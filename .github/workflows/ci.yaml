@@ -9,6 +9,11 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v6
+            - name: Set up Homebrew
+              id: set-up-homebrew
+              uses: Homebrew/actions/setup-homebrew@main
+            - name: Install fonts
+              run: brew install --cask font-{libertinus{,-{sans,serif,serif-display}},source-{serif-4,sans-3},tex-gyre-{adventor,bonum,chorus,cursor,heros,pagella,schola,termes{,-math}},arial{,-black},new-computer-modern,computer-modern}
             - name: Install Typst
               uses: typst-community/setup-typst@v4
             - name: Install Task
