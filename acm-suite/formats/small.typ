@@ -21,6 +21,7 @@
   keywords: none,
   abstract: none,
   short-authors: none,
+  nonacm: false,
   body,
 ) = {
   set document(title: title, keywords: keywords)
@@ -28,6 +29,7 @@
   show std.title: set align(left)
   show std.title: set text(font: "Libertinus Sans")
   set text(font: "Libertinus Serif")
+  set par(justify: true)
 
   let copyright-notice = processed(
     copyright: copyright,
@@ -44,7 +46,7 @@
     header: context {
       // the page with the title shouldn't have a header (usually the first one)
       let current-page = here().position().page
-      let the-page = [#article:#current-page]
+      let the-page = if nonacm [#current-page] else [#article:#current-page]
       set grid(inset: 0in, columns: (1fr, auto))
       show grid: set block(spacing: 0in, inset: 0in, outset: 0in)
 
@@ -62,19 +64,21 @@
         )
       }
     },
-    footer: context {
-      let current-page = here().position().page
-      let the-date = datetime(year: year, month: month, day: 1)
-      let the-footer = [#journal, Vol. #volume, No. #number, Article #article. Publication date: #custom-date-format(the-date).]
+    footer: if not nonacm {
+      context {
+        let current-page = here().position().page
+        let the-date = datetime(year: year, month: month, day: 1)
+        let the-footer = [#journal, Vol. #volume, No. #number, Article #article. Publication date: #custom-date-format(the-date).]
 
-      if calc.odd(current-page) {
-        set align(right)
-        the-footer
-      } else {
-        set align(left)
-        the-footer
+        if calc.odd(current-page) {
+          set align(right)
+          the-footer
+        } else {
+          set align(left)
+          the-footer
+        }
       }
-    },
+    } else { none },
   )
 
   set footnote.entry(indent: 0in)
@@ -94,9 +98,12 @@
 
   thanks(line(length: 100%, stroke: 0.5pt))
   thanks[Authors' Contact Information: #print-contact-info(authors, affiliations)]
-  thanks(line(length: 100%, stroke: 0.5pt))
-  thanks(copyright-notice)
+  if not nonacm {
+    thanks(line(length: 100%, stroke: 0.5pt))
+    thanks(copyright-notice)
+  }
 
+  parbreak()
   abstract
   parbreak()
   [CCS Concepts: • #process-ccs(ccs)]
