@@ -1,5 +1,7 @@
 #import "languages.typ": get-terms
+#import "@preview/datify:1.0.0": custom-date-format
 #import "@preview/orchid:0.1.0"
+#import "fonts.typ": get-font-size
 
 // Format author name with optional ORCID link
 #let format-author-name(name, orcid) = {
@@ -130,6 +132,8 @@
     return none
   }
 
+  // FIXME: Make this contextual on the base font size
+  let font-sizes = get-font-size(10pt)
   let groups = group-authors-by-affiliation(authors, affiliations)
   let note-info = collect-author-notes(authors)
 
@@ -155,6 +159,7 @@
     // Join author names
     let authors-text = if author-names.len() == 1 {
       author-names.at(0)
+      // i can simply use join with last, its the same either '2' or 'else'
     } else if author-names.len() == 2 {
       author-names.join([ #context get-terms(language).and ])
     } else {
@@ -164,9 +169,10 @@
     // Add affiliation if exists
     if aff-id != "no-affiliation" and aff-id in affiliations {
       let aff-text = format-affiliation-short(affiliations.at(aff-id))
-      output.push([#authors-text, #aff-text])
+
+      output.push([#text(size: font-sizes.large)[#authors-text, ]#text(aff-text, size: font-sizes.small)])
     } else {
-      output.push(authors-text)
+      output.push(text(authors-text, size: font-sizes.large))
     }
   }
 
@@ -215,4 +221,92 @@
   }
 
   return contacts.join([; ])
+}
+
+// Print authors in simple list format (for ACM Reference Format)
+#let print-authors-list(authors, language) = {
+  if authors == none or authors.len() == 0 {
+    return none
+  }
+
+  let author-names = authors.map(author => {
+    if type(author) == dictionary {
+      author.name
+    } else {
+      author
+    }
+  })
+
+  if author-names.len() == 1 {
+    author-names.at(0)
+  } else if author-names.len() >= 2 {
+    author-names.join([ #context get-terms(language).and ])
+  } else {
+    author-names.join([, ], last: [, #context get-terms(language).and ])
+  }
+}
+
+// Format ACM reference citation
+#let format-acm-reference(
+  authors,
+  year,
+  title,
+  journal,
+  volume,
+  number,
+  article,
+  month,
+  pages,
+  doi,
+  language,
+) = {
+  let parts = ()
+
+  // Authors
+  parts.push(print-authors-list(authors, language))
+
+  // Year
+  if year != none {
+    parts.push(str(year))
+  }
+
+  // Title
+  if title != none {
+    parts.push(title)
+  }
+
+  // Journal info
+  if journal != none {
+    let journal-part = journal
+    if volume != none {
+      journal-part = [#journal #volume]
+      if number != none {
+        journal-part = [#journal-part, #number]
+      }
+    }
+    if article != none {
+      journal-part = [#journal-part, Article #article]
+    }
+    parts.push(journal-part)
+  }
+
+  // Month and pages
+  let extra = ()
+  if month != none and year != none {
+    // let the-date = datetime(year: year, month: month, day: 1)
+    extra.push([#year #month])
+  }
+  if pages != none {
+    extra.push([#pages pages])
+  }
+  if extra.len() > 0 {
+    parts.push([(#extra.join([, ]))])
+  }
+
+  // DOI
+  if doi != none {
+    parts.push(link("https://doi.org/" + doi))
+  }
+
+  return parts.join([. ]) + [.]
 }

@@ -18,48 +18,48 @@
   authors: (
     (
       name: [Ben Trovato],
-      affiliations: ("inst1",),
-      email: [trovato\@corporation.com],
+      affiliations: "inst1",
+      email: "trovato@corporation.com",
       orcid: "0009-0004-4390-7419",
       note: [Both authors contributed equally to this research.],
     ),
     (
       name: [G.K.M. Tobin],
-      affiliations: ("inst1",),
-      email: [webmaster\@marysville-ohio.com],
+      affiliations: "inst1",
+      email: "webmaster@marysville-ohio.com",
       note-mark: 1,
     ),
     (
       name: [Lars Thørväld],
-      affiliations: ("inst2",),
-      email: [larst\@affiliation.org],
+      affiliations: "inst2",
+      email: "larst@affiliation.org",
     ),
     (
       name: [Valerie Béranger],
-      affiliations: ("inst3",),
+      affiliations: "inst3",
     ),
     (
       name: [Aparna Patel],
-      affiliations: ("inst4",),
+      affiliations: "inst4",
     ),
     (
       name: [Huifen Chan],
-      affiliations: ("inst5",),
+      affiliations: "inst5",
     ),
     (
       name: [Charles Palmer],
-      affiliations: ("inst6",),
-      email: [cpalmer\@prl.com],
+      affiliations: "inst6",
+      email: "cpalmer@prl.com",
     ),
     (
       name: [John Smith],
-      affiliations: ("inst2",),
-      email: [jsmith\@affiliation.org],
+      affiliations: "inst2",
+      email: "jsmith@affiliation.org",
     ),
     (
       name: [Julius P. Kumquat],
-      affiliations: ("inst7",),
-      email: [jpkumquat\@consortium.net],
+      affiliations: "inst7",
+      email: "jpkumquat@consortium.net",
     ),
   ),
   affiliations: (
