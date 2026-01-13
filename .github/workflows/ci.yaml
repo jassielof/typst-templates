@@ -1,5 +1,4 @@
 name: CI
-description: Templates compilation
 
 on: push
 
