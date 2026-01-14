@@ -1,3 +1,22 @@
+// Ponte's font table
+// \vbox{
+//   \tabskip=1em
+//   \halign{
+//     \ttfamily\textbackslash#\hss&\hss#\thinspace pt&&\hss#\thinspace pt\crcr
+//     \omit Size option\hss&8&9&10&11&12\cr\noalign{\smallskip\hrule\smallskip}
+//     tiny&4&5&5&6&6\cr
+//     scriptsize&5&6&7&8&8\cr
+//     footnotesize&6&7&8&9&10\cr
+//     small&7&8&9&10&10.95\cr
+//     normalsize&8&9&10&10.95&12\cr
+//     large&9&10&10.95&12&14.40\cr
+//     Large&10&10.95&12&14.40&17.28\cr
+//     LARGE&10.95&12&14.40&17.28&20.74\cr
+//     huge&12&14.40&17.28&20.74&24.88\cr
+//     Huge&14.4&17.28&20.74&24.88&24.88\cr\noalign{\smallskip\hrule}
+//   }
+// }
+
 #let ex(unit) = unit * 0.6em
 
 #let magstep-base = calc.pow(1.2, 0.5)
