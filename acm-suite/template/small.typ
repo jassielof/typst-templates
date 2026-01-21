@@ -126,9 +126,12 @@ This document will explain the major features of the document class. For further
 
 The primary parameter given to the "`acmart`" document class is the _template style_ which corresponds to the kind of publication or SIG publishing the work. This parameter is enclosed in square brackets and is a part of the `documentclass` command:
 
-```
-\documentclass[STYLE]{acmart}
-```
+#box(
+  ```
+  \documentclass[STYLE]{acmart}
+  ```,
+  inset: (y: 0.25em),
+)
 
 Journals use one of three template styles. All but three ACM journals use the `acmsmall` template style:
 
