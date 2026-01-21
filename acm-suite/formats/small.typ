@@ -14,7 +14,7 @@
   number: none,
   article: none,
   month: none,
-  authors: none,
+  author-groups: none,
   affiliations: none,
   year: none,
   doi: none,
@@ -132,7 +132,7 @@
   std.title()
 
   // FIXME: author with same address should be one a different line: only join authors with same mark?
-  let author-result = print-acm-authors(authors, affiliations, "en")
+  let author-result = print-acm-authors(author-groups, affiliations, "en")
   author-result.authors
 
   if author-result.notes.len() > 0 {
@@ -147,7 +147,7 @@
       line(length: 100%, stroke: 0.5pt)
       // FIXME: if multiple authors have same address and author note, then group them together
       par(
-        [Authors' Contact Information: #print-contact-info(authors, affiliations)],
+        [Authors' Contact Information: #print-contact-info(author-groups, affiliations)],
         leading: .1em,
         first-line-indent: (
           amount: 0pt,

@@ -1,5 +1,5 @@
 #import "../lib.typ" as acm-suite
-#import "@preview/metalogo:1.2.0": LaTeX
+#import "@preview/metalogo:1.2.0": LaTeX, TeX
 
 #show: acm-suite.small.template.with(
   title: [The Name of the Title Is Hope],
@@ -16,19 +16,22 @@
   copyright-year: 2018,
   number: 4,
   // nonacm: true,
-  authors: (
+  author-groups: (
     (
-      name: [Ben Trovato],
       affiliations: "inst1",
-      email: "trovato@corporation.com",
-      orcid: "0009-0004-4390-7419",
-      note: [Both authors contributed equally to this research.],
-    ),
-    (
-      name: [G.K.M. Tobin],
-      affiliations: "inst1",
-      email: "webmaster@marysville-ohio.com",
-      note-mark: 1,
+      members: (
+        (
+          name: [Ben Trovato],
+          email: "trovato@corporation.com",
+          orcid: "0009-0004-4390-7419",
+          note: [Both authors contributed equally to this research.],
+        ),
+        (
+          name: [G.K.M. Tobin],
+          email: "webmaster@marysville-ohio.com",
+          note-mark: 1,
+        ),
+      ),
     ),
     (
       name: [Lars Thørväld],
@@ -122,11 +125,10 @@ This document will explain the major features of the document class. For further
 == Template Styles
 
 The primary parameter given to the "`acmart`" document class is the _template style_ which corresponds to the kind of publication or SIG publishing the work. This parameter is enclosed in square brackets and is a part of the `documentclass` command:
-```
-\documentclass[STYLE]{acmart}
-```
-Journals use one of three template styles. All but three ACM journals
-use the `acmsmall` template style:
+
+`\documentclass[STYLE]{acmart}`
+
+Journals use one of three template styles. All but three ACM journals use the `acmsmall` template style:
 
 - `acmsmall`: The default journal template style.
 - `acmlarge`: Used by JOCCH and TAP.
@@ -147,25 +149,65 @@ which modify some part of the applied template style. A complete list
 of these parameters can be found in the _#LaTeX User's Guide._
 
 Frequently-used parameters, or combinations of parameters, include:
-
-- `anonymous,review`: Suitable for a ``double-anonymous''
-  conference submission. Anonymizes the work and includes line
-  numbers. Use with the `\acmSubmissionID` command to print the
-  submission's unique ID on each page of the work.
+- `anonymous,review`: Suitable for a "double-anonymous" conference submission. Anonymizes the work and includes line numbers. Use with the `\acmSubmissionID` command to print the  submission's unique ID on each page of the work.
 - `authorversion`: Produces a version of the work suitable for posting by the author.
 - `screen`: Produces colored hyperlinks.
 
 This document uses the following string as the first command in the
-source file:
+source file: `\documentclass[acmsmall,screen,review]{acmart}`
 
-```
-\documentclass[acmsmall,screen,review]{acmart}
-```
 
 = Modifications
+
+Modifying the template --- including but not limited to: adjusting
+margins, typeface sizes, line spacing, paragraph and list definitions,
+and the use of the `\vspace` command to manually adjust the
+vertical spacing between elements of your work --- is not allowed.
+
+*Your document will be returned to you for revision if modifications are discovered.*
+
 = Typefaces
+
+The "`acmart`" document class requires the use of the
+"Libertine" typeface family. Your #TeX installation should include
+this set of packages. Please do not substitute other typefaces. The
+"`lmodern`" and "`ltimes`" packages should not be used,
+as they will override the built-in typeface families.
+
 = Title Information
+
+The title of your work should use capital letters appropriately -
+#link("https://capitalizemytitle.com/") has useful rules for
+capitalization. Use the `title` command to define the title of
+your work. If your work has a subtitle, define it with the
+`subtitle` command.  Do not insert line breaks in your title.
+
+If your title is lengthy, you must define a short version to be used
+in the page headers, to prevent overlapping text. The `title`
+command has a "short title" parameter:
+
+`\title[short title]{full title}`
+
 = Authors and Affiliations
+
+Each author must be defined separately for accurate metadata
+identification.  As an exception, multiple authors may share one
+affiliation. Authors' names should not be abbreviated; use full first
+names wherever possible. Include authors' e-mail addresses whenever
+possible.
+
+Grouping authors' names or e-mail addresses, or providing an "e-mail alias," as shown below, is not acceptable:
+
+```
+  \author{Brooke Aster, David Mehldau}
+  \email{dave,judy,steve@university.edu}
+  \email{firstname.lastname@phillips.org}
+```
+
+The `authornote` and `authornotemark` commands allow a note
+to apply to multiple authors --- for example, if the first two authors
+of an article contributed equally to the work.
+
 = Rights Information
 = CCS Concepts and User-Defined Keywords
 = Sectioning Commands

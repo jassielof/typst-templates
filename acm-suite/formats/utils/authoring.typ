@@ -127,23 +127,31 @@
 }
 
 // Print authors in ACM format
-#let print-acm-authors(authors, affiliations, language) = {
-  if authors == none or authors.len() == 0 {
+#let print-acm-authors(author-groups-raw, affiliations, language) = {
+  let author-groups = author-groups-raw.map(e => if e.at("members", default: none) != none {
+    e
+  } else {
+    (
+      affiliations: e.affiliations,
+      members: (e,),
+    )
+  })
+  if author-groups == none or author-groups.len() == 0 {
     return none
   }
 
   // FIXME: Make this contextual on the base font size
   let font-sizes = get-font-size(10pt)
-  let groups = group-authors-by-affiliation(authors, affiliations)
-  let note-info = collect-author-notes(authors)
+  let note-info = collect-author-notes(author-groups.map(e => e.members).flatten())
 
   let output = ()
 
   // Process each affiliation group
-  for (aff-id, group-authors) in groups {
+  for group-authors in author-groups {
     let author-names = ()
+    let aff-id = group-authors.affiliations
 
-    for author in group-authors {
+    for author in group-authors.members {
       let name = text(upper(author.name), font: "Linux Biolinum G")
       let orcid = if "orcid" in author { author.orcid } else { none }
       let formatted-name = format-author-name(name, orcid)
@@ -190,23 +198,27 @@
 
   let contacts = ()
 
-  for author in authors {
+  for author-group in authors {
     let parts = ()
 
-    // Name
-    parts.push(author.name)
+    let members = author-group.at("members", default: (author-group,))
 
-    // Email (if exists)
-    if "email" in author and author.email != none {
-      parts.push(author.email)
+    let author-parts = ()
+    for author in members {
+      // Name
+      let name = author.name
+      let email = author.at("email", default: none)
+
+      author-parts.push((name, email).filter(e => e != none).join(", "))
     }
 
+    parts.push(author-parts.join("; "))
     // Full affiliation (if exists)
-    if "affiliations" in author and author.affiliations != none {
-      let primary-aff = if type(author.affiliations) == array and author.affiliations.len() > 0 {
-        author.affiliations.at(0)
-      } else if type(author.affiliations) == str {
-        author.affiliations
+    if "affiliations" in author-group and author-group.affiliations != none {
+      let primary-aff = if type(author-group.affiliations) == array and author-group.affiliations.len() > 0 {
+        author-group.affiliations.at(0)
+      } else if type(author-group.affiliations) == str {
+        author-group.affiliations
       } else {
         none
       }
