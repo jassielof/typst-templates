@@ -6,6 +6,9 @@ output/
 out/
 universe/
 
+# Font directory, due to licensing
+fonts/
+
 # LaTeX
 *.aux
 *.log

@@ -22,18 +22,43 @@
   keywords: none,
   abstract: none,
   short-authors: none,
-  no-acm: false,
+  nonacm: false,
   body,
 ) = {
+  let font-sizes = get-font-size(10pt)
+  let leading = .2em
   set document(title: title, keywords: keywords)
   set heading(numbering: "1.1")
+  set text(font: "Linux Libertine G", size: font-sizes.normal, top-edge: 1em, bottom-edge: 0em, weight: "semibold")
+  set par(
+    leading: leading,
+    spacing: leading,
+    justify: true,
+    first-line-indent: (
+      amount: 1em,
+      all: false,
+    ),
+  )
+  set block(spacing: leading)
+
+  show heading: set text(size: font-sizes.normal, font: "Linux Biolinum G")
+  show heading.where(depth: 3): set text(style: "italic")
+  show heading: set block(above: 1em, below: .3em)
+
   show std.title: set align(left)
 
-  let font-sizes = get-font-size(10pt)
-  show std.title: set text(font: "Libertinus Sans", size: font-sizes.LARGE)
-  set text(font: "Libertinus Serif", size: font-sizes.normal)
+  show std.title: set text(font: "Linux Biolinum G", size: font-sizes.Large)
   show footnote.entry: set text(size: font-sizes.footnote)
-  set par(justify: true)
+
+  set figure(gap: 1em, supplement: "Fig.")
+  // This affects the gap between figure and main content
+  set place(clearance: 1em)
+
+  // https://tex.stackexchange.com/a/540068
+  show raw: set text(font: "Inconsolata")
+  set enum(indent: .25em, body-indent: .25em)
+  set list(indent: .25em, body-indent: .25em)
+  set footnote.entry(indent: 0em)
 
   let copyright-notice = processed(
     copyright: copyright,
@@ -47,10 +72,22 @@
   )
 
   set page(
+    height: 10in,
+    width: 6.75in,
+    header-ascent: 26pt - font-sizes.normal,
+    margin: (
+      top: 58pt + 26pt,
+      bottom: 44pt,
+      inside: 46pt,
+      outside: 46pt,
+    ),
     header: context {
+      set text(size: font-sizes.footnote, font: "Linux Biolinum G", weight: "semibold")
+      set block(spacing: .2em)
+
       // the page with the title shouldn't have a header (usually the first one)
       let current-page = here().position().page
-      let the-page = if no-acm [#current-page] else [#article:#current-page]
+      let the-page = if nonacm [#current-page] else [#article:#current-page]
       set grid(inset: 0in, columns: (1fr, auto))
       show grid: set block(spacing: 0in, inset: 0in, outset: 0in)
 
@@ -68,7 +105,7 @@
         )
       }
     },
-    footer: if not no-acm {
+    footer: if not nonacm {
       context {
         let current-page = here().position().page
         let the-date = datetime(year: year, month: month, day: 1)
@@ -104,38 +141,44 @@
 
   thanks(line(length: 100%, stroke: 0.5pt))
   thanks[Authors' Contact Information: #print-contact-info(authors, affiliations)]
-  if not no-acm {
+  if not nonacm {
     thanks(line(length: 100%, stroke: 0.5pt))
     thanks(copyright-notice)
   }
 
   context {
     set text(size: font-sizes.small)
-    parbreak()
+    set par(spacing: 1em, first-line-indent: 0em)
+
+    // FIXME: edge case when multiple paragraphs inside abstract
     abstract
+
     parbreak()
-    [CCS Concepts: • #process-ccs(ccs)]
+    [CCS Concepts: #process-ccs(ccs)]
     parbreak()
     [Additional Key Words and Phrases: #keywords.join(", ")]
-    parbreak()
-    // TODO: ACM Reference format
-    strong[ACM Reference Format:]
-    parbreak()
-    let the-pages = 11
-    format-acm-reference(
-      authors,
-      year,
-      title,
-      journal,
-      volume,
-      number,
-      article,
-      month,
-      the-pages, // You'll need to add this parameter
-      doi,
-      text.lang,
-    )
+    if not nonacm {
+      parbreak()
+      // TODO: ACM Reference format
+      strong[ACM Reference Format:]
+      parbreak()
+      let the-pages = counter(page).final()
+      format-acm-reference(
+        authors,
+        year,
+        title,
+        journal,
+        volume,
+        number,
+        article,
+        month,
+        the-pages,
+        doi,
+        text.lang,
+      )
+    }
   }
+
 
   body
 }

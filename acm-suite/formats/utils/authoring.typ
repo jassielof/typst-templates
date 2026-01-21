@@ -144,7 +144,7 @@
     let author-names = ()
 
     for author in group-authors {
-      let name = upper(author.name)
+      let name = text(upper(author.name), font: "Linux Biolinum G")
       let orcid = if "orcid" in author { author.orcid } else { none }
       let formatted-name = format-author-name(name, orcid)
       let note-mark = get-note-mark(author, note-info)

@@ -15,6 +15,7 @@
   year: 2018,
   copyright-year: 2018,
   number: 4,
+  // nonacm: true,
   authors: (
     (
       name: [Ben Trovato],
@@ -103,7 +104,7 @@
       country: [USA],
     ),
   ),
-  abstract: [A clear and well-documented LaTeX document is presented as an article formatted for publication by ACM in a conference proceedings or journal publication. Based on the ``acmart'' document class, this article presents and explains many of the common variations, as well as many of the formatting elements an author may use in the preparation of the documentation of their work.],
+  abstract: [A clear and well-documented #LaTeX document is presented as an article formatted for publication by ACM in a conference proceedings or journal publication. Based on the ``acmart'' document class, this article presents and explains many of the common variations, as well as many of the formatting elements an author may use in the preparation of the documentation of their work.],
 )
 
 = Introduction
@@ -119,6 +120,26 @@ As noted in the introduction, the "`acmart`" document class can be used to prepa
 This document will explain the major features of the document class. For further information, the _#LaTeX User's Guide_ is available from #link("https://www.acm.org/publications/proceedings-template").
 
 == Template Styles
+
+The primary parameter given to the "`acmart`" document class is the _template style_ which corresponds to the kind of publication or SIG publishing the work. This parameter is enclosed in square brackets and is a part of the `documentclass` command:
+```
+\documentclass[STYLE]{acmart}
+```
+
+Journals use one of three template styles. All but three ACM journals
+use the `acmsmall` template style:
+
+- `acmsmall`: The default journal template style.
+- `acmlarge`: Used by JOCCH and TAP.
+- `acmtog`: Used by TOG.
+
+
+The majority of conference proceedings documentation will use the {\verb|acmconf|} template style.
+
+- `sigconf`: The default proceedings template style.
+- `sigchi`: Used for SIGCHI conference articles.
+- `sigplan`: Used for SIGPLAN conference articles.
+
 
 = Modifications
 = Typefaces
