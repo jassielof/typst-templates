@@ -29,7 +29,6 @@
   let font-sizes = get-font-size(10pt)
   let leading = .2em
   set document(title: title, keywords: keywords)
-  set heading(numbering: "1.1")
   set text(font: "Linux Libertine G", size: font-sizes.normal, top-edge: 1em, bottom-edge: 0em, weight: "regular")
   set par(
     leading: leading,
@@ -42,6 +41,7 @@
   )
   set block(spacing: leading)
 
+  set heading(numbering: (..n) => numbering("1.1", ..n) + h(7pt))
   show heading: set text(size: font-sizes.normal, font: "Linux Biolinum G")
   show heading.where(depth: 3): set text(style: "italic")
   show heading: set block(above: 1em, below: .4em)
@@ -77,7 +77,7 @@
     height: 10in,
     width: 6.75in,
     header-ascent: 27pt - font-sizes.normal,
-    footer-descent: 20pt - font-sizes.normal,
+    footer-descent: 20pt - font-sizes.normal, // TODO: finetune
     margin: (
       top: 58pt + 27pt,
       bottom: 44pt + 20pt,
@@ -85,7 +85,7 @@
       outside: 46pt,
     ),
     header: context {
-      set text(size: font-sizes.footnote, font: "Linux Biolinum G", weight: "semibold")
+      set text(size: font-sizes.footnote, font: "Linux Biolinum G", weight: "regular")
       set block(spacing: .2em)
 
       // the page with the title shouldn't have a header (usually the first one)
@@ -127,10 +127,10 @@
     } else { none },
   )
 
-  set footnote.entry(indent: 0in, separator: line(length: 13% + 0pt,stroke: 0.5pt))
+  set footnote.entry(indent: 0in, separator: line(length: 13% + 0pt, stroke: 0.5pt))
 
   std.title()
-  
+
   // FIXME: author with same address should be one a different line: only join authors with same mark?
   let author-result = print-acm-authors(authors, affiliations, "en")
   author-result.authors
@@ -143,16 +143,17 @@
     ]
   }
   {
-    
-    thanks(
-      {
-        line(length: 100%, stroke: 0.5pt)
-        // FIXME: if multiple authors have same address and author note, then group them together
-        par([Authors' Contact Information: #print-contact-info(authors, affiliations)], leading: .1em, first-line-indent: (
-        amount: 0pt,
+    thanks({
+      line(length: 100%, stroke: 0.5pt)
+      // FIXME: if multiple authors have same address and author note, then group them together
+      par(
+        [Authors' Contact Information: #print-contact-info(authors, affiliations)],
+        leading: .1em,
+        first-line-indent: (
+          amount: 0pt,
+        ),
       )
-      )}
-    )
+    })
   }
   if not nonacm {
     thanks(line(length: 100%, stroke: 0.5pt))
