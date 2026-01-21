@@ -61,7 +61,7 @@
 
   // https://tex.stackexchange.com/a/540068
   show raw: set text(font: "Inconsolata", size: font-sizes.normal)
-  show raw.where(block: true): block.with(above: 4pt, below: 4pt)
+  show raw.where(block: true): box.with(inset: (y: 0.25em))
   set enum(indent: 1em, body-indent: .35em)
   set list(indent: 2em, body-indent: .35em)
   set footnote.entry(indent: 0em)
@@ -76,6 +76,21 @@
     month: month,
     doi: doi,
   )
+
+  set table(
+    stroke: (x, y) => (
+      left: none,
+      right: none,
+      top: if y == 0 { 1pt } else if y == 1 { 1pt / 2 } else { 0pt },
+      bottom: 1pt,
+    )
+  )
+  show figure.where(
+    kind: table,
+  ): set figure.caption(position: top)
+  set figure(gap: 2em)
+  show figure: box.with(inset: 1em)
+  show table.cell: set block(inset: -.2em)
 
   set page(
     height: 10in,
@@ -172,7 +187,7 @@
     abstract
 
     parbreak()
-    [CCS Concepts: #process-ccs(ccs)]
+    [CCS Concepts: #process-ccs(ccs).]
     parbreak()
     [Additional Key Words and Phrases: #keywords.join(", ")]
     if not nonacm {
