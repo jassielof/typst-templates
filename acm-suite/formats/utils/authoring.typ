@@ -128,7 +128,7 @@
 
 // Print authors in ACM format
 #let print-acm-authors(author-groups-raw, affiliations, language) = {
-  let author-groups = author-groups-raw.map(e => if e.at("members", default: none) != none {
+  let author-groups = author-groups-raw.map(e => if "members" in e {
     e
   } else {
     (
@@ -237,7 +237,8 @@
 }
 
 // Print authors in simple list format (for ACM Reference Format)
-#let print-authors-list(authors, language) = {
+#let print-authors-list(author-groups, language) = {
+  let authors = author-groups.map(e => if "members" in e { e.members } else { (e,) }).flatten()
   if authors == none or authors.len() == 0 {
     return none
   }

@@ -182,7 +182,7 @@
       parbreak()
       let the-pages = counter(page).final()
       format-acm-reference(
-        authors-groups,
+        author-groups,
         year,
         title,
         journal,
