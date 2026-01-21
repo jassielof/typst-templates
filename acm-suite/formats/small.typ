@@ -29,7 +29,7 @@
   let leading = .2em
   set document(title: title, keywords: keywords)
   set heading(numbering: "1.1")
-  set text(font: "Linux Libertine G", size: font-sizes.normal, top-edge: 1em, bottom-edge: 0em, weight: "semibold")
+  set text(font: "Linux Libertine G", size: font-sizes.normal, top-edge: 1em, bottom-edge: 0em, weight: "regular")
   set par(
     leading: leading,
     spacing: leading,
