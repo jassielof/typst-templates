@@ -1,3 +1,9 @@
+// FIXME: Heading to numbering width spacing
+// FIXME: Lists marker indentation and width spacing
+// FIXME: Paragraph spacing
+// FIXME: Block spacing before and after of paragraphs against headings
+// TODO: ACM Journal specific details aren't necessary...
+
 #import "../lib.typ" as acm-suite
 #import "@preview/metalogo:1.2.0": LaTeX
 
