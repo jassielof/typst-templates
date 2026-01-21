@@ -104,7 +104,7 @@
       country: [USA],
     ),
   ),
-  abstract: [A clear and well-documented #LaTeX document is presented as an article formatted for publication by ACM in a conference proceedings or journal publication. Based on the ``acmart'' document class, this article presents and explains many of the common variations, as well as many of the formatting elements an author may use in the preparation of the documentation of their work.],
+  abstract: [A clear and well-documented #LaTeX document is presented as an article formatted for publication by ACM in a conference proceedings or journal publication. Based on the "acmart" document class, this article presents and explains many of the common variations, as well as many of the formatting elements an author may use in the preparation of the documentation of their work.],
 )
 
 = Introduction
@@ -125,7 +125,6 @@ The primary parameter given to the "`acmart`" document class is the _template st
 ```
 \documentclass[STYLE]{acmart}
 ```
-
 Journals use one of three template styles. All but three ACM journals
 use the `acmsmall` template style:
 
@@ -134,12 +133,34 @@ use the `acmsmall` template style:
 - `acmtog`: Used by TOG.
 
 
-The majority of conference proceedings documentation will use the {\verb|acmconf|} template style.
+The majority of conference proceedings documentation will use the `acmconf` template style.
 
 - `sigconf`: The default proceedings template style.
 - `sigchi`: Used for SIGCHI conference articles.
 - `sigplan`: Used for SIGPLAN conference articles.
 
+== Template parameters
+
+In addition to specifying the _template style_ to be used in
+formatting your work, there are a number of _template parameters_
+which modify some part of the applied template style. A complete list
+of these parameters can be found in the _#LaTeX User's Guide._
+
+Frequently-used parameters, or combinations of parameters, include:
+
+- `anonymous,review`: Suitable for a ``double-anonymous''
+  conference submission. Anonymizes the work and includes line
+  numbers. Use with the `\acmSubmissionID` command to print the
+  submission's unique ID on each page of the work.
+- `authorversion`: Produces a version of the work suitable for posting by the author.
+- `screen`: Produces colored hyperlinks.
+
+This document uses the following string as the first command in the
+source file:
+
+```
+\documentclass[acmsmall,screen,review]{acmart}
+```
 
 = Modifications
 = Typefaces

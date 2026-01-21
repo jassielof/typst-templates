@@ -25,6 +25,7 @@
   nonacm: false,
   body,
 ) = {
+  set text(ligatures: false)
   let font-sizes = get-font-size(10pt)
   let leading = .2em
   set document(title: title, keywords: keywords)
@@ -43,7 +44,7 @@
 
   show heading: set text(size: font-sizes.normal, font: "Linux Biolinum G")
   show heading.where(depth: 3): set text(style: "italic")
-  show heading: set block(above: 1em, below: .3em)
+  show heading: set block(above: 1em, below: .4em)
 
   show std.title: set align(left)
 
@@ -55,9 +56,10 @@
   set place(clearance: 1em)
 
   // https://tex.stackexchange.com/a/540068
-  show raw: set text(font: "Inconsolata")
-  set enum(indent: .25em, body-indent: .25em)
-  set list(indent: .25em, body-indent: .25em)
+  show raw: set text(font: "Inconsolata", size: font-sizes.normal)
+  show raw.where(block: true): block.with(above: 4pt, below: 4pt)
+  set enum(indent: 1em, body-indent: .35em)
+  set list(indent: 2em, body-indent: .35em)
   set footnote.entry(indent: 0em)
 
   let copyright-notice = processed(
@@ -74,10 +76,11 @@
   set page(
     height: 10in,
     width: 6.75in,
-    header-ascent: 26pt - font-sizes.normal,
+    header-ascent: 27pt - font-sizes.normal,
+    footer-descent: 20pt - font-sizes.normal,
     margin: (
-      top: 58pt + 26pt,
-      bottom: 44pt,
+      top: 58pt + 27pt,
+      bottom: 44pt + 20pt,
       inside: 46pt,
       outside: 46pt,
     ),
@@ -124,10 +127,11 @@
     } else { none },
   )
 
-  set footnote.entry(indent: 0in)
+  set footnote.entry(indent: 0in, separator: line(length: 13% + 0pt,stroke: 0.5pt))
 
   std.title()
-
+  
+  // FIXME: author with same address should be one a different line: only join authors with same mark?
   let author-result = print-acm-authors(authors, affiliations, "en")
   author-result.authors
 
@@ -138,9 +142,18 @@
       }
     ]
   }
-
-  thanks(line(length: 100%, stroke: 0.5pt))
-  thanks[Authors' Contact Information: #print-contact-info(authors, affiliations)]
+  {
+    
+    thanks(
+      {
+        line(length: 100%, stroke: 0.5pt)
+        // FIXME: if multiple authors have same address and author note, then group them together
+        par([Authors' Contact Information: #print-contact-info(authors, affiliations)], leading: .1em, first-line-indent: (
+        amount: 0pt,
+      )
+      )}
+    )
+  }
   if not nonacm {
     thanks(line(length: 100%, stroke: 0.5pt))
     thanks(copyright-notice)
