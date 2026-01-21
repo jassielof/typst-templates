@@ -178,7 +178,8 @@
     if aff-id != "no-affiliation" and aff-id in affiliations {
       let aff-text = format-affiliation-short(affiliations.at(aff-id))
 
-      output.push([#text(size: font-sizes.large)[#authors-text, ]#text(aff-text, size: font-sizes.small)])
+      // FIXME: somehow size is 11 and not "normal"
+      output.push([#text(size: 11pt)[#authors-text, ]#text(aff-text, size: font-sizes.small)])
     } else {
       output.push(text(authors-text, size: font-sizes.large))
     }

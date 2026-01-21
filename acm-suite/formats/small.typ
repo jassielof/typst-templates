@@ -27,13 +27,15 @@
 ) = {
   set text(ligatures: false)
   let font-sizes = get-font-size(10pt)
-  let leading = .2em
+  let leading = 2pt
   set document(title: title, keywords: keywords)
   set text(font: "Linux Libertine G", size: font-sizes.normal, top-edge: 1em, bottom-edge: 0em, weight: "regular")
   set par(
     leading: leading,
     spacing: leading,
     justify: true,
+    linebreaks: "optimized",
+    justification-limits: (spacing: (min: 50% + 0pt, max: 150% + 0pt), tracking: (min: 0pt, max: 0pt)),
     first-line-indent: (
       amount: 1em,
       all: false,
@@ -48,7 +50,9 @@
 
   show std.title: set align(left)
 
-  show std.title: set text(font: "Linux Biolinum G", size: font-sizes.Large)
+  show std.title: set text(font: "Linux Biolinum G", size: font-sizes.Large, top-edge: font-sizes.normal)
+  show std.title: set block(below: font-sizes.large)
+
   show footnote.entry: set text(size: font-sizes.footnote)
 
   set figure(gap: 1em, supplement: "Fig.")
@@ -178,7 +182,7 @@
       parbreak()
       let the-pages = counter(page).final()
       format-acm-reference(
-        authors,
+        authors-groups,
         year,
         title,
         journal,
