@@ -297,11 +297,14 @@ Below are examples of sectioning commands.
 
 This is a subsection.
 
-#(heading(depth: 3)[Subsubsection.])
+=== Subsubsection
+This is a subsubsection.
 
-Paragraph. This is a paragraph.
+==== Paragraph
+This is a paragraph.
 
-Subparagraph This is a subparagraph.
+===== Subparagraph
+This is a subparagraph.
 
 = Tables
 

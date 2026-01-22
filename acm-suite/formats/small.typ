@@ -62,7 +62,7 @@
 
   // show heading.where(level: 4): set text()
 
-  // show heading.where(depth: 3): it => counter(selector(heading).before(here())).display() + h(font-sizes.normal) + box(strong(it.body)) + [.]
+  show heading.where(depth: 3): it => counter(selector(heading).before(here())).display() + h(font-sizes.normal) + box(it.body) + [.]
   // show heading.where(depth: 4): e => e.body + [. ]
   // show heading.where(depth: 5): e => e.body + [. ] // FIXME: indentation should be that of the paragraph above
 
