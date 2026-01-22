@@ -42,16 +42,16 @@ tasks:
       - acm
     dir: acm-suite
     cmds:
-      - for:
-          [
+      - for: [
             "small",
-            "large",
-            "manuscript",
-            "sigpl",
-            "sig-conf",
-            "tog",
-            "cover-page",
-            "engage-cs-edu",
+            # TODO: Enable each one of these once they start to work.
+            # "large",
+            # "manuscript",
+            # "sigpl",
+            # "sig-conf",
+            # "tog",
+            # "cover-page",
+            # "engage-cs-edu",
           ]
         cmd: typst compile --root . template/{{.ITEM}}.typ # Manuscript is default for thumbnails
   upsa-bo:
