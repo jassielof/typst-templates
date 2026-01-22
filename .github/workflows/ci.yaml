@@ -30,7 +30,7 @@ jobs:
               run: |
                   # Check if fonts are already installed
                   if ! brew list --cask font-libertinus &>/dev/null; then
-                      brew install --cask font-{libertinus{,-{sans,serif,serif-display}},source-{serif-4,sans-3},tex-gyre-{adventor,bonum,chorus,cursor,heros,pagella,schola,termes{,-math}},arial{,-black},new-computer-modern,computer-modern}
+                      brew install --cask font-{linux-{libertine,biolinum},libertinus{,-{sans,serif,serif-display}},source-{serif-4,sans-3},tex-gyre-{adventor,bonum,chorus,cursor,heros,pagella,schola,termes{,-math}},arial{,-black},new-computer-modern,computer-modern}
                   else
                       echo "Fonts already installed, skipping..."
                   fi
