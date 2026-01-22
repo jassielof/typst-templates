@@ -95,6 +95,7 @@
   set footnote.entry(indent: 0em)
   // credits: shampoohere, https://sitandr.github.io/typst-examples-book/book/snippets/math/numbering.html#simple-code
   show math.equation.where(block: true): it => {
+    set text(font: ("Linux Libertine", "Linux Libertine G"))
     if it.fields().keys().contains("label") {
       block(math.equation(block: true, numbering: "(1)", it), inset: .4em)
     } else {
