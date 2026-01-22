@@ -45,8 +45,18 @@
 
   set heading(numbering: (..n) => numbering("1.1", ..n) + h(7pt))
   show heading: set text(size: font-sizes.normal, font: "Linux Biolinum G")
+  show heading: set block(above: 1em, below: 4pt)
   show heading.where(depth: 3): set text(style: "italic")
-  show heading: set block(above: 1em, below: .4em)
+  show heading.where(depth: 4): set text(style: "italic")
+  show heading.where(depth: 5): set text(style: "normal", weight: "regular")
+  show heading.where(depth: 3): set heading(outlined: false)
+  show heading.where(depth: 4): set heading(numbering: none, outlined: false)
+  show heading.where(depth: 5): set heading(numbering: none, outlined: false)
+
+  // show heading.where(depth: 3): it => counter(selector(heading).before(here())).display() + h(font-sizes.normal) + box(strong(it.body)) + [.]
+  // show heading.where(depth: 4): e => e.body + [. ]
+  // show heading.where(depth: 5): e => e.body + [. ] // FIXME: indentation should be that of the paragraph above
+
 
   show std.title: set align(left)
 
@@ -84,11 +94,11 @@
   set list(indent: 2em, body-indent: .35em)
   set footnote.entry(indent: 0em)
   // credits: shampoohere, https://sitandr.github.io/typst-examples-book/book/snippets/math/numbering.html#simple-code
-  show math.equation: it => {
+  show math.equation.where(block: true): it => {
     if it.fields().keys().contains("label") {
-      math.equation(block: true, numbering: "(1)", it)
+      block(math.equation(block: true, numbering: "(1)", it), inset: .4em)
     } else {
-      it
+      block(it, inset: .4em)
     }
   }
 
@@ -225,6 +235,8 @@
     }
   }
 
+  show bibliography: set text(size: font-sizes.footnote)
+  set bibliography(style: "association-for-computing-machinery", title: "References")
 
   body
 }

@@ -1,5 +1,6 @@
 #import "../lib.typ" as acm-suite
 #import "@preview/metalogo:1.2.0": LaTeX, TeX
+#import "../formats/utils/utils.typ": description
 
 #show: acm-suite.small.template.with(
   title: [The Name of the Title Is Hope],
@@ -290,17 +291,11 @@ Below are examples of sectioning commands.
 
 This is a subsection.
 
-=== Subsubsection <sec:subsubsection>
+#(heading(depth: 3)[Subsubsection.])
 
-This is a subsubsection.
+Paragraph. This is a paragraph.
 
-==== Paragraph
-
-This is a paragraph.
-
-===== Subparagraph
-
-This is a subparagraph.
+Subparagraph This is a subparagraph.
 
 = Tables
 
@@ -511,8 +506,7 @@ conference, symposium, workshop for example) (paginated proceedings
 article) @Andler79@Hagerup1993, a proceedings article with
 all possible elements #cite(<Smith10>), an example of an enumerated
 proceedings article #cite(<VanGundy07>), an informally published work
-#cite(<Harel78>), a couple of preprints \cite{Bornmann2019,
-AnzarootPBM14}, a doctoral dissertation #cite(<Clarkson85>), a
+#cite(<Harel78>), a couple of preprints @Bornmann2019@AnzarootPBM14, a doctoral dissertation #cite(<Clarkson:1985:ACP:911891>), a
 master's thesis: #cite(<anisi03>), an online document / world wide web
 resource @Thornburg01@Ablamowicz07@Poker06, a video game
 (Case 1) #cite(<Obama08>) and (Case 2) #cite(<Novak03>) and #cite(<Lee05>)
@@ -595,20 +589,17 @@ not in Word) produces a landscape-orientation formatted article, with
 a wide left margin. Three environments are available for use with the
 "`sigchi-a`" template style, and produce formatted output in
 the margin:
-
-// \begin{description}
-// \item[\texttt{sidebar}:]  Place formatted text in the margin.
-// \item[\texttt{marginfigure}:] Place a figure in the margin.
-// \item[\texttt{margintable}:] Place a table in the margin.
-// \end{description}
-
-#heading("Acknowledgments")
+#description(
+  dict: (
+    sidebar: [ Place formatted text in the margin.],
+    marginfigure: [Place a figure in the margin.],
+    margintable: [Place a table in the margin.],
+  ),
+)
+#heading("Acknowledgments", numbering: none)
 To Robert, for the bagels and explaining CMYK and color spaces.
 
-
-
-#bibliography("assets/data/sample-base.bib", style: "association-for-computing-machinery")
-
+#bibliography("assets/data/sample-base.bib")
 
 // %%
 // %% If your work has an appendix, this is the place to put it.
