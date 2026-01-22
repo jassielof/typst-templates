@@ -50,14 +50,31 @@
 
   show std.title: set align(left)
 
-  show std.title: set text(font: "Linux Biolinum G", size: font-sizes.Large, top-edge: font-sizes.normal)
+  show std.title: set text(
+    font: ("Linux Biolinum", "Linux Biolinum G"),
+    size: font-sizes.Large,
+    top-edge: font-sizes.normal,
+  )
   show std.title: set block(below: font-sizes.large)
 
   show footnote.entry: set text(size: font-sizes.footnote)
 
-  set figure(gap: 1em, supplement: "Fig.")
-  // This affects the gap between figure and main content
-  set place(clearance: 1em)
+  set table(
+    stroke: (x, y) => (
+      top: if y == 0 { 1pt } else if y == 1 { 1pt / 2 } else { 0pt },
+      bottom: 1pt,
+    ),
+  )
+
+  set table(stroke: (_, y) => if y == 0 { (bottom: .5pt) }, row-gutter: (-5pt, -8pt))
+  show table: block.with(stroke: (y: 1pt), inset: (top: -3pt))
+
+  set figure(gap: 1.5em, supplement: "Fig.", placement: top)
+  show figure.caption: set text(font: ("Linux Biolinum", "Linux Biolinum G"))
+  show figure: set block(spacing: 2em) // for non floating figures
+  show figure: set place(clearance: 2em) // for floating figures
+  show figure.where(kind: table): set figure.caption(position: top, separator: ". ")
+  show figure.where(kind: table): set figure(supplement: "Table")
 
   // https://tex.stackexchange.com/a/540068
   show raw: set text(font: "Inconsolata", size: font-sizes.normal)
@@ -77,20 +94,6 @@
     doi: doi,
   )
 
-  set table(
-    stroke: (x, y) => (
-      left: none,
-      right: none,
-      top: if y == 0 { 1pt } else if y == 1 { 1pt / 2 } else { 0pt },
-      bottom: 1pt,
-    )
-  )
-  show figure.where(
-    kind: table,
-  ): set figure.caption(position: top)
-  set figure(gap: 2em)
-  show figure: box.with(inset: 1em)
-  show table.cell: set block(inset: -.2em)
 
   set page(
     height: 10in,
