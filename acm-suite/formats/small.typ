@@ -53,6 +53,14 @@
   show heading.where(depth: 3): set heading(outlined: false)
   show heading.where(depth: 4): set heading(numbering: none, outlined: false)
   show heading.where(depth: 5): set heading(numbering: none, outlined: false)
+  show heading.where(level: 4): it => box[#it.body.]
+  // show heading.where(level: 5): set par(first-line-indent: 0in)
+  show heading.where(level: 5): it => box(inset: (left: -1em))[
+    #set par(first-line-indent: 0in)
+    #it.body
+  ]
+
+  // show heading.where(level: 4): set text()
 
   // show heading.where(depth: 3): it => counter(selector(heading).before(here())).display() + h(font-sizes.normal) + box(strong(it.body)) + [.]
   // show heading.where(depth: 4): e => e.body + [. ]
