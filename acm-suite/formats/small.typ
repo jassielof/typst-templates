@@ -73,8 +73,9 @@
   show figure.caption: set text(font: ("Linux Biolinum", "Linux Biolinum G"))
   show figure: set block(spacing: 2em) // for non floating figures
   show figure: set place(clearance: 2em) // for floating figures
-  show figure.where(kind: table): set figure.caption(position: top, separator: ". ")
-  show figure.where(kind: table): set figure(supplement: "Table")
+  show figure: set figure.caption(separator: ". ")
+  show figure.where(kind: table): set figure.caption(position: top)
+  show figure.where(kind: table): set figure(placement: top, supplement: "Table")
 
   // https://tex.stackexchange.com/a/540068
   show raw: set text(font: "Inconsolata", size: font-sizes.normal)
