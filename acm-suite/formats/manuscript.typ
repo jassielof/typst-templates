@@ -98,7 +98,7 @@
 
   abstract
   parbreak()
-  [CCS Concepts: • #process-ccs(ccs)]
+  [CCS Concepts: • #process-ccs(ccs).]
   parbreak()
   [Additional Key Words and Phrases: #keywords.join(", ")]
 
