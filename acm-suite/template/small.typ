@@ -361,55 +361,59 @@ in the printed output of this document.
 ) <tab:commands>
 
 
-// Always use midrule to separate table header rows from data rows, and
-// use it only for this purpose. This enables assistive technologies to
-// recognise table headers and support their users in navigating tables
-// more easily.
+Always use midrule to separate table header rows from data rows, and
+use it only for this purpose. This enables assistive technologies to
+recognise table headers and support their users in navigating tables
+more easily.
 
-// = Math Equations
-// You may want to display math equations in three distinct styles:
-// inline, numbered or non-numbered display.  Each of the three are
-// discussed in the next sections.
+= Math Equations
+You may want to display math equations in three distinct styles:
+inline, numbered or non-numbered display.  Each of the three are
+discussed in the next sections.
 
-// \subsection{Inline (In-text) Equations}
-// A formula that appears in the running text is called an inline or
-// in-text formula.  It is produced by the *math* environment,
-// which can be invoked with the usual
-// \texttt{{\char'134}begin\,\ldots{\char'134}end} construction or with
-// the short form \texttt{\$\,\ldots\$}. You can use any of the symbols
-// and structures, from $\alpha$ to $\omega$, available in
-// \LaTeX~\cite{Lamport:LaTeX}; this section will simply show a few
-// examples of in-text equations in context. Notice how this equation:
-// \begin{math}
-//   \lim_{n\rightarrow \infty}x=0
-// \end{math},
-// set here in in-line math style, looks slightly different when
-// set in display style.  (See next section).
+== Inline (In-text) Equations
+A formula that appears in the running text is called an inline or
+in-text formula.  It is produced by the *math* environment,
+which can be invoked with the usual
+`\begin . . . \end` construction or with
+the short form `$ . . . $`. You can use any of the symbols
+and structures, from $alpha$ to $omega$, available in
+#LaTeX#cite(<Lamport:LaTeX>); this section will simply show a few examples of in-text equations in context. Notice how this equation:
+$lim_(n arrow infinity) x = 0$
+set here in in-line math style, looks slightly different when
+set in display style.  (See next section).
 
-// \subsection{Display Equations}
-// A numbered display equation---one set off by vertical space from the
-// text and centered horizontally---is produced by the *equation*
-// environment. An unnumbered display equation is produced by the
-// *displaymath* environment.
+== Display Equations
+A numbered display equation---one set off by vertical space from the
+text and centered horizontally---is produced by the *equation*
+environment. An unnumbered display equation is produced by the
+*displaymath* environment.
 
-// Again, in either environment, you can use any of the symbols and
-// structures available in #LaTeX@; this section will just give a couple
-// of examples of display equations in context.  First, consider the
-// equation, shown as an inline equation above:
-// \begin{equation}
-//   \lim_{n\rightarrow \infty}x=0
-// \end{equation}
-// Notice how it is formatted somewhat differently in
-// the *displaymath*
-// environment.  Now, we'll enter an unnumbered equation:
-// \begin{displaymath}
-//   \sum_{i=0}^{\infty} x + 1
-// \end{displaymath}
-// and follow it with another numbered equation:
-// \begin{equation}
-//   \sum_{i=0}^{\infty}x_i=\int_{0}^{\pi+2} f
-// \end{equation}
-// just to demonstrate \LaTeX's able handling of numbering.
+Again, in either environment, you can use any of the symbols and
+structures available in #LaTeX; this section will just give a couple
+of examples of display equations in context.  First, consider the
+equation, shown as an inline equation above:
+
+$
+  lim_(n arrow infinity) x = 0
+$ <eq:a>
+
+
+Notice how it is formatted somewhat differently in
+the *displaymath*
+environment.  Now, we'll enter an unnumbered equation:
+
+$
+  sum_(i=0)^(infinity) x + 1
+$
+
+and follow it with another numbered equation:
+
+$
+  sum_(i=0)^(infinity)x_i= integral_(0)^(pi+2) f
+$ <eq:b>
+
+just to demonstrate #LaTeX's able handling of numbering.
 
 // = Figures
 
@@ -450,7 +454,7 @@ in the printed output of this document.
 // so important, please see
 // #link("https://www.acm.org/publications/taps/describing-figures/").
 
-// \subsection{The "Teaser Figure"}
+// == The "Teaser Figure"
 
 // A "teaser figure" is an image, or set of images in one figure, that
 // are placed after all author and affiliation information, and before
@@ -493,38 +497,38 @@ in the printed output of this document.
 // ```
 
 
-//   Some examples.  A paginated journal article \cite{Abril07}, an
-//   enumerated journal article \cite{Cohen07}, a reference to an entire
-//   issue \cite{JCohen96}, a monograph (whole book) \cite{Kosiur01}, a
+//   Some examples.  A paginated journal article #cite(<Abril07>), an
+//   enumerated journal article #cite(<Cohen07>), a reference to an entire
+//   issue #cite(<JCohen96>), a monograph (whole book) #cite(<Kosiur01>), a
 //   monograph/whole book in a series (see 2a in spec. document)
-//   \cite{Harel79}, a divisible-book such as an anthology or compilation
-//   \cite{Editor00} followed by the same example, however we only output
-//   the series if the volume number is given \cite{Editor00a} (so
+//   #cite(<Harel79>), a divisible-book such as an anthology or compilation
+//   #cite(<Editor00>) followed by the same example, however we only output
+//   the series if the volume number is given #cite(<Editor00a>) (so
 //   Editor00a's series should NOT be present since it has no vol. no.),
-//   a chapter in a divisible book \cite{Spector90}, a chapter in a
-//   divisible book in a series \cite{Douglass98}, a multi-volume work as
-//   book \cite{Knuth97}, a couple of articles in a proceedings (of a
+//   a chapter in a divisible book #cite(<Spector90>), a chapter in a
+//   divisible book in a series #cite(<Douglass98>), a multi-volume work as
+//   book #cite(<Knuth97>), a couple of articles in a proceedings (of a
 //   conference, symposium, workshop for example) (paginated proceedings
-//   article) \cite{Andler79, Hagerup1993}, a proceedings article with
-//   all possible elements \cite{Smith10}, an example of an enumerated
-//   proceedings article \cite{VanGundy07}, an informally published work
-//   \cite{Harel78}, a couple of preprints \cite{Bornmann2019,
-//     AnzarootPBM14}, a doctoral dissertation \cite{Clarkson85}, a
-//   master's thesis: \cite{anisi03}, an online document / world wide web
-//   resource \cite{Thornburg01, Ablamowicz07, Poker06}, a video game
-//   (Case 1) \cite{Obama08} and (Case 2) \cite{Novak03} and \cite{Lee05}
-//   and (Case 3) a patent \cite{JoeScientist001}, work accepted for
-//   publication \cite{rous08}, 'YYYYb'-test for prolific author
-//   \cite{SaeediMEJ10} and \cite{SaeediJETC10}. Other cites might
+//   article) #cite(<Andler79, Hagerup1993>), a proceedings article with
+//   all possible elements #cite(<Smith10>), an example of an enumerated
+//   proceedings article #cite(<VanGundy07>), an informally published work
+//   #cite(<Harel78>), a couple of preprints \cite{Bornmann2019,
+//     AnzarootPBM14}, a doctoral dissertation #cite(<Clarkson85>), a
+//   master's thesis: #cite(<anisi03>), an online document / world wide web
+//   resource #cite(<Thornburg01, Ablamowicz07, Poker06>), a video game
+//   (Case 1) #cite(<Obama08>) and (Case 2) #cite(<Novak03>) and #cite(<Lee05>)
+//   and (Case 3) a patent #cite(<JoeScientist001>), work accepted for
+//   publication #cite(<rous08>), 'YYYYb'-test for prolific author
+//   #cite(<SaeediMEJ10>) and #cite(<SaeediJETC10>). Other cites might
 //   contain 'duplicate' DOI and URLs (some SIAM articles)
-//   \cite{Kirschmer:2010:AEI:1958016.1958018}. Boris / Barbara Beeton:
-//   multi-volume works as books \cite{MR781536} and \cite{MR781537}. A
-//   presentation~\cite{Reiser2014}. An article under
-//   review~\cite{Baggett2025}. A
+//   #cite(<Kirschmer:2010:AEI:1958016.1958018>). Boris / Barbara Beeton:
+//   multi-volume works as books #cite(<MR781536>) and #cite(<MR781537>). A
+//   presentation#cite(<Reiser2014>). An article under
+//   review#cite(<Baggett2025>). A
 //   couple of citations with DOIs:
-//   \cite{2004:ITE:1009386.1010128,Kirschmer:2010:AEI:1958016.1958018}. Online
-//   citations: \cite{TUGInstmem, Thornburg01, CTANacmart}.
-//   Artifacts: \cite{R} and \cite{UMassCitations}.
+//   #cite(<2004:ITE:1009386.1010128,Kirschmer:2010:AEI:1958016.1958018>). Online
+//   citations: #cite(<TUGInstmem, Thornburg01, CTANacmart>).
+//   Artifacts: #cite(<R>) and #cite(<UMassCitations>).
 
 // = Acknowledgments
 
@@ -619,7 +623,7 @@ in the printed output of this document.
 
 // = Research Methods
 
-// \subsection{Part One}
+// == Part One
 
 // Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
 // malesuada, quam in pulvinar varius, metus nunc fermentum urna, id
@@ -627,7 +631,7 @@ in the printed output of this document.
 // vel mollis. Curabitur quis dictum nisl. Phasellus vel semper risus, et
 // lacinia dolor. Integer ultricies commodo sem nec semper.
 
-// \subsection{Part Two}
+// == Part Two
 
 // Etiam commodo feugiat nisl pulvinar pellentesque. Etiam auctor sodales
 // ligula, non varius nibh pulvinar semper. Suspendisse nec lectus non
@@ -646,3 +650,5 @@ in the printed output of this document.
 // Nam interdum magna at lectus dignissim, ac dignissim lorem
 // rhoncus. Maecenas eu arcu ac neque placerat aliquam. Nunc pulvinar
 // massa et mattis lacinia.
+
+#bibliography("assets/data/sample-base.bib")
