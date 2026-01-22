@@ -82,6 +82,15 @@
   set enum(indent: 1em, body-indent: .35em)
   set list(indent: 2em, body-indent: .35em)
   set footnote.entry(indent: 0em)
+  // credits: shampoohere, https://sitandr.github.io/typst-examples-book/book/snippets/math/numbering.html#simple-code
+  show math.equation: it => {
+    if it.fields().keys().contains("label") {
+      math.equation(block: true, numbering: "(1)", it)
+    } else {
+      it
+    }
+  }
+
 
   let copyright-notice = processed(
     copyright: copyright,
