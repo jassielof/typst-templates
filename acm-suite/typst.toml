@@ -6,7 +6,7 @@ repository = "https://github.com/jassielof/typst-templates"
 entrypoint = "lib.typ"
 authors = ["Jassiel Ovando <@jassielof>", "Amejonah1200 <amejonah@gmail.com>"]
 license = "MPL-2.0"
-description = "ACM template suite, port of the LaTeX acm-article template."
+description = "A Typst template suite port of the ACM LaTeX document classes ACM Article."
 keywords = [
   "ACM",
   "Association for Computing Machinery",
