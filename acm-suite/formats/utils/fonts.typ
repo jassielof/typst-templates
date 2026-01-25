@@ -151,3 +151,18 @@
   }
 }
 
+
+#let sans = ("Linux Biolinum", "Libertinus Sans")
+#let sans-serif = ("Linux Libertine", "Libertinus Serif")
+
+/// Meant for headings and titles.
+#let sans-serif-display = ("Linux Libertine Display", "Libertinus Serif Display")
+
+/// Libertine originally doesn't provide full Mathematical fonts, ACM Article uses New TX Math fonts styled as Libertine, as it has a limited set.
+#let math-font = (
+  "Libertine",
+  "Libertinus Math",
+)
+
+/// There's no clear fallback for Inconsolata
+#let mono = "Inconsolata"
