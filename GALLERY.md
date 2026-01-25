@@ -12,7 +12,7 @@
 
 ![Versatile APA Student Thumbnail](versatile-apa/thumbnail-student.png)
 
-## ACM Suite (sig-conf)
+## ACM Suite
 
 ![ACM Suite Thumbnail](acm-suite/thumbnail.png)
 
