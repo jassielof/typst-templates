@@ -2,6 +2,7 @@
 #import "@preview/datify:1.0.0": custom-date-format
 #import "@preview/orchid:0.1.0"
 #import "fonts.typ": get-font-size
+#import "journals.typ": get-journal
 
 // Format author name with optional ORCID link
 #let format-author-name(name, orcid) = {
@@ -152,7 +153,7 @@
     let aff-id = group-authors.affiliations
 
     for author in group-authors.members {
-      let name = text(upper(author.name), font: "Linux Biolinum G")
+      let name = text(upper(author.name), font: "Linux Biolinum")
       let orcid = if "orcid" in author { author.orcid } else { none }
       let formatted-name = format-author-name(name, orcid)
       let note-mark = get-note-mark(author, note-info)
@@ -260,6 +261,27 @@
   }
 }
 
+#let print-acm-reference-authors(author-groups, language) = {
+  let authors = author-groups.map(e => if "members" in e { e.members } else { (e,) }).flatten()
+  if authors == none or authors.len() == 0 {
+    return none
+  }
+
+  let author-names = authors.map(author => {
+    if type(author) == dictionary {
+      author.name
+    } else {
+      author
+    }
+  })
+
+  if author-names.len() == 1 {
+    author-names.at(0)
+  } else {
+    author-names.join([, ], last: [, #context get-terms(language).and ])
+  }
+}
+
 // Format ACM reference citation
 #let format-acm-reference(
   authors,
@@ -277,7 +299,7 @@
   let parts = ()
 
   // Authors
-  parts.push(print-authors-list(authors, language))
+  parts.push(print-acm-reference-authors(authors, language))
 
   // Year
   if year != none {
@@ -291,30 +313,37 @@
 
   // Journal info
   if journal != none {
-    let journal-part = journal
+    let short-journal = emph(get-journal(journal).short-name)
+    let journal-part = short-journal
+
     if volume != none {
-      journal-part = [#journal #volume]
+      journal-part = [#journal-part #volume]
+
       if number != none {
         journal-part = [#journal-part, #number]
       }
     }
+
     if article != none {
       journal-part = [#journal-part, Article #article]
     }
+
     parts.push(journal-part)
   }
 
   // Month and pages
   let extra = ()
   if month != none and year != none {
-    // let the-date = datetime(year: year, month: month, day: 1)
-    extra.push([#year #month])
+    let the-date = datetime(year: year, month: month, day: 1)
+    extra.push(custom-date-format(the-date, pattern: "(MMMM yyyy)"))
   }
+
   if pages != none {
     extra.push([#pages pages])
   }
+
   if extra.len() > 0 {
-    parts.push([(#extra.join([, ]))])
+    parts.push(extra.join([, ]))
   }
 
   // DOI
@@ -322,5 +351,5 @@
     parts.push(link("https://doi.org/" + doi))
   }
 
-  return parts.join([. ]) + [.]
+  return parts.join([. ])
 }

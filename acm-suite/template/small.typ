@@ -15,6 +15,7 @@
   volume: 37,
   copyright: acm-suite.permissions.acm-licensed,
   ccs: xml("assets/ccs.xml"),
+  // FIXME: If none, it should print all the authors, as the default behavior
   short-authors: [Trovato et al.],
   article: 111,
   doi: "XXXXXXX.XXXXXXX",
@@ -143,7 +144,6 @@ Journals use one of three template styles. All but three ACM journals use the `a
 - `acmlarge`: Used by JOCCH and TAP.
 - `acmtog`: Used by TOG.
 
-
 The majority of conference proceedings documentation will use the `acmconf` template style.
 
 - `sigconf`: The default proceedings template style.
@@ -163,8 +163,13 @@ Frequently-used parameters, or combinations of parameters, include:
 - `screen`: Produces colored hyperlinks.
 
 This document uses the following string as the first command in the
-source file: `\documentclass[acmsmall,screen,review]{acmart}`
+source file:
 
+// FIXME: Raw blocks shouldn't be indented
+
+```
+\documentclass[acmsmall,screen,review]{acmart}
+```
 
 = Modifications
 
@@ -195,7 +200,10 @@ If your title is lengthy, you must define a short version to be used
 in the page headers, to prevent overlapping text. The `title`
 command has a "short title" parameter:
 
-`\title[short title]{full title}`
+// FIXME: Raw code blocks shouldn't be indented
+```
+\title[short title]{full title}
+```
 
 = Authors and Affiliations
 
@@ -294,10 +302,9 @@ a paragraph in boldface or italicized text is *not allowed.*
 Below are examples of sectioning commands.
 
 == Subsection <sec:subsection>
-
 This is a subsection.
 
-=== Subsubsection
+=== Subsubsection <sec:subsubsection>
 This is a subsubsection.
 
 ==== Paragraph
@@ -325,36 +332,35 @@ detailed instructions on *tabular\** material are found in the
 _#LaTeX User's Guide_.
 
 Immediately following this sentence is the point at which
-Table#ref(<tab:freq>) is included in the input file; compare the
+Table~@tab:freq is included in the input file; compare the
 placement of the table here with the table in the printed output of
 this document.
 
 #figure(
   table(
-    columns: (auto, auto, auto),
+    columns: 3,
     align: (center, center, left),
     table.header[Non-English or Math][Frequency][Comments],
     [#sym.nothing], [1 in 1,000], [For Swedish names],
-    [#sym.pi], [1 in 5], [Common in math],
+    $pi$, [1 in 5], [Common in math],
     [#sym.dollar], [4 in 5], [Used in business],
     $Psi^2_1$, [1 in 40,000], [Unexplained usage],
   ),
   caption: "Frequency of Special Characters",
 ) <tab:freq>
 
-
 To set a wider table, which takes up the whole width of the page's
 live area, use the environment *table* to enclose the table's
 contents and the table caption.  As with a single-column table, this
 wide table will "float" to a location deemed more
 desirable. Immediately following this sentence is the point at which
-Table#ref(<tab:commands>) is included in the input file; again, it is
+Table~@tab:commands is included in the input file; again, it is
 instructive to compare the placement of the table here with the table
 in the printed output of this document.
 
 #figure(
   table(
-    columns: (auto, auto, auto),
+    columns: 3,
     align: (center, center, left),
     table.header[Command][A Number][Comments],
     `\author`, [100], [Author],
@@ -363,7 +369,6 @@ in the printed output of this document.
   ),
   caption: "Some Typical Commands",
 ) <tab:commands>
-
 
 Always use midrule to separate table header rows from data rows, and
 use it only for this purpose. This enables assistive technologies to
@@ -378,11 +383,10 @@ discussed in the next sections.
 == Inline (In-text) Equations
 A formula that appears in the running text is called an inline or
 in-text formula.  It is produced by the *math* environment,
-which can be invoked with the usual
-`\begin . . . \end` construction or with
-the short form `$ . . . $`. You can use any of the symbols
+which can be invoked with the usual #text(font: "Inconsolata")[\\begin$thin$...\\end] construction or with
+the short form #text(font: "Inconsolata")[\$$thin$...\$]. You can use any of the symbols
 and structures, from $alpha$ to $omega$, available in
-#LaTeX#cite(<Lamport:LaTeX>); this section will simply show a few examples of in-text equations in context. Notice how this equation:
+#LaTeX~@Lamport:LaTeX; this section will simply show a few examples of in-text equations in context. Notice how this equation:
 $lim_(n arrow infinity) x = 0$
 set here in in-line math style, looks slightly different when
 set in display style.  (See next section).
@@ -394,14 +398,13 @@ environment. An unnumbered display equation is produced by the
 *displaymath* environment.
 
 Again, in either environment, you can use any of the symbols and
-structures available in #LaTeX; this section will just give a couple
+structures available in #LaTeX;; this section will just give a couple
 of examples of display equations in context.  First, consider the
 equation, shown as an inline equation above:
 
 $
   lim_(n arrow infinity) x = 0
 $ <eq:a>
-
 
 Notice how it is formatted somewhat differently in
 the *displaymath*
@@ -415,7 +418,7 @@ and follow it with another numbered equation:
 
 $
   sum_(i=0)^(infinity)x_i= integral_(0)^(pi+2) f
-$ <eq:b>
+$
 
 just to demonstrate #LaTeX's able handling of numbering.
 
@@ -426,8 +429,13 @@ more images can be placed within a figure. If your figure contains
 third-party material, you must clearly identify it as such, as shown
 in the example below.
 #figure(
-  image("assets/images/sample-franklin.png", alt: "A woman and a girl in white dresses sit in an open car."),
-  caption: [1907 Franklin Model D roadster. Photograph by Harris \&
+  placement: none,
+  image(
+    "assets/images/sample-franklin.png",
+    alt: "A woman and a girl in white dresses sit in an open car.",
+    width: 100%,
+  ),
+  caption: [1907 Franklin Model D roadster. Photograph by Harris &
     Ewing, Inc. [Public domain], via Wikimedia
     Commons. (#link("https://goo.gl/VLCRBB")).],
 )
@@ -463,7 +471,6 @@ are placed after all author and affiliation information, and before
 the body of the article, spanning the page. If you wish to have such a
 figure in your article, place the command immediately before the
 `\maketitle` command:
-
 ```
   \begin{teaserfigure}
     \includegraphics[width=\textwidth]{sampleteaser}
@@ -553,7 +560,7 @@ consistency in the spelling of the section heading.
 Authors should not prepare this section as a numbered or unnumbered `\section`; please use the "`acks`" environment.
 
 = Appendices
-
+// FIXME: Should be modified to match Typst
 If your work needs an appendix, add it before the
 "`\end{document}`" command at the conclusion of your source
 document.
@@ -576,7 +583,6 @@ every language used in the paper.  The last language indicated is the
 main language of the paper.  For example, a French paper with
 additional titles and abstracts in English and German may start with
 the following command
-
 ```
 \documentclass[sigconf, language=english, language=german,
                language=french]{acmart}
@@ -591,28 +597,14 @@ environment have a mandatory first argument: the language of the
 second argument.  See `sample-sigconf-i13n.tex` file for examples
 of their usage.
 
-= SIGCHI Extended Abstracts
-
-The "`sigchi-a`" template style (available only in #LaTeX and
-not in Word) produces a landscape-orientation formatted article, with
-a wide left margin. Three environments are available for use with the
-"`sigchi-a`" template style, and produce formatted output in
-the margin:
-#description(
-  dict: (
-    sidebar: [ Place formatted text in the margin.],
-    marginfigure: [Place a figure in the margin.],
-    margintable: [Place a table in the margin.],
-  ),
-)
+// TODO: Acknowledgments function
 #heading("Acknowledgments", numbering: none)
 To Robert, for the bagels and explaining CMYK and color spaces.
 
+// TODO: ACM Article has its own BibTeX Style Table (.bst), but Typst's bibliography system depends on CSL, explain it in README as limitations and also in GitHub Issues.
 #bibliography("assets/data/sample-base.bib")
 
-// %%
-// %% If your work has an appendix, this is the place to put it.
-// \appendix
+// TODO: Add appendix
 
 = Research Methods
 
