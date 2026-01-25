@@ -41,19 +41,31 @@ tasks:
     aliases:
       - acm
     dir: acm-suite
+    sources:
+      - "**/*.typ"
+    generates:
+      - "template/*.pdf"
+      - "*.png"
+    vars:
+      FORMATS: [
+          "small",
+          # TODO: Enable each one of these once they start to work.
+          # "large",
+          # "manuscript",
+          # "sigpl",
+          # "sig-conf",
+          # "tog",
+          # "cover-page",
+          # "engage-cs-edu",
+        ]
     cmds:
-      - for: [
-            "small",
-            # TODO: Enable each one of these once they start to work.
-            # "large",
-            # "manuscript",
-            # "sigpl",
-            # "sig-conf",
-            # "tog",
-            # "cover-page",
-            # "engage-cs-edu",
-          ]
+      - for: { var: FORMATS }
         cmd: typst compile --root . template/{{.ITEM}}.typ # Manuscript is default for thumbnails
+      - for: { var: FORMATS }
+        cmd: typst compile --root . template/{{.ITEM}}.typ thumbnail-{{.ITEM}}.png --pages 1
+      # Manuscript is the default
+      # TODO: Enable once it works
+      # - typst compile --root . template/manuscript.typ thumbnail.png --pages 1
   upsa-bo:
     dir: upsa-bo
     aliases:
