@@ -6,11 +6,11 @@ El estilo, formato y estructura de la plantilla está basado en el reglamento in
 
 La plantilla es la misma con la cual yo realicé mi **Proyecto de Grado, Plan de Proyecto, y Estudio de Factibilidad**.
 
-**El formato o contenido puede variar dependiendo de la carrera, docente o modalidad de grado.**
+**El formato o contenido puede variar dependiendo de la carrera, docente, modalidad de grado, etc.**
 
 ## Uso
 
-La plantilla incluye formato para:
+La plantilla incluye formato, o puede ser usado para:
 
 - Estudio de factibilidad.
 - Plan de proyecto: Propuesta del proyecto de grado, o el capítulo 1.
@@ -19,11 +19,3 @@ La plantilla incluye formato para:
 ## Licencia
 
 Este proyecto está licenciado bajo *Apache License 2.0*, esta solo es aplicada al código de Typst, no al contenido generado por la plantilla ni al logo de la universidad usado.
-
-## Español
-
-La plantilla está principalmente en español, por naturaleza de la universidad.
-
-Por razones de accesibilidad, la plantilla también está disponible en inglés.
-
-The English README is [available here](README.en.md).
