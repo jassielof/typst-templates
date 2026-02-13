@@ -53,10 +53,14 @@
   body
 }
 
-#let introduction(name: none, details: none) = context {
+#let introduction(name: none, details: none) = {
   set document(
     title: name,
-    author: if (type(name) == content) { name.text } else if (type(name) == string) { name } else { () },
+    author: if (type(name) == str) {
+      name
+    } else {
+      ()
+    },
     description: details,
   )
   set align(center)
