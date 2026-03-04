@@ -23,6 +23,9 @@
 
 #set heading(offset: 1)
 = Introducción
+hola.
+#lorem(100)
+
 == Definiciones
 == Empresa
 == The Typst Typesetting System

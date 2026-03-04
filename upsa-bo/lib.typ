@@ -3,7 +3,7 @@
 #import "utils/title-page.typ": portada
 
 #let chapter-counter = counter("chapter")
-
+// Planilla para documentos finales de licenciatura de la Universidad Privada de Santa Cruz de la Sierra (UPSA). Basada en el Reglamento de Graduación (revisado el 2025, a su vez adecuado al D.S 1433), título V (aspectos formales del documento final de licenciatura), capítulo I (presentación del documento final).
 #let tfg(
   título: [],
   facultad: [],
@@ -29,13 +29,20 @@
   portada-externa: true,
   ubicación: "Santa Cruz de la Sierra, Bolivia",
   fecha: datetime.today().year(),
+  // El texto se escribirá usando mayúsculas y minúsculas, limitando el uso de mayúsculas completas a títulos. El tipo de letras podrá ser elegido de algunos de los siguientes: Times New Roman (14 pt [nunca se especifica la unidad, así que puede asumirse la unidad por defecto de Microsoft Word (punto) o bien pixel]), Arial (12 pt) o Helvética (12 pt).
+  // El tamaño y tipo de las letras será uniforme en todo el texto, así como el sistema de encabezamientos y jerarquización, y otras formas de presentación. Para sub/títulos, notas, referencias bibliográficas y citas,podrán usarse tamaños mayores/menores de letra.
   fuentes: (
     tamaño: 12pt,
-    cuerpo: "TeX Gyre Termes",
-    títulos: "TeX Gyre Heros",
-    mono: "TeX Gyre Cursor",
-    ecuaciones: "TeX Gyre Termes Math",
+    // [TeX Gyre es un conjunto de familias como alternativas a fuentes de paga o propietarias, fieles en métricas a sus respectivas contrapartes.]
+    cuerpo: "TeX Gyre Termes", // Basada en Times New Roman
+    títulos: "TeX Gyre Heros", // Basada en Helvética
+    mono: "TeX Gyre Cursor", // Basada en Courier New
+    ecuaciones: "TeX Gyre Termes Math", // Para jugar a la par de TeX Gyre Termes en expresiones matemáticas.
+    // [Considerar que el reglamento no menciona ninguna fuente para expresiones matemáticas o mono.]
   ),
+  // Art. 141: Espacios
+  // El interlineado del texto será a espacio y medio (1,5). Entre párrafo y párrafo se dejarán dos espacios [se asume 2,0]. Cada párrafo debe iniciarse al principio del margen izquierdo sin dejar ninguno tipo de sangrado.
+  // [El espaciado no puede ser estrictamente copiado ya que (asumo) este espaciado es dado según Microsoft Word, y el espaciado de Typst funciona un tanto diferente, para asimilarse un poco más al de Microsoft Word, simplemente se lo deja en los mismos valores con unidad em, pero si se desea una apariencia similar, se puede usar 1.25 em en interlineado y 1.5 em en párrafo]
   espaciado: (
     interlineado: 1.5em,
     párrafo: 2em,
@@ -62,11 +69,17 @@
   )
 
   set page(
+    // Art. 142: Márgenes
+    // Los márgenes serán 4 cm para el izquierdo, y 2.5 cm para el resto (incluye la numeración de página [por defecto en Typst])
     margin: (
       inside: if doble-cara { 4cm } else { 2.5cm },
       rest: 2.5cm,
     ),
+    // Art. 137: Tipo de hoja
+    // El tipo de hoja será papel bond blanco, de 75 g, tamaño carta (us-letter) en posición vertical.
     paper: "us-letter",
+    // Art. 138: Numeración
+    // La numeración de las páginas será arábiga correlativa, sin límites, en la esquina inferior derecha, para el desarrollo del trabajo; y romana con minúscula para la presentación, prólogo e índice/s.
     number-align: bottom + right,
   )
 
@@ -178,6 +191,7 @@
     pagebreak(to: "odd")
   }
 
+
   portada(
     título,
     facultad,
@@ -263,6 +277,9 @@
     if it.numbering != none and it.outlined == true {
       chapter-counter.step()
     }
+    // Art. 143: Inicio y conclusión del capítulo
+    // Se recomienda que cada capítulo comience en hoja aparte y que cada uno de ellos incluya un párrafo introductorio que presente su organización e indique al lector cuál es el objetivo específico del mismo.
+    // Igualmente, al terminar cada capítulo es aconsejable redactar un párrafo que contenga un pequeño resumen de lo tratado e indique además la relación del capítulo que termina con el que empieza a continuación.
     pagebreak()
     set par(justify: false, leading: espaciado.interlineado - 0.75em)
     set align(right)
@@ -384,6 +401,9 @@
     supplement: [Capítulo],
   )
 
+  // Art. 144: Encabezamientos
+  // Todo escrito deberá incluir encabezados para destacar los subtemas de la investigación. Para ello se deberá considerar un espacio adicional antes y después de cada encabezado. Se podrá remarcar los encabezados con negrillas, en cuyo caso solo se necesita un espacio antes del encabezado.
+  // Existen encabezados principales y secundarios, los cuales deberán estar escritos y ubicados apropiadamente, según una escala jerárquica sistemática durante todo el desarrollo del texto. Para señalar los encabezados podrá utilizarse el sistema decimal o alfanumérico.
   set heading(
     numbering: (..args) => {
       if args.pos().len() == 1 {
@@ -528,3 +548,14 @@
 
   body
 }
+
+// Artículos irrelevantes o sin efecto directo a la planilla.
+// Art. 140: Encuadernación
+// La encuadernación será: En cartón duro, color blanco, y la tapa se plastificará para proteger las letras y/o la hoja con el contenido de la cubierta o tapa.
+// Art. 145: Estilo de redacción
+// El estilo de redacción será impersonal, evitando utilizar la primera persona.
+// Se recomienda: usar el estilo científico (directo y preciso), evitar la verbosidad y palabras rebuscadas, no distraer el mensaje con términos ambiguos e imprecisos, redactar párrafos breves, evitando un excesivo número de oraciones subordinadas, las que hacen perder la idea central, emplear las frases para demostrar y argumentar (no para decorar ni persuadir), y elaborar una lista de aquellos términos poco comunes que necesiten una definición particular dentro del contexto de la investigación. Este glosario de términos deberá ir al final del trabajo y debe estar indicado en el índice del contenido.
+// Art. 146: Tiempo de los verbos
+// La redacción del trabajo deberá hacerse utilizando el tiempo presente, a excepción del capítulo de "Método", que podrá escribirse en pretérito (pasado). Una vez decidido el tiempo verbal a utilizar, no se modificará el mismo en párrafos subsiguientes
+// Art 147: Citas y notas
+// Las citas y notas bibliográficas deberán ceñirse al estilo de referenciación bibliográfica establecido por la Facultad.
