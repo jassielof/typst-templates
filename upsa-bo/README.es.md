@@ -16,6 +16,8 @@ La plantilla incluye formato, o puede ser usado para:
 - Plan de proyecto: Propuesta del proyecto de grado, o el capítulo 1.
 - Proyecto de grado
 
+Cada plantilla sirve como su propio manual para saber como usarla.
+
 ## Licencia
 
 Este proyecto está licenciado bajo *Apache License 2.0*, esta solo es aplicada al código de Typst, no al contenido generado por la plantilla ni al logo de la universidad usado.

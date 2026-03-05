@@ -1,14 +1,15 @@
 #import "../../lib.typ": *
 
 #show: tfg.with(
-  título: [The Typst Typesetting System],
-  autor: [Nombre Apellido],
-  registro-autor: [YEAR-XXXXXX],
+  // Máximo 15 palabras
+  título: [],
+  autor: [Nombre Apellido/s],
+  registro-autor: [XXXXXXXXXX],
   facultad: [FAI: Facultad de Ingeniería],
   carrera: [Ingeniería de Sistemas],
   modalidad: [Proyecto de Grado],
-  palabras-clave: ("typst", "typesetting", "system"),
-  email: "name@example.com",
+  palabras-clave: ("typesetting", "system"), // Ya incluye UPSA por defecto.
+  email: "nombre@upsa.edu.bo", // o personal/profesional
   contenido: outline(
     target: heading.where(
       level: 2,
@@ -17,15 +18,12 @@
     ),
     title: none,
   ),
-  guía: [Docente Guía],
+  guía: [Docente/Guía],
 )
 
-
+// Por defecto, la plantilla viene estructurada por partes como nivel inicial, si tu documento no incluye partes y solo capítulos, solo agregá la siguiente línea.
 #set heading(offset: 1)
 = Introducción
-hola.
-#lorem(100)
-
 == Definiciones
 == Empresa
 == The Typst Typesetting System
