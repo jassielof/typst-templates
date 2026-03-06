@@ -2,7 +2,7 @@
 
 #show: tfg.with(
   // Máximo 15 palabras
-  título: [],
+  título: [Mi Título],
   autor: [Nombre Apellido/s],
   registro-autor: [XXXXXXXXXX],
   facultad: [FAI: Facultad de Ingeniería],
