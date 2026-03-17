@@ -72,7 +72,7 @@
     // Art. 142: Márgenes
     // Los márgenes serán 4 cm para el izquierdo, y 2.5 cm para el resto (incluye la numeración de página [por defecto en Typst])
     margin: (
-      inside: if doble-cara { 4cm } else { 2.5cm },
+      ..if doble-cara { (inside: 4cm) } else { (left: 4cm) },
       rest: 2.5cm,
     ),
     // Art. 137: Tipo de hoja
