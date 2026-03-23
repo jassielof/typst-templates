@@ -198,40 +198,122 @@
     return none
   }
 
+  let render-member-contact = member => {
+    let chunks = ()
+
+    // Preserve insertion order when name/email were authored in a specific sequence.
+    for key in member.keys() {
+      let value = member.at(key)
+      if key == "name" and value != none {
+        chunks.push(value)
+      } else if key == "email" and value != none {
+        chunks.push(value)
+      }
+    }
+
+    // Fallback for callers that don't rely on key-order semantics.
+    if chunks.len() == 0 {
+      if "name" in member and member.name != none {
+        chunks.push(member.name)
+      }
+      if "email" in member and member.email != none {
+        chunks.push(member.email)
+      }
+    }
+
+    chunks.join([, ])
+  }
+
+  let render-affiliation = key => {
+    if key != none and key in affiliations {
+      format-affiliation-full(affiliations.at(key))
+    } else {
+      none
+    }
+  }
+
   let contacts = ()
 
   for author-group in authors {
     let parts = ()
+    let order-driven = false
 
-    let members = author-group.at("members", default: (author-group,))
-
-    let author-parts = ()
-    for author in members {
-      // Name
-      let name = author.name
-      let email = author.at("email", default: none)
-
-      author-parts.push((name, email).filter(e => e != none).join(", "))
-    }
-
-    parts.push(author-parts.join("; "))
-    // Full affiliation (if exists)
-    if "affiliations" in author-group and author-group.affiliations != none {
-      let primary-aff = if type(author-group.affiliations) == array and author-group.affiliations.len() > 0 {
-        author-group.affiliations.at(0)
-      } else if type(author-group.affiliations) == str {
-        author-group.affiliations
+    // Grouped case: keep legacy order unless caller explicitly provides `contact-order`.
+    if "members" in author-group {
+      let members = author-group.members
+      let member-block = members.map(render-member-contact).join([; ])
+      let aff-value = author-group.at("affiliations", default: none)
+      let primary-aff = if type(aff-value) == array and aff-value.len() > 0 {
+        aff-value.at(0)
+      } else if type(aff-value) == str {
+        aff-value
       } else {
         none
       }
+      let aff-text = render-affiliation(primary-aff)
 
-      if primary-aff != none and primary-aff in affiliations {
-        let aff-text = format-affiliation-full(affiliations.at(primary-aff))
-        parts.push(aff-text)
+      if "contact-order" in author-group and type(author-group.contact-order) == array {
+        for slot in author-group.contact-order {
+          if slot == "members" and member-block != none and member-block != [] {
+            parts.push(member-block)
+          } else if slot == "affiliations" and aff-text != none {
+            parts.push(aff-text)
+          }
+        }
+        order-driven = true
+      }
+    } else {
+      // Single-author case: preserve authored order among name/email/affiliations keys.
+      for key in author-group.keys() {
+        let value = author-group.at(key)
+        if key == "name" and value != none {
+          parts.push(value)
+          order-driven = true
+        } else if key == "email" and value != none {
+          parts.push(value)
+          order-driven = true
+        } else if key == "affiliations" {
+          let primary-aff = if type(value) == array and value.len() > 0 {
+            value.at(0)
+          } else if type(value) == str {
+            value
+          } else {
+            none
+          }
+          let aff-text = render-affiliation(primary-aff)
+          if aff-text != none {
+            parts.push(aff-text)
+          }
+          order-driven = true
+        }
       }
     }
 
-    contacts.push(parts.join([, ]))
+    // Backward-compatible fallback to previous stable output format.
+    if not order-driven or parts.len() == 0 {
+      let fallback-parts = ()
+      let members = author-group.at("members", default: (author-group,))
+      fallback-parts.push(members.map(render-member-contact).join([; ]))
+
+      if "affiliations" in author-group and author-group.affiliations != none {
+        let primary-aff = if type(author-group.affiliations) == array and author-group.affiliations.len() > 0 {
+          author-group.affiliations.at(0)
+        } else if type(author-group.affiliations) == str {
+          author-group.affiliations
+        } else {
+          none
+        }
+
+        let aff-text = render-affiliation(primary-aff)
+        if aff-text != none {
+          fallback-parts.push(aff-text)
+        }
+      }
+
+      contacts.push(fallback-parts.join([, ]))
+    } else {
+      contacts.push(parts.join([, ]))
+    }
   }
 
   return contacts.join([; ])

@@ -217,8 +217,7 @@
       line(length: 100%, stroke: 0.5pt)
       // FIXME: if multiple authors have same address and author note, then group them together
       par(
-        // FIXME: By some weird reason, the order of how authors are printed is strictly affected by the order of how they are written in LaTeX, somewhat of a queue behavior, and that can't be really replicated here as authors are dictionaries.
-        // For example, if in LaTeX the author's email is at last, then its email in here will be printed at the end, but if it's at right after its author (and not after the city/affiliation), then it'll be printed after its name. In the Typst case, since everything is a dictionary, the order of how the information is printed is always the same regardless of its order.
+        // Contact info order follows authored key order in each author/group dictionary.
         [Authors' Contact Information: #print-contact-info(author-groups, affiliations)],
         leading: .1em,
         first-line-indent: (
