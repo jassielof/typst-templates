@@ -15,15 +15,14 @@
   volume: 37,
   copyright: acm-suite.permissions.acm-licensed,
   ccs: xml("assets/ccs.xml"),
-  // FIXME: If none, it should print all the authors, as the default behavior
-  short-authors: [Trovato et al.],
+  // short-authors: [Trovato et al.],
   article: 111,
   doi: "XXXXXXX.XXXXXXX",
   month: 8,
   year: 2018,
   copyright-year: 2018,
   number: 4,
-  // nonacm: true,
+  nonacm: true,
   author-groups: (
     (
       affiliations: "inst1",

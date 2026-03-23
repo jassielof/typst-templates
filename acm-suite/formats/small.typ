@@ -1,5 +1,5 @@
 #import "@preview/datify:1.0.0": custom-date-format
-#import "utils/authoring.typ": format-acm-reference, print-acm-authors, print-contact-info
+#import "utils/authoring.typ": format-acm-reference, print-acm-authors, print-acm-reference-authors, print-contact-info
 #import "utils/ccs.typ": process-ccs
 #import "utils/thanks.typ": thanks
 #import "utils/copyright.typ": processed
@@ -30,6 +30,11 @@
   let font-sizes = get-font-size(10pt)
   let leading = 2pt
   let first-line-indent-length = 1em
+  let resolved-short-authors = if short-authors != none {
+    short-authors
+  } else {
+    print-acm-reference-authors(author-groups, "en")
+  }
 
   set text(
     font: sans-serif,
@@ -161,8 +166,10 @@
         return
       } else if calc.even(current-page) {
         grid(
+          align: (left, right),
+          columns: (auto, auto),
           the-page,
-          short-authors,
+          resolved-short-authors,
         )
       } else {
         grid(
