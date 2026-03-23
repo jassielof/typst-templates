@@ -4,18 +4,18 @@ A Typst template suite port of the ACM LaTeX document classes ([ACM Article]("ht
 
 This template suite includes support for the following formats:
 
-- Manuscript (default)
-- Cover Page
+- **Manuscript (default)**
+- Cover Page (*CP*)
 - Large
 - Small
-- Engage Computer Science Education
-- Special Interest Group Conference
-- Special Interest Group on Programming Languages
-- Transactions on Graphics
+- Engage Computer Science Education (*EngageCSEdu*)
+- Special Interest Group Conference (*SIGCONF*)
+- Special Interest Group on Programming Languages (*SIGPLAN*)
+- Transactions on Graphics (*TOG*)
 
-Other formats aren't covered as they were deprecated or simply not mentioned in the original documentation.
+Other formats aren't covered as they were deprecated or simply no longer mentioned in the original documentation.
 
-## Set up
+## Prerequisites
 
 ### Fonts
 
@@ -26,8 +26,8 @@ Other formats aren't covered as they were deprecated or simply not mentioned in 
 
 ## Credits
 
-- The original ACM Article LaTeX document class repository: <https://github.com/borisveytsman/acmart>
-- Clean ACM Article, as a reference work for some designs and patterns.
+- [The original ACM Article LaTeX document class repository](https://github.com/borisveytsman/acmart)
+- [Clean ACM Article](https://github.com/vtta/clean-acmart), as a reference work for some designs and patterns.
 
 ### Assets
 
@@ -35,4 +35,4 @@ Any assets included in the template are taken from original ACM Article reposito
 
 ## License
 
-Licensed under Mozilla Public License 2.0. See [LICENSE](./LICENSE) for details.
+Licensed under Mozilla Public License 2.0. See [LICENSE](./LICENSE.txt) for details.

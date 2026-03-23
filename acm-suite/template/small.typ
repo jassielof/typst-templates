@@ -15,14 +15,14 @@
   volume: 37,
   copyright: acm-suite.permissions.acm-licensed,
   ccs: xml("assets/ccs.xml"),
-  // short-authors: [Trovato et al.],
+  short-authors: [Trovato et al.],
   article: 111,
   doi: "XXXXXXX.XXXXXXX",
   month: 8,
   year: 2018,
   copyright-year: 2018,
   number: 4,
-  nonacm: true,
+  non-acm: false,
   author-groups: (
     (
       affiliations: "inst1",
