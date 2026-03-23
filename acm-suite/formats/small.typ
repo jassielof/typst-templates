@@ -167,7 +167,7 @@
       } else if calc.even(current-page) {
         grid(
           align: (left, right),
-          columns: (auto, auto),
+          columns: (auto, 1fr),
           the-page, resolved-short-authors,
         )
       } else {
