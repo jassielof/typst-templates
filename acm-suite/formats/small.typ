@@ -183,7 +183,7 @@
         let the-date = datetime(year: year, month: month, day: 1)
         let the-footer = text(
           size: font-sizes.footnote,
-        )[#journal, Vol. #volume, No. #number, Article #article. Publication date: #custom-date-format(the-date).]
+        )[#journal, Vol. #volume, No. #number, Article #article. Publication date: #custom-date-format(the-date, pattern: "MMMM yyyy").]
 
         if calc.odd(current-page) {
           set align(right)

@@ -126,7 +126,8 @@
   // Add permission text
   if permission-text != [] {
     result += permission-text
-    result += [ ]
+    // Could be a parbreak, but parbreak will add indentation
+    result += linebreak()
   }
 
   // Add copyright symbol and year with owner
@@ -136,7 +137,6 @@
     } else {
       result += [© #owner-text]
     }
-    result += [ ]
   }
 
   // Add ACM reference line (ISSN/Year/Month-Article or DOI format)
@@ -167,13 +167,13 @@
       }
     }
 
-    result += parbreak()
+    result += linebreak()
     result += acm-ref
   }
 
   // Add DOI link if provided
   if doi != none {
-    result += parbreak()
+    result += linebreak()
     result += link("https://doi.org/" + doi)
   }
 
