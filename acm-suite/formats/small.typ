@@ -23,6 +23,7 @@
   abstract: none,
   short-authors: none,
   non-acm: false,
+  received: (),
   body,
 ) = {
   set document(title: title, keywords: keywords)
@@ -53,12 +54,13 @@
     justification-limits: (spacing: (min: 50% + 0pt, max: 150% + 0pt), tracking: (min: 0pt, max: 0pt)),
     first-line-indent: first-line-indent-length,
   )
+
   set block(spacing: leading)
 
   // FIXME: Breaks the referencing
   set heading(numbering: "1.1")
   show heading: it => if it.numbering == none { it } else {
-    let numbering = counter(heading).display(it.numbering) + h(calc.max(.25em, 1em / it.level))
+    let numbering = counter(heading).display(it.numbering) + h(calc.max(0.5em, 1em / it.level))
     block(numbering + it.body)
   }
 
@@ -108,6 +110,7 @@
   show figure: set place(clearance: 2em) // for floating figures
   show figure: set figure.caption(separator: ". ")
   show figure.where(kind: table): set figure.caption(position: top)
+  show figure.caption: set align(left)
   show figure.where(kind: table): set figure(placement: top, supplement: "Table")
 
   // https://tex.stackexchange.com/a/540068
@@ -120,7 +123,6 @@
   // credits: shampoohere, https://sitandr.github.io/typst-examples-book/book/snippets/math/numbering.html#simple-code
   show math.equation.where(block: true): it => {
     set text(font: "Libertinus Math", fallback: false)
-    context text.font
     if it.fields().keys().contains("label") {
       block(math.equation(block: true, numbering: "(1)", it), inset: .4em)
     } else {
@@ -265,6 +267,13 @@
 
   show bibliography: set text(size: font-sizes.footnote)
   set bibliography(style: "association-for-computing-machinery", title: "References")
+
+  body
+}
+
+#let appendix(body) = {
+  counter(heading).update(0)
+  set heading(numbering: "A.1")
 
   body
 }

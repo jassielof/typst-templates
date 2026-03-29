@@ -74,7 +74,7 @@
   authors: authors,
   affiliations: affiliations,
   conference: conference,
-  
+
   doi: doi,
   copyright: "cc",
   // Set review to submission ID for the review process or to "none" for the final version.

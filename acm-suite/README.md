@@ -33,6 +33,10 @@ Other formats aren't covered as they were deprecated or simply no longer mention
 
 Any assets included in the template are taken from original ACM Article repository.
 
+## Limitations
+
+All limitations will be logged in the [respective style format's issue tracker](https://github.com/jassielof/typst-templates/issues).
+
 ## License
 
 Licensed under Mozilla Public License 2.0. See [LICENSE](./LICENSE.txt) for details.

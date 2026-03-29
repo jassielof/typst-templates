@@ -6,7 +6,6 @@
 
 #import "../lib.typ" as acm-suite
 #import "@preview/metalogo:1.2.0": LaTeX, TeX
-#import "../formats/utils/utils.typ": description
 
 #show: acm-suite.small.template.with(
   title: [The Name of the Title Is Hope],
@@ -124,13 +123,16 @@ If you are new to publishing with ACM, this document is a valuable guide to the 
 
 The "`acmart`" document class can be used to prepare articles for any ACM publication --- conference or journal, and for any stage of publication, from review to final "camera-ready" copy, to the author's own version, with _very_ few changes to the source.
 
-= Template Overview
+#outline()
+
+= Template Overview <overview>
 As noted in the introduction, the "`acmart`" document class can be used to prepare many different kinds of documentation --- a double-anonymous initial submission of a full-length technical paper, a two-page SIGGRAPH Emerging Technologies abstract, a "camera-ready" journal article, a SIGCHI Extended Abstract, and more --- all by selecting the appropriate _template style_ and _template parameters_.
 
 This document will explain the major features of the document class. For further information, the _#LaTeX User's Guide_ is available from #link("https://www.acm.org/publications/proceedings-template").
 
 == Template Styles
 
+As @overview.
 The primary parameter given to the "`acmart`" document class is the _template style_ which corresponds to the kind of publication or SIG publishing the work. This parameter is enclosed in square brackets and is a part of the `documentclass` command:
 
 ```
@@ -417,7 +419,7 @@ and follow it with another numbered equation:
 
 $
   sum_(i=0)^(infinity)x_i= integral_(0)^(pi+2) f
-$
+$ <eq:b>
 
 just to demonstrate #LaTeX's able handling of numbering.
 
@@ -601,9 +603,11 @@ of their usage.
 To Robert, for the bagels and explaining CMYK and color spaces.
 
 // TODO: ACM Article has its own BibTeX Style Table (.bst), but Typst's bibliography system depends on CSL, explain it in README as limitations and also in GitHub Issues.
-#bibliography("assets/data/sample-base.bib")
+#hide(bibliography("assets/data/sample-base.bib"))
 
 // TODO: Add appendix
+
+#show: acm-suite.small.appendix
 
 = Research Methods
 
@@ -628,9 +632,12 @@ ante. Etiam aliquam tortor auctor efficitur mattis.
 Nam id fermentum dui. Suspendisse sagittis tortor a nulla mollis, in
 pulvinar ex pretium. Sed interdum orci quis metus euismod, et sagittis
 enim maximus. Vestibulum gravida massa ut felis suscipit
-congue. Quisque mattis elit a risus ultrices commodo venenatis eget
-dui. Etiam sagittis eleifend elementum.
+congue. Quisque mattis elit a risus ultrices commodo venenatis egetdui. Etiam sagittis eleifend elementum.
 
-Nam interdum magna at lectus dignissim, ac dignissim lorem
-rhoncus. Maecenas eu arcu ac neque placerat aliquam. Nunc pulvinar
-massa et mattis lacinia.
+Nam interdum magna at lectus dignissim, ac dignissim lorem rhoncus. Maecenas eu arcu ac neque placerat aliquam. Nunc pulvinar massa et mattis lacinia.
+
+#acm-suite.received(when: [20 February 2007]);
+#acm-suite.received(when: [12 March 2009], status: [revised])
+#acm-suite.received(when: [5 June 2009], status: [accepted])
+
+#acm-suite.print-received()
