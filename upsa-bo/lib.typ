@@ -352,7 +352,7 @@
 
     outline(
       title: [Índice General],
-      depth: 4,
+      depth: 5, // Incluye partes, capítulos, secciones, subsecciones y subsubsecciones. Párrafos y demás se omiten.
       indent: n => {
         if n == 0 or n == 1 { 0em } else { n * 0.75em }
       },
@@ -505,6 +505,9 @@
     first-line-indent: 0in,
     hanging-indent: 0.5in,
   )
+
+  // La numeración de páginas no es correlativa entre romana y arábiga, por lo que se reinicia el contador de páginas al cambiar a la numeración arábiga.
+  counter(page).update(1)
 
   body
 }
