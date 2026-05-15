@@ -3,7 +3,7 @@
 
 #let apa-figure-numbering(n) = {
   let header-counter = counter(heading).get().first()
-  let queried-heading = query(selector(heading).before(here())).last().numbering
+  let queried-heading = query(selector(heading.where(level: 1)).before(here())).last().numbering
   if queried-heading == none {
     queried-heading = "A"
   }
