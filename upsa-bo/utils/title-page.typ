@@ -23,7 +23,7 @@
   // Art. 136: Carátula o tapa interna
   // En la carátula o tapa interna se debe colocar lo mismo que en la tapa (portada externa) con la sola adición de: "{modalidad de grado} para optar al grado de {grado} en {carrera}".
   set align(center)
-  set text(weight: "black", font: fuentes.títulos)
+  set text(weight: "bold", size: 12pt, font: fuentes.títulos)
   image("../assets/images/logo-upsa.png")
   v(1fr)
   facultad
