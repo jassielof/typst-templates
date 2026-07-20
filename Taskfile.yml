@@ -1,7 +1,7 @@
 version: "3"
 
 tasks:
-  all:
+  default:
     desc: Builds all templates
     deps:
       - versatile-apa
@@ -11,11 +11,12 @@ tasks:
       - butterick
   versatile-apa:
     dir: versatile-apa
+    env:
+      TYPST_ROOT: .
     cmds:
-      - typst compile --root . template/main.typ
-      - typst compile --root . template/main.typ thumbnail.png --pages 1
-      - typst compile --root . template/student.typ thumbnail-student.png
-      - typst compile --root . template/professional.typ thumbnail-professional.png
+      - typst compile template/main.typ
+      - typst compile template/student.typ
+      - typst compile template/professional.typ
     desc: Versatile APA Template
     aliases:
       - apa
@@ -28,11 +29,13 @@ tasks:
     aliases:
       - latex
     dir: latex-reborn
+    env:
+      TYPST_ROOT: .
     cmds:
       - for: ["report", "article", "book", "letter"]
-        cmd: typst compile --root . template/{{.ITEM}}.typ
+        cmd: typst compile template/{{.ITEM}}.typ
       - for: ["report", "article", "book", "letter"]
-        cmd: typst compile --root . template/{{.ITEM}}.typ thumbnail-{{.ITEM}}.png --pages 1
+        cmd: typst compile template/{{.ITEM}}.typ thumbnail-{{.ITEM}}.png --pages 1
     sources:
       - "**/*.typ"
     generates:
@@ -88,3 +91,23 @@ tasks:
     cmds:
       - typst compile --root . template/main.typ
       - typst compile --root . template/main.typ thumbnail.png --pages 1
+  www:
+    desc: Move generated PDFs for deployment
+    deps:
+      - default
+    cmds:
+      - mkdir -p www
+      - |
+        mv versatile-apa/template/main.pdf www/versatile-apa.pdf
+        mv versatile-apa/template/student.pdf www/versatile-apa-student.pdf
+        mv versatile-apa/template/professional.pdf www/versatile-apa-professional.pdf
+      - mv butterick-resume/template/main.pdf www/butterick-resume.pdf
+      - |
+        mv "upsa-bo/template/Estudio de Factibilidad/Estudio de Factibilidad.pdf" www/upsa-bo-estudio-de-factibilidad.pdf
+        mv "upsa-bo/template/TFG/TFG.pdf" www/upsa-bo-tfg.pdf
+      - mv "acm-suite/template/small.pdf" www/acm-suite-small.pdf
+      - |
+        mv latex-reborn/template/report.pdf www/latex-reborn-report.pdf
+        mv latex-reborn/template/article.pdf www/latex-reborn-article.pdf
+        mv latex-reborn/template/book.pdf www/latex-reborn-book.pdf
+        mv latex-reborn/template/letter.pdf www/latex-reborn-letter.pdf

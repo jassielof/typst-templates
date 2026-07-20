@@ -5,17 +5,17 @@ on:
   - pull_request
 
 jobs:
-  build:
+  test:
+    name: Testing
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@main
       - name: Cache Homebrew packages and casks
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             /home/linuxbrew/.linuxbrew/Homebrew
@@ -35,8 +35,24 @@ jobs:
               echo "Fonts already installed, skipping..."
           fi
       - name: Install Typst
-        uses: typst-community/setup-typst@v4
+        uses: typst-community/setup-typst@v5
       - name: Install Task
-        uses: go-task/setup-task@v1
+        uses: go-task/setup-task@v2
       - name: Build templates
         run: task all
+      - name: Upload page artifacts
+        uses: actions/upload-pages-artifact@v5
+        run: task www
+        with:
+          path: www
+      - name: README
+        run: |
+          sudo gem install asciidoctor
+          asciidoctor README.adoc -o www/index.html
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7

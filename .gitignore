@@ -5,6 +5,7 @@
 output/
 out/
 universe/
+www/
 
 # Font directory, due to licensing
 fonts/
