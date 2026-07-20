@@ -40,19 +40,25 @@ jobs:
         uses: go-task/setup-task@v2
       - name: Build templates
         run: task all
+      - name: README
+        run: |
+          sudo gem install asciidoctor
+          mkdir -p www
+          asciidoctor README.adoc -o www/index.html
       - name: Upload page artifacts
         uses: actions/upload-pages-artifact@v5
         run: task www
         with:
           path: www
-      - name: README
-        run: |
-          sudo gem install asciidoctor
-          asciidoctor README.adoc -o www/index.html
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
     needs: test
+    if: github.event_name != 'pull_request'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
+      - name: Deployment
+        id: deployment
+        uses: actions/deploy-pages@v5
