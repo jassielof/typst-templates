@@ -43,11 +43,10 @@ jobs:
       - name: README
         run: |
           sudo gem install asciidoctor
-          mkdir -p www
+          task www
           asciidoctor README.adoc -o www/index.html
       - name: Upload page artifacts
         uses: actions/upload-pages-artifact@v5
-        run: task www
         with:
           path: www
   deploy:
