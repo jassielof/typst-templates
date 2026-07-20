@@ -112,7 +112,7 @@
   show math.equation: set text(font: fuentes.ecuaciones)
 
   show figure: set figure.caption(position: top)
-  show figure.where(kind: image): set block(breakable: true, sticky: true)
+  show figure.where(kind: image): set block(breakable: false, sticky: true)
   show figure.where(kind: table): set block(breakable: true, sticky: false)
   show figure.where(kind: math.equation): set figure(supplement: [Formula])
   set figure(
