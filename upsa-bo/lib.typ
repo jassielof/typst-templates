@@ -44,7 +44,7 @@
   // El tamaño y tipo de las letras será uniforme en todo el texto, así como el sistema de encabezamientos y jerarquización, y otras formas de presentación. Para sub/títulos, notas, referencias bibliográficas y citas,podrán usarse tamaños mayores/menores de letra.
   // Las fuentes tipográficas a utilizar en el documento.
   fuentes: (
-    tamaño: 12pt,
+    size: 12pt,
     ..default.fonts,
     // [Considerar que el reglamento no menciona ninguna fuente para expresiones matemáticas o mono.]
   ),
@@ -92,8 +92,8 @@
   )
 
   set text(
-    size: fuentes.tamaño,
-    font: fuentes.cuerpo,
+    size: fuentes.size,
+    font: fuentes.body,
     lang: "es",
     region: "bo",
   )
@@ -117,7 +117,7 @@
     supplement: [Formula],
   )
 
-  show math.equation: set text(font: fuentes.ecuaciones)
+  show math.equation: set text(font: fuentes.math)
 
   show figure: set figure.caption(position: top)
   show figure.where(kind: image): set block(breakable: false, sticky: true)
@@ -130,7 +130,7 @@
 
   set figure.caption(separator: parbreak(), position: top)
   show figure.caption: set align(left)
-  show figure.caption: set text(font: fuentes.títulos)
+  show figure.caption: set text(font: fuentes.title)
   show figure.caption: set par(first-line-indent: 0em)
   show figure.caption: it => {
     strong[#it.supplement #context it.counter.display(it.numbering)]
@@ -227,7 +227,7 @@
 
   set page(numbering: "i")
 
-  show heading: set text(size: fuentes.tamaño, font: fuentes.títulos)
+  show heading: set text(size: fuentes.size, font: fuentes.title)
   show heading: set block(spacing: espaciado.párrafo)
 
   if (plan == none) {
@@ -277,7 +277,7 @@
     )
   }
 
-  show heading.where(level: 2): set text(font: fuentes.cuerpo)
+  show heading.where(level: 2): set text(font: fuentes.body)
 
   show heading.where(level: 2): it => context {
     if it.numbering != none and it.outlined == true {
@@ -334,7 +334,7 @@
     show outline.entry.where(level: 1): set block(spacing: 1.5em)
     show outline.entry.where(level: 2): set block(spacing: 1.3em)
     show outline.entry.where(level: 1): it => link(it.element.location(), text(
-      font: fuentes.títulos,
+      font: fuente.title,
       size: 1.2em,
       weight: "bold",
       upper(it.indented(
@@ -343,7 +343,7 @@
       )),
     ))
     show outline.entry.where(level: 2): it => link(it.element.location(), text(
-      font: fuentes.títulos,
+      font: fuentes.title,
       size: 1.1em,
       weight: "bold",
       smallcaps(it.indented(
@@ -392,7 +392,7 @@
         it,
       ) => upper(
         text(
-          font: fuentes.títulos,
+          font: fuente.title,
           it.body,
         ),
       ),
