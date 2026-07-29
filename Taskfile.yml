@@ -71,6 +71,8 @@ tasks:
       # - typst compile --root . template/manuscript.typ thumbnail.png --pages 1
   upsa-bo:
     dir: upsa-bo
+    env:
+      TYPST_ROOT: .
     aliases:
       - upsa
     # watch: true
@@ -80,7 +82,7 @@ tasks:
       - "template/*.pdf"
     cmds:
       - for: ["Estudio de Factibilidad", "TFG"]
-        cmd: typst compile --root . "template/{{.ITEM}}/{{.ITEM}}.typ"
+        cmd: typst compile "template/{{.ITEM}}/{{.ITEM}}.typ"
   butterick:
     dir: butterick-resume
     sources:

@@ -24,7 +24,7 @@
   // En la carátula o tapa interna se debe colocar lo mismo que en la tapa (portada externa) con la sola adición de: "{modalidad de grado} para optar al grado de {grado} en {carrera}".
   set align(center)
   set text(weight: "bold", size: 12pt, font: fuentes.títulos)
-  image("../assets/images/logo-upsa.png")
+  image("../assets/images/upsa-logo.webp", width: 50%)
   v(1fr)
   facultad
   parbreak()
