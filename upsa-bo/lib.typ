@@ -1,45 +1,51 @@
 #import "@preview/hydra:0.6.1": hydra
 #import "lib/string.typ": to-string
-#import "lib/title.typ": portada
+#import "lib/title.typ": front-cover, title-page
 #import "lib/spine.typ": spine-cover
-#import "lib/front.typ": front-cover
+#import "lib/default.typ"
 
 #let chapter-counter = counter("chapter")
 // Plantilla para documentos finales de licenciatura de la Universidad Privada de Santa Cruz de la Sierra (UPSA). Basada en el Reglamento de Graduación (revisado el 2025, a su vez adecuado al D.S 1433), título V (aspectos formales del documento final de licenciatura), capítulo I (presentación del documento final).
 #let tfg(
-  título: [],
-  facultad: [],
-  carrera: [],
-  autor: [],
-  registro-autor: [],
-  adición: none,
-  modalidad: [],
+  // El título del trabajo.
+  title: default.title,
+  // La facultad.
+  faculty: default.faculty,
+  // El grado académico (carrera) que se está optando.
+  degree: default.degree,
+  // El nombre del autor.
+  author: default.author-name,
+  // El registro del autor.
+  author-id: default.author-id,
+  additional-info: none,
+  // La modalidad de graduación. Por ejemplo: Proyecto de Grado, Tesis, Trabajo Dirigido, etc.
+  modality: default.modality,
+  // Si se incluye la guía o no.
   incluir-guía: false,
-  materia: [],
-  guía: none,
+  // El nombre del asesor.
+  advisor: none,
   resumen: none,
   problemática: none,
   objetivo-general: none,
   contenido: none,
-  grado: [Licenciatura],
+  // El nivel de grado académico que se está optando. Por ejemplo: Licenciatura, Tecnicatura, Maestría, o Doctorado.
+  degree-level: default.degree-level,
   doble-cara: false,
-  email: "",
+  email: "author.id@estudiantes.upsa.edu.bo",
   agradecimientos: none,
   resumen-ejecutivo: none,
+  //
   palabras-clave: (),
+  // El título para el plan/propuesta de investigación, si aplica.
   plan: none,
-  portada-externa: true,
-  ubicación: "Santa Cruz de la Sierra, Bolivia",
+  ubicación: default.location,
   fecha: datetime.today().year(),
   // El texto se escribirá usando mayúsculas y minúsculas, limitando el uso de mayúsculas completas a títulos. El tipo de letras podrá ser elegido de algunos de los siguientes: Times New Roman (14 pt [nunca se especifica la unidad, así que puede asumirse la unidad por defecto de Microsoft Word (punto) o bien pixel]), Arial (12 pt) o Helvética (12 pt).
   // El tamaño y tipo de las letras será uniforme en todo el texto, así como el sistema de encabezamientos y jerarquización, y otras formas de presentación. Para sub/títulos, notas, referencias bibliográficas y citas,podrán usarse tamaños mayores/menores de letra.
+  // Las fuentes tipográficas a utilizar en el documento.
   fuentes: (
     tamaño: 12pt,
-    // [TeX Gyre es un conjunto de familias como alternativas a fuentes de paga o propietarias, fieles en métricas a sus respectivas contrapartes.]
-    cuerpo: "TeX Gyre Termes", // Basada en Times New Roman
-    títulos: "TeX Gyre Heros", // Basada en Helvética
-    mono: "TeX Gyre Cursor", // Basada en Courier New
-    ecuaciones: "TeX Gyre Termes Math", // Para jugar a la par de TeX Gyre Termes en expresiones matemáticas.
+    ..default.fonts,
     // [Considerar que el reglamento no menciona ninguna fuente para expresiones matemáticas o mono.]
   ),
   // Art. 141: Espacios
@@ -51,21 +57,21 @@
   ),
   body,
 ) = {
-  if (autor == []) {
-    panic("El autor es obligatorio: ", autor)
-  } else if (título == []) {
-    panic("El título es obligatorio: ", título)
+  if (author == []) {
+    panic("El autor es obligatorio: ", author)
+  } else if (title == []) {
+    panic("El título es obligatorio: ", title)
   }
 
   set document(
-    title: if type(título) == content {
-      to-string(título)
-    } else { título },
+    title: if type(title) == content {
+      to-string(title)
+    } else { title },
     description: resumen,
-    author: if type(autor) == content {
-      to-string(autor).trim()
+    author: if type(author) == content {
+      to-string(author).trim()
     } else {
-      autor
+      author
     },
     keywords: ("UPSA",) + palabras-clave,
   )
@@ -172,41 +178,40 @@
     }
   }
 
-  if portada-externa {
-    portada(
-      título,
-      facultad,
-      carrera,
-      plan,
-      modalidad,
-      autor,
-      incluir-guía: incluir-guía,
-      registro-autor,
-      guía,
-      ubicación,
-      fecha,
-      portada-externa,
-      grado,
-      fuentes,
-    )
+  // if portada-externa {
+  //   portada(
+  //     título,
+  //     facultad,
+  //     carrera,
+  //     plan,
+  //     modalidad,
+  //     autor,
+  //     incluir-guía: incluir-guía,
+  //     registro-autor,
+  //     guía,
+  //     ubicación,
+  //     fecha,
+  //     portada-externa,
+  //     grado,
+  //     fuentes,
+  //   )
 
-    pagebreak(to: "odd")
-  }
+  //   pagebreak(to: "odd")
+  // }
 
-  portada(
-    título,
-    facultad,
-    carrera,
-    plan,
-    modalidad,
-    autor,
-    registro-autor,
-    guía,
-    incluir-guía: incluir-guía,
+  title-page(
+    title,
+    faculty,
+    degree,
+    plan: plan,
+    modality: modality,
+    author,
+    author-id: author-id,
+    advisor: advisor,
+    include-advisor: incluir-guía,
     ubicación,
     fecha,
-    portada-externa,
-    grado,
+    degree-level,
     fuentes,
   )
 
@@ -231,8 +236,8 @@
       align: (left + horizon, left),
       columns: 2,
       stroke: 1pt,
-      [*Título*], título,
-      [*Autor*], autor,
+      [*Título*], title,
+      [*Autor*], author,
     )
 
     if (problemática != none) {
@@ -254,11 +259,11 @@
       columns: 2,
       stroke: 1pt,
       align: (left + horizon, left),
-      ..if (carrera != none) {
-        ([*Carrera*], carrera)
+      ..if (degree != none) {
+        ([*Carrera*], degree)
       },
-      ..if (guía != none) {
-        ([*Guía*], guía)
+      ..if (advisor != none) {
+        ([*Guía*], advisor)
       },
       ..if (palabras-clave != none) {
         ([*Palabras Clave*], palabras-clave.join(", "))

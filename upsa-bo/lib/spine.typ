@@ -1,4 +1,4 @@
-// El lomo del libro.
+// El lomo del libro (art. 135 del Reglamento de Graduación)
 #let spine-cover(
   // La sigla de la universidad.
   university: [UPSA],

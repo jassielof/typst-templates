@@ -1,76 +1,142 @@
-// Art 135: Lomo
-// En el lomo se debe colocar: UPSA, sigla respectiva de modalidad de grado, título de trabajo, numeración romana de los tomos (si corresponde) y año.
-// Esto no va en la portada ni en el documento final, dado que esta es planilla para documento, pero esta relacionado.
-#let portada(
-  título,
-  facultad,
-  carrera,
-  plan,
-  modalidad,
-  autor,
-  incluir-guía: false,
-  registro-autor,
-  guía,
-  ubicación,
-  fecha,
-  portada-externa,
-  grado,
-  fuentes,
+#import "default.typ"
+
+#let uni-logo = image("../assets/images/upsa-logo.webp", width: 50%)
+
+#let base(
+  title: none,
+  faculty: none,
+  degree: none,
+  plan: none,
+  modality: none,
+  author: none,
+  include-advisor: false,
+  author-id: none,
+  // El nombre del asesor/guía del trabajo.
+  advisor: none,
+  // La ubicación de la universidad.
+  location: none,
+  // La fecha de publicación del trabajo.
+  date: none,
+  // Si es la portada externa o interna.
+  is-front-cover: false,
+  degree-level: none,
+  fonts: default.fonts,
 ) = context {
-  // Art. 134: Cubierta o tapa
-  // En la cubierta o tapa de la TL, PG, TD o documento de GE
-  // se debe colocar con letras de color negro, partiendo de la parte superior: logo de la universidad en color negro, facultad y carrera, modalidad de graduación, título del trabajo, nombre del autor, ciudad, pais y año.
-  // Art. 136: Carátula o tapa interna
-  // En la carátula o tapa interna se debe colocar lo mismo que en la tapa (portada externa) con la sola adición de: "{modalidad de grado} para optar al grado de {grado} en {carrera}".
   set align(center)
-  set text(weight: "bold", size: 12pt, font: fuentes.títulos)
-  image("../assets/images/upsa-logo.webp", width: 50%)
+  set text(weight: "bold", size: 12pt, font: fonts.title)
+  uni-logo
   v(1fr)
-  facultad
+  faculty
   parbreak()
-  carrera
+  degree
   v(1fr)
 
   if plan != [] {
     plan
+    v(1fr)
   }
 
-  if modalidad != [] [
-    Modalidad de Graduación
-
-    #modalidad
-
-    #v(1fr)
-  ]
+  if modality != [] {
+    [Modalidad de Graduación]
+    parbreak()
+    modality
+    v(1fr)
+  }
 
   rect(
     radius: 20%,
     inset: 10pt,
-    text(font: fuentes.cuerpo, weight: "bold")[_«#título»_],
+    text(font: fonts.body, weight: "bold")[_«#title»_],
   )
 
-  if (here().page() == 3 and portada-externa) {
+  if (not is-front-cover) {
     v(1fr)
-    [#modalidad para optar por el grado de «#grado en #carrera»]
+    [#modality para optar por el grado de «#degree-level en #degree»]
   }
 
   v(1fr)
 
-  autor
+  author
 
-  if registro-autor != [] and here().page() == 3 [
+  if author-id != [] and not is-front-cover [
     #parbreak()
-    Reg.: #registro-autor
+    Reg.: #author-id
   ]
 
   v(1fr)
 
-  if guía != [] and incluir-guía {
-    guía
+  if advisor != [] and include-advisor {
+    advisor
     parbreak()
   }
 
-  ubicación
+  location
   parbreak()
-  repr(fecha)
+  repr(date)
+}
+
+// Art. 136: Carátula o tapa interna
+// En la carátula o tapa interna se debe colocar lo mismo que en la tapa (portada externa) con la sola adición de: "{modalidad de grado} para optar al grado de {grado} en {carrera}".
+#let title-page(
+  title,
+  faculty,
+  degree,
+  plan: [],
+  modality: [],
+  author,
+  author-id: [],
+  advisor: [],
+  include-advisor: false,
+  location,
+  date,
+  degree-level,
+  fonts,
+) = {
+  base(
+    title: title,
+    faculty: faculty,
+    degree: degree,
+    plan: plan,
+    modality: modality,
+    author: author,
+    include-advisor: include-advisor,
+    author-id: author-id,
+    advisor: advisor,
+    location: location,
+    date: date,
+    degree-level: degree-level,
+    fonts: fonts,
+  )
+}
+
+// Art. 134: Cubierta o tapa externa
+// En la cubierta o tapa de la TL, PG, TD o documento de GE se debe colocar con letras de color negro, partiendo de la parte superior: logo de la universidad en color negro, facultad y carrera, modalidad de graduación, título del trabajo, nombre del autor, ciudad, pais y año.
+#let front-cover(
+  title: default.title,
+  faculty: default.faculty,
+  degree: default.degree,
+  modality: default.modality,
+  author: default.author-name,
+  author-id: default.author-id,
+  advisor: default.advisor-name,
+  show-advisor: true,
+  location: default.location,
+  date: datetime.today().year(),
+  degree-level: default.degree-level,
+  fonts: default.fonts,
+) = {
+  base(
+    title: title,
+    faculty: faculty,
+    degree: degree,
+    modality: modality,
+    author: author,
+    author-id: author-id,
+    is-front-cover: true,
+    advisor: advisor,
+    location: location,
+    date: date,
+    degree-level: degree-level,
+    fonts: fonts,
+  )
 }
