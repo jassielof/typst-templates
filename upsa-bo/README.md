@@ -40,16 +40,12 @@ Por otro lado, personalmente puedo recomendar las siguientes familias:
 
 Es importante notar que la plantilla hace uso de versalillas en los _títulos_, por lo cual de las mencionadas anteriormente, las siguientes no tienen versalillas: Montserrat, IBM Plex y Reforma.
 
-## Software recomendado
+### Licencias de las fuentes tipográficas
 
-La plantilla esta diseñada para ser usada con la mayor facilidad posible.
+Todas las mencionadas previamente son de uso libre y seguras de usar. A comparación de las recomendadas por la universidad:
 
-- [VS Code](https://code.visualstudio.com/): Editor recomendado para uso con Typst.
-- [Task](https://taskfile.dev/): Para organizar y automatizar tareas de compilación.
-
-## Control de versiones
-
-Dado que la universidad proporciona [GitHub Pro para estudiantes](https://github.com/education/students), se recomienda usar GitHub para el control de versiones de proyecto en general, la plantilla incluye los archivos respectivos de _GitHub Actions_, junto a un `.gitignore`.
+- _Arial_ y _Times New Roman_ son fuentes propietarias heredadas bajo uso por Microsoft Windows, usuarios de Linux y MacOS básicamente no tienen acceso a estas fuentes.
+- _Helvetica_ es el mismo caso que _Arial_ pero para MacOS.
 
 ## Licencia
 
