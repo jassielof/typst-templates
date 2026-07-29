@@ -1,6 +1,8 @@
 #import "@preview/hydra:0.6.1": hydra
 #import "lib/string.typ": to-string
 #import "lib/title.typ": portada
+#import "lib/spine.typ": spine-cover
+#import "lib/front.typ": front-cover
 
 #let chapter-counter = counter("chapter")
 // Plantilla para documentos finales de licenciatura de la Universidad Privada de Santa Cruz de la Sierra (UPSA). Basada en el Reglamento de Graduación (revisado el 2025, a su vez adecuado al D.S 1433), título V (aspectos formales del documento final de licenciatura), capítulo I (presentación del documento final).
@@ -190,7 +192,6 @@
 
     pagebreak(to: "odd")
   }
-
 
   portada(
     título,
