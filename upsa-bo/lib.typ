@@ -378,6 +378,10 @@
       outline(title: [Índice de fórmulas], target: figure.where(kind: math.equation))
     }
 
+    if (counter(figure.where(kind: raw)).final().at(0) != 0) {
+      outline(title: [Índice de listados], target: figure.where(kind: raw))
+    }
+
     if (query(heading.where(supplement: [Anexo])).len() != 0) {
       outline(title: [Índice de anexos], target: selector(heading.where(supplement: [Anexo])))
     }
@@ -392,7 +396,7 @@
         it,
       ) => upper(
         text(
-          font: fuente.title,
+          font: fuentes.title,
           it.body,
         ),
       ),

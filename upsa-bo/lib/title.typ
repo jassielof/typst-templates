@@ -1,6 +1,10 @@
 #import "default.typ"
 
-#let uni-logo = image("../assets/images/upsa-logo.webp", width: 50%)
+#let uni-logo = image(
+  "../assets/images/upsa-logo.webp",
+  width: 50%,
+  alt: "Logo de la Universidad Privada de Santa Cruz de la Sierra",
+)
 
 #let base(
   title: none,

@@ -12,5 +12,5 @@
 #let degree-level = [Licenciatura]
 #let author-name = [Nombre y Apellido/s del Autor]
 #let advisor-name = [Nombre y Apellido/s del Asesor]
-#let author-id = [YYYXXXXXX]
+#let author-id = [YYYYXXXXXX]
 #let modality = [Proyecto de Grado]
