@@ -114,7 +114,7 @@
 
   set math.equation(
     numbering: "(1)",
-    supplement: [Formula],
+    supplement: [Fórmula],
   )
 
   show math.equation: set text(font: fuentes.math)
@@ -122,7 +122,7 @@
   show figure: set figure.caption(position: top)
   show figure.where(kind: image): set block(breakable: false, sticky: true)
   show figure.where(kind: table): set block(breakable: true, sticky: false)
-  show figure.where(kind: math.equation): set figure(supplement: [Formula])
+  show figure.where(kind: math.equation): set figure(supplement: [Fórmula])
   set figure(
     gap: espaciado.interlineado,
     placement: none,
