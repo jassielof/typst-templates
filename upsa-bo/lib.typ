@@ -334,7 +334,7 @@
     show outline.entry.where(level: 1): set block(spacing: 1.5em)
     show outline.entry.where(level: 2): set block(spacing: 1.3em)
     show outline.entry.where(level: 1): it => link(it.element.location(), text(
-      font: fuente.title,
+      font: fuentes.title,
       size: 1.2em,
       weight: "bold",
       upper(it.indented(
