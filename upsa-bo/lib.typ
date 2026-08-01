@@ -270,13 +270,10 @@
     if it.numbering != none and it.outlined == true [
       #set text(
         size: 2.5em,
-        weight: "bold",
         fill: gray.darken(40%),
       )
-
       #it.supplement
-      #set text(size: 1.25em)
-      #counter(heading).display(it.numbering)
+      #text(size: 1.25em, counter(heading).display(it.numbering))
     ]
 
     block(
@@ -286,7 +283,6 @@
       spacing: 2em,
       text(
         size: 2em,
-        weight: "bold",
         it.body,
       ),
     )
