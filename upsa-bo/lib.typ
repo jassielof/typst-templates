@@ -80,7 +80,7 @@
     // Los márgenes serán 4 cm para el izquierdo, y 2.5 cm para el resto (incluye la numeración de página [por defecto en Typst])
     margin: (
       ..if doble-cara { (inside: 4cm) } else { (left: 4cm) },
-      rest: 2.5cm,
+      rest: 1in,
     ),
     // Art. 137: Tipo de hoja
     // El tipo de hoja será papel bond blanco, de 75 g, tamaño carta (us-letter) en posición vertical.
@@ -121,12 +121,12 @@
   show figure: set figure.caption(position: top)
   show figure.where(kind: image): set block(breakable: false, sticky: true)
   show figure.where(kind: table): set block(breakable: true, sticky: false)
-  show table: set text(size: fuentes.size - 2pt)
+  show table: set text(size: fuentes.size - (1 / 6 * 1em))
   show table: set par(
     spacing: espaciado.párrafo - 0.5em,
     leading: espaciado.interlineado - 0.25em,
   )
-  show raw: set text(size: fuentes.size - 1pt)
+  show raw: set text(size: fuentes.size - (1 / 12 * 1em))
   show figure.where(kind: math.equation): set figure(supplement: [Fórmula])
   set figure(
     gap: espaciado.interlineado,
@@ -264,6 +264,7 @@
     pagebreak()
     set par(justify: false, leading: espaciado.interlineado - 0.75em)
     set align(right)
+    set block(sticky: false)
     set text(tracking: 0.05em)
 
     if it.numbering != none and it.outlined == true [
