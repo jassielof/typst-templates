@@ -21,4 +21,4 @@
   id: "YYYYXXXXXX",
   email: "author@estudiantes.upsa.edu.bo",
 )
-#let modality = [Proyecto de Grado]
+#let modality = [Proyecto de grado]

@@ -55,7 +55,11 @@
 
   if (not is-front-cover) {
     v(1fr)
-    [#modality para optar por el grado de «#degree-level en #degree»]
+    [
+      #modality para optar por el grado de
+
+      «#degree-level en #degree»
+    ]
   }
 
   v(1fr)

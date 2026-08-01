@@ -51,7 +51,7 @@
   // El texto se escribirá usando mayúsculas y minúsculas, limitando el uso de mayúsculas completas a títulos. El tipo de letras podrá ser elegido de algunos de los siguientes: Times New Roman (14 pt [nunca se especifica la unidad, así que puede asumirse la unidad por defecto de Microsoft Word (punto) o bien pixel]), Arial (12 pt) o Helvética (12 pt).
   // El tamaño y tipo de las letras será uniforme en todo el texto, así como el sistema de encabezamientos y jerarquización, y otras formas de presentación. Para sub/títulos, notas, referencias bibliográficas y citas,podrán usarse tamaños mayores/menores de letra.
   // Las fuentes tipográficas a utilizar en el documento.
-  fuentes: default.fonts,
+  fonts: default.fonts,
   // [Considerar que el reglamento no menciona ninguna fuente para expresiones matemáticas o mono.]
   // Art. 141: Espacios
   // El interlineado del texto será a espacio y medio (1,5). Entre párrafo y párrafo se dejarán dos espacios [se asume 2,0]. Cada párrafo debe iniciarse al principio del margen izquierdo sin dejar ninguno tipo de sangrado.
@@ -62,6 +62,7 @@
   ),
   body,
 ) = {
+  let fonts = (:..default.fonts, ..fonts)
   set document(
     title: if type(title) == content {
       to-string(title)
@@ -91,8 +92,8 @@
   )
 
   set text(
-    size: fuentes.size,
-    font: fuentes.body,
+    size: fonts.size,
+    font: fonts.body,
     lang: "es",
     region: "bo",
   )
@@ -116,17 +117,17 @@
     supplement: [Fórmula],
   )
 
-  show math.equation: set text(font: fuentes.math)
+  show math.equation: set text(font: fonts.math)
 
   show figure: set figure.caption(position: top)
   show figure.where(kind: image): set block(breakable: false, sticky: true)
   show figure.where(kind: table): set block(breakable: true, sticky: false)
-  show table: set text(size: fuentes.size - (1 / 6 * 1em))
+  show table: set text(size: fonts.size - (1 / 6 * 1em))
   show table: set par(
     spacing: espaciado.párrafo - 0.5em,
     leading: espaciado.interlineado - 0.25em,
   )
-  show raw: set text(size: fuentes.size - (1 / 12 * 1em))
+  show raw: set text(size: fonts.size - (1 / 12 * 1em))
   show figure.where(kind: math.equation): set figure(supplement: [Fórmula])
   set figure(
     gap: espaciado.interlineado,
@@ -135,7 +136,7 @@
 
   set figure.caption(separator: parbreak(), position: top)
   show figure.caption: set align(left)
-  show figure.caption: set text(font: fuentes.title)
+  show figure.caption: set text(font: fonts.title)
   show figure.caption: set par(first-line-indent: 0em)
   show figure.caption: it => {
     strong[#it.supplement #context it.counter.display(it.numbering)]
@@ -187,7 +188,7 @@
     ubicación,
     fecha,
     degree-level,
-    fuentes,
+    fonts,
   )
 
   pagebreak(to: "odd", weak: true)
@@ -202,7 +203,7 @@
 
   set page(numbering: "i")
 
-  show heading: set text(size: fuentes.size, font: fuentes.title)
+  show heading: set text(size: fonts.size, font: fonts.title)
   show heading: set block(spacing: espaciado.párrafo)
 
   if (plan == none) {
@@ -252,7 +253,7 @@
     )
   }
 
-  show heading.where(level: 2): set text(font: fuentes.body)
+  show heading.where(level: 2): set text(font: fonts.body)
 
   show heading.where(level: 2): it => context {
     if it.numbering != none and it.outlined == true {
@@ -306,7 +307,7 @@
     show outline.entry.where(level: 1): set block(spacing: 1.5em)
     show outline.entry.where(level: 2): set block(spacing: 1.3em)
     show outline.entry.where(level: 1): it => link(it.element.location(), text(
-      font: fuentes.title,
+      font: fonts.title,
       size: 1.2em,
       weight: 700,
       upper(it.indented(
@@ -315,7 +316,7 @@
       )),
     ))
     show outline.entry.where(level: 2): it => link(it.element.location(), text(
-      font: fuentes.title,
+      font: fonts.title,
       size: 1.1em,
       weight: 600,
       smallcaps(it.indented(
@@ -375,7 +376,7 @@
         it,
       ) => upper(
         text(
-          font: fuentes.title,
+          font: fonts.title,
           it.body,
         ),
       ),
@@ -461,7 +462,7 @@
   show heading.where(level: 6): it => [#it.body.]
   show heading.where(level: 7): it => [_#it.body._]
 
-  show raw: set text(font: fuentes.mono, size: 1em)
+  show raw: set text(font: fonts.mono, size: 1em)
   show figure.where(kind: raw): set figure(placement: none)
   show figure.where(kind: raw): set block(breakable: true, sticky: false)
   show figure.where(kind: raw): set raw(block: true)
