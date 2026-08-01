@@ -28,7 +28,14 @@
   resumen: none,
   problemática: none,
   objetivo-general: none,
-  contenido: none,
+  contenido: outline(
+    target: heading.where(
+      level: 2,
+      outlined: true,
+      supplement: [Capítulo],
+    ),
+    title: none,
+  ),
   // El nivel de grado académico que se está optando. Por ejemplo: Licenciatura, Tecnicatura, Maestría, o Doctorado.
   degree-level: default.degree-level,
   doble-cara: false,
