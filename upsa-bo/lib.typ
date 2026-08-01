@@ -308,7 +308,7 @@
     show outline.entry.where(level: 1): it => link(it.element.location(), text(
       font: fuentes.title,
       size: 1.2em,
-      weight: "bold",
+      weight: 700,
       upper(it.indented(
         if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
         [#it.body() #h(1fr) #it.page()],
@@ -317,12 +317,19 @@
     show outline.entry.where(level: 2): it => link(it.element.location(), text(
       font: fuentes.title,
       size: 1.1em,
-      weight: "bold",
+      weight: 600,
       smallcaps(it.indented(
         if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
         [#it.body() #h(1fr) #it.page()],
       )),
     ))
+    show outline.entry.where(level: 3): it => link(
+      it.element.location(),
+      text(
+        weight: 500,
+        it,
+      ),
+    )
     show outline.entry.where(level: 4): it => link(
       it.element.location(),
       emph(it),
