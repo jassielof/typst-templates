@@ -1,21 +1,23 @@
+#import "default.typ"
+
 // El lomo del libro (art. 135 del Reglamento de Graduación)
 #let spine-cover(
   // La sigla de la universidad.
-  university: [UPSA],
+  university: default.university.short,
   // La sigla de la modalidad de graduación según el Reglamento Académico.
   modality: [PG],
   // El título oficial del documento.
-  title: [El título oficial del documento (máximo recomendado de 15 palabras)],
+  title: default.title,
   // El número de volúmenes/tomos del libro, esto debe establecerse solo cuando el libro es una obra de varios volúmenes.
-  volume: none,
+  volumes: none,
   // El año de publicación del libro.
   year: datetime.today().year(),
 ) = {
-  if volume == none {
-    volume = 1
+  if volumes == none {
+    volumes = 1
   }
 
-  for n in range(1, volume + 1) {
+  for n in range(1, volumes + 1) {
     set align(center)
     set page(
       height: 11in,
@@ -48,7 +50,7 @@
         ),
       ),
       {
-        if volume > 1 {
+        if volumes > 1 {
           text(size: 24pt, font: "Source Serif 4 Display", weight: "bold")[
             #numbering("I", n)
           ]
@@ -58,7 +60,7 @@
       },
     )
 
-    if n < volume {
+    if n < volumes {
       pagebreak()
     }
   }

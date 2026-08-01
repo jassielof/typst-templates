@@ -3,6 +3,7 @@
 #import "lib/title.typ": front-cover, title-page
 #import "lib/spine.typ": spine-cover
 #import "lib/default.typ"
+#import "lib/csl-styles.typ"
 
 #let chapter-counter = counter("chapter")
 // Plantilla para documentos finales de licenciatura de la Universidad Privada de Santa Cruz de la Sierra (UPSA). Basada en el Reglamento de Graduación (revisado el 2025, a su vez adecuado al D.S 1433), título V (aspectos formales del documento final de licenciatura), capítulo I (presentación del documento final).
@@ -14,9 +15,9 @@
   // El grado académico (carrera) que se está optando.
   degree: default.degree,
   // El nombre del autor.
-  author: default.author-name,
+  author: default.author.name,
   // El registro del autor.
-  author-id: default.author-id,
+  author-id: default.author.id,
   additional-info: none,
   // La modalidad de graduación. Por ejemplo: Proyecto de Grado, Tesis, Trabajo Dirigido, etc.
   modality: default.modality,
@@ -31,10 +32,10 @@
   // El nivel de grado académico que se está optando. Por ejemplo: Licenciatura, Tecnicatura, Maestría, o Doctorado.
   degree-level: default.degree-level,
   doble-cara: false,
-  email: "author.id@estudiantes.upsa.edu.bo",
+  email: default.author.email,
   agradecimientos: none,
   resumen-ejecutivo: none,
-  //
+  // Palabras clave del trabajo,
   palabras-clave: (),
   // El título para el plan/propuesta de investigación, si aplica.
   plan: none,
@@ -43,11 +44,8 @@
   // El texto se escribirá usando mayúsculas y minúsculas, limitando el uso de mayúsculas completas a títulos. El tipo de letras podrá ser elegido de algunos de los siguientes: Times New Roman (14 pt [nunca se especifica la unidad, así que puede asumirse la unidad por defecto de Microsoft Word (punto) o bien pixel]), Arial (12 pt) o Helvética (12 pt).
   // El tamaño y tipo de las letras será uniforme en todo el texto, así como el sistema de encabezamientos y jerarquización, y otras formas de presentación. Para sub/títulos, notas, referencias bibliográficas y citas,podrán usarse tamaños mayores/menores de letra.
   // Las fuentes tipográficas a utilizar en el documento.
-  fuentes: (
-    size: 12pt,
-    ..default.fonts,
-    // [Considerar que el reglamento no menciona ninguna fuente para expresiones matemáticas o mono.]
-  ),
+  fuentes: default.fonts,
+  // [Considerar que el reglamento no menciona ninguna fuente para expresiones matemáticas o mono.]
   // Art. 141: Espacios
   // El interlineado del texto será a espacio y medio (1,5). Entre párrafo y párrafo se dejarán dos espacios [se asume 2,0]. Cada párrafo debe iniciarse al principio del margen izquierdo sin dejar ninguno tipo de sangrado.
   // [El espaciado no puede ser estrictamente copiado ya que (asumo) este espaciado es dado según Microsoft Word, y el espaciado de Typst funciona un tanto diferente, para asimilarse un poco más al de Microsoft Word, simplemente se lo deja en los mismos valores con unidad em, pero si se desea una apariencia similar, se puede usar 1.25 em en interlineado y 1.5 em en párrafo]
@@ -57,12 +55,6 @@
   ),
   body,
 ) = {
-  if (author == []) {
-    panic("El autor es obligatorio: ", author)
-  } else if (title == []) {
-    panic("El título es obligatorio: ", title)
-  }
-
   set document(
     title: if type(title) == content {
       to-string(title)
@@ -73,7 +65,7 @@
     } else {
       author
     },
-    keywords: ("UPSA",) + palabras-clave,
+    keywords: palabras-clave,
   )
 
   set page(
@@ -122,6 +114,12 @@
   show figure: set figure.caption(position: top)
   show figure.where(kind: image): set block(breakable: false, sticky: true)
   show figure.where(kind: table): set block(breakable: true, sticky: false)
+  show table: set text(size: fuentes.size - 2pt)
+  show table: set par(
+    spacing: espaciado.párrafo - 0.5em,
+    leading: espaciado.interlineado - 0.25em,
+  )
+  show raw: set text(size: fuentes.size - 1pt)
   show figure.where(kind: math.equation): set figure(supplement: [Fórmula])
   set figure(
     gap: espaciado.interlineado,
@@ -137,15 +135,6 @@
     parbreak()
     emph(it.body)
   }
-
-  set table(
-    stroke: (x, y) => if y == 0 {
-      (
-        top: (thickness: 1pt, dash: "solid"),
-        bottom: (thickness: 0.5pt, dash: "solid"),
-      )
-    },
-  )
 
   show table.cell: set par(leading: espaciado.interlineado, spacing: espaciado.párrafo)
 
@@ -177,27 +166,6 @@
       ]
     }
   }
-
-  // if portada-externa {
-  //   portada(
-  //     título,
-  //     facultad,
-  //     carrera,
-  //     plan,
-  //     modalidad,
-  //     autor,
-  //     incluir-guía: incluir-guía,
-  //     registro-autor,
-  //     guía,
-  //     ubicación,
-  //     fecha,
-  //     portada-externa,
-  //     grado,
-  //     fuentes,
-  //   )
-
-  //   pagebreak(to: "odd")
-  // }
 
   title-page(
     title,
@@ -265,7 +233,7 @@
       ..if (advisor != none) {
         ([*Guía*], advisor)
       },
-      ..if (palabras-clave != none) {
+      ..if (palabras-clave != ()) {
         ([*Palabras Clave*], palabras-clave.join(", "))
       },
       ..if (email != none) {
@@ -486,7 +454,10 @@
   show figure.where(kind: raw): set figure(placement: none)
   show figure.where(kind: raw): set block(breakable: true, sticky: false)
   show figure.where(kind: raw): set raw(block: true)
+  show figure.where(kind: raw): set align(left)
 
+  // Art 147: Citas y notas
+  // Las citas y notas bibliográficas deberán ceñirse al estilo de referenciación bibliográfica establecido por la Facultad.
   show bibliography: bib-it => {
     show block: block-it => context {
       // if it body is auto or styled()
@@ -570,5 +541,3 @@
 // Se recomienda: usar el estilo científico (directo y preciso), evitar la verbosidad y palabras rebuscadas, no distraer el mensaje con términos ambiguos e imprecisos, redactar párrafos breves, evitando un excesivo número de oraciones subordinadas, las que hacen perder la idea central, emplear las frases para demostrar y argumentar (no para decorar ni persuadir), y elaborar una lista de aquellos términos poco comunes que necesiten una definición particular dentro del contexto de la investigación. Este glosario de términos deberá ir al final del trabajo y debe estar indicado en el índice del contenido.
 // Art. 146: Tiempo de los verbos
 // La redacción del trabajo deberá hacerse utilizando el tiempo presente, a excepción del capítulo de "Método", que podrá escribirse en pretérito (pasado). Una vez decidido el tiempo verbal a utilizar, no se modificará el mismo en párrafos subsiguientes
-// Art 147: Citas y notas
-// Las citas y notas bibliográficas deberán ceñirse al estilo de referenciación bibliográfica establecido por la Facultad.
