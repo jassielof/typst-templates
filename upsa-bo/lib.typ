@@ -1,4 +1,4 @@
-#import "@preview/hydra:0.6.1": hydra
+#import "@preview/hydra:0.6.3": hydra
 #import "lib/string.typ": to-string
 #import "lib/title.typ": front-cover, title-page
 #import "lib/spine.typ": spine-cover
@@ -120,6 +120,7 @@
   show math.equation: set text(font: fonts.math)
 
   show figure: set figure.caption(position: top)
+  show figure: set align(left)
   show figure.where(kind: image): set block(breakable: false, sticky: true)
   show figure.where(kind: table): set block(breakable: true, sticky: false)
   show table: set text(size: fonts.size - (1 / 6 * 1em))
@@ -374,11 +375,12 @@
       display: (
         _,
         it,
-      ) => upper(
-        text(
-          font: fonts.title,
-          it.body,
-        ),
+      ) => text(
+        font: fonts.title,
+        tracking: 0.2em,
+        fill: gray.darken(40%),
+        weight: "bold",
+        upper(it.body),
       ),
     ),
   )
@@ -422,38 +424,36 @@
     set par(justify: false)
     set page(numbering: none, header: none)
 
-    {
-      set align(center)
+    set align(center)
 
-      v(0.5fr)
+    v(0.5fr)
 
+    text(
+      size: 1.5em,
+      weight: 500,
+      tracking: 0.05em,
+      upper(it.supplement),
+    )
+
+    v(1em)
+
+    if it.numbering != none and it.outlined == true {
       text(
-        size: 1.25em,
-        weight: "regular",
-        tracking: 0.05em,
-        fill: gray.darken(40%),
-        upper(it.supplement),
-      )
+        size: 3.5em,
+        weight: "black",
+      )[#counter(heading).display(it.numbering)]
 
       v(1em)
-
-      if it.numbering != none and it.outlined == true {
-        text(
-          size: 3.5em,
-          weight: "bold",
-        )[#counter(heading).display(it.numbering) ]
-
-        v(1em)
-      }
-
-      text(
-        size: 2.4em,
-        weight: "bold",
-        upper(it.body),
-      )
-
-      v(1fr)
     }
+
+    text(
+      size: 2.5em,
+      weight: "bold",
+      tracking: 0.1em,
+      upper(it.body),
+    )
+
+    v(1fr)
   }
 
   show heading.where(level: 2): smallcaps
