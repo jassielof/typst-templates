@@ -5,6 +5,88 @@
 #import "lib/default.typ"
 #import "lib/csl-styles.typ"
 
+#let template-fonts = state("fonts", default.fonts)
+
+#let preamble() = {}
+
+#let general-outline = context {
+  show outline.entry.where(level: 1): set block(spacing: 1.5em)
+  show outline.entry.where(level: 2): set block(spacing: 1.3em)
+  show outline.entry.where(level: 1): set text(font: template-fonts.get().title, size: 1.2em, weight: 700, tracking: 0.05em)
+  show outline.entry.where(level: 1): it => link(
+    it.element.location(),
+    it.indented(
+      {
+        upper(it.element.supplement)
+        sym.space
+        it.prefix()
+      },
+      box(grid(
+        columns: (1fr, auto),
+        align: (left, right + horizon),
+        upper(it.body()), it.page(),
+      )),
+    ),
+  )
+  show outline.entry.where(level: 2): set text(weight: 600, size: 1.1em, font: template-fonts.get().title, tracking: 0.025em)
+  show outline.entry.where(level: 2): it => link(
+    it.element.location(),
+    it.indented(
+      {
+        smallcaps(it.element.supplement)
+        sym.space
+        it.prefix()
+      },
+      box(grid(
+        columns: (1fr, auto),
+        align: (left, right + horizon),
+        smallcaps(it.body()), it.page(),
+      )),
+    ),
+  )
+  show outline.entry.where(level: 3): set text(weight: 500)
+  show outline.entry.where(level: 4): set text(style: "italic")
+  outline(
+    title: [Índice General],
+    depth: 5, // Incluye partes, capítulos, secciones, subsecciones y subsubsecciones. Párrafos y demás se omiten.
+    indent: n => {
+      if n == 0 or n == 1 or n == 2 { 0em } else if n == 3 { 0.75em } else { n * 0.5em }
+    },
+  )
+}
+
+#let table-outline = context {
+  if (counter(figure.where(kind: table)).final().at(0) != 0) {
+    outline(title: [Índice de tablas], target: figure.where(kind: table))
+  }
+}
+
+#let figure-outline = context {
+  if (counter(figure.where(kind: image)).final().at(0) != 0) {
+    outline(title: [Índice de figuras], target: figure.where(kind: image))
+  }
+}
+
+#let listing-outline = context {
+  if (counter(figure.where(kind: raw)).final().at(0) != 0) {
+    outline(title: [Índice de listados], target: figure.where(kind: raw))
+  }
+}
+
+#let math-outline = context {
+  if (counter(figure.where(kind: math.equation)).final().at(0) != 0) {
+    outline(title: [Índice de fórmulas], target: figure.where(kind: math.equation))
+  }
+}
+
+#let appendix-outline = context {
+  if (query(heading.where(supplement: [Anexo])).len() != 0) {
+    outline(title: [Índice de anexos], target: selector(heading.where(supplement: [Anexo])))
+  }
+}
+
+#let abstract() = {}
+
 #let chapter-counter = counter("chapter")
 // Plantilla para documentos finales de licenciatura de la Universidad Privada de Santa Cruz de la Sierra (UPSA). Basada en el Reglamento de Graduación (revisado el 2025, a su vez adecuado al D.S 1433), título V (aspectos formales del documento final de licenciatura), capítulo I (presentación del documento final).
 #let tfg(
@@ -41,6 +123,8 @@
   doble-cara: false,
   email: default.author.email,
   agradecimientos: none,
+  // Si el documento va a ser publicado como PDF en la web.
+  web-format: false,
   resumen-ejecutivo: none,
   // Palabras clave del trabajo,
   palabras-clave: (),
@@ -63,6 +147,7 @@
   body,
 ) = {
   let fonts = (:..default.fonts, ..fonts)
+  context template-fonts.update(fonts)
   set document(
     title: if type(title) == content {
       to-string(title)
@@ -79,10 +164,12 @@
   set page(
     // Art. 142: Márgenes
     // Los márgenes serán 4 cm para el izquierdo, y 2.5 cm para el resto (incluye la numeración de página [por defecto en Typst])
-    margin: (
-      ..if doble-cara { (inside: 4cm) } else { (left: 4cm) },
-      rest: 1in,
-    ),
+    margin: if web-format { 1in } else {
+      (
+        ..if doble-cara { (inside: 4cm) } else { (left: 4cm) },
+        rest: 1in,
+      )
+    },
     // Art. 137: Tipo de hoja
     // El tipo de hoja será papel bond blanco, de 75 g, tamaño carta (us-letter) en posición vertical.
     paper: "us-letter",
@@ -119,7 +206,7 @@
 
   show math.equation: set text(font: fonts.math)
 
-  show figure: set figure.caption(position: top)
+  set figure.caption(separator: parbreak(), position: top)
   show figure: set align(left)
   show figure.where(kind: image): set block(breakable: false, sticky: true)
   show figure.where(kind: table): set block(breakable: true, sticky: false)
@@ -128,24 +215,21 @@
     spacing: espaciado.párrafo - 0.5em,
     leading: espaciado.interlineado - 0.25em,
   )
-  show raw: set text(size: fonts.size - (1 / 12 * 1em))
+  show raw: set text(font: fonts.mono, size: fonts.size - (1 / 12 * 1em))
   show figure.where(kind: math.equation): set figure(supplement: [Fórmula])
   set figure(
     gap: espaciado.interlineado,
     placement: none,
   )
 
-  set figure.caption(separator: parbreak(), position: top)
   show figure.caption: set align(left)
   show figure.caption: set text(font: fonts.title)
   show figure.caption: set par(first-line-indent: 0em)
   show figure.caption: it => {
     strong[#it.supplement #context it.counter.display(it.numbering)]
-    parbreak()
+    it.separator
     emph(it.body)
   }
-
-  show table.cell: set par(leading: espaciado.interlineado, spacing: espaciado.párrafo)
 
   show quote.where(block: true): set block(spacing: espaciado.párrafo)
   show quote: set text(style: "italic")
@@ -304,69 +388,13 @@
 
   show outline: set heading(level: 2)
   show outline.entry: set block(spacing: 0.75em)
-  {
-    show outline.entry.where(level: 1): set block(spacing: 1.5em)
-    show outline.entry.where(level: 2): set block(spacing: 1.3em)
-    show outline.entry.where(level: 1): it => link(it.element.location(), text(
-      font: fonts.title,
-      size: 1.2em,
-      weight: 700,
-      upper(it.indented(
-        if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
-        [#it.body() #h(1fr) #it.page()],
-      )),
-    ))
-    show outline.entry.where(level: 2): it => link(it.element.location(), text(
-      font: fonts.title,
-      size: 1.1em,
-      weight: 600,
-      smallcaps(it.indented(
-        if it.element.numbering != none [ #it.element.supplement #it.prefix()] else { it.prefix() },
-        [#it.body() #h(1fr) #it.page()],
-      )),
-    ))
-    show outline.entry.where(level: 3): it => link(
-      it.element.location(),
-      text(
-        weight: 500,
-        it,
-      ),
-    )
-    show outline.entry.where(level: 4): it => link(
-      it.element.location(),
-      emph(it),
-    )
 
-    outline(
-      title: [Índice General],
-      depth: 5, // Incluye partes, capítulos, secciones, subsecciones y subsubsecciones. Párrafos y demás se omiten.
-      indent: n => {
-        if n == 0 or n == 1 { 0em } else { n * 0.75em }
-      },
-    )
-  }
-
-  context {
-    if (counter(figure.where(kind: table)).final().at(0) != 0) {
-      outline(title: [Índice de tablas], target: figure.where(kind: table))
-    }
-
-    if (counter(figure.where(kind: image)).final().at(0) != 0) {
-      outline(title: [Índice de figuras], target: figure.where(kind: image))
-    }
-
-    if (counter(figure.where(kind: math.equation)).final().at(0) != 0) {
-      outline(title: [Índice de fórmulas], target: figure.where(kind: math.equation))
-    }
-
-    if (counter(figure.where(kind: raw)).final().at(0) != 0) {
-      outline(title: [Índice de listados], target: figure.where(kind: raw))
-    }
-
-    if (query(heading.where(supplement: [Anexo])).len() != 0) {
-      outline(title: [Índice de anexos], target: selector(heading.where(supplement: [Anexo])))
-    }
-  }
+  general-outline
+  figure-outline
+  table-outline
+  math-outline
+  listing-outline
+  appendix-outline
 
   set page(
     numbering: "1",
@@ -462,7 +490,6 @@
   show heading.where(level: 6): it => [#it.body.]
   show heading.where(level: 7): it => [_#it.body._]
 
-  show raw: set text(font: fonts.mono, size: 1em)
   show figure.where(kind: raw): set figure(placement: none)
   show figure.where(kind: raw): set block(breakable: true, sticky: false)
   show figure.where(kind: raw): set raw(block: true)
