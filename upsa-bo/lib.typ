@@ -384,10 +384,11 @@
     ),
   )
 
-  show table: set text(size: fonts.size - (1 / 6 * 1em))
+  show table: set text(size: fonts.size - (1 / 6 * 1em), hyphenate: true)
   show table: set par(
     spacing: paragraph.spacing - 0.5em,
     leading: paragraph.leading - 0.25em,
+    justify: true,
   )
 
   dedication-page(dedication)
