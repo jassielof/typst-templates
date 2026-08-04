@@ -1084,45 +1084,25 @@
 
 // Prepara el documento para las páginas finales, incluyendo anexos, glosario, etc.
 #let back-matter(body) = context {
-  show heading.where(
-    level: 2,
-  ): set heading(
-    supplement: [Anexo],
-    numbering: (
-      ..args,
-    ) => {
-      let annex-numbers = args.pos()
-
-      if annex-numbers.len() >= 2 {
-        numbering("A", annex-numbers.at(1)) // Use the annex number (second argument)
-      } else {
-        none
-      }
-    },
-  )
+  show heading.where(level: 2): set heading(supplement: [Anexo])
 
   set heading(
-    numbering: (
-      ..args,
-    ) => {
-      let annex-numbers = args.pos()
-
-      if annex-numbers.len() > 2 {
-        let remaining = annex-numbers.slice(2)
-        numbering("a.1.", ..remaining)
+    numbering: (..args) => {
+      let pos = args.pos()
+      if pos.len() == 1 {
+        numbering("I", ..pos)
+      } else if pos.len() == 2 {
+        numbering("A", chapter-counter.get().first())
       } else {
-        none
+        numbering("a.1.", ..pos.slice(2))
       }
     },
   )
 
   chapter-counter.update(0)
-  let current-part = counter(heading).get().at(0)
-  counter(heading).update((part, ..rest) => (current-part, 0))
 
   body
 }
-
 
 // Artículos irrelevantes o sin efecto directo a la planilla.
 // Art. 140: Encuadernación
