@@ -621,7 +621,8 @@
     hanging-indent: 0.5in,
   )
 
-  show heading.where(level: 2): set heading(supplement: [Anexo])
+  show heading.where(level: 2): set heading(supplement: [Anexo]) if document-graduation-work.is-plan == false
+  set heading(supplement: [Anexo], numbering: "A.a.") if document-graduation-work.is-plan == true
 
   show bibliography: set heading(
     level: if document-graduation-work.is-plan == true { 3 } else { 2 },
@@ -642,7 +643,24 @@
         numbering("a.1.", ..pos.slice(2))
       }
     },
-  )
+  ) if document-graduation-work.is-plan == false
+
+  set heading(
+    numbering: (..args) => {
+      let pos = args.pos()
+      if pos.len() == 1 {
+        numbering("I", ..pos)
+      } else if pos.len() == 2 {
+        numbering("A", chapter-counter.get().first())
+      } else {
+        numbering("A.a.1.", ..pos.slice(2))
+      }
+    },
+  ) if document-graduation-work.is-plan == true
+
+  if document-graduation-work.is-plan == true {
+    counter(heading).update(0)
+  }
 
   chapter-counter.update(0)
 
