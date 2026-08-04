@@ -176,7 +176,7 @@
 
 // Genera todos los índices del documento en su respectivo orden,
 #let all-outlines = {
-  show outline: set heading(level: 2)
+  show outline: set heading(level: 1)
   show outline.entry: set block(spacing: 0.75em)
 
   general-outline
@@ -191,19 +191,11 @@
 #let abstract(
   problem: none,
   objective: none,
-  content: outline(
-    target: heading.where(
-      level: 2,
-      outlined: true,
-      supplement: [Capítulo],
-    ),
-    indent: 0em,
-    title: [Contenido],
-  ),
+  content: none,
 ) = context {
-  set heading(numbering: none, outlined: false, level: 3)
-  show outline: set heading(numbering: none, outlined: false, level: 3)
-  heading(level: 2)[Abstracto]
+  set heading(numbering: none, outlined: false, level: 2)
+  show outline: set heading(numbering: none, outlined: false, level: 2)
+  heading(level: 1)[Abstracto]
   table(
     align: (left + horizon, left),
     columns: 2,
@@ -224,7 +216,9 @@
 
   show outline.entry: set block(spacing: 0.75em)
   content
+
   v(document-paragraph.get().spacing)
+
   // Personal information
   table(
     columns: 2,
@@ -353,7 +347,7 @@
   dedication: none,
   abstract-content: outline(
     target: heading.where(
-      level: 2,
+      // level: 2,
       outlined: true,
       supplement: [Capítulo],
     ),
@@ -403,20 +397,20 @@
   show heading: set text(size: fonts.size, font: fonts.title)
   show heading: set block(spacing: paragraph.spacing)
 
-  show heading.where(level: 2): set text(font: fonts.body)
+  show heading.where(level: 1): set text(font: fonts.body)
 
-  show heading.where(level: 2): set heading(
+  show heading.where(level: 1): set heading(
     supplement: [Capítulo],
   )
 
-  show heading.where(level: 2): it => chapter-page(it)
-  show heading.where(level: 2): smallcaps
-  show heading.where(level: 3): set align(center)
+  show heading.where(level: 1): it => chapter-page(it)
+  show heading.where(level: 1): smallcaps
+  show heading.where(level: 2): set align(center)
 
   abstract(problem: problem, objective: objective, content: abstract-content)
 
   {
-    set heading(numbering: none, level: 2)
+    set heading(numbering: none)
 
     if document-graduation-work.get().abstract != none {
       pagebreak(weak: true)
