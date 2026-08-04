@@ -20,7 +20,7 @@
   let graduation-work-info = document-graduation-work.get()
   let advisor-info = document-advisor.get()
 
-  set text(weight: "bold", size: fonts.size, font: fonts.title)
+  set text(weight: "bold", size: fonts.size + (2 / 12) * 1em, font: fonts.title)
   set page(margin: 1in) if is-front-cover
 
   set align(center)

@@ -251,7 +251,6 @@
   }
 
   body
-  pagebreak(to: "odd", weak: true)
 }
 
 // Genera la página dedicatoria del documento, si aplica.
@@ -263,7 +262,6 @@
   }
 
   body
-  pagebreak(to: "odd", weak: true)
 }
 
 #let chapter-counter = counter("chapter")
