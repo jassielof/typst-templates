@@ -81,8 +81,7 @@ tasks:
     generates:
       - "template/*.pdf"
     cmds:
-      - for: ["Estudio de Factibilidad", "TFG"]
-        cmd: typst compile "template/{{.ITEM}}/{{.ITEM}}.typ"
+      - typst compile template/main.typ
   butterick:
     dir: butterick-resume
     sources:
