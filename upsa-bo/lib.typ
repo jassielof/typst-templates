@@ -170,7 +170,6 @@
 // Genera el índice de anexos si existen.
 #let appendix-outline = context {
   if (query(heading.where(supplement: [Anexo])).len() != 0) {
-    panic(query(heading.where(supplement: [Anexo])))
     outline(title: [Índice de anexos], target: selector(heading.where(supplement: [Anexo])))
   }
 }
