@@ -22,3 +22,7 @@
   email: "author@estudiantes.upsa.edu.bo",
 )
 #let modality = [Proyecto de grado]
+#let paragraph = (
+  spacing: 2em,
+  leading: 1.5em,
+)
