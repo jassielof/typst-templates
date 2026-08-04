@@ -175,9 +175,11 @@
 }
 
 // Genera todos los índices del documento en su respectivo orden,
-#let all-outlines = {
+#let all-outlines = context {
   show outline: set heading(level: 1)
   show outline.entry: set block(spacing: 0.75em)
+  let paragraph = document-paragraph.get()
+  show outline.entry: set par(leading: 0.65em)
 
   general-outline
   figure-outline
