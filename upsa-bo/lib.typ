@@ -485,12 +485,7 @@
   show outline: set heading(level: 2)
   show outline.entry: set block(spacing: 0.75em)
 
-  general-outline
-  figure-outline
-  table-outline
-  math-outline
-  listing-outline
-  appendix-outline
+  all-outlines
 
   set page(
     numbering: "1",
