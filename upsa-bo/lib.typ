@@ -7,12 +7,22 @@
 
 #let template-fonts = state("fonts", default.fonts)
 
-#let preamble() = {}
+// Define la configuración general de la plantilla.
+#let settings(
+  fonts: default.fonts,
+  paragraph: default.paragraph,
+) = {}
+
 
 #let general-outline = context {
   show outline.entry.where(level: 1): set block(spacing: 1.5em)
   show outline.entry.where(level: 2): set block(spacing: 1.3em)
-  show outline.entry.where(level: 1): set text(font: template-fonts.get().title, size: 1.2em, weight: 700, tracking: 0.05em)
+  show outline.entry.where(level: 1): set text(
+    font: template-fonts.get().title,
+    size: 1.2em,
+    weight: 700,
+    tracking: 0.05em,
+  )
   show outline.entry.where(level: 1): it => link(
     it.element.location(),
     it.indented(
@@ -28,7 +38,12 @@
       )),
     ),
   )
-  show outline.entry.where(level: 2): set text(weight: 600, size: 1.1em, font: template-fonts.get().title, tracking: 0.025em)
+  show outline.entry.where(level: 2): set text(
+    weight: 600,
+    size: 1.1em,
+    font: template-fonts.get().title,
+    tracking: 0.025em,
+  )
   show outline.entry.where(level: 2): it => link(
     it.element.location(),
     it.indented(
@@ -55,37 +70,103 @@
   )
 }
 
+// Genera el índice de tablas si existen.
 #let table-outline = context {
   if (counter(figure.where(kind: table)).final().at(0) != 0) {
     outline(title: [Índice de tablas], target: figure.where(kind: table))
   }
 }
 
+// Genera el índice de figuras (imágenes) si existen.
 #let figure-outline = context {
   if (counter(figure.where(kind: image)).final().at(0) != 0) {
     outline(title: [Índice de figuras], target: figure.where(kind: image))
   }
 }
 
+// Genera el índice de listados (código fuente) si existen.
 #let listing-outline = context {
   if (counter(figure.where(kind: raw)).final().at(0) != 0) {
     outline(title: [Índice de listados], target: figure.where(kind: raw))
   }
 }
 
+// Genera el índice de fórmulas (o expresiones matemáticas) si existen.
 #let math-outline = context {
   if (counter(figure.where(kind: math.equation)).final().at(0) != 0) {
     outline(title: [Índice de fórmulas], target: figure.where(kind: math.equation))
   }
 }
 
+// Genera el índice de anexos si existen.
 #let appendix-outline = context {
   if (query(heading.where(supplement: [Anexo])).len() != 0) {
     outline(title: [Índice de anexos], target: selector(heading.where(supplement: [Anexo])))
   }
 }
 
-#let abstract() = {}
+// Genera todos los índices respectivos.
+#let all-outlines = {
+  general-outline
+  figure-outline
+  table-outline
+  math-outline
+  listing-outline
+  appendix-outline
+}
+
+// Genera el abstracto del documento.
+#let abstract(
+  title: default.title,
+  author: default.author.name,
+  problem: none,
+  objective: none,
+  content: outline(
+    target: heading.where(
+      level: 2,
+      outlined: true,
+      supplement: [Capítulo],
+    ),
+    // title: none,
+  ),
+) = {
+  set heading(numbering: none, outlined: false, level: 3)
+  show outline: set heading(numbering: none, outlined: false, level: 3)
+  heading(level: 2)[Abstracto]
+  table(
+    align: (left + horizon, left),
+    columns: 2,
+    stroke: 1pt,
+    [*Título*], title,
+    [*Autor*], author,
+  )
+
+  if (problemática != none) {
+    heading[Problemática]
+  }
+
+  if (objetivo-general != none) {
+    heading[Objetivo general]
+  }
+
+  // if (contenido != none) {
+  //   heading[Contenido]
+  // }
+  content
+
+  // Personal information
+}
+
+// Genera la página de agradecimientos del documento, si aplica.
+#let acknowledgements(body) = {}
+
+// Genera la página dedicatoria del documento, si aplica.
+//
+// Se recomienda que la dedicatoria sea breve y concisa (1 página).
+#let dedication(body) = {}
+
+// Genera las páginas preliminares del documento, incluyendo carátula, índices, abstracto, etc.
+#let front-matter = {}
 
 #let chapter-counter = counter("chapter")
 // Plantilla para documentos finales de licenciatura de la Universidad Privada de Santa Cruz de la Sierra (UPSA). Basada en el Reglamento de Graduación (revisado el 2025, a su vez adecuado al D.S 1433), título V (aspectos formales del documento final de licenciatura), capítulo I (presentación del documento final).
@@ -291,54 +372,15 @@
   show heading: set text(size: fonts.size, font: fonts.title)
   show heading: set block(spacing: espaciado.párrafo)
 
-  if (plan == none) {
-    heading(numbering: none, outlined: false)[Abstracto]
-    table(
-      align: (left + horizon, left),
-      columns: 2,
-      stroke: 1pt,
-      [*Título*], title,
-      [*Autor*], author,
-    )
-
-    if (problemática != none) {
-      heading(numbering: none, outlined: false)[Problemática]
-      problemática
-    }
-
-    if objetivo-general != none {
-      heading(numbering: none, outlined: false)[Objetivo General]
-      objetivo-general
-    }
-
-    if contenido != none {
-      heading(numbering: none, outlined: false)[Contenido]
-      contenido
-    }
-
-    table(
-      columns: 2,
-      stroke: 1pt,
-      align: (left + horizon, left),
-      ..if (degree != none) {
-        ([*Carrera*], degree)
-      },
-      ..if (advisor != none) {
-        ([*Guía*], advisor)
-      },
-      ..if (palabras-clave != ()) {
-        ([*Palabras Clave*], palabras-clave.join(", "))
-      },
-      ..if (email != none) {
-        ([*Correo Electrónico*], link("mailto:" + email))
-      },
-      ..if (fecha != none) {
-        ([*Fecha*], to-string[#fecha])
-      },
-    )
-  }
-
   show heading.where(level: 2): set text(font: fonts.body)
+
+  show heading.where(level: 1): set heading(
+    supplement: [Parte],
+  )
+
+  show heading.where(level: 2): set heading(
+    supplement: [Capítulo],
+  )
 
   show heading.where(level: 2): it => context {
     if it.numbering != none and it.outlined == true {
@@ -371,6 +413,60 @@
         size: 2em,
         it.body,
       ),
+    )
+  }
+
+  show heading.where(level: 2): smallcaps
+  show heading.where(level: 3): set align(center)
+  show heading.where(level: 5): emph
+  show heading.where(level: 6): it => [#it.body.]
+  show heading.where(level: 7): it => [_#it.body._]
+
+  if (plan == none) {
+    set heading(numbering: none, outlined: false, level: 3)
+    heading(level: 2)[Abstracto]
+    table(
+      align: (left + horizon, left),
+      columns: 2,
+      stroke: 1pt,
+      [*Título*], title,
+      [*Autor*], author,
+    )
+
+    if (problemática != none) {
+      heading[Problemática]
+      problemática
+    }
+
+    if objetivo-general != none {
+      heading[Objetivo General]
+      objetivo-general
+    }
+
+    if contenido != none {
+      heading[Contenido]
+      contenido
+    }
+
+    table(
+      columns: 2,
+      stroke: 1pt,
+      align: (left + horizon, left),
+      ..if (degree != none) {
+        ([*Carrera*], degree)
+      },
+      ..if (advisor != none) {
+        ([*Guía*], advisor)
+      },
+      ..if (palabras-clave != ()) {
+        ([*Palabras Clave*], palabras-clave.join(", "))
+      },
+      ..if (email != none) {
+        ([*Correo Electrónico*], link("mailto:" + email))
+      },
+      ..if (fecha != none) {
+        ([*Fecha*], to-string[#fecha])
+      },
     )
   }
 
@@ -411,14 +507,6 @@
         upper(it.body),
       ),
     ),
-  )
-
-  show heading.where(level: 1): set heading(
-    supplement: [Parte],
-  )
-
-  show heading.where(level: 2): set heading(
-    supplement: [Capítulo],
   )
 
   // Art. 144: Encabezamientos
@@ -483,12 +571,6 @@
 
     v(1fr)
   }
-
-  show heading.where(level: 2): smallcaps
-  show heading.where(level: 3): set align(center)
-  show heading.where(level: 5): emph
-  show heading.where(level: 6): it => [#it.body.]
-  show heading.where(level: 7): it => [_#it.body._]
 
   show figure.where(kind: raw): set figure(placement: none)
   show figure.where(kind: raw): set block(breakable: true, sticky: false)
