@@ -78,7 +78,9 @@
   institution-info.location
   parbreak()
   [#graduation-work-info.date]
-  pagebreak(to: "odd", weak: true)
+  if not is-front-cover {
+    pagebreak(to: "odd", weak: true)
+  }
 }
 
 // Art. 134: Cubierta o tapa externa

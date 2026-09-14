@@ -223,7 +223,7 @@
 
   // Personal information
   table(
-    columns: 2,
+    columns: (auto, 1fr),
     stroke: 1pt,
     align: (left + horizon, left),
     ..if (document-degree.get().program != none) {
