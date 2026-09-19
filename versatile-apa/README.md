@@ -157,6 +157,10 @@ For affiliations, is an array of dictionaries, where each dictionary has an `id`
 
 > If you happen to need it and want to contribute or have information about how to, please open an issue or a PR.
 
+## References
+
+The [APA Style website](https://apastyle.apa.org/), as well as the respective related manuals.
+
 ## License
 
 This template is licensed under the Apache 2.0 license. See the repository for complete license information.
