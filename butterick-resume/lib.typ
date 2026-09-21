@@ -1,7 +1,6 @@
 #let two-grid(left: none, right: none) = {
   show grid.cell: set text(size: 14pt)
-  show heading.where(level: 2): set text(size: 14pt)
-  show grid: set block(below: 1em, above: 1.5em)
+  show grid: set block(below: 1em, above: 1.5em, sticky: true)
   grid(
     columns: (1fr, auto),
     heading(level: 2, left), right,
@@ -36,10 +35,14 @@
     body-indent: 1em,
   )
 
-  show heading.where(level: 1): set text(font: "Source Sans 3", weight: "bold")
+  show heading.where(level: 1): set text(
+    font: "Source Sans 3",
+    weight: "bold",
+    size: 9pt,
+    tracking: 0.05em,
+  )
   show heading.where(level: 1): set smallcaps(all: true)
   show heading.where(level: 1): smallcaps
-  show heading.where(level: 1): set text(size: 9pt, tracking: 0.05em)
   show heading.where(level: 1): set block(
     below: 1em,
     above: 2.5em,
@@ -48,7 +51,11 @@
     inset: (top: 0.5em, rest: 0em),
   )
 
-  show heading.where(level: 2): set text(font: "Source Serif 4", weight: "medium")
+  show heading.where(level: 2): set text(
+    font: "Source Serif 4",
+    size: 14pt,
+    weight: "medium",
+  )
 
   body
 }
