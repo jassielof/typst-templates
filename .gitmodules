@@ -1,3 +1,6 @@
 [submodule "acm-suite/docs/acmart"]
 	path = acm-suite/docs/acmart
 	url = https://github.com/borisveytsman/acmart
+[submodule "upsa-bo"]
+	path = upsa-bo
+	url = https://github.com/jassielof/upsa-bolivia-thesis-template
