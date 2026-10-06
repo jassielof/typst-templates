@@ -12,10 +12,10 @@
       "path": "../acm-suite",
       "name": "ACM Suite"
     },
-    {
-      "path": "../upsa-bo/",
-      "name": "UPSA Bolivia"
-    },
+    // {
+    //   "path": "../upsa-bo/",
+    //   "name": "UPSA Bolivia"
+    // },
     {
       "path": "../latex-reborn",
       "name": "LaTeX Reborn (Standard)"
@@ -24,7 +24,10 @@
       "path": "../koma-script",
       "name": "KOMA-Script"
     },
-    { "path": "../butterick-resume", "name": "Butterick's Resume" }
+    {
+      "path": "../butterick-resume",
+      "name": "Butterick's Resume"
+    }
   ],
   "settings": {
     "cSpell.words": [
@@ -130,7 +133,9 @@
       "xxvpt"
     ],
     "cSpell.language": "en,es-ES,en-GB,en-US,de,de-DE,lorem,es,pt,nl,it,fr",
-    "cSpell.ignoreWords": ["technologies"]
+    "cSpell.ignoreWords": [
+      "technologies"
+    ]
   },
   "extensions": {
     "recommendations": [
