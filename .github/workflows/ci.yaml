@@ -28,7 +28,7 @@ jobs:
       - name: Install fonts
         if: steps.cache-fonts.outputs.cache-hit != 'true'
         run: |
-          brew install --cask $(cat .github/fonts.txt | tr '\n' ' ')
+          brew install --cask $(cat assets/fonts.txt | tr '\n' ' ')
       - name: Install Typst
         uses: typst-community/setup-typst@v5
       - name: Install Task
