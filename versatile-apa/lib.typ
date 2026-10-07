@@ -1,11 +1,11 @@
-#import "utils/to-string.typ": to-string
-#import "utils/languages.typ": get-terms, language-terms
-#import "utils/authoring.typ": print-affiliations, print-authors
-#import "utils/appendix.typ": appendix, appendix-outline
-#import "utils/apa-figure.typ": apa-figure
-#import "utils/abstract.typ": abstract-page
-#import "utils/title.typ": title-page
-#import "utils/constants.typ": double-spacing, first-indent-length, quote-word-trigger
+#import "lib/to-string.typ": to-string
+#import "lib/languages.typ": get-terms, language-terms
+#import "lib/authoring.typ": print-affiliations, print-authors
+#import "lib/appendix.typ": appendix, appendix-outline
+#import "lib/apa-figure.typ": apa-figure
+#import "lib/abstract.typ": abstract-page
+#import "lib/title.typ": title-page
+#import "lib/constants.typ": double-spacing, first-indent-length, quote-word-trigger
 
 
 /// The APA 7th edition template for academic and professional documents.
