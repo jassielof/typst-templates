@@ -1,5 +1,6 @@
 // Implicit introduction heading
-#std.title()
+#context [= #document.title]
+
 #lorem(200)
 
 #pagebreak()

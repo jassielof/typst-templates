@@ -25,6 +25,9 @@
     title: title,
   ) if title != none
 
+  // Without `authors`, show the names from the user's own `set document(author: ...)`.
+  let authors = if authors == none and document.author.len() > 0 { document.author } else { authors }
+
   for i in range(4) {
     [~] + parbreak()
   }
