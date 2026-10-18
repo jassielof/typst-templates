@@ -96,12 +96,15 @@
     emph(it.body)
   }
 
-  set table(stroke: (x, y) => if y == 0 {
-    (
-      top: (thickness: 1pt, dash: "solid"),
-      bottom: (thickness: 0.5pt, dash: "solid"),
-    )
-  })
+  set table(
+    stroke: (x, y) => if y == 0 {
+      (
+        top: (thickness: 1pt, dash: "solid"),
+        bottom: (thickness: 0.5pt, dash: "solid"),
+      )
+    },
+    align: left,
+  )
 
   set list(
     marker: ([•], [◦]),
