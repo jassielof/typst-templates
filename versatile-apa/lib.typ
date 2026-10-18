@@ -44,22 +44,15 @@
     spacing: double-spacing,
   )
 
-  // Show-set rules are at least, easier to override compared to show-function
-  // https://github.com/typst/typst/discussions/2883
-  show link: set text(fill: blue)
-  show link: underline // considering one would want to disable underline, current workaround is set its stroke to 0pt
+  show footnote: set par(
+    leading: double-spacing / 2,
+    spacing: double-spacing / 2,
+  )
 
-  if running-head != none {
-    if type(running-head) == content { running-head = to-string(running-head) }
-    if running-head.len() > running-head-limit {
-      panic(
-        "Running head must be no more than",
-        running-head-limit,
-        "characters, including spaces and punctuation.",
-        "Current length:",
-        running-head.len(),
-      )
-    }
+  show heading: it => context if strict != false and it.numbering != none and not in-appendix.at(it.location()) {
+    panic("APA strict mode (" + strict + "): No numbered headings.")
+  } else {
+    it
   }
 
   show heading: set text(size: font-size)
