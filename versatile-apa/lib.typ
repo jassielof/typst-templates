@@ -74,6 +74,8 @@
 
   show figure.where(kind: image): set block(breakable: true, sticky: true)
   show figure.where(kind: table): set block(breakable: true, sticky: false)
+  // Defaults to none until auto placement breakable is fixed. See https://github.com/typst/typst/issues/6392.
+  show figure.where(kind: table): set figure(placement: none)
 
   set figure(
     gap: double-spacing,
