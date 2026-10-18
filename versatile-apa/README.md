@@ -77,6 +77,46 @@ This is also useful for overriding specific terms in supported languages. Such a
 )
 ```
 
+#### Strict mode
+
+Disabled by default. When enabled, the rules of the APA manual that can be checked mechanically become compile errors, each one naming the manual section it comes from. It is all-or-nothing, with one variation per kind of paper:
+
+```typ
+#show: versatile-apa.with(strict: "student") // or "professional"; false (default) disables it
+```
+
+Strict mode is exactly as strict as the manual: it only enforces what the manual states without an escape hatch. Whatever the manual calls typical, optional or "unless the instructor requires otherwise" is **not** checked, which includes fonts ("options include"), the abstract length ("typically" 250 words), keywords, and the contents of the student title page (course, instructor, date). `"professional"` is a manuscript submitted for publication (sections 2.1 and 2.3), `"student"` is a student paper (section 2.2).
+
+| Rule (APA 7 section)                                                                                                                       | Student | Professional |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | :-----: | :----------: |
+| 1 in margins (2.22)                                                                                                                        |    ✓    |      ✓       |
+| Double spacing without extra paragraph spacing (2.21), left aligned without full justification or hyphenation (2.23), 0.5 in indentation (2.24) |    ✓    |      ✓       |
+| Page number in the header, flush right (2.18)                                                                                              |    ✓    |      ✓       |
+| Block quotations from 40 words (8.26, 8.27)                                                                                                |    ✓    |      ✓       |
+| Title page has a title and the author names (2.4, 2.5)                                                                                     |    ✓    |      ✓       |
+| At most two affiliations per author (2.6)                                                                                                  |    ✓    |      ✓       |
+| Headings are not numbered, except the appendix labels (2.27)                                                                               |    ✓    |      ✓       |
+| Running head of at most 50 characters, when there is one (2.8)                                                                             |    ✓    |      ✓       |
+| Running head required (2.8)                                                                                                                |         |      ✓       |
+| Affiliations and author note required on the title page (2.3, 2.6, 2.7)                                                                    |         |      ✓       |
+
+Notes:
+
+- Margins, spacing and alignment are checked when the title page is built, so they can be set with your own `set page(..)` / `set par(..)` after the `show` rule, as long as it comes before `title-page()`. A strict paper therefore needs a title page.
+- The running head has no length limit when strict mode is disabled; it is always printed in capitals.
+- Margins follow the default of 1 in; the manual allows other margins for bound theses and dissertations, which strict mode does not model.
+- Not checked: title case, keyword case, fonts, abstract and keywords, and not starting the paper with an "Introduction" heading.
+
+#### Title page spacing
+
+APA asks for the title in the upper half of the title page, "three or four lines down from the top margin". The space above the title is the `title-page-spacing` state, `4em` by default:
+
+```typ
+#import "@preview/versatile-apa:7.3.0": title-page-spacing
+
+#title-page-spacing.update(3em)
+```
+
 #### Fonts
 
 The template uses [Typst's built-in fonts](https://typst.app/docs/reference/text/text/#parameters-font) by default to not cause any `unknown font family` errors, [check APA Style suggested fonts](https://apastyle.apa.org/style-grammar-guidelines/paper-format/font) to download and set them yourself.
