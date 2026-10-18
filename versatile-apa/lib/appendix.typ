@@ -1,3 +1,4 @@
+#import "constants.typ": in-appendix
 #import "languages.typ": *
 #import "apa-figure.typ": *
 
@@ -30,12 +31,13 @@
     counter(figure.where(kind: table)).update(0)
     counter(figure.where(kind: math.equation)).update(0)
     counter(figure.where(kind: raw)).update(0)
+    // Label and title go on separate lines of the same block (APA 7, 2.14), so a line break is used instead of a paragraph break.
     block[
       #it.supplement
       #if (multiple-level-1) {
         numbering(it.numbering, ..counter(heading).at(it.location()))
       }
-
+      #linebreak()
       #it.body
     ]
   }
@@ -53,6 +55,8 @@
     ]
     #it.body
   ]
+
+  in-appendix.update(true)
 
   body
 }

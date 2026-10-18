@@ -5,17 +5,22 @@
 #import "lib/apa-figure.typ": apa-figure
 #import "lib/abstract.typ": abstract-page
 #import "lib/title.typ": title-page
-#import "lib/constants.typ": double-spacing, first-indent-length, quote-word-trigger
-
+#import "lib/constants.typ": (
+  apa-strict, double-spacing, first-indent-length, in-appendix, quote-word-trigger, title-page-spacing,
+)
+#import "lib/strict.typ": check-running-head, validate-strict-mode
 
 /// The APA 7th edition template for academic and professional documents.
 #let versatile-apa(
   font-size: 12pt,
   custom-terms: (:),
   running-head: none,
-  running-head-limit: 50,
+  strict: false,
   body,
 ) = {
+  validate-strict-mode(strict)
+  check-running-head(strict, running-head)
+  apa-strict.update(strict)
   context language-terms.update(custom-terms)
 
   set text(

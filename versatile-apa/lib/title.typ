@@ -1,6 +1,7 @@
 #import "languages.typ": get-terms
 #import "authoring.typ": print-affiliations, print-authors
-#import "constants.typ": double-spacing, first-indent-length
+#import "constants.typ": apa-strict, double-spacing, first-indent-length, title-page-spacing
+#import "strict.typ": check-page-setup, check-title-page
 #import "to-string.typ": to-string
 
 #let title-page(
@@ -28,21 +29,19 @@
   // Without `authors`, show the names from the user's own `set document(author: ...)`.
   let authors = if authors == none and document.author.len() > 0 { document.author } else { authors }
 
-  for i in range(4) {
-    [~] + parbreak()
-  }
+  let mode = apa-strict.get()
+  check-page-setup(mode)
+  check-title-page(mode, title, authors, affiliations, author-note)
 
+  v(title-page-spacing.get())
   std.title()
 
-  [~]
-
-  parbreak()
+  v(2em)
 
   set align(center)
   print-authors(authors, affiliations, text.lang, text.script)
   parbreak()
   print-affiliations(authors, affiliations)
-  parbreak()
   parbreak()
   course
   parbreak()
