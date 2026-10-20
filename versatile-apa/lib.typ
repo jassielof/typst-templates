@@ -49,7 +49,7 @@
     spacing: double-spacing,
   )
 
-  show footnote: set par(
+  show footnote.entry: set par(
     leading: double-spacing / 2,
     spacing: double-spacing / 2,
   )
