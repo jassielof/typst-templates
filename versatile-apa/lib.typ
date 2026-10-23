@@ -143,6 +143,8 @@
 
   show quote.where(block: true): set block(spacing: double-spacing)
 
+  // TODO: Use the wordometer package as it's more accurate. As well take into account in-text citations, not just block quotes (if applicable).
+  import "@preview/wordometer:0.1.6"
   show quote: it => context {
     let quote-text-words = to-string(it.body).split(regex("\\s+")).filter(word => word != "").len()
 
