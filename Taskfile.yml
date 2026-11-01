@@ -6,7 +6,6 @@ tasks:
     deps:
       - versatile-apa
       - latex-reborn
-      - upsa-bo
       - butterick
   versatile-apa:
     dir: versatile-apa
@@ -68,19 +67,6 @@ tasks:
       # Manuscript is the default
       # TODO: Enable once it works
       # - typst compile --root . template/manuscript.typ thumbnail.png --pages 1
-  upsa-bo:
-    dir: upsa-bo
-    env:
-      TYPST_ROOT: .
-    aliases:
-      - upsa
-    # watch: true
-    sources:
-      - "**/*.typ"
-    generates:
-      - "template/*.pdf"
-    cmds:
-      - typst compile template/main.typ
   butterick:
     dir: butterick-resume
     sources:
