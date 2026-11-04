@@ -38,35 +38,6 @@ tasks:
       - "**/*.typ"
     generates:
       - "template/*.pdf"
-  acm-suite:
-    aliases:
-      - acm
-    dir: acm-suite
-    sources:
-      - "**/*.typ"
-    generates:
-      - "template/*.pdf"
-      - "*.png"
-    vars:
-      FORMATS: [
-          "small",
-          # TODO: Enable each one of these once they start to work.
-          # "large",
-          # "manuscript",
-          # "sigpl",
-          # "sig-conf",
-          # "tog",
-          # "cover-page",
-          # "engage-cs-edu",
-        ]
-    cmds:
-      - for: { var: FORMATS }
-        cmd: typst compile --root . template/{{.ITEM}}.typ # Manuscript is default for thumbnails
-      - for: { var: FORMATS }
-        cmd: typst compile --root . template/{{.ITEM}}.typ thumbnail-{{.ITEM}}.png --pages 1
-      # Manuscript is the default
-      # TODO: Enable once it works
-      # - typst compile --root . template/manuscript.typ thumbnail.png --pages 1
   butterick:
     dir: butterick-resume
     sources:
@@ -88,7 +59,6 @@ tasks:
         mv versatile-apa/template/student.pdf www/versatile-apa-student.pdf
         mv versatile-apa/template/professional.pdf www/versatile-apa-professional.pdf
       - mv butterick-resume/template/main.pdf www/butterick-resume.pdf
-      # - mv "acm-suite/template/small.pdf" www/acm-suite-small.pdf
       - |
         mv latex-reborn/template/report.pdf www/latex-reborn-report.pdf
         mv latex-reborn/template/article.pdf www/latex-reborn-article.pdf

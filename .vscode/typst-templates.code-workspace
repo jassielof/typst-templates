@@ -9,14 +9,6 @@
       "name": "Versatile APA"
     },
     {
-      "path": "../acm-suite",
-      "name": "ACM Suite"
-    },
-    // {
-    //   "path": "../upsa-bo/",
-    //   "name": "UPSA Bolivia"
-    // },
-    {
       "path": "../latex-reborn",
       "name": "LaTeX Reborn (Standard)"
     },
