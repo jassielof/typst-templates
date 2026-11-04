@@ -131,7 +131,7 @@
   )
 
   show raw: set text(
-    size: 10pt,
+    size: font-size - 1pt,
   )
 
   show raw.where(block: true): set par(leading: 1em)
