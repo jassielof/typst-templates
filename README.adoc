@@ -21,11 +21,6 @@ This repository is a collection of Typst templates for various purposes, check e
 * link:upsa-bo-estudio-de-factibilidad.pdf[Estudio de Factibilidad]
 * link:upsa-bo-tfg.pdf[Trabajo Final de Grado, facultad de ingeniería]
 
-=== ACM Suite
-
-.Gallery
-* link:acm-suite-small.pdf[Small]
-
 === LaTeX Standard Classes
 
 .Gallery
