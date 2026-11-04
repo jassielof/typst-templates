@@ -2,7 +2,7 @@
 #import "lib/languages.typ": get-terms, language-terms
 #import "lib/authoring.typ": print-affiliations, print-authors
 #import "lib/appendix.typ": appendix, appendix-outline
-#import "lib/apa-figure.typ": apa-figure
+#import "lib/apa-figure.typ": apa-figure, apa-table
 #import "lib/abstract.typ": abstract-page
 #import "lib/title.typ": title-page
 #import "lib/constants.typ": (
@@ -96,16 +96,6 @@
     it.separator
     emph(it.body)
   })
-
-  set table(
-    stroke: (x, y) => if y == 0 {
-      (
-        top: (thickness: 1pt, dash: "solid"),
-        bottom: (thickness: 0.5pt, dash: "solid"),
-      )
-    },
-    align: left,
-  )
 
   set list(
     marker: ([•], [◦]),

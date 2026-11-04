@@ -38,3 +38,18 @@
     ..args,
   )
 }
+
+#let apa-table(
+  headers: none,
+  ..args,
+) = {
+  set table(stroke: 0pt)
+
+  table(
+    table.hline(stroke: 1pt),
+    table.header(..headers),
+    table.hline(stroke: 1pt),
+    ..args,
+    table.hline(stroke: 1pt)
+  )
+}
