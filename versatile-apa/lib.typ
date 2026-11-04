@@ -195,15 +195,10 @@
     hanging-indent: 0.5in,
   )
 
-  // FIXME: The bibliography heading gets tagged as a Paragraph element instead of a Heading element thanks to the `show block` override.
   show bibliography: bib-it => {
     show block: block-it => context {
-      // if it body is auto or styled()
-      if block-it.body == auto or block-it.body.func() == text(fill: red)[].func() {
+      if block-it.sticky or block-it.body == auto or block-it.body.func() == text(fill: red)[].func() {
         block-it
-        // if its body isn't sequence(), for example: pdf-marker-tag
-      } else if block-it.body.func() != [].func() {
-        par(block-it.body)
       } else {
         par(block-it.body)
       }
