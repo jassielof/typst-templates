@@ -57,8 +57,9 @@
 )
 
 #abstract-page(
-  lorem(100),
+  // body: lorem(10),
   // keywords: ("APA", "template", "Typst"),
+  // modify-document-metadata: true,
 )
 
 #outline()

@@ -1,7 +1,7 @@
 # Output files
 *.pdf
 !acm-suite/template/assets/images/*.pdf
-!thumbnail.png
+thumbnail.png
 output/
 out/
 universe/

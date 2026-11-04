@@ -1,11 +1,18 @@
 #import "languages.typ": get-terms
 
 #let abstract-page(
-  body,
+  body: none,
   keywords: none,
   modify-document-metadata: false,
 ) = context {
-  if body == none and document.description == none { return }
+  if body == none and document.description == none {
+    return
+  }
+
+  let body = body
+  if body == none and document.description != none {
+    body = document.description
+  }
 
   set document(keywords: keywords) if keywords != none and modify-document-metadata
   set document(description: body) if modify-document-metadata
@@ -27,7 +34,7 @@
 
   if type(the-keywords) == array {
     emph[#get-terms(text.lang, text.script).Keywords: ]
-    the-keywords.map(it => it).join(", ")
+    the-keywords.join(", ")
   } else if type(the-keywords) == str or type(the-keywords) == std.content {
     emph[#get-terms(text.lang, text.script).Keywords: ]
     the-keywords
