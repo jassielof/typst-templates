@@ -88,9 +88,6 @@ tasks:
         mv versatile-apa/template/student.pdf www/versatile-apa-student.pdf
         mv versatile-apa/template/professional.pdf www/versatile-apa-professional.pdf
       - mv butterick-resume/template/main.pdf www/butterick-resume.pdf
-      - |
-        mv "upsa-bo/template/Estudio de Factibilidad/Estudio de Factibilidad.pdf" www/upsa-bo-estudio-de-factibilidad.pdf
-        mv "upsa-bo/template/TFG/TFG.pdf" www/upsa-bo-tfg.pdf
       - mv "acm-suite/template/small.pdf" www/acm-suite-small.pdf
       - |
         mv latex-reborn/template/report.pdf www/latex-reborn-report.pdf
