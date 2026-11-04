@@ -43,9 +43,8 @@
   headers: none,
   ..args,
 ) = {
-  set table(stroke: 0pt)
-
   table(
+    stroke: 0pt,
     table.hline(stroke: 1pt),
     table.header(..headers),
     table.hline(stroke: 1pt),

@@ -81,10 +81,11 @@
     leading: double-spacing,
   )
 
-  show table.cell: set par(leading: 1em)
+  show table.cell: set par(leading: double-spacing - 0.5em, spacing: double-spacing - 0.5em)
 
-  show figure.where(kind: image): set block(breakable: true, sticky: true)
-  show figure.where(kind: table): set block(breakable: true, sticky: true)
+  show figure.where(kind: image): set block(breakable: true, sticky: false)
+  show figure.where(kind: table): set block(breakable: true, sticky: false)
+
   // Defaults to none until auto placement breakable is fixed. See https://github.com/typst/typst/issues/6392.
   show figure.where(kind: table): set figure(placement: none)
 
