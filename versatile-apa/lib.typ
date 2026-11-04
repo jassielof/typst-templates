@@ -5,8 +5,9 @@
 #import "lib/apa-figure.typ": apa-figure, apa-table
 #import "lib/abstract.typ": abstract-page
 #import "lib/title.typ": title-page
+#import "lib/quote.typ": apa-quote
 #import "lib/constants.typ": (
-  apa-strict, double-spacing, first-indent-length, in-appendix, quote-word-trigger, title-page-spacing,
+  apa-strict, double-spacing, first-indent-length, in-appendix, quote-block-trigger, quote-unit, title-page-spacing,
 )
 #import "lib/strict.typ": check-running-head, validate-strict-mode
 
@@ -139,35 +140,7 @@
 
   show quote.where(block: true): set block(spacing: double-spacing)
 
-  // TODO: Use the wordometer package as it's more accurate. As well take into account in-text citations, not just block quotes (if applicable).
-  // TODO: Make it more robust as Japanese text doesn't have spaces and it's supposedly around 100 characters
-  import "@preview/wordometer:0.1.6"
-  show quote: it => context {
-    let quote-text-words = to-string(it.body).split(regex("\\s+")).filter(word => word != "").len()
-
-    // https://apastyle.apa.org/style-grammar-guidelines/citations/quotations
-    if quote-text-words < quote-word-trigger.get() {
-      ["#it.body" ]
-
-      if (type(it.attribution) == label) {
-        cite(it.attribution)
-      } else if (
-        type(it.attribution) == str or type(it.attribution) == content
-      ) {
-        it.attribution
-      }
-    } else {
-      block(inset: (left: 0.5in))[
-        #set par(first-line-indent: 0.5in)
-        #it.body
-        #if (type(it.attribution) == label) {
-          cite(it.attribution)
-        } else if (type(it.attribution) == str or type(it.attribution) == content) {
-          it.attribution
-        }
-      ]
-    }
-  }
+  show quote: it => apa-quote(it)
 
   show outline.entry: it => context {
     if (

@@ -1,6 +1,11 @@
 #let double-spacing = 1.5em
 #let first-indent-length = 0.5in
-#let quote-word-trigger = state("quote-word-trigger", 40)
+
+/// The length required for the quotation to become a block quote.
+#let quote-block-trigger = state("quote-word", 40)
+
+/// The unit used for the quote length trigger. Can be `"words"` or `"characters"`.
+#let quote-unit = state("quote-unit", "words")
 
 /// Vertical space above the title on the title page. APA asks for the title in the upper half of the page, "three or four lines down from the top margin" (APA 7, section 2.4).
 #let title-page-spacing = state("title-page-spacing", 4em)

@@ -8,7 +8,7 @@
 // submitted for publication (sections 2.1 and 2.3), `"student"` the student paper
 // (section 2.2). Section numbers refer to the APA Publication Manual, 7th edition.
 
-#import "constants.typ": double-spacing, first-indent-length, quote-word-trigger
+#import "constants.typ": double-spacing, first-indent-length, quote-block-trigger
 #import "to-string.typ": to-string
 
 #let strict-modes = (false, "student", "professional")
@@ -98,8 +98,12 @@
   }
 
   // Quotations of 40 words or more are block quotations (8.26 and 8.27)
-  if quote-word-trigger.get() != 40 {
-    fail(mode, "8.27", "quotations of 40 words or more must be block quotations, the trigger is " + str(quote-word-trigger.get()) + ".")
+  if quote-block-trigger.get() != 40 {
+    fail(
+      mode,
+      "8.27",
+      "quotations of 40 words or more must be block quotations, the trigger is " + str(quote-block-trigger.get()) + ".",
+    )
   }
 
   // Line spacing (2.21), alignment and hyphenation (2.23) and indentation (2.24)
@@ -126,7 +130,11 @@
       if type(author) == dictionary and "affiliations" in author {
         let list = author.affiliations
         if type(list) == array and list.len() > 2 {
-          fail(mode, "2.6", "no more than two affiliations per author; " + repr(author.name) + " has " + str(list.len()) + ".")
+          fail(
+            mode,
+            "2.6",
+            "no more than two affiliations per author; " + repr(author.name) + " has " + str(list.len()) + ".",
+          )
         }
       }
     }
