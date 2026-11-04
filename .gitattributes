@@ -1,0 +1,8 @@
+* text=auto eol=lf
+
+assets/fonts/** linguist-vendored
+
+*.ttf -text
+*.otf -text
+*.woff -text
+*.woff2 -text
