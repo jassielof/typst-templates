@@ -120,12 +120,10 @@
     block: true,
   )
 
-  show raw.where(block: true): block.with(
+  show raw.where(block: true): set block(
     fill: luma(250),
     stroke: (left: 3pt + rgb("#6272a4")),
     inset: (x: 10pt, y: 8pt),
-    width: auto,
-    breakable: true,
     outset: (y: 7pt),
     radius: (left: 0pt, right: 6pt),
   )
