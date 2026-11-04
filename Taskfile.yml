@@ -88,7 +88,7 @@ tasks:
         mv versatile-apa/template/student.pdf www/versatile-apa-student.pdf
         mv versatile-apa/template/professional.pdf www/versatile-apa-professional.pdf
       - mv butterick-resume/template/main.pdf www/butterick-resume.pdf
-      - mv "acm-suite/template/small.pdf" www/acm-suite-small.pdf
+      # - mv "acm-suite/template/small.pdf" www/acm-suite-small.pdf
       - |
         mv latex-reborn/template/report.pdf www/latex-reborn-report.pdf
         mv latex-reborn/template/article.pdf www/latex-reborn-article.pdf
