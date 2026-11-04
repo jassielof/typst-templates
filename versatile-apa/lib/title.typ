@@ -33,10 +33,7 @@
   check-page-setup(mode)
   check-title-page(mode, title, authors, affiliations, author-note)
 
-  v(title-page-spacing.get())
   std.title()
-
-  v(2em)
 
   set align(center)
   print-authors(authors, affiliations, text.lang, text.script)

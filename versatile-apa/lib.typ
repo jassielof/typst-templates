@@ -17,7 +17,7 @@
   running-head: none,
   strict: false,
   body,
-) = {
+) = context {
   validate-strict-mode(strict)
   check-running-head(strict, running-head)
   apa-strict.update(strict)
@@ -28,7 +28,13 @@
   )
 
   show std.title: set text(size: font-size, weight: "bold")
-  show std.title: set block(spacing: double-spacing)
+  show std.title: set block(
+    inset: (top: title-page-spacing.final()),
+    spacing: double-spacing,
+    below: double-spacing * 2,
+    width: 100%,
+  )
+
   show std.title: set align(center)
 
   set page(
