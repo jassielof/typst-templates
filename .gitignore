@@ -2,13 +2,11 @@
 *.pdf
 !acm-suite/template/assets/images/*.pdf
 thumbnail.png
+thumbnail-*.png
 output/
 out/
 universe/
 www/
-
-# Font directory, due to licensing
-fonts/
 
 # LaTeX
 *.aux

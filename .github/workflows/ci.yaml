@@ -14,25 +14,10 @@ jobs:
     name: Testing
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
         with:
           submodules: recursive
-      - name: Set up Homebrew
-        id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@main
-      - name: Cache fonts
-        id: cache-fonts
-        uses: actions/cache@v6
-        with:
-          path: ~/.local/share/fonts
-          key: ${{ runner.os }}-fonts-${{ hashFiles('.github/fonts.txt') }}
-      - name: Install fonts
-        if: steps.cache-fonts.outputs.cache-hit != 'true'
-        run: |
-          brew install --cask $(cat assets/fonts.txt | tr '\n' ' ')
-      - name: Install Typst
-        uses: typst-community/setup-typst@v5
+      - uses: typst-community/setup-typst@v5
       - name: Install Task
         uses: go-task/setup-task@v2
       - name: Build templates

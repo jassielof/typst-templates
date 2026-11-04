@@ -1,0 +1,1415 @@
+2026-10-14 MihailJP <mihailjp@gmail.com>
+
+	* Version 3.411
+	* Change glyph names of some glyphs
+
+2026-10-10 MihailJP <mihailjp@gmail.com>
+
+	* Set linkedUserValue wght:300->600
+	* Update build.yml
+	* Omit '.null' and 'nonmarkingreturn' if Fontforge supports 
+	  'no-special-null-cr' flag
+	* Fix makeexsfd.py
+
+2026-10-04 MihailJP <mihailjp@gmail.com>
+
+	* Version 3.410
+	* Remove anchors from 'Alphaiotasub', 'Etaiotasub', and 'Omegaiotasub'
+	* Use 'unicodedata2' if possible (to use latest Unicode database)
+	* Remove anchors from arrows
+	* Add anchors to 'clicklateral', 'clickalveolar', and 'clickretroflex'
+	* Do not add anchors in mathematical operators
+	* Some refactoring in makeexsfd.py
+	* Add remaining APL symbols
+	* Add mathematical operators
+	* Fix bold glyphs of 'precedes' and 'succeeds'
+	* Fix contour order of almostorequal
+
+2026-10-03 MihailJP <mihailjp@gmail.com>
+
+	* Add mathematical operators
+	* Fix italic jcrosstail.dotless
+	* Reduce height of 'lessequal' and 'greaterequal'
+	* Add mathematical operators, refer 'similar' instead of 'asciitilde'
+	* Add shouldered open box (non-breaking space symbol)
+	* Remove redundant language systems
+
+2026-09-27 MihailJP <mihailjp@gmail.com>
+
+	* Fix fsSelection WWS bit
+
+2026-09-26 MihailJP <mihailjp@gmail.com>
+
+	* No longer unnecessarily makes refs for combining marks
+
+2026-09-23 MihailJP <mihailjp@gmail.com>
+
+	* Version 3.400
+
+2026-09-22 MihailJP <mihailjp@gmail.com>
+
+	* Add U+075D (EX)
+	* Add length and half length marks
+	* Add modifier letter small reversed glottal stop (U+02E4)
+	* Add combining contour tone marks (U+1DC4 to U+1DC7)
+
+2026-09-21 MihailJP <mihailjp@gmail.com>
+
+	* Add combining double (inverted) breve (U+035C, U+035D, U+0361)
+	* Add long and short slash overlays
+	* Add combining tilde overlay (U+0334)
+	* Add combining low line (U+0332) (EX)
+	* Add combining minus sign below (U+0320)
+	* Add combining Latin small letter r below (U+1DCA) (EX)
+	* Add midline horizontal ellipsis (U+22EF)
+	* Add modifier letter colon, minus, and short equal
+	* Add undertie (U+203F)
+	* Add combining ypogegrammeni (EX)
+	* Add superscript letters used in Teso language
+	* Add subscript letters
+	* Add superscript schwa
+	* Fix metadata for glottal stop and similars
+	* Add modifier letter small gamma
+	* Add modifier letter small h with hook
+	* Add small capital I with stroke
+	* Add ram's horn
+	* Add J with crossed-tail
+	* Add modifier letter (reversed) glottal stop
+	* Add modifier letter small theta
+
+2026-09-20 MihailJP <mihailjp@gmail.com>
+
+	* Add casing glottal stop
+
+2026-08-11 MihailJP <mihailjp@gmail.com>
+
+	* Version 3.300
+	* Add jazm
+
+2026-08-03 MihailJP <mihailjp@gmail.com>
+
+	* Add Black weight
+	* Separate ExtraBold from Medium font
+
+2026-08-01 MihailJP <mihailjp@gmail.com>
+
+	* Set Panose weight
+	* Redesign left parenthesis so that parentheses are symmetric (#19)
+
+2026-07-19 MihailJP <mihailjp@gmail.com>
+
+	* Version 3.201
+
+2026-07-18 MihailJP <mihailjp@gmail.com>
+
+	* Adjust right parenthesis (#19)
+
+2026-07-13 MihailJP <mihailjp@gmail.com>
+
+	* Version 3.200
+
+2026-07-11 MihailJP <mihailjp@gmail.com>
+
+	* Fix interpolation issue of parentheses
+
+2026-07-02 MihailJP <mihailjp@gmail.com>
+
+	* Add OtfFeatName for cv01-cv15
+
+2026-06-29 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'hotfix'
+	* Version 3.101
+	* Add Vietnamese combined diacritical marks
+	* Fix encodings in TTC
+	* Fix font names in Inconsolata EX TTC
+
+2026-06-28 MihailJP <mihailjp@gmail.com>
+
+	* Append to the tip for VSCode settings
+
+2026-06-27 MihailJP <mihailjp@gmail.com>
+
+	* Version 3.100
+	* Add a tip for VSCode users
+	* Add weight variants of hinted TTF (#18)
+	* Add weight variants (#18)
+	* Refactor PKGCMD
+	* Set USE_TYPO_METRICS flag of variable fonts
+
+2026-06-25 MihailJP <mihailjp@gmail.com>
+
+	* Add combining short stroke overlay
+
+2026-06-24 MihailJP <mihailjp@gmail.com>
+
+	* Fix missing tilde of Ẵ
+
+2026-06-21 MihailJP <mihailjp@gmail.com>
+
+	* Add Latin letter OU
+
+2026-06-20 MihailJP <mihailjp@gmail.com>
+
+	* Add Nenets double apostrophe
+	* Move positions of combining marks
+	* Fix anchors in Navajo and Kadiweu specific glyphs
+
+2026-06-18 GitHub <noreply@github.com>
+
+	* Fix inconsistent versions of GH-actions
+
+2026-06-17 MihailJP <mihailjp@gmail.com>
+
+	* Fix interpolation of a and g
+	* Fix interpolation of superscript e
+	* Fix README.md
+
+2026-06-15 MihailJP <mihailjp@gmail.com>
+
+	* Fix italic saltillo
+
+2026-06-14 MihailJP <mihailjp@gmail.com>
+
+	* Add Koalib casing at signs
+	* Fix interpolation of gstroke.kbc
+	* `make clean` now deletes Inconsolata EX TTC artifacts
+	* Fix interpolation of italic btopbar
+	* Fix interpolation of script a and g
+	* Fix positions of italic superscript
+	* Circled letters
+	* Fix interpolation of q and small-capital Q
+	* Add superscript form of X, Y, and Z
+	* Add Rohingya Arabic glyphs
+
+2026-06-13 MihailJP <mihailjp@gmail.com>
+
+	* Add Burushaski glyphs
+	* Fix anchor point of uni06B5_uni0622 and uni06B5_uni0622.fina
+	* Add Shina glyphs
+	* Add Khowar glyphs
+
+2026-06-11 MihailJP <mihailjp@gmail.com>
+
+	* Add Catalan l·l ligature (#16)
+
+2026-06-07 MihailJP <mihailjp@gmail.com>
+
+	* Version 3.000
+	* Update .gitignore
+	* Merge branch 'v3-devel'
+	* Add Inconsolata EX TTC (#15)
+	* Refactor Makefile
+
+2026-06-06 MihailJP <mihailjp@gmail.com>
+
+	* Raise colon for certain operators
+	* Refactor scripts
+	* D with comma accent is now default (#13)
+	* Add sections in README.md
+	* Delete 'Dutch accented IJ' lookup
+	* Merge branch 'master' into v3-devel
+	* Duplicate D with comma below
+	* Redesign dammatan (#14)
+
+2026-05-30 MihailJP <mihailjp@gmail.com>
+
+	* Version 2.912 beta
+	* Merge branch 'diacritics' into inconsolata-ex
+	* Modify Sindhi meem
+	* Add U+0759 (occationally used in Saraiki)
+
+2026-05-24 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'arabic' into diacritics
+	* Version 2.911 beta
+	* Merge branch 'master' into arabic
+	* Version 2.220
+	* Merge branch 'master' into arabic
+	* Brotli
+	* Deprecate Dutch accented IJ feature
+	* Combining Greek breathing marks
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Add reversed comma above
+	* Remove possibly unused afdko
+	* Set NameList to AGL For New Fonts
+	* Reorder build job
+	* Adjust diacritic positions
+	* Remove accented Dutch IJ lookup
+	* Update lgcRange
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Version 2.210
+	* Add commaabove (unencoded)
+	* Cleanup README
+	* Setup vscode
+	* Add combining perispomeni
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Use composite action
+
+2026-05-23 MihailJP <mihailjp@gmail.com>
+
+	* Use latest tree of Fontforge
+	* Remove fixttc.py workaround
+	* Workaround for Fontforge 20251009 (#12)
+	* Use fontforge -skippyfile -skippyplug
+	* GH-actions now uses python3-fontforge
+
+2026-05-22 MihailJP <mihailjp@gmail.com>
+
+	* Switch Python interpreter (#12)
+
+2026-05-13 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Remove redundant label
+
+2026-05-12 MihailJP <mihailjp@gmail.com>
+
+	* Add U+08A3
+	* Add superscript letters
+	* Add W with hook
+	* Add saltillo
+	* Adjust anchor position of some tall lowercase letters
+
+2026-05-10 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'arabic' into diacritics
+	* Version 2.910 beta
+	* Document Inconsolata EX specific features
+	* Now supports initial and medial forms of alef maksura
+	* Fix EX output font format
+	* Add Kashmiri Arabic-Indic digits
+	* Merge branch 'master' into arabic
+	* Version 2.200
+	* Add pedantic variant of Vietnamese-specific letters
+	* Add pedantic variant of L, d, l, and t with caron
+	* Add Inconsolata LGC Pedantica into the TTC
+	* Set WinDescent
+	* Add specimen for `ss02`
+	* Add duplicate glyphs of G, K, L, N, and R with comma accent
+	* Add G, K, and R with real cedilla
+	* Add Kadiwéu form of G with stroke
+	* Merge branch 'arabic' into diacritics
+	* Add Z with stroke
+	* Add Y with stroke
+	* Add U with stroke
+	* Add S with diagonal stroke
+	* Use 'ccmp' instead of 'calt'
+	* Use 'ccmp' instead of 'calt'
+	* Add Q with hook tail
+	* Add P with stroke
+
+2026-05-09 MihailJP <mihailjp@gmail.com>
+
+	* Add N with long right leg
+	* Add L with stroke or tilde
+	* Fix b with stroke
+	* Add Latin lambda
+	* Add K with stroke
+	* Add heng and h-hook
+	* Add yogh
+	* Add uppercase script G
+	* Add tau gallicum
+	* Add B with stroke and B with topbar
+	* Add letters with long slash overlay
+
+2026-05-08 MihailJP <mihailjp@gmail.com>
+
+	* Add Inconsolata LGC Marshallese into the TTC
+
+2026-05-07 MihailJP <mihailjp@gmail.com>
+
+	* Make sure WOFF2 is WOFF2
+	* Update GH-actions
+	* Add Marshallese precomposed cedilla
+	* Add small capital phonetic letters
+	* Add IPA letters
+
+2026-05-06 MihailJP <mihailjp@gmail.com>
+
+	* Add Latin omega
+	* Add Latin beta
+	* Add triple dot punctuation mark
+	* Add Kashmiri letters
+	* Add alef with wasla
+	* Add Arabic punctuations
+	* Add combining hamza
+	* Add Balochi cappi ya
+	* Add lam with tah above
+
+2026-05-05 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'arabic' into diacritics
+	* Version 2.909 beta
+	* Merge branch 'master' into arabic
+	* Add U+0615 and U+0768
+	* Version 2.100
+	* Add turned V
+	* Add uppercase Latin alpha
+	* Add glottal stop and reversed glottal stop
+	* Add Latin chi
+	* Add L with belt
+	* Add Latin upsilon
+	* Add n with retroflex hook
+	* Add M with hook
+	* Add T with retroflex hook
+	* Add R with tail
+	* Add click letters
+
+2026-05-04 MihailJP <mihailjp@gmail.com>
+
+	* Add Latin iota
+	* Add small capital I
+	* Add T with hook
+	* Add P with hook
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Add jdotlessbar
+
+2026-05-03 MihailJP <mihailjp@gmail.com>
+
+	* Add Ghook and ghook
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Add barred J
+	* Add C with hook
+	* Add Navajo variant of a-ogonek and e-ogonek
+	* Fix Greek diacritic position
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Remove unencoded C with ogonek
+	* Fix position of diacritics below
+	* Fix stacked diacritics
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Add double diacritic above (for upcoming Inconsolata EX)
+	* Fix anchor of A, E, O with circumflex
+	* Fix iogonek with an accent above
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Add modifier letters
+
+2026-05-02 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Add Lithuanian accented i's for upcoming Inconsolata EX
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Add composed Latin letters and marks
+	* Remove anchor from above right marks
+	* Exclude H with cedilla from anchor point calculation
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Add pre-composed O with dot above right (EX)
+	* Add diacritic data
+
+2026-04-30 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'arabic' into diacritics
+	* Version 2.908 beta
+	* Merge branch 'master' into arabic
+	* Version 2.010
+	* Add superscript uppercase N
+	* Refactor ohorn and uhorn
+	* Add stigma, koppa, and sampi
+
+2026-04-28 MihailJP <mihailjp@gmail.com>
+
+	* Fix bold 'proportional'
+	* Add arrows
+
+2026-04-27 MihailJP <mihailjp@gmail.com>
+
+	* Fix glyph class
+
+2026-04-26 MihailJP <mihailjp@gmail.com>
+
+	* Add combining marks
+	* Add Pegon vowel sign pepet
+	* Add mathematical operators
+	* Refactor and fix mathematical operator glyphs
+	* Add mathematical operators
+	* Add negated mathematical operators
+	* Fix italic position of 'universal' and 'existential'
+
+2026-04-18 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'arabic' into diacritics
+	* Version 2.907 beta
+	* Fix uniFEB9.alt
+	* Fix lam-alef anchor points
+	* Add Arabic letters
+	* Add Xiao'erjing c
+	* Now supports Xiao'erjing kasra-sukun
+
+2026-04-17 MihailJP <mihailjp@gmail.com>
+
+	* exwoff/exwoff2 target now makes CSS
+	* Merge branch 'arabic' into diacritics
+	* Version 2.906 beta
+	* Merge branch 'kurdish' into arabic
+
+2026-04-16 MihailJP <mihailjp@gmail.com>
+
+	* Add U+06B6 (historically used in Kurdish)
+
+2026-04-15 MihailJP <mihailjp@gmail.com>
+
+	* WIP Kurdish glyphs
+
+2026-04-14 MihailJP <mihailjp@gmail.com>
+
+	* Add Kurdish yeh with small V
+	* WIP Kurdish glyphs
+
+2026-04-13 MihailJP <mihailjp@gmail.com>
+
+	* WIP Kurdish glyphs
+	* Fix internal references
+	* Merge branch 'arabic' into diacritics
+	* Version 2.905 beta
+	* Merge branch 'pashto' into arabic
+	* Fix "Legacy wide seen and sad" lookup
+	* Add Jawi va
+	* Add Jawi gaf
+
+2026-04-12 MihailJP <mihailjp@gmail.com>
+
+	* Add U+0682
+	* Add old Urdu ddal
+	* Add occationally used Urdu diacritics
+	* Add Jawi glyphs
+	* Merge branch 'pashto' into arabic
+	* Pashto glyphs
+	* WIP Pashto glyphs
+	* WIP Pashto glyphs
+	* WIP Pashto glyphs
+	* Merge branch 'arabic' into diacritics
+	* Version 2.904 beta
+	* Add missing anchors
+	* Adjust point of U+06C7
+	* Kazakh compatibility letters
+	* Add Kazakh high hamza
+	* Set WinDescent
+	* Kyrgyz glyphs
+
+2026-04-11 MihailJP <mihailjp@gmail.com>
+
+	* Central Asian feh lookup
+	* Merge branch 'uyghur' into arabic
+	* Uyghur glyphs
+	* WIP Uyghur glyphs
+	* WIP Uyghur glyphs
+	* Version 2.903 beta
+	* Merge branch 'sindhi' into arabic
+	* Sindhi comma and semicolon
+	* Merge branch 'revcomma'
+	* Merge branch 'revcomma' into sindhi
+	* Add reversed comma and semicolon
+	* Sindhi local forms
+	* Sindhi glyphs
+	* WIP Sindhi glyphs
+
+2026-04-10 MihailJP <mihailjp@gmail.com>
+
+	* WIP Sindhi glyphs
+
+2026-04-09 MihailJP <mihailjp@gmail.com>
+
+	* Version 2.902 beta
+	* Tunisian gaf, Moroccan gaf, Urdu full stop, and swash kaf
+
+2026-04-06 GitHub <noreply@github.com>
+
+	* Update WinDescent
+
+2026-04-06 MihailJP <mihailjp@gmail.com>
+
+	* Add Maghreb Arabic glyphs
+
+2026-04-05 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'arabic' into diacritics
+	* Update .gitignore
+	* Merge branch 'arabic' into diacritics
+	* Version 2.901 beta
+	* Bugfix
+	* Merge branch 'master' into diacritics
+	* Dotless forms (for upcoming EX version)
+	* Glyph color in SFD
+	* Merge branch 'urdu' into arabic
+	* Add HEH and YEH variant glyphs
+	* Urdu Arabic-Indic digits
+	* Add heh goal
+	* Adjust yeh barree
+	* Add yeh barree
+	* Add noon ghunna and ddal
+
+2026-04-04 MihailJP <mihailjp@gmail.com>
+
+	* Adjust design
+	* WIP Urdu glyphs
+	* Adjust WinDescent
+	* Adjust positions
+	* Add Arabic letter veh
+	* Merge branch 'perso-arabic' into arabic
+	* Fix WinDescent
+	* Adjust design
+	* Version 2.002
+	* Fix WinDescent
+	* Add Perso-Arabic glyphs
+	* Add Arabic-Indic digits
+	* Fix unneeded anchors
+	* Add missing anchor point
+	* Merge branch 'arabic' into diacritics
+	* Set version
+
+2026-04-03 GitHub <noreply@github.com>
+
+	* Adjust OS/2 WinDescent
+
+2026-04-03 MihailJP <mihailjp@gmail.com>
+
+	* Design adjustment
+	* Add Inconsolata mini-serif
+
+2026-04-01 MihailJP <mihailjp@gmail.com>
+
+	* Bugfix
+	* Anchors for r.serif and ii.bg
+	* Composition around comma accent
+	* Add missing anchor to LGC glyphs
+
+2026-03-30 MihailJP <mihailjp@gmail.com>
+
+	* Position of double acute for capitals
+	* Additional exclusion for anchoring
+	* Add forms for tall base glyphs
+	* Set glyph class for soft-dotted glyphs
+	* Exclude ‘ydotbelow’, ‘psili’, ‘dasia’ from anchoring
+	* Exclude 'ydotbelow' from adding below-base anchor
+	* WIP anchors for LGC
+
+2026-03-29 MihailJP <mihailjp@gmail.com>
+
+	* WIP dotless forms and anchors
+	* Remove composition to alternative caron
+	* Merge branch 'arabic' into diacritics
+	* Merge branch 'master' into arabic
+	* Fix 'all language' script-language descriptors
+	* Fix 'all language' script-language descriptors
+	* Merge branch 'arabic' into diacritics
+	* Add anchors to dotted circle
+	* Merge branch 'arabic' into diacritics
+	* Check nonexistent glyphs in makefont.py
+	* Workaround
+	* Show dotted circle where appropriate
+
+2026-03-28 MihailJP <mihailjp@gmail.com>
+
+	* Add dotted circle
+	* Reorder GSUB lookups
+	* Undo GSUB unification
+	* Fix glyph class
+	* Add dotted circle
+	* Add combining diacritical marks
+	* Bugfix
+
+2026-03-27 MihailJP <mihailjp@gmail.com>
+
+	* Add tashkil
+
+2026-03-26 MihailJP <mihailjp@gmail.com>
+
+	* Add Inconsolata EX Variable
+	* Fix lookups (RTL flag, Legacy wide seen and sad, unify anchor lookups)
+	* Fix "Forms before tail fragment" lookup
+	* Add workaround for upcoming marks
+	* Merge branch 'master' into arabic
+	* Update fontspector_variable.toml
+	* Remove FFTM table from TTC
+
+2026-03-25 MihailJP <mihailjp@gmail.com>
+
+	* Make sure hook is disabled
+	* Set os2_windescent
+	* Update Makefile
+	* Disable U+0674
+
+2026-03-24 GitHub <noreply@github.com>
+
+	* Fix for Python < 3.13 (math.fma())
+
+2026-03-23 MihailJP <mihailjp@gmail.com>
+
+	* Interpolate anchors too, adjust weight
+	* Replace Arabic glyphs
+
+2026-03-21 MihailJP <mihailjp@gmail.com>
+
+	* WIP Arabic
+
+2026-03-20 MihailJP <mihailjp@gmail.com>
+
+	* Mockup of Arabic font
+	* Update Fontspector setting
+	* Version 2.001
+
+2026-03-07 MihailJP <mihailjp@gmail.com>
+
+	* Fontbakery configuration
+
+2026-03-06 MihailJP <mihailjp@gmail.com>
+
+	* Migrate from Fontbakery to Fontspector
+
+2026-03-05 MihailJP <mihailjp@gmail.com>
+
+	* Fix lookups in extrapolated
+	* Fix contour order
+
+2026-03-01 GitHub <noreply@github.com>
+
+	* Plugin version in build.yml
+
+2026-02-28 MihailJP <mihailjp@gmail.com>
+
+	* Remove unreachable glyphs
+	* Change refs in exclamdown.case and exclamup.case
+	* Update build.yml
+	* Undo no-FFTM-table for TTC
+	* Drop FFTM table
+
+2025-12-27 MihailJP <mihailjp@gmail.com>
+
+	* Version 2.000
+	* Merge branch 'devel-v2'
+	* Add raised colon again
+	* Update README.md
+	* Lower inverted question/exclamation marks
+	* Add blue zone reference for the hinted fonts
+
+2025-12-24 MihailJP <mihailjp@gmail.com>
+
+	* Add hinted TTF (#6)
+
+2025-12-24 GitHub <noreply@github.com>
+
+	* Add `check` target in Makefile
+
+2025-12-24 MihailJP <mihailjp@gmail.com>
+
+	* Add `case` feature (#7)
+	* Disable fontdata_namecheck
+
+2025-12-23 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'master' into devel-v2
+
+2025-12-22 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.220
+
+2025-12-21 GitHub <noreply@github.com>
+
+	* Update build.yml
+
+2025-11-24 MihailJP <mihailjp@gmail.com>
+
+	* Raise colon between (lining) digits
+	* Add `aalt` feature for variable font
+	* Add Livonian specific feature again
+	* Activate `locl` feature for Pite/Ume Sami
+
+2025-11-23 MihailJP <mihailjp@gmail.com>
+
+	* Version 2.000 Release Candidate 1
+	* Resize block elements
+	* Reconfigure vertical metrics (#5)
+
+2025-11-19 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.210
+	* Cleanup U+1FB9C to U+1FB9F
+	* Remove self-intersection of U.small
+	* Remove self-intersection of C.small
+	* Replace control pictures with references
+
+2025-11-18 MihailJP <mihailjp@gmail.com>
+
+	* Remove self-intersection of 'powerlineLN'
+
+2025-11-16 MihailJP <mihailjp@gmail.com>
+
+	* Remove self-intersection of 'powerlineCN'
+	* Fix interpolation issue of 'degree'
+	* Fix variable font interpolation issues
+	* Update README.md
+
+2025-11-15 MihailJP <mihailjp@gmail.com>
+
+	* Set UnlinkRmOvrlpSave flag to self-intersecting glyphs
+	* Update font specimen
+	* Revert "Disable fontdata_namecheck"
+	* Fix decomposed refs of U+1CC2C to U+1CC2F
+
+2025-11-14 MihailJP <mihailjp@gmail.com>
+
+	* Fine tuning of uppercase polytonic Greek
+	* Disable fontdata_namecheck
+
+2025-11-13 MihailJP <mihailjp@gmail.com>
+
+	* Redesign italic lowercase x
+
+2025-11-10 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.202
+	* Fix TTC (keep OpenType features and really drop Mac names from TTC)
+	* Enable smart dropout control
+	* Drop Mac Names from TTC
+	* Set linkedUserValue for `ital` axis
+	* Set OS2FamilyClass
+	* Set em = 1000 when outputting OTF
+	* Add *-Intermediate*.sfd to .gitignore
+	* Cleanup contours
+
+2025-11-09 MihailJP <mihailjp@gmail.com>
+
+	* Rename LICENSE to OFL.txt
+	* Remove nested references
+	* Update Inconsolata-LGC.css
+	* Drop softhyphen and redesign alternative caron
+	* Version 1.201
+	* Fix postscriptIsFixedPitch
+
+2025-11-08 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.200
+	* Set PfmFamily
+	* Add Fontbakery check
+	* Fix instance postScriptFontName
+	* Fix styleMapFamilyName
+	* Add U+0193 and U+024C
+	* Setup workflows
+	* Fix FSType
+	* Add uppercase polytonic Greek glyphs
+	* Fix Makefile
+	* Omit MacNames
+	* Add Braille pattrns
+
+2025-11-04 MihailJP <mihailjp@gmail.com>
+
+	* Drop Mac names
+
+2025-04-21 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.13.2
+
+2025-04-21 GitHub <noreply@github.com>
+
+	* Merge pull request #3 from stlee42/fix-regular-in-variable
+
+2025-04-21 stlee42 <42285007+stlee42@users.noreply.github.com>
+
+	* Set postscriptIsFixedPitch flag in UFO format
+
+2025-04-20 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.13.1
+
+2025-03-20 MihailJP <mihailjp@gmail.com>
+
+	* Adjust Oslash and oslash
+
+2025-03-19 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.13
+
+2025-03-14 GitHub <noreply@github.com>
+
+	* Round .notdef to int in the bold font
+
+2025-03-13 MihailJP <mihailjp@gmail.com>
+
+	* .notdef is now tofu rather than blank
+	* Revert "Add Braille patterns"
+
+2025-03-09 MihailJP <mihailjp@gmail.com>
+
+	* Add Braille patterns
+	* Add outlined letters U+1CCD6 to U+1CCF9
+	* Replace oldstyle 6 and 8 with references
+	* Additional block elements U+1CC21 to U+1CC2F
+	* Additional block elements U+1FB8C to U+1FB9F
+	* Additional geometric shapes U+1FBD0 to U+1FBEF
+	* Add additional geometric shapes U+1FBE4 to U+1FBE7
+	* Add block elements U+1CE51 to U+1CE8F
+	* Add block elements U+1CD00 to U+1CDE5
+	* Update .gitignore
+	* Add additional block elements U+1CE90 to U+1CEAF
+	* Additional block elements U+1FB95 to U+1FB97
+	* Add legacy computer symbols for delete
+
+2025-03-08 MihailJP <mihailjp@gmail.com>
+
+	* Alternative glyphs for control glyphs
+	* Exclude all glyphs from AutoHint
+	* Version 1.12
+	* Remove DisplaySize, AntiAlias, FitToEm, and WinInfo from SFD
+	* Update 'aalt' feature during build except variable fonts
+	* Revert "Add 'aalt' feature"
+	* Bolder glyph for U+2714, U+2716, U+2718, and U+271A
+
+2025-03-06 MihailJP <mihailjp@gmail.com>
+
+	* Add 'aalt' feature
+
+2025-02-24 MihailJP <mihailjp@gmail.com>
+
+	* Add control character symbols
+
+2025-02-22 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.11
+	* Add Powerline glyphs
+
+2025-02-16 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.10.0
+	* Add tenge symbol (Kazakhstan)
+
+2025-02-02 MihailJP <mihailjp@gmail.com>
+
+	* Add Dutch accented IJ feature
+
+2024-09-16 MihailJP <mihailjp@gmail.com>
+
+	* Add lowercase polytonic Greek letters
+
+2024-07-07 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.9.0
+	* Update ezh_variant.png
+
+2024-06-29 MihailJP <mihailjp@gmail.com>
+
+	* Fix uppercase Esh
+	* Fix Ezh variant (adjust reversed Sigma)
+
+2024-06-15 MihailJP <mihailjp@gmail.com>
+
+	* Add Cyrillic letter Khanty Tje
+	* Fix italic descender of U+0527 and U+052F
+	* Add variants of Cyrillic letters
+	* Update README.txt
+	* Add Cyrillic letters
+	* Add Cyrillic letters U+04FA to U+04FF
+
+2024-06-09 MihailJP <mihailjp@gmail.com>
+
+	* Add Chuvash sja
+	* Add Bulgarian uppercase Ef
+	* Add APL symbols
+	* Merge branch 'v1.8'
+	* Version 1.8.2
+	* Adjust mathematical operators
+	* Adjust diagonal box drawings
+
+2024-06-08 MihailJP <mihailjp@gmail.com>
+
+	* Set SFD encoding to UnicodeFull
+	* Fix order of feature tables
+	* Add diagonal box drawings
+	* Add mosaic characters
+	* Version 1.8.1
+	* Fix height of block elements
+
+2024-05-19 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.8.0
+
+2024-05-18 MihailJP <mihailjp@gmail.com>
+
+	* Add lowercase Roman numerals
+	* Add turned digits
+	* Add remaining vulgar fractions
+	* Add Ezh variants
+
+2024-05-16 GitHub <noreply@github.com>
+
+	* Update README.md
+
+2024-05-15 MihailJP <mihailjp@gmail.com>
+
+	* Update italic zhe.bg
+	* Add zero with long slash overlay
+	* Add circled numbers
+
+2024-05-14 MihailJP <mihailjp@gmail.com>
+
+	* Add Roman numerals
+	* Version 1.7.2
+	* Add u1F3F7
+
+2024-05-12 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.7.1
+	* Add symbols used in git-prompt.zsh
+	* Version 1.7
+	* Add some symbols
+	* Add arighthalfring
+	* Update Pinyin variant forms subtables
+	* Add modifier letters and symbols
+	* Add some symbols
+	* Add some symbols
+
+2024-05-11 MihailJP <mihailjp@gmail.com>
+
+	* Add arrows
+	* Add superscript minus
+	* Add subscript numerals
+	* Add dotted zero
+	* Add extended Latin glyphs
+	* Add manat sign
+	* Ordered list in README.md
+	* Update README.md
+	* Add alternative dollar signs
+
+2024-05-09 MihailJP <mihailjp@gmail.com>
+
+	* Add currency symbols
+
+2024-05-07 MihailJP <mihailjp@gmail.com>
+
+	* Add African letters
+
+2024-05-06 MihailJP <mihailjp@gmail.com>
+
+	* Add Ewe glyphs, some adjustment
+	* Drop background layer
+	* Fix alternative U-umlaut
+	* Add some Latin glyphs for African languages
+	* Add Serbo-Croatian ligatures
+	* Add some punctuations
+
+2024-05-05 MihailJP <mihailjp@gmail.com>
+
+	* Add some Latin glyphs for African languages
+	* Add modifier apostrophe
+	* Add big yus
+	* Drop flags for hinting
+
+2024-05-04 MihailJP <mihailjp@gmail.com>
+
+	* Add WOFF2 packaging recipe
+	* Fix Makefile
+	* Update README.md
+
+2024-05-03 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.6.1
+	* Update README.md
+	* Preserve directory tree in release packages
+	* Add German alternative umlaut
+	* Update TTC
+	* D with comma accent in Romanian `locl` feature
+	* Missing Pinyin variant forms
+
+2024-04-28 MihailJP <mihailjp@gmail.com>
+
+	* Set style map names of the variable fonts
+	* Add 'ital' axis to the variable fonts
+	* Fix glyph 'degree' in the italic variable font
+
+2024-04-20 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.6
+	* Fix makettc.py
+	* Adjust Vietnamese glyphs
+	* Add Pinyin variant ('ZHP ')
+
+2024-04-03 MihailJP <mihailjp@gmail.com>
+
+	* Glyphs in Latin Extended B
+	* Drop precomposed glyphs not in Unicode
+	* Adjust diacritics below r with serif
+
+2024-04-02 MihailJP <mihailjp@gmail.com>
+
+	* Add glyphs of r with macron
+	* Add glyphs in Latin Extended Additional
+	* Set decomposition of spacing diacritics
+
+2024-04-01 MihailJP <mihailjp@gmail.com>
+
+	* Add letters for Arabic and Hebrew transliteration
+	* Add letters for Sanskrit transliteration
+	* Add Kildin Sami letters
+	* Add Serbian accented letters
+
+2024-03-31 MihailJP <mihailjp@gmail.com>
+
+	* Add Bulgarian accented glyphs
+	* Add Montenegrin Cyrillic glyph
+	* Serbian variant now also applies for Bosnian
+	* Add Russian and Ukrainian accented letters
+	* Add Sami glyphs (Latin alphabet: outside Russia)
+	* Add uppercase Eszett
+	* Add Latin-8 (Celtic) glyphs
+	* Add Livonian letters
+	* Fix old style numerals lookup
+
+2024-03-28 MihailJP <mihailjp@gmail.com>
+
+	* Add old style numerals
+
+2024-03-27 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.5.2
+	* Add cv01 and cv02
+	* Update README.md
+
+2024-02-17 MihailJP <mihailjp@gmail.com>
+
+	* Add missing CP437 glyphs
+	* Add Macedonian-Serbian form of 'be' in regular and bold fonts
+	* Merge branch 'document'
+	* Add font specimen
+	* Document local forms
+
+2024-02-16 MihailJP <mihailjp@gmail.com>
+
+	* Update .gitignore
+	* Version 1.5.1
+	* Merge branch 'variable'
+	* Merge branch 'ttc'
+	* Update Makefile
+	* Package for variable font
+
+2024-02-15 MihailJP <mihailjp@gmail.com>
+
+	* Update makettc.py
+	* Update README.md
+	* Fix height
+	* Add axis labels
+	* Output path
+	* Workaround for version text
+	* Optimize make_designspace.py
+
+2024-02-14 MihailJP <mihailjp@gmail.com>
+
+	* Fix make_designspace.py
+
+2024-02-13 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'master' into variable
+	* Fix right parenthesis
+	* Extrapolate weight for variable font
+
+2024-02-12 GitHub <noreply@github.com>
+
+	* Minor correction of README.md
+
+2024-02-12 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'master' into ttc
+	* Merge branch 'master' into variable
+	* Additions to README
+	* Merge branch 'master' into ttc
+	* WIP variable font
+	* Use Markdown for README
+	* Make glyphs interpolatable
+	* Merge branch 'master' into ttc
+	* Merge branch 'nextversion'
+	* Add Slovenian accented characters
+	* Fix line height
+	* Glyph name
+	* Fix bold glyphs
+
+2024-02-11 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'master' into nextversion
+	* Fix Makefile
+	* Merge branch 'master' into ttc
+	* Version 1.4.4
+	* Adjust accent above C, c, G, and J
+	* Modify comma accent
+
+2024-02-10 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'interpolatable-bold' into nextversion
+	* Reorder glyphs
+	* Merge branch 'interpolatable-bold'
+	* Bold glyphs of the rest
+	* Bold glyphs for control pictures
+	* Temporarily replace control pictures by references
+	* Bold glyphs
+	* Add TTC version
+
+2024-02-09 MihailJP <mihailjp@gmail.com>
+
+	* Bold glyphs in Latin Extended Additional
+	* Merge branch 'master' into interpolatable-bold
+	* Adjust italic glyphs
+	* Cyrillic bold glyphs
+
+2024-02-08 MihailJP <mihailjp@gmail.com>
+
+	* Fix side bearing of bold italic Cyrillic
+	* Greek bold glyphs
+	* Bold glyphs in Latin Extended B
+	* Refine bold glyphs
+
+2024-02-07 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'master' into interpolatable-bold
+	* Merge branch 'master' into nextversion
+	* Version 1.4.3
+	* Merge branch 'commaaccent' into nextversion
+	* Merge branch 'commaaccent' into interpolatable-bold
+	* Merge branch 'commaaccent'
+	* Add glyph for comma accent
+	* Merge branch 'glyphname' into interpolatable-bold
+	* Merge branch 'glyphname' into nextversion
+	* Merge branch 'glyphname'
+	* Cleanup
+	* Set glyph names
+	* Bold glyphs in Latin Extended A
+	* Feminine ordinal indicator is now italicized rather than obliqued
+	* Bold glyphs for Latin-1 Additional
+
+2024-02-06 MihailJP <mihailjp@gmail.com>
+
+	* Refine bold glyphs
+
+2024-02-05 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'master' into nextversion
+	* Add Latin characters looking similar to Cyrillic
+	* Fix ampersand in bold fonts
+	* Fix bold glyphs
+
+2024-02-04 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'master' into nextversion
+	* Version 1.4.2
+	* Fix bold glyphs
+	* Fix tag name of Polish kreska forms
+	* Add GHE WITH DESCENDER and PE WITH DESCENDER
+	* Design fix of ABKHAZIAN DZE
+	* Add non-Slavic Cyrillic characters
+
+2024-02-03 MihailJP <mihailjp@gmail.com>
+
+	* Add Bulgarian variant forms
+	* Cleanup
+	* Design adjustment of Cyrillic characters
+
+2024-02-02 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'nextversion'
+	* Add Chinese Pinyin characters
+
+2023-11-30 MihailJP <mihailjp@gmail.com>
+
+	* Version 1.3.1
+	* Merge branch 'master' into nextversion
+
+2023-11-30 GitHub <noreply@github.com>
+
+	* Merge pull request #1 from stlee42/fix-for-ms-windows
+
+2023-11-30 stlee42 <42285007+stlee42@users.noreply.github.com>
+
+	* set width and vwidth to be uniform
+	* LangName & TTFWeight for proper display in Windows
+
+2023-10-18 MihailJP <mihailjp@gmail.com>
+
+	* Add CP437 symbols
+
+2023-10-16 MihailJP <mihailjp@gmail.com>
+
+	* Add Vietnamese glyphs
+
+2023-09-21 MihailJP <mihailjp@gmail.com>
+
+	* Add control pictures
+
+2016-04-04 MihailJP <mihailjp@gmail.com>
+
+	* Set version
+	* Add some symbols
+
+2016-04-03 MihailJP <mihailjp@gmail.com>
+
+	* Add some symbols
+	* Correct metrics
+	* Add some symbols
+	* Merge branch 'box-drawing'
+	* Complete box drawings and block elements
+	* Deskew U+2550
+
+2015-04-18 MihailJP <mihailjp@gmail.com>
+
+	* Add Makefile
+	* LICENSE file for package
+
+2013-05-12 MihailJP <mihailjp@gmail.com>
+
+	* Added Romanian comma accent forms
+
+2013-05-06 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'hellenic'
+
+2013-05-05 MihailJP <mihailjp@gmail.com>
+
+	* Merge branch 'zhe_ef'
+
+2013-04-22 cosmix <cosm7x@yahoo.com>
+
+	* Fixed the lowercase theta regression introduced in 1.18.
+	* Improvements to hellenic letters across the board. New lowercase 
+	  lambda.
+
+2013-04-07 Greg Omelaenko <greg@mostlyinfinite.com>
+
+	* Improve forms of Cyrillic Ж, ж, Ф and ф.
+
+2012-12-26 MihailJP <mihailjp@gmail.com>
+
+	* Add Polish kreska forms
+
+2012-08-08 MihailJP <mihailjp@gmail.com>
+
+	* Merge remote-tracking branch 'origin/master'
+
+2012-08-05 cosmix <cosm7x@yahoo.com>
+
+	* Various minor fixes to several lowercase hellenic letters. Some 
+	  alignment fixes
+
+2012-08-03 MihailJP <mihailjp@gmail.com>
+
+	* Italicize lowercase y
+
+2012-05-03 MihailJP <mihailjp@gmail.com>
+
+	* Version number
+	* Added Cyrillic glyphs
+	* Modified Cyrillic hard sign
+	* Added some symbols
+	* Added some U+25xx glyphs
+	* Added some mathematical operators
+	* Added some glyphs
+	* Added some punctuations
+
+2012-05-02 MihailJP <mihailjp@gmail.com>
+
+	* Added remaining WGL4 Latin glyphs except for ligatures
+	* Added remaining Latin Extended-A glyphs
+	* Added Latin-4 glyphs
+	* Added Latin-3 glyphs
+
+2012-05-01 MihailJP <mihailjp@gmail.com>
+
+	* Fixed issue that the bold italic font fails to be recognized on 
+	  Windows
+	* Added numero sign
+	* Modified README
+	* Merge branch 'straightquote' into LGC
+	* Added Macedonian-Serbian italic variant
+	* Straight quotation marks (merged from Inconsolata-dz)
+	* Added bold italic font
+	* Italicized small e with ogonek
+	* Added bold font
+	* SFD font name
+	* Merge branch 'Italic' into LGC
+	* Rewrited README
+
+2012-04-30 MihailJP <mihailjp@gmail.com>
+
+	* Added Cyrillic Italic
+	* Merge commit '26d0fcaa7c804bfb47bf7c5256e75d9df88dbb3e' into Italic
+	* Rectified Cyrillic glyphs
+	* Added Dzhe and Ukrainian Ge
+	* Added Serbian Dj and Tj
+	* Added Macedonian/Serbian Lj and Nj
+	* Added Ukrainian Je
+
+2012-04-29 MihailJP <mihailjp@gmail.com>
+
+	* Added Cyrillic italic glyphs
+	* Rectification
+	* Italic dotless i, ae, oe, eng, kra, slashed l
+	* Modified lowercase italic A
+	* Added italic glyphs: e, g, i, l, p, r, s; modification of m, n, u
+	* Added italic glyphs: a, b, c, d, f, h, m, n, q, u
+	* Obliqued font, italicization to be done
+	* Added Gje, Dze, decimal I, Ji, J, Kje, short U
+	* Additional Cyrillic glyph slots
+	* Added Yo
+	* Added uppercase Ze
+	* Added lowercase Be
+	* Added lowercase Ya
+	* Added lowercase Yu
+	* Added Zhe
+	* Modified Tse and Shcha
+	* Correction
+	* Added upper- and lowercase De
+	* Modified lowercase Ve
+	* Modified upper- and lowercase El
+	* Added small Ze, El, Che
+	* Added small Ve, Sha, Shcha, hard sign, Yery, soft sign
+	* Modified uppercase hard sign
+	* Modified capital Sha, Shcha, Yery
+	* Added capital El, U, Yu
+	* Added uppercase Che, Sha Shcha, Hard sign, Yery
+
+2012-04-28 MihailJP <mihailjp@gmail.com>
+
+	* Added lowercase Ge, Octal I, Em, En, Pe, Tse
+	* Added uppercase Ya
+	* Added capital Tse and Reversed E, lowercase Reversed E
+	* Added capital octal I
+	* Added encoding slot for Cyrillic
+	* Rename
+
+2012-02-15 cosmix <cosm7x@yahoo.com>
+
+	* general fixes to lowercase greek characters, especially lowercase 
+	  epsilon and the stems for chi, psi.
+
+2011-03-13 cosmix <cosm7x@yahoo.com>
+
+	* Fixed Psi stem top alignment
+
+2011-01-13 cosmix <cosm7x@yahoo.com>
+
+	* minor improvements on alpha, delta, lambda, xi
+
+2011-01-09 cosmix <cosm7x@yahoo.com>
+
+	* Minor issue with lowercase phi
+
+2011-01-08 cosmix <cosm7x@yahoo.com>
+
+	* Fixed Phi stem centering, iota glyphs (with dialytika and with 
+	  dialytika and tonos)
+
+2011-01-07 cosmix <cosm7x@yahoo.com>
+
+	* Various fixes, mostly with accented characters and iota
+
+2011-01-06 cosmix <cosm7x@yahoo.com>
+
+	* Added ano teleia and Omega with tonos
+	* Added readme
+	* first commit/public release to github

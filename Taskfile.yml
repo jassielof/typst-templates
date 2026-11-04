@@ -1,5 +1,9 @@
 version: "3"
 
+env:
+  TYPST_FONT_PATHS: ../assets/fonts
+  TYPST_ROOT: .
+
 tasks:
   default:
     desc: Builds all templates
@@ -9,8 +13,6 @@ tasks:
       - butterick
   versatile-apa:
     dir: versatile-apa
-    env:
-      TYPST_ROOT: .
     cmds:
       - typst compile template/main.typ
       - typst compile template/student.typ
@@ -27,8 +29,6 @@ tasks:
     aliases:
       - latex
     dir: latex-reborn
-    env:
-      TYPST_ROOT: .
     cmds:
       - for: ["report", "article", "book", "letter"]
         cmd: typst compile template/{{.ITEM}}.typ
@@ -75,8 +75,8 @@ tasks:
       - "template/*.pdf"
       - "*.png"
     cmds:
-      - typst compile --root . template/main.typ
-      - typst compile --root . template/main.typ thumbnail.png --pages 1
+      - typst compile template/main.typ
+      - typst compile template/main.typ thumbnail.png --pages 1
   www:
     desc: Move generated PDFs for deployment
     deps:
