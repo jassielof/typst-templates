@@ -82,7 +82,10 @@
     leading: double-spacing,
   )
 
-  show table.cell: set par(leading: double-spacing - 0.5em, spacing: double-spacing - 0.5em)
+  set table(
+    align: left,
+  )
+  show table.cell: set par(leading: double-spacing / 2, spacing: double-spacing / 2)
 
   show figure.where(kind: image): set block(breakable: true, sticky: false)
   show figure.where(kind: table): set block(breakable: true, sticky: false)
