@@ -1,12 +1,11 @@
-#import "constants.typ": in-appendix
 #import "languages.typ": *
 #import "apa-figure.typ": *
 
-// https://apastyle.apa.org/style-grammar-guidelines/paper-format/appendices
+/// https://apastyle.apa.org/style-grammar-guidelines/paper-format/appendices
 #let appendix(
   heading-numbering: "A",
   supplement: "Appendix",
-  // Applies numbering also for headings of level 2 and 3
+  /// Applies numbering also for headings of level 2 and 3
   numbering-for-all: false,
   body,
 ) = context {
@@ -55,8 +54,6 @@
     ]
     #it.body
   ]
-
-  in-appendix.update(true)
 
   body
 }

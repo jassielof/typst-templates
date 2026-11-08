@@ -1,4 +1,3 @@
-#import "lib/to-string.typ": to-string
 #import "lib/languages.typ": get-terms, language-terms
 #import "lib/authoring.typ": print-affiliations, print-authors
 #import "lib/appendix.typ": appendix, appendix-outline
@@ -6,22 +5,15 @@
 #import "lib/abstract.typ": abstract-page
 #import "lib/title.typ": title-page
 #import "lib/quote.typ": apa-quote
-#import "lib/constants.typ": (
-  apa-strict, double-spacing, first-indent-length, in-appendix, quote-block-trigger, quote-unit, title-page-spacing,
-)
-#import "lib/strict.typ": check-running-head, validate-strict-mode
+#import "lib/constants.typ": double-spacing, first-indent-length, quote-block-trigger, quote-unit, title-page-spacing
 
-/// The APA 7th edition template for academic and professional documents.
+/// APA Style 7th edition template for academic and professional documents.
 #let versatile-apa(
   font-size: 12pt,
   custom-terms: (:),
   running-head: none,
-  strict: false,
   body,
 ) = context {
-  validate-strict-mode(strict)
-  check-running-head(strict, running-head)
-  apa-strict.update(strict)
   context language-terms.update(custom-terms)
 
   set text(
@@ -46,7 +38,7 @@
     header: if running-head != none {
       grid(
         columns: (1fr, auto),
-        upper(running-head), context here().page(),
+        upper(running-head), str(here().page()),
       )
     } else { auto },
   )
@@ -60,12 +52,6 @@
     leading: double-spacing / 2,
     spacing: double-spacing / 2,
   )
-
-  show heading: it => context if strict != false and it.numbering != none and not in-appendix.at(it.location()) {
-    panic("APA strict mode (" + strict + "): No numbered headings.")
-  } else {
-    it
-  }
 
   show heading: set text(size: font-size)
   show heading: set block(spacing: double-spacing)
@@ -85,18 +71,19 @@
   set table(
     align: left,
   )
+
   show table.cell: set par(leading: double-spacing / 2, spacing: double-spacing / 2)
 
   show figure.where(kind: image): set block(breakable: true, sticky: false)
   show figure.where(kind: table): set block(breakable: true, sticky: false)
 
-  // Defaults to none until auto placement breakable is fixed. See https://github.com/typst/typst/issues/6392.
-  show figure.where(kind: table): set figure(placement: none)
-
   set figure(
     gap: double-spacing,
     placement: auto,
   )
+
+  // Defaults to none until auto placement breakable is fixed. See https://github.com/typst/typst/issues/6392.
+  show figure.where(kind: table): set figure(placement: none)
 
   set figure.caption(separator: parbreak(), position: top)
   show figure.caption: set align(left)
@@ -108,6 +95,7 @@
     emph(it.body)
   })
 
+  // Workaround until https://github.com/typst/typst/issues/4126 is solved.
   set list(
     marker: ([•], [◦]),
     indent: 0.5in - 1.75em,
@@ -161,12 +149,16 @@
 
   set outline(depth: 3, indent: 2em)
 
+  // Workaround until Hayagriva and Typst fix https://github.com/typst/typst/issues/2639 and https://github.com/typst/hayagriva/pull/503
   set bibliography(style: "assets/styles/apa.csl")
+
   show bibliography: set par(
     first-line-indent: 0in,
     hanging-indent: 0.5in,
   )
 
+  // Workaround until Typst bibliography respects the paragraph indent.
+  // See https://github.com/typst/typst/issues/2639
   show bibliography: bib-it => {
     show block: block-it => context {
       if block-it.sticky or block-it.body == auto or block-it.body.func() == text(fill: red)[].func() {
