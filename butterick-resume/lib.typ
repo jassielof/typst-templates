@@ -15,12 +15,7 @@
     margin: 1.5in,
   )
 
-  set text(
-    font: "Source Serif 4",
-    lang: "en",
-    region: "us",
-    size: 10pt,
-  )
+  set text(size: 10pt)
 
   set par(
     spacing: 2em,
@@ -36,7 +31,6 @@
   )
 
   show heading.where(level: 1): set text(
-    font: "Source Sans 3",
     weight: "bold",
     size: 9pt,
     tracking: 0.05em,
@@ -52,7 +46,6 @@
   )
 
   show heading.where(level: 2): set text(
-    font: "Source Serif 4",
     size: 14pt,
     weight: "medium",
   )
@@ -73,8 +66,8 @@
   set align(center)
   set par(justify: true, spacing: 1em)
   show text: upper
-  set text(font: "Source Sans 3", tracking: 0.2em, hyphenate: false)
-  show std.title: set text(font: "Source Sans 3", size: 18pt, weight: "medium", tracking: 0.2em)
+  set text(tracking: 0.2em, hyphenate: false)
+  show std.title: set text(size: 18pt, weight: "medium", tracking: 0.2em)
   show std.title: set block(below: 0.75em)
 
   std.title()

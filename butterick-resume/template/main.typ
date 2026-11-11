@@ -2,6 +2,10 @@
 
 #show: template
 
+#set text(font: "Source Serif 4")
+#show heading.where(level: 1): set text(font: "Source Sans 3")
+#show heading.where(level: 2): set text(font: "Source Serif 4")
+
 #set page(
   footer: {
     set align(center)
@@ -12,8 +16,8 @@
 )
 
 #introduction(
-  name: [Trixie B. Argon],
-  details: [
+  name: text(font: "Source Sans 3")[Trixie B. Argon],
+  details: text(font: "Source Sans 3")[
     5419 Hollywood Blvd Ste. C731, Los Angeles CA 90027 \
     #link("tel:+13235551435")[(323) 555 1435] #link("mailto:trixieargon@gmail.com")
   ],
