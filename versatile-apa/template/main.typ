@@ -1,5 +1,5 @@
 #import "../lib.typ": abstract-page, appendix, appendix-outline, title-page, versatile-apa as apa-style
-#import "@preview/orchid:0.1.0": generate-link as orcid-link, logo-icon as orcid-logo
+#import "@preview/orchid:0.2.0": orcid
 
 #set document(
   title: [American Psychological Association (APA) Style Template for Typst],
@@ -50,7 +50,7 @@
 
   // Professional-specific fields
   author-note: [
-    Author Name~#orcid-logo()~#orcid-link("0000-0000-0000-0000", format: "full")
+    Author Name~#orcid("0009-0004-4390-7419")
 
     #lorem(50)
   ],
