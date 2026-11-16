@@ -15,12 +15,6 @@ This repository is a collection of Typst templates for various purposes, check e
 * link:versatile-apa-student.pdf[Student]
 * link:versatile-apa-professional.pdf[Professional]
 
-=== UPSA Bolivia
-
-.Gallery
-* link:upsa-bo-estudio-de-factibilidad.pdf[Estudio de Factibilidad]
-* link:upsa-bo-tfg.pdf[Trabajo Final de Grado, facultad de ingeniería]
-
 === LaTeX Standard Classes
 
 .Gallery
