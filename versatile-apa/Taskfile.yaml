@@ -1,0 +1,20 @@
+version: 3
+
+tasks:
+  default:
+    deps:
+      - paper
+      - student
+      - professional
+  paper:
+    cmds:
+      - typst compile --pdf-standard ua-1 template/paper.typ
+  student:
+    cmds:
+      - typst compile --pdf-standard ua-1 template/student.typ
+  thumbnail:
+    cmds:
+      - typst compile template/paper.typ thumbnail.png --pages 1
+  professional:
+    cmds:
+      - typst compile --pdf-standard ua-1 template/professional.typ

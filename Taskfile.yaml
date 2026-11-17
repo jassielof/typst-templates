@@ -1,0 +1,32 @@
+version: 3
+
+env:
+  TYPST_FONT_PATHS: "{{.ROOT_DIR}}/assets/fonts/"
+  TYPST_ROOT: "{{.ROOT_DIR}}"
+
+includes:
+  versatile-apa:
+    taskfile: versatile-apa/Taskfile.yaml
+    dir: versatile-apa
+    aliases:
+      - apa
+  butterick:
+    taskfile: butterick-resume/Taskfile.yaml
+    dir: butterick-resume
+    aliases:
+      - butterick
+  latex-reborn:
+    taskfile: latex-reborn/Taskfile.yaml
+    dir: latex-reborn
+    aliases:
+      - latex
+
+tasks:
+  info:
+    cmd: typst info
+  default:
+    desc: Builds all templates
+    deps:
+      - versatile-apa
+      - butterick
+      - latex-reborn

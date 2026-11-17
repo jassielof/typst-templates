@@ -1,3 +1,12 @@
+// This is the feature guide. For a shorter starting point, open student.typ
+// (English with custom terms) or professional.typ (Spanish with an English abstract).
+// 1. Edit document metadata, authors, and affiliations below.
+// 2. Keep course/instructor/due-date for student papers; keep running-head and
+//    author-note for professional papers. This guide displays both for reference.
+// 3. Keep only the outlines and sample sections you need. When removing appendices,
+//    remove appendix-outline(), the final show: appendix, and its include together.
+// Relative library imports are rewritten by the release bundler.
+
 #import "../lib.typ": abstract-page, appendix, appendix-outline, title-page, versatile-apa as apa-style
 #import "@preview/orchid:0.2.0": orcid
 
@@ -62,6 +71,7 @@
   // modify-document-metadata: true,
 )
 
+// These outlines demonstrate navigation; they are optional for an APA paper.
 #outline()
 #pagebreak()
 #outline(target: figure.where(kind: table), title: [Tables])

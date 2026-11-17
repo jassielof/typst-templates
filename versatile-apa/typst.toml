@@ -16,16 +16,15 @@ keywords = [
   "Research",
 ]
 exclude = [
+  "Taskfile.yaml",
   "reference/",
   "*.pdf",
-  "thumbnail-*.png",
-  "template/student.typ",
-  "template/professional.typ"
+  "thumbnail-*.png"
 ]
 categories = ["paper", "report", "thesis"]
 disciplines = ["psychology", "business", "education", "sociology"]
 
 [template]
 path = "template"
-entrypoint = "main.typ"
+entrypoint = "paper.typ"
 thumbnail = "thumbnail.png"
