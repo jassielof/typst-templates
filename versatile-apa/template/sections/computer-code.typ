@@ -1,7 +1,10 @@
 #import "../../lib.typ": *
+#import "@preview/codly:2.0.0"
+
+#show raw.where(block: true): codly.new
 
 = Computer code
-The template has some support for raw/computer code, but if further customization is wanted, I recommend using #link("https://typst.app/universe/package/codly/")[Codly].
+Code blocks in this template use #link("https://typst.app/universe/package/codly/")[Codly].
 
 == Code block
 === Code block as a figure
@@ -44,6 +47,7 @@ Console.WriteLine("Long line of code that exceeds the width of the page and need
 #raw(
   read("../assets/src/main.py"),
   lang: "py",
+  block: true,
 )
 
 == Inline code

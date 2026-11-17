@@ -108,25 +108,7 @@
     body-indent: 0.75em,
   )
 
-  set raw(
-    tab-size: 4,
-    block: true,
-  )
-
-  show raw.where(block: true): set block(
-    fill: luma(250),
-    stroke: (left: 3pt + rgb("#6272a4")),
-    inset: (x: 10pt, y: 8pt),
-    outset: (y: 7pt),
-    radius: (left: 0pt, right: 6pt),
-  )
-
-  show raw: set text(
-    size: font-size - 1pt,
-  )
-
-  show raw.where(block: true): set par(leading: 1em)
-  show figure.where(kind: raw): set block(breakable: true, sticky: false, width: 100%)
+  show figure.where(kind: raw): set block(breakable: true, sticky: false)
 
   set math.equation(numbering: "(1)")
 
