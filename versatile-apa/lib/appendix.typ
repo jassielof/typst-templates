@@ -23,12 +23,17 @@
     numbering: n => apa-figure-numbering(n),
   )
 
+  set math.equation(numbering: n => {
+    let appendix-number = if multiple-level-1 { counter(heading).get().first() } else { 1 }
+    numbering("(" + heading-numbering + "1)", appendix-number, n)
+  })
+
   counter(heading).update(0)
   show heading.where(level: 1): it => {
     pagebreak()
     counter(figure.where(kind: image)).update(0)
     counter(figure.where(kind: table)).update(0)
-    counter(figure.where(kind: math.equation)).update(0)
+    counter(math.equation).update(0)
     counter(figure.where(kind: raw)).update(0)
     // Label and title go on separate lines of the same block (APA 7, 2.14), so a line break is used instead of a paragraph break.
     block[
