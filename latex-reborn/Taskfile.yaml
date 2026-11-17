@@ -1,0 +1,18 @@
+version: 3
+
+tasks:
+  default:
+    desc: Builds all document classes and thumbnails
+    deps: [article, report, book, letter, thumbnail]
+  article:
+    cmd: typst compile template/article.typ
+  report:
+    cmd: typst compile template/report.typ
+  book:
+    cmd: typst compile template/book.typ
+  letter:
+    cmd: typst compile template/letter.typ
+  thumbnail:
+    cmds:
+      - for: [article, report, book, letter]
+        cmd: typst compile template/{{.ITEM}}.typ thumbnail-{{.ITEM}}.png --pages 1
