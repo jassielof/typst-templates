@@ -1,0 +1,11 @@
+version: 3
+
+tasks:
+  default:
+    desc: Builds the résumé and thumbnail
+    deps: [cv, thumbnail]
+  cv:
+    cmd: typst compile --pdf-standard ua-1 template/resume.typ
+  thumbnail:
+    cmd: typst compile template/resume.typ thumbnail.png --pages 1
+

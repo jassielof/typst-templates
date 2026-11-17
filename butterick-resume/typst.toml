@@ -8,9 +8,9 @@ entrypoint = "lib.typ"
 repository = "https://github.com/jassielof/typst-templates"
 description = "Résumé template based on Matthew Butterick's guide."
 categories = ["cv"]
-exclude = ["docs/", "*.pdf", "template/*.pdf"]
+exclude = ["Taskfile.yaml", "docs/", "*.pdf", "template/*.pdf"]
 
 [template]
 path = "template"
-entrypoint = "main.typ"
+entrypoint = "resume.typ"
 thumbnail = "thumbnail.png"
