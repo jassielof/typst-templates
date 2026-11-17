@@ -1,7 +1,7 @@
-// TODO: Ideally, this should be a state so it's configurable.
+// The spacing between lines and paragraphs in the document.
 #let double-spacing = 1.5em
 
-// TODO: This... should also be... but it's complex.
+// The indentation length for the first line of a paragraph.
 #let first-indent-length = 0.5in
 
 /// The length required for the quotation to automatically become a block quote.
