@@ -73,6 +73,7 @@
   )
 
   show table.cell: set par(leading: double-spacing / 2, spacing: double-spacing / 2)
+  show grid.cell: set par(leading: double-spacing / 2, spacing: double-spacing / 2)
 
   show figure.where(kind: image): set block(breakable: true, sticky: false)
   show figure.where(kind: table): set block(breakable: true, sticky: false)
