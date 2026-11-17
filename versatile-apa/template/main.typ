@@ -68,7 +68,7 @@
 #pagebreak()
 #outline(target: figure.where(kind: image), title: [Figures])
 #pagebreak()
-#outline(target: figure.where(kind: math.equation), title: [Equations])
+#outline(target: math.equation.where(block: true), title: [Equations])
 #pagebreak()
 #outline(target: figure.where(kind: raw), title: [Listings])
 #pagebreak()
