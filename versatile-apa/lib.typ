@@ -14,7 +14,7 @@
   running-head: none,
   body,
 ) = context {
-  context language-terms.update(custom-terms)
+  language-terms.update(custom-terms)
 
   set text(
     size: font-size,
@@ -89,10 +89,10 @@
   set figure.caption(separator: parbreak(), position: top)
   show figure.caption: set align(left)
   show figure: set align(left)
-  show figure.caption: set par(first-line-indent: 0em)
-  show figure.caption: set block(breakable: false, sticky: true, spacing: double-spacing / 2)
+  show figure.caption: set par(first-line-indent: 0em, spacing: double-spacing, leading: double-spacing)
+  show figure.caption: set block(breakable: false, sticky: true, spacing: double-spacing)
   show figure.caption: it => context block({
-    strong[#it.supplement #context it.counter.display(it.numbering)]
+    strong[#it.supplement #it.counter.display(it.numbering)]
     it.separator
     emph(it.body)
   })
