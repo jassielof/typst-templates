@@ -14,7 +14,7 @@ tasks:
   versatile-apa:
     dir: versatile-apa
     cmds:
-      - typst compile template/main.typ
+      - typst compile --pdf-standard ua-1 template/main.typ
       - typst compile template/student.typ
       - typst compile template/professional.typ
     desc: Versatile APA Template
@@ -46,7 +46,7 @@ tasks:
       - "template/*.pdf"
       - "*.png"
     cmds:
-      - typst compile template/main.typ
+      - typst compile --pdf-standard ua-1 template/main.typ
       - typst compile template/main.typ thumbnail.png --pages 1
   www:
     desc: Move generated PDFs for deployment
