@@ -41,14 +41,22 @@
 
 #let apa-table(
   headers: none,
+  footers: none,
   ..args,
 ) = {
   table(
     stroke: 0pt,
+    ..args.named(),
     table.hline(stroke: 1pt),
-    table.header(..headers),
+    table.header(
+      ..headers,
+      table.hline(stroke: 1pt),
+    ),
+    ..args.pos(),
     table.hline(stroke: 1pt),
-    ..args,
-    table.hline(stroke: 1pt)
+    table.footer(
+      ..footers,
+      table.hline(stroke: 1pt),
+    ),
   )
 }
