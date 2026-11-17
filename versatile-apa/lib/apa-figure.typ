@@ -7,11 +7,8 @@
   if queried-heading == none {
     queried-heading = "A"
   }
-  if header-counter == 0 {
-    numbering("1", n)
-  } else {
-    numbering(queried-heading + "1", header-counter, n)
-  }
+  // An unnumbered single appendix still uses A for its figure and table prefix.
+  numbering(queried-heading + "1", calc.max(1, header-counter), n)
 }
 
 #let apa-figure(

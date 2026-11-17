@@ -9,11 +9,11 @@
   numbering-for-all: false,
   body,
 ) = context {
-  set heading(supplement: get-terms(text.lang, text.script).at(supplement))
+  let appendix-label = get-terms(text.lang, text.script).at(supplement, default: supplement)
+  set heading(supplement: appendix-label)
   let multiple-level-1 = (
-    query(heading.where(level: 1, supplement: [#get-terms(text.lang, text.script).at(supplement)])).len() > 1
+    query(heading.where(level: 1, supplement: [#appendix-label])).len() > 1
   )
-  let multiple-figures-on-level-1 = query(figure).len() > 1
   show heading.where(level: 1): set heading(numbering: heading-numbering) if multiple-level-1
   show heading.where(level: 2).or(heading.where(level: 3)): set heading(
     numbering: heading-numbering,
@@ -68,6 +68,7 @@
 ) = context {
   let appendices = query(heading.where(level: 1))
   let appendix-supplement = appendices.last().supplement
+  // Use native outline entries: appendix letters are counters, not repeated labels.
   outline(
     ..args,
     target: heading.where(

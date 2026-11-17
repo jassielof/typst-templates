@@ -1,5 +1,5 @@
 #import "languages.typ": get-terms
-#import "authoring.typ": print-affiliations, print-authors
+#import "authorship.typ": print-affiliations, print-authors, normalize-authorship
 #import "constants.typ": double-spacing, first-indent-length, title-page-spacing
 #import "to-string.typ": to-string
 
@@ -12,21 +12,15 @@
   due-date: none,
   author-note: none,
 ) = context {
-  set document(
-    author: if type(authors) == array and authors.len() > 0 and type(authors.at(0)) == dictionary {
-      authors.map(it => to-string[#it.name]).join(", ")
-    } else if type(authors) == array {
-      authors.map(it => to-string[#it]).join(", ")
-    } else {
-      to-string[#authors].trim()
-    },
-  ) if authors != none
+  let visible-authors = if authors == none and document.author.len() > 0 { document.author } else { authors }
+  let authorship = normalize-authorship(visible-authors, affiliations)
+  set document(author: authorship.authors.map(author => to-string[#author.name])) if authors != none
   set document(
     title: title,
   ) if title != none
 
   // Without `authors`, show the names from the user's own `set document(author: ...)`.
-  let authors = if authors == none and document.author.len() > 0 { document.author } else { authors }
+  let authors = visible-authors
 
   std.title()
 

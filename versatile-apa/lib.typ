@@ -1,5 +1,5 @@
 #import "lib/languages.typ": get-terms, language-terms
-#import "lib/authoring.typ": print-affiliations, print-authors
+#import "lib/authorship.typ": print-affiliations, print-authors
 #import "lib/appendix.typ": appendix, appendix-outline
 #import "lib/apa-figure.typ": apa-figure, apa-table
 #import "lib/abstract.typ": abstract-page
@@ -13,19 +13,20 @@
   custom-terms: (:),
   running-head: none,
   body,
-) = context {
-  language-terms.update(custom-terms)
+) = {
+  context language-terms.update(custom-terms)
 
   set text(
     size: font-size,
   )
 
   show std.title: set text(size: font-size, weight: "bold")
-  show std.title: set block(
+  show std.title: it => context block(
     inset: (top: title-page-spacing.final()),
     spacing: double-spacing,
     below: double-spacing * 2,
     width: 100%,
+    it,
   )
 
   show std.title: set align(center)
@@ -36,9 +37,9 @@
     number-align: top + right,
     margin: 1in,
     header: if running-head != none {
-      grid(
+      context grid(
         columns: (1fr, auto),
-        upper(running-head), str(here().page()),
+        upper(running-head), counter(page).display(),
       )
     } else { auto },
   )
@@ -58,7 +59,12 @@
 
   show heading.where(level: 1): set align(center)
   show heading.where(level: 3).or(heading.where(level: 5)): set text(style: "italic")
-  show heading.where(level: 4).or(heading.where(level: 5)): it => [#it.body.]
+  show heading: it => {
+    if it.level >= 4 {
+      set text(style: "italic") if it.level >= 5
+      [#it.body.]
+    } else { it }
+  }
 
   set par(
     first-line-indent: (
@@ -116,20 +122,6 @@
   show quote.where(block: true): set block(spacing: double-spacing)
 
   show quote: it => apa-quote(it)
-
-  show outline.entry: it => context {
-    if (
-      (
-        it.element.supplement == [#context get-terms(text.lang, text.script).Appendix]
-      )
-        and it.element.has("level")
-        and it.element.level == 1
-    ) {
-      link(it.element.location(), it.indented([#it.element.supplement #it.prefix().], it.inner()))
-    } else {
-      it
-    }
-  }
 
   set outline(depth: 3, indent: 2em)
 

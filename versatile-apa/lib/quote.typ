@@ -36,7 +36,7 @@
       }
     ]
   } else {
-    ["#it.body"]
+    [#smartquote()#it.body#smartquote()]
     if attribution != none {
       h(0.25em)
       attribution

@@ -2,6 +2,8 @@
 
 // Sample tables taken from https://apastyle.apa.org/style-grammar-guidelines/tables-figures/sample-tables
 = Sample Tables
+Use apa-table for the tabular content and apa-figure for the academic object around it. The wrapper supplies the numbered caption, localized general note, specific and probability notes, and a target for references. In an appendix, the same wrapper inherits the appendix prefix and reset counter. A bare table has rows and cells but no caption, figure counter, notes, or referenceable table number.
+
 == Sample Demographic Characteristics Table
 Referencing @table:sample-demographic-characteristics.
 

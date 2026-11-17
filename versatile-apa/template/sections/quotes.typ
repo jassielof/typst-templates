@@ -39,8 +39,8 @@ Automatically set as a block:
 
 // "No Longer Human" (人間失格 / Ningen Shikkaku), a 1948 novel by Osamu Dazai (太宰治).
 // The iconic opening line of the main character's journal. It captures the profound feelings of alienation, shame, and inability to understand or fit into normal human society that define the entire tragic narrative.
-Inline quote: #quote(attribution: [太宰治『人間失格』])[恥の多い生涯を送って来ました。自分には、人間の営みというものが、見当つかないのです。]
+Inline quotation with Japanese marks: #quote(attribution: [太宰治『人間失格』])[恥の多い生涯を送って来ました。自分には、人間の営みというものが、見当つかないのです。]
 
-// Revert to words as the threshold for English text
+// State updates persist after an include or local block. Restore both settings so later quotations return to the default behavior. Text and smartquote set rules are scoped to this included file; the counter states are not.
 #quote-unit.update("words")
 #quote-block-trigger.update(40)
