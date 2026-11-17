@@ -2,9 +2,9 @@
 = Math Equations
 #lorem(50).
 
-Let $a$, $b$, and $c$ be the side lengths of right-angled triangle. Then, we know that:
+Let #math.equation(alt: "a", $a$), #math.equation(alt: "b", $b$), and #math.equation(alt: "c", $c$) be the side lengths of right-angled triangle. Then, we know that:
 #apa-figure(
-  $ a^2 + b^2 = c^2 $,
+  math.equation(alt: "a squared plus b squared equals c squared", $ a^2 + b^2 = c^2 $),
   placement: none,
   kind: math.equation,
   caption: "Right-angled triangle",
@@ -12,7 +12,7 @@ Let $a$, $b$, and $c$ be the side lengths of right-angled triangle. Then, we kno
 
 Prove by induction:
 #apa-figure(
-  $ sum_(k=1)^n k = (n(n+1)) / 2 $,
+  math.equation(alt: "The sum of k from k equals one to n equals n times n plus one, divided by two", $ sum_(k=1)^n k = (n(n+1)) / 2 $),
   placement: none,
   kind: math.equation,
   caption: "Sum of first n integers",
@@ -20,7 +20,7 @@ Prove by induction:
 
 We define:
 #apa-figure(
-  $ phi.alt := (1 + sqrt(5)) / 2 $,
+  math.equation(alt: "Phi is defined as one plus the square root of five, divided by two", $ phi.alt := (1 + sqrt(5)) / 2 $),
   placement: none,
   kind: math.equation,
   caption: "Golden ratio",
@@ -28,7 +28,7 @@ We define:
 
 With @ratio, we get:
 #figure(
-  $ F_n = floor(1 / sqrt(5) phi.alt^n) $,
+  math.equation(alt: "F sub n equals the floor of phi to the power n divided by the square root of five", $ F_n = floor(1 / sqrt(5) phi.alt^n) $),
   placement: none,
   kind: math.equation,
   caption: [Fibonacci number],

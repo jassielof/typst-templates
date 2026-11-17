@@ -199,7 +199,7 @@ Referencing @table:sample-demographic-characteristics.
   caption: [Sociodemographic Characteristics of Participants at Baseline],
 ) <table:sample-demographic-characteristics>
 
-== Sample Results of Several $t$ Tests Table
+== Sample Results of Several #math.equation(alt: "t", $t$) Tests Table
 Referencing @table:sample-results-of-several-t-tests.
 
 #apa-figure(
@@ -217,9 +217,9 @@ Referencing @table:sample-results-of-several-t-tests.
       table.cell(colspan: 2)[9-year-olds],
       table.cell(colspan: 2)[16-year-olds],
       table.hline(stroke: 0.5pt),
-      table.cell(rowspan: 2)[$t(40)$],
-      table.cell(rowspan: 2)[$p$],
-      table.cell(rowspan: 2)[Cohen's $d$],
+      table.cell(rowspan: 2)[#math.equation(alt: "t statistic with 40 degrees of freedom", $t(40)$)],
+      table.cell(rowspan: 2)[#math.equation(alt: "p", $p$)],
+      table.cell(rowspan: 2)[Cohen's #math.equation(alt: "d", $d$)],
       [M],
       [SD],
       [M],
@@ -357,6 +357,6 @@ Referencing @table:sample-correlation.
 
     #super[c] Values reflect the average across 3 years of data.
   ],
-  probability-note: [#super[\*]$p < .05$. #super[\*\*]$p < .01$.],
+  probability-note: [#super[\*]#math.equation(alt: "p less than .05", $p < .05$). #super[\*\*]#math.equation(alt: "p less than .01", $p < .01$).],
   caption: [Descriptive Statistics and Correlations for Study Variables],
 ) <table:sample-correlation>
