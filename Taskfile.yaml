@@ -1,5 +1,7 @@
 version: 3
 
+# TODO: Extra thumbnails should go under thumbnails/*.png rather than thumbnail-*.png
+
 env:
   TYPST_FONT_PATHS: "{{.ROOT_DIR}}/assets/fonts/"
   TYPST_ROOT: "{{.ROOT_DIR}}"
