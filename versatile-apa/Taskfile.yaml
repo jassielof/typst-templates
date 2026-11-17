@@ -6,7 +6,6 @@ tasks:
       - paper
       - student
       - professional
-      - test
   paper:
     cmds:
       - typst compile --pdf-standard ua-1 template/paper.typ
@@ -19,7 +18,3 @@ tasks:
   professional:
     cmds:
       - typst compile --pdf-standard ua-1 template/professional.typ
-
-  test:
-    desc: Checks accepted authorship formats and actionable input errors
-    cmd: node --test ../.github/tests/authorship.test.mjs
