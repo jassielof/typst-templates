@@ -39,24 +39,43 @@
   )
 }
 
+// Keep all header rows in one repeatable group so row spans cross rows.
 #let apa-table(
   headers: none,
+  header-separator: 0.5pt,
   footers: none,
   ..args,
 ) = {
+  let header-groups = ()
+  if headers != none and headers.len() > 0 {
+    assert(type(headers) == array, message: "headers must be an array")
+    let multi-row = type(headers.first()) == array
+    let rows = if multi-row { headers } else { (headers,) }
+    let cells = ()
+    for (index, row) in rows.enumerate() {
+      assert(type(row) == array, message: "Each header row must be an array")
+      cells += row
+      if index < rows.len() - 1 and header-separator != none {
+        cells.push(table.hline(y: index + 1, stroke: header-separator))
+      }
+    }
+    header-groups.push(table.header(
+      table.hline(stroke: 1pt),
+      ..cells,
+      table.hline(y: if multi-row { rows.len() } else { auto }, stroke: 1pt),
+    ))
+  }
+
   table(
     stroke: 0pt,
     ..args.named(),
-    table.hline(stroke: 1pt),
-    table.header(
-      ..headers,
-      table.hline(stroke: 1pt),
-    ),
+    ..if header-groups.len() == 0 { (table.hline(stroke: 1pt),) } else { () },
+    ..header-groups,
     ..args.pos(),
-    table.hline(stroke: 1pt),
-    table.footer(
-      ..footers,
-      table.hline(stroke: 1pt),
-    ),
+    ..if footers != none and footers.len() > 0 {
+      (table.hline(stroke: 1pt), table.footer(..footers, table.hline(stroke: 1pt)))
+    } else {
+      (table.hline(stroke: 1pt),)
+    },
   )
 }
