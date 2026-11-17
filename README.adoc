@@ -4,29 +4,19 @@ All templates in this repository are made by me under my free time.
 
 == Templates
 
-This repository is a collection of Typst templates for various purposes, check each template for more details:
-
-* link:koma-script[KOMA-Script] (WIP): KOMA-Script classes port to Typst (article/report/book).
+The maintained templates below include source examples and their own documentation. Compile an example locally to generate its PDF.
 
 === Versatile APA
 
-.Gallery
-* link:versatile-apa.pdf[Default]
-* link:versatile-apa-student.pdf[Student]
-* link:versatile-apa-professional.pdf[Professional]
+APA 7th Edition papers for students and professionals. See the link:versatile-apa/[template guide].
 
 === LaTeX Standard Classes
 
-.Gallery
-* link:latex-reborn-article.pdf[Article]
-* link:latex-reborn-report.pdf[Report]
-* link:latex-reborn-book.pdf[Book]
-* link:latex-reborn-letter.pdf[Letter]
+Typst versions of the standard LaTeX document classes. See the link:latex-reborn/[template guide].
 
 === Butterick’s Résumé
 
-.Gallery
-* link:butterick-resume.pdf[Default]
+A résumé template based on Matthew Butterick’s typography guidance. See the link:butterick-resume/[template guide].
 
 == Usage
 

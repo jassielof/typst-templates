@@ -6,8 +6,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
   test:
@@ -20,24 +18,3 @@ jobs:
         uses: go-task/setup-task@v2
       - name: Build templates
         run: task
-      - name: README
-        run: |
-          sudo gem install asciidoctor
-          task www
-          asciidoctor README.adoc -o www/index.html
-      - name: Upload page artifacts
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: www
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    needs: test
-    if: github.event_name != 'pull_request'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deployment
-        id: deployment
-        uses: actions/deploy-pages@v5
